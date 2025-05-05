@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
     use HasFactory;
 
-    public function attendees(): HasMany
+    public function attendees(): BelongsToMany
     {
-        return $this->hasMany(Attendee::class);
+        return $this->belongsToMany(User::class, 'attending');
     }
 
     public function user(): BelongsTo

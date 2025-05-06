@@ -109,3 +109,17 @@ test("events_update_fields_optional", function () {
             ->assertJsonFragment([$key => $value]);
     }
 });
+
+test("events_destroy", function() {
+    $event = $this->getEvents(count: 1);
+
+    //TODO add user once it's managed
+    $this->delete(route('events.destroy', $event))
+        ->assertValid()
+        ->assertJsonStructure([
+            'message',
+        ]);
+
+    //Make sure the event is deleted from the database
+    $this->assertDatabaseMissing('events', ['id' => $event->id]);
+});

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -11,23 +14,35 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return Event::latest()->paginate(10)->toJson();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        //
+        $event = new Event();
+        $event->name = $request->name;
+        $event->description = $request->description;
+        $event->start_date = $request->start_date;
+        $event->end_date = $request->end_date;
+        $event->price = $request->price;
+        $event->location = $request->location;
+        $event->user()->associate(User::latest()->first())->save(); //Temporary fix to associate the first user with the event
+
+        return response()->json([
+            'message' => 'Event created successfully',
+            'event' => $event,
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event $event)
     {
-        //
+        return $event->toJson();
     }
 
     /**

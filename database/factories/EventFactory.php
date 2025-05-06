@@ -22,7 +22,7 @@ class EventFactory extends Factory
             'user_id' => User::factory(),
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'location' => $this->faker->city,
+            'location' => random_int(0, 1) ? $this->faker->city : 'Online',
             'start_date' => ($start = $this->getRandomDateTime('now', '+1 month')),
             'end_date' => (clone $start)->modify('+' . (30 * random_int(1, 1440)) . ' minutes'),
             'price' => $this->faker->randomFloat(2, 1, 1000),

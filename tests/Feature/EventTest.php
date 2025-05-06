@@ -2,6 +2,7 @@
 
 use App\Constants;
 use App\Models\Event;
+use Illuminate\Support\Arr;
 
 test('events_store_successful', function () {
     $data = $this->getEventFormData();
@@ -40,7 +41,7 @@ test('events_validation', function () {
         route('events.store'), 
         $this->getEventFormData(), 
         [
-            [['name', 'description', 'start_date', 'end_date', 'location', 'price'], 'required', ''],
+            [['name', 'description', 'start_date', 'end_date', 'location', 'price', 'is_public'], 'required', ''],
             [['name', 'description', 'location'], 'string', 0],
             [['name', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             ['description', 'max.string', str_repeat('a', Constants::DESCRIPTION_MAX_LENGTH + 1), ['max' => Constants::DESCRIPTION_MAX_LENGTH]],
@@ -90,4 +91,21 @@ test('events_update_successful', function () {
 
     //Make sure the user didn't change
     expect($event->user->toArray())->toBe(Event::find($event->id)->user->toArray());
+});
+
+test("events_update_fields_optional", function () {
+    $data = $this->getEventFormData();
+
+    //TODO add user once it's managed
+    foreach($data as $key => $value) {
+        $event = $this->getEvents(count: 1);
+
+        if($event->{$key} instanceof DateTime) $value = $event->{$key}->format('Y-m-d H:i:s');
+        elseif(is_bool($event->{$key} )) $value = $event->{$key} ? 1 : 0;
+        else $value = $event->{$key};
+
+        $this->put(route('events.update', $event), Arr::except($data, $key))
+            ->assertValid()
+            ->assertJsonFragment([$key => $value]);
+    }
 });

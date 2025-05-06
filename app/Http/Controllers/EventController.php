@@ -56,13 +56,13 @@ class EventController extends Controller
     {
         //TODO - Add validation for the request
 
-        $event->name = $request->name;
-        $event->description = $request->description;
-        $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
-        $event->price = $request->price;
-        $event->location = $request->location;
-        $event->is_public = $request->is_public;
+        $event->name = $request->input('name', $event->name);
+        $event->description = $request->input('description', $event->description);
+        $event->start_date = $request->input('start_date', $event->start_date);
+        $event->end_date = $request->input('end_date', $event->end_date);
+        $event->price = $request->input('price', $event->price);
+        $event->location = $request->input('location', $event->location);
+        $event->is_public = $request->input('is_public', $event->is_public);
         $event->update();
 
         $event->load('user');

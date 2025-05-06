@@ -22,14 +22,16 @@ class EventRequest extends FormRequest
      */
     public function rules(): array
     {
+        $ruleRequired = $this->routeIs('events.store') ? 'required' : 'sometimes|required';
+
         return [
-            'name' => 'bail|required|string|max:' . Constants::STRING_MAX_LENGTH,
-            'description' => 'bail|required|string|max:' . Constants::DESCRIPTION_MAX_LENGTH,
-            'start_date' => 'bail|required|date|after_or_equal:today',
-            'end_date' => 'bail|required|date|after_or_equal:start_date',
-            'location' => 'bail|required|string|max:' . Constants::STRING_MAX_LENGTH,
-            'price' => 'bail|required|numeric|min:0',
-            'is_public' => 'bail|boolean',
+            'name' => 'bail|' . $ruleRequired . '|string|max:' . Constants::STRING_MAX_LENGTH,
+            'description' => 'bail|' . $ruleRequired . '|string|max:' . Constants::DESCRIPTION_MAX_LENGTH,
+            'start_date' => 'bail|' . $ruleRequired . '|date|after_or_equal:today',
+            'end_date' => 'bail|' . $ruleRequired . '|date|after_or_equal:start_date',
+            'location' => 'bail|' . $ruleRequired . '|string|max:' . Constants::STRING_MAX_LENGTH,
+            'price' => 'bail|' . $ruleRequired . '|numeric|min:0',
+            'is_public' => 'bail|' . $ruleRequired . '|boolean',
         ];
     }
 }

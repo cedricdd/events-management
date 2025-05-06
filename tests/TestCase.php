@@ -3,7 +3,9 @@
 namespace Tests;
 
 use App\Models\User;
+use App\Models\Event;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -25,7 +27,21 @@ abstract class TestCase extends BaseTestCase
             'end_date' => now()->addDay()->setTime(18, 0)->format('Y-m-d H:i:s'),
             'location' => 'Online',
             'price' => 10.00,
+            'is_public' => true,
         ];
+    }
+
+    protected function getEvents(int $count = 10, ?User $user = null): Event|Collection {
+        $count = min(1, $count); // Ensure at least 1 event is created
+
+        $events = Event::factory()->count($count)
+            ->when($user, function ($query) use ($user) {
+                return $query->forUser($user, 'user');
+            })
+            ->create();
+
+        if($count > 1) return $events;
+        else return $events->first();
     }
 
     /**

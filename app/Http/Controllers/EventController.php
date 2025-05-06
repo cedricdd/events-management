@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class EventController extends Controller
 {
@@ -20,7 +21,7 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EventRequest $request)
+    public function store(EventRequest $request): JsonResponse
     {
         $event = new Event();
         $event->name = $request->name;
@@ -29,6 +30,7 @@ class EventController extends Controller
         $event->end_date = $request->end_date;
         $event->price = $request->price;
         $event->location = $request->location;
+        $event->is_public = $request->is_public;
         $event->user()->associate(User::latest()->first())->save(); //Temporary fix to associate the first user with the event
 
         return response()->json([
@@ -42,15 +44,33 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return $event->toJson();
+        $event->load('user');
+
+        return $event;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Event $event): JsonResponse
     {
-        //
+        //TODO - Add validation for the request
+
+        $event->name = $request->name;
+        $event->description = $request->description;
+        $event->start_date = $request->start_date;
+        $event->end_date = $request->end_date;
+        $event->price = $request->price;
+        $event->location = $request->location;
+        $event->is_public = $request->is_public;
+        $event->update();
+
+        $event->load('user');
+
+        return response()->json([
+            'message' => 'Event updated successfully',
+            'event' => $event,
+        ]);
     }
 
     /**

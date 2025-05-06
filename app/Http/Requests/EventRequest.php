@@ -29,6 +29,7 @@ class EventRequest extends FormRequest
             'end_date' => 'bail|required|date|after_or_equal:start_date',
             'location' => 'bail|required|string|max:' . Constants::STRING_MAX_LENGTH,
             'price' => 'bail|required|numeric|min:0',
+            'is_public' => 'bail|boolean',
         ];
     }
 }

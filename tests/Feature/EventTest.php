@@ -1,6 +1,7 @@
 <?php
 
 use App\Constants;
+use App\Models\Event;
 
 test('events_store_successful', function () {
     $data = $this->getEventFormData();
@@ -18,6 +19,7 @@ test('events_store_successful', function () {
                 'end_date',
                 'price',
                 'location',
+                'is_public',
                 'user' => [
                     'id',
                     'name',
@@ -47,6 +49,45 @@ test('events_validation', function () {
             ['end_date', 'after_or_equal', now()->format('Y-m-d H:i:s'), ['date' => 'start date']],
             ['price', 'numeric', 'invalide-price'],
             ['price', 'min.numeric', -10, ['min' => 0]],
+            ['is_public', 'boolean', 'invalid-boolean'],
         ]);
         //TODO add user once it's managed
+});
+
+test('events_update_successful', function () {
+    $event = $this->getEvents(count: 1);
+
+    $data = $this->getEventFormData();
+
+    //TODO add user once it's managed
+    $response = $this->put(route('events.update', $event), $data)
+        ->assertValid()
+        ->assertJsonStructure([
+            'message',
+            'event' => [
+                'id',
+                'name',
+                'description',
+                'start_date',
+                'end_date',
+                'price',
+                'location',
+                'is_public',
+                'user' => [
+                    'id',
+                    'name',
+                    'email',
+                ],
+            ],
+        ]);
+
+    foreach ($data as $key => $value) {
+        $response->assertJsonFragment([$key => $value]);
+    }
+
+    //Make sure the event is updated in the database
+    $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
+
+    //Make sure the user didn't change
+    expect($event->user->toArray())->toBe(Event::find($event->id)->user->toArray());
 });

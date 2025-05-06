@@ -14,6 +14,7 @@ class Event extends Model
     protected $hidden = [
         'updated_at',
         'created_at',
+        'user_id',
     ];
 
     public function attendees(): BelongsToMany

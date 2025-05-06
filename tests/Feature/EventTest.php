@@ -32,7 +32,7 @@ test('events_show_not_found', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => 'Event not found',
+            'message' => 'Element not found',
         ]);
 });
 
@@ -149,6 +149,15 @@ test("events_update_fields_optional", function () {
     }
 });
 
+test('events_update_not_found', function () {
+    $this->put(route('events.update', 1), $this->getEventFormData())
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Element not found',
+        ]);
+});
+
 test("events_destroy", function () {
     $event = $this->getEvents(count: 1);
 
@@ -162,4 +171,13 @@ test("events_destroy", function () {
 
     //Make sure the event is deleted from the database
     $this->assertDatabaseMissing('events', ['id' => $event->id]);
+});
+
+test('events_destroy_not_found', function () {
+    $this->delete(route('events.update', 1), $this->getEventFormData())
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Element not found',
+        ]);
 });

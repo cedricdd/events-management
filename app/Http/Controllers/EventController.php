@@ -42,15 +42,9 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $eventID): JsonResponse
+    public function show(Event $event): JsonResponse
     {
-        $event = Event::with('user')->find($eventID);
-
-        if(!$event) {
-            return response()->json([
-                'message' => 'Event not found',
-            ], 404);
-        }
+        $event->load('user');   
 
         return response()->json($event);
     }
@@ -61,7 +55,6 @@ class EventController extends Controller
     public function update(Request $request, Event $event): JsonResponse
     {
         //TODO - Add validation for the request
-
         $event->name = $request->input('name', $event->name);
         $event->description = $request->input('description', $event->description);
         $event->start_date = $request->input('start_date', $event->start_date);
@@ -69,7 +62,7 @@ class EventController extends Controller
         $event->price = $request->input('price', $event->price);
         $event->location = $request->input('location', $event->location);
         $event->is_public = $request->input('is_public', $event->is_public);
-        $event->update();
+        $event->save();
 
         $event->load('user');
 

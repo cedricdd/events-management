@@ -31,14 +31,21 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function getEvents(int $count = 10, ?User $user = null): Event|Collection {
-        $count = min(1, $count); // Ensure at least 1 event is created
+    protected function getEvents(int $count = 10, ?User $user = null, int $attendeesCount = 0): Event|Collection {
+        $count = max(1, $count); // Ensure at least 1 event is created
 
         $events = Event::factory()->count($count)
             ->when($user, function ($query) use ($user) {
-                return $query->forUser($user, 'user');
+                return $query->for($user, 'user');
             })
             ->create();
+
+        // Attach attendees to the events
+        if ($attendeesCount > 0) {
+            $events->each(function ($event) use ($attendeesCount) {
+                $event->attendees()->attach(User::factory()->count($attendeesCount)->create());
+            });
+        }
 
         if($count > 1) return $events;
         else return $events->first();

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
+use App\Http\Resources\EventResource;
+use App\Http\Resources\EventCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class EventController extends Controller
@@ -13,9 +16,14 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): EventCollection
     {
-        return Event::latest()->paginate(10)->toJson();
+        return new EventCollection(
+                Event::with('user', 'attendees')
+                ->where('end_date', '>=', now())
+                ->orderBy('start_date', 'asc')
+                ->paginate(Constants::EVENTS_PER_PAGE)
+        );
     }
 
     /**
@@ -23,6 +31,7 @@ class EventController extends Controller
      */
     public function store(EventRequest $request): JsonResponse
     {
+        $user = User::latest()->first(); //Temporary fix to associate the first user with the event
         $event = new Event();
         $event->name = $request->name;
         $event->description = $request->description;
@@ -31,22 +40,24 @@ class EventController extends Controller
         $event->price = $request->price;
         $event->location = $request->location;
         $event->is_public = $request->is_public;
-        $event->user()->associate(User::latest()->first())->save(); //Temporary fix to associate the first user with the event
+        $event->user()->associate($user)->save(); 
 
-        return response()->json([
-            'message' => 'Event created successfully',
-            'event' => $event,
-        ], 201);
+        $event->setRelation('user', $user);
+
+        return EventResource::make($event)
+            ->additional(["message" => "Event created successfully"])
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event): JsonResponse
+    public function show(Event $event): EventResource
     {
-        $event->load('user');   
+        $event->load('user', 'attendees');
 
-        return response()->json($event);
+        return EventResource::make($event);
     }
 
     /**
@@ -64,12 +75,11 @@ class EventController extends Controller
         $event->is_public = $request->input('is_public', $event->is_public);
         $event->save();
 
-        $event->load('user');
+        $event->load('user', 'attendees');
 
-        return response()->json([
-            'message' => 'Event updated successfully',
-            'event' => $event,
-        ]);
+        return EventResource::make($event)
+            ->additional(["message" => "Event updated successfully"])
+            ->response();
     }
 
     /**

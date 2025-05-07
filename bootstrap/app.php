@@ -23,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
             //We are getting a NotFoundHttpException on an api route as a result of a ModelNotFoundException
             //This is a workaround to return a 404 response with a custom message
             if ($e instanceof NotFoundHttpException && request()->is('api/*') && ($e->getPrevious() instanceof ModelNotFoundException)) {
+                //Get the model name from the exception message
                 $model = Str::afterLast($e->getPrevious()->getModel(), '\\'); //extract Model name
                 return response()->json(
                     ['message' => $model . ' not found'], 

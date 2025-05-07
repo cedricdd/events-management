@@ -11,12 +11,6 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $hidden = [
-        'updated_at',
-        'created_at',
-        'user_id',
-    ];
-
     public function attendees(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'attending');

@@ -8,8 +8,12 @@ test('events_index', function () {
     $countPage = 1;
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendeesCount: 3);
 
-    $event = $events->sortBy(['start_date', 'asc'])->first();
-    $event->load('user', 'attendees');
+    $events = $events->sortBy(['start_date', 'asc']);
+    $eventFirst = $events->first();
+    $eventLast = $events->last();
+
+    $eventFirst->load('user', 'attendees');
+    $eventLast->load('user', 'attendees');
 
     $this->get(route('events.index'))
         ->assertValid()
@@ -50,35 +54,80 @@ test('events_index', function () {
                 'last_page',
                 'per_page',
                 'total',
+                'path',
             ],
         ])
         ->assertJsonFragment([
-            'id' => $event->id,
-            'name' => $event->name,
-            'description' => $event->description,
-            'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-            'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-            'price' => $event->price,
-            'location' => $event->location,
-            'is_public' => $event->is_public ? 1 : 0,
-            'user' => [
-                'id' => $event->user->id,
-                'name' => $event->user->name,
-                'email' => $event->user->email,
-            ],
-            'attendees' => $event->attendees->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                ];
-            })->toArray(),
+            [
+                'id' => $eventFirst->id,
+                'name' => $eventFirst->name,
+                'description' => $eventFirst->description,
+                'start_date' => $eventFirst->start_date->format('Y-m-d H:i:s'),
+                'end_date' => $eventFirst->end_date->format('Y-m-d H:i:s'),
+                'price' => $eventFirst->price,
+                'location' => $eventFirst->location,
+                'is_public' => $eventFirst->is_public ? 1 : 0,
+                'user' => [
+                    'id' => $eventFirst->user->id,
+                    'name' => $eventFirst->user->name,
+                    'email' => $eventFirst->user->email,
+                ],
+                'attendees' => $eventFirst->attendees->map(function ($user) {
+                    return [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                    ];
+                })->toArray(),
+            ]
+        ])
+        ->assertJsonMissing([
+            [
+                'id' => $eventLast->id,
+                'name' => $eventLast->name,
+                'description' => $eventLast->description,
+            ]
         ])
         ->assertJsonFragment([
             'current_page' => 1,
             'last_page' => $countPage,
             'per_page' => Constants::EVENTS_PER_PAGE,
-            'total' => $events->count(),
+            'total' => Constants::EVENTS_PER_PAGE * $countPage,
+        ]);
+
+    $this->get(route('events.index', ['page' => $countPage]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            [
+                'id' => $eventLast->id,
+                'name' => $eventLast->name,
+                'description' => $eventLast->description,
+                'start_date' => $eventLast->start_date->format('Y-m-d H:i:s'),
+                'end_date' => $eventLast->end_date->format('Y-m-d H:i:s'),
+                'price' => $eventLast->price,
+                'location' => $eventLast->location,
+                'is_public' => $eventLast->is_public ? 1 : 0,
+                'user' => [
+                    'id' => $eventLast->user->id,
+                    'name' => $eventLast->user->name,
+                    'email' => $eventLast->user->email,
+                ],
+                'attendees' => $eventLast->attendees->map(function ($user) {
+                    return [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                    ];
+                })->toArray(),
+            ]
+        ])
+        ->assertJsonMissing([
+            [
+                'id' => $eventFirst->id,
+                'name' => $eventFirst->name,
+                'description' => $eventFirst->description,
+            ]
         ]);
 });
 
@@ -243,10 +292,7 @@ test("events_destroy", function () {
     //TODO add user once it's managed
     $this->delete(route('events.destroy', $event))
         ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'message' => "Event deleted successfully"
-        ]);
+        ->assertStatus(204);
 
     //Make sure the event is deleted from the database
     $this->assertDatabaseMissing('events', ['id' => $event->id]);

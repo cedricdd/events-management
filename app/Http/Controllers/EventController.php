@@ -6,6 +6,7 @@ use App\Constants;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
@@ -85,13 +86,11 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event): JsonResponse
+    public function destroy(Event $event): Response
     {
         //TODO - Add validation for the request
         $event->delete();
 
-        return response()->json([
-            'message' => 'Event deleted successfully',
-        ]);
+        return response()->noContent();
     }
 }

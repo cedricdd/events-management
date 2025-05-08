@@ -51,6 +51,7 @@ test('attendees_index', function () {
                 ],
             ],
         ])
+        ->assertJsonCount(Constants::ATTENDEES_PER_PAGE, 'data')
         ->assertJsonFragment([
             'current_page' => 1,
             'last_page' => $countPage,

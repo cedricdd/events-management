@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants;
 use App\Models\User;
 use App\Models\Event;
+use App\LoadRelationships;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
@@ -14,17 +15,23 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class EventController extends Controller
 {
+    use LoadRelationships;
+
+    private $defaultRelationships = [
+        'user',
+        'attendees',
+    ];
+
     /**
      * Display a listing of the resource.
      */
     public function index(): EventCollection
     {
-        return new EventCollection(
-                Event::with('user', 'attendees')
-                ->where('end_date', '>=', now())
-                ->orderBy('start_date', 'asc')
-                ->paginate(Constants::EVENTS_PER_PAGE)
-        );
+        $events = Event::where('end_date', '>=', now())
+            ->orderBy('start_date', 'asc')
+            ->paginate(Constants::EVENTS_PER_PAGE);
+
+        return new EventCollection($this->loadRelationships($events, $this->defaultRelationships));
     }
 
     /**
@@ -41,7 +48,7 @@ class EventController extends Controller
         $event->price = $request->price;
         $event->location = $request->location;
         $event->is_public = $request->is_public;
-        $event->user()->associate($user)->save(); 
+        $event->user()->associate($user)->save();
 
         $event->setRelation('user', $user);
 
@@ -56,7 +63,7 @@ class EventController extends Controller
      */
     public function show(Event $event): EventResource
     {
-        $event->load('user', 'attendees');
+        $event = $this->loadRelationships($event, $this->defaultRelationships);
 
         return EventResource::make($event);
     }
@@ -76,9 +83,9 @@ class EventController extends Controller
         $event->is_public = $request->input('is_public', $event->is_public);
         $event->save();
 
-        $event->load('user', 'attendees');
+        $event->load('user');
 
-        return EventResource::make($event)
+        return EventResource::make($this->loadRelationships($event, ['attendees']))
             ->additional(["message" => "Event updated successfully"])
             ->response();
     }

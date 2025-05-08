@@ -162,6 +162,7 @@ test('events_show', function () {
 });
 
 test('events_show_not_found', function () {
+    // Test with a non-existing event
     $this->get(route('events.show', 1))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -176,6 +177,7 @@ test('events_store_successful', function () {
     //TODO add user once it's managed
     $response = $this->post(route('events.store'), $data)
         ->assertValid()
+        ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => 'Event created successfully',

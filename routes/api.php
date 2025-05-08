@@ -17,3 +17,6 @@ Route::delete('events/{event}', [EventController::class, 'destroy'])->name('even
 
 
 Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->name('attendees.index');
+Route::post('events/{event}/attendees', [AttendeeController::class, 'store'])->name('attendees.store');
+Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show');
+Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy');

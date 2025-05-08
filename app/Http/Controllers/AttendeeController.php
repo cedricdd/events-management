@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
-use App\Http\Resources\EventResource;
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\EventResource;
 use App\Http\Resources\UserCollection;
 
 class AttendeeController extends Controller
@@ -27,24 +29,59 @@ class AttendeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Event $event, Request $request)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        //TODO update once user is authenticated
+
+        $user = User::findOrFail($request->user_id);
+
+        if($event->attendees()->where('user_id', $user->id)->exists()) {
+            return response()->json([
+                'message' => 'User is already attending this event.',
+            ], 422);
+        }
+
+        // Attach the user to the event
+        $event->attendees()->attach($user);
+
+        // Load the user and event data
+        $event->load('user');
+
+        return UserResource::make($user)
+            ->additional(['event' => EventResource::make($event)])
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event $event, int $userID)
     {
-        //
+        $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
+
+        $event->load('user');
+
+        return UserResource::make($attendee)
+            ->additional(['event' => EventResource::make($event)]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event, int $userID)
     {
-        //
+        //TODO update once user is authenticated
+
+        // Detach the attendee from the event
+        $event->attendees()->detach($userID);
+
+        return response()->noContent();
     }
+
 }

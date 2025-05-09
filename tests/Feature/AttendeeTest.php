@@ -35,21 +35,6 @@ test('attendees_index', function () {
                 'prev',
                 'next',
             ],
-            'event' => [
-                'id',
-                'name',
-                'description',
-                'start_date',
-                'end_date',
-                'price',
-                'location',
-                'is_public',
-                'user' => [
-                    'id',
-                    'name',
-                    'email',
-                ],
-            ],
         ])
         ->assertJsonCount(Constants::ATTENDEES_PER_PAGE, 'data')
         ->assertJsonFragment([
@@ -63,21 +48,6 @@ test('attendees_index', function () {
                 'id' => $attendeeFirst->id,
                 'name' => $attendeeFirst->name,
                 'email' => $attendeeFirst->email,
-            ],
-            'event' => [
-                'id' => $event->id,
-                'name' => $event->name,
-                'description' => $event->description,
-                'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-                'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-                'price' => $event->price,
-                'location' => $event->location,
-                'is_public' => $event->is_public ? 1 : 0,
-                'user' => [
-                    'id' => $event->user->id,
-                    'name' => $event->user->name,
-                    'email' => $event->user->email,
-                ],
             ],
         ])
         ->assertJsonMissing([
@@ -108,20 +78,15 @@ test('attendees_index', function () {
         ]);
 });
 
-test('attendees_show', function () {
+test('attendees_index_with_event', function () {
     $event = $this->getEvents(count: 1, attendeesCount: 1);
 
     $attendee = $event->attendees->first();
 
-    $this->get(route('attendees.show', [$event, $attendee]))
+    $this->get(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([
-            'data' => [
-                'id',
-                'name',
-                'email',
-            ],
             'event' => [
                 'id',
                 'name',
@@ -139,13 +104,6 @@ test('attendees_show', function () {
             ],
         ])
         ->assertJsonFragment([
-            [
-                'id' => $attendee->id,
-                'name' => $attendee->name,
-                'email' => $attendee->email,
-            ]
-        ])
-        ->assertJsonFragment([
             'id' => $event->id,
             'name' => $event->name,
             'description' => $event->description,
@@ -159,6 +117,40 @@ test('attendees_show', function () {
                 'name' => $event->user->name,
                 'email' => $event->user->email,
             ],
+        ]);
+});
+
+test('attendees_index_not_found', function () {
+    $this->get(route('attendees.index', 10))
+        ->assertValid()
+        ->assertStatus(404)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Event not found',
+        ]);
+});
+
+test('attendees_show', function () {
+    $event = $this->getEvents(count: 1, attendeesCount: 1);
+
+    $attendee = $event->attendees->first();
+
+    $this->get(route('attendees.show', [$event, $attendee]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'email',
+            ],
+        ])
+        ->assertJsonFragment([
+            [
+                'id' => $attendee->id,
+                'name' => $attendee->name,
+                'email' => $attendee->email,
+            ]
         ]);
 });
 

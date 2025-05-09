@@ -17,13 +17,11 @@ class AttendeeController extends Controller
      */
     public function index(Event $event)
     {
-        $event->load('user');
-
         // Return the list of attendees
         return new UserCollection($event->attendees()
             ->orderBy('name')
             ->paginate(Constants::ATTENDEES_PER_PAGE))
-            ->additional(['event' => EventResource::make($event)]);
+            ->additional($this->getAdditionalData($event));
     }
 
     /**
@@ -68,7 +66,7 @@ class AttendeeController extends Controller
         $event->load('user');
 
         return UserResource::make($attendee)
-            ->additional(['event' => EventResource::make($event)]);
+            ->additional($this->getAdditionalData($event));
     }
 
     /**
@@ -84,4 +82,17 @@ class AttendeeController extends Controller
         return response()->noContent();
     }
 
+    private function getAdditionalData(Event $event)
+    {
+        $additional = [];
+
+        // User wants to get the event data
+        if(strtolower(trim(request()->input('with', ''))) === 'event') {
+            $event->load('user');
+            
+            $additional['event'] = EventResource::make($event);
+        }
+
+        return $additional;
+    }
 }

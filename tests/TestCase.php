@@ -4,8 +4,10 @@ namespace Tests;
 
 use App\Models\User;
 use App\Models\Event;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -51,6 +53,43 @@ abstract class TestCase extends BaseTestCase
         else return $events->first();
     }
 
+    protected function getEventResource(Event $event, bool $withUser = false, bool $withAttendees = false): array {
+        $data = [
+            'id' => $event->id,
+            'name' => $event->name,
+            'description' => $event->description,
+            'location' => $event->location,
+            'price' => $event->price,
+            'start_date' => $event->start_date->format('Y-m-d H:i:s'),
+            'end_date' => $event->end_date->format('Y-m-d H:i:s'),
+            'is_public' => $event->is_public ? 1 : 0,
+        ];
+
+        if ($withUser) {
+            $data['user'] = $this->getUserResource($event->user);
+        }
+
+        if($withAttendees) {
+            $data['attendees'] = $event->attendees->map(function ($user) {
+                return $this->getUserResource($user);
+            })->toArray();
+        }
+
+        return $data;
+    }
+
+    protected function getUserResource(User $user): array {
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'country' => $user->country,
+            'profession' => $user->profession,
+            'phone' => $user->phone,
+            'organization' => $user->organization,
+        ];
+    }
+
     /**
      * Checks form validation by submitting POST requests to a given route with various field values and asserting validation errors.
      *
@@ -81,8 +120,8 @@ abstract class TestCase extends BaseTestCase
 
                 $request = $user ? $this->actingAs($user) : $this;
 
-                $request->post($route, [$field => $infos[2]] + $defaults)
-                    ->assertStatus(302)
+                $request->postJson($route, [$field => $infos[2]] + $defaults)
+                    ->assertUnprocessable()
                     ->assertInvalid([$field => $error]); // Assert validation errors
             }
         }

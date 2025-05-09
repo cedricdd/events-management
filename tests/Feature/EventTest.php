@@ -3,19 +3,17 @@
 use App\Constants;
 use App\Models\Event;
 use Illuminate\Support\Arr;
+use App\Http\Resources\EventResource;
 
 test('events_index', function () {
-    $countPage = 1;
+    $countPage = 2;
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendeesCount: 3);
 
     $events = $events->sortBy(['start_date', 'asc']);
-    $eventFirst = $events->first();
-    $eventLast = $events->last();
-
-    $eventFirst->load('user', 'attendees');
-    $eventLast->load('user', 'attendees');
-
-    $this->get(route('events.index'))
+    $eventFirst = $this->getEventResource($events->first());
+    $eventLast = $this->getEventResource($events->last());
+    
+    $this->getJson(route('events.index'))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([
@@ -46,25 +44,8 @@ test('events_index', function () {
             ],
         ])
         ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data')
-        ->assertJsonFragment([
-            [
-                'id' => $eventFirst->id,
-                'name' => $eventFirst->name,
-                'description' => $eventFirst->description,
-                'start_date' => $eventFirst->start_date->format('Y-m-d H:i:s'),
-                'end_date' => $eventFirst->end_date->format('Y-m-d H:i:s'),
-                'price' => $eventFirst->price,
-                'location' => $eventFirst->location,
-                'is_public' => $eventFirst->is_public ? 1 : 0,
-            ]
-        ])
-        ->assertJsonMissing([
-            [
-                'id' => $eventLast->id,
-                'name' => $eventLast->name,
-                'description' => $eventLast->description,
-            ]
-        ])
+        ->assertJsonFragment($eventFirst)
+        ->assertJsonMissingExact($eventLast)
         ->assertJsonFragment([
             'current_page' => 1,
             'last_page' => $countPage,
@@ -75,53 +56,18 @@ test('events_index', function () {
     $this->get(route('events.index', ['page' => $countPage]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            [
-                'id' => $eventLast->id,
-                'name' => $eventLast->name,
-                'description' => $eventLast->description,
-                'start_date' => $eventLast->start_date->format('Y-m-d H:i:s'),
-                'end_date' => $eventLast->end_date->format('Y-m-d H:i:s'),
-                'price' => $eventLast->price,
-                'location' => $eventLast->location,
-                'is_public' => $eventLast->is_public ? 1 : 0,
-            ]
-        ])
-        ->assertJsonMissing([
-            [
-                'id' => $eventFirst->id,
-                'name' => $eventFirst->name,
-                'description' => $eventFirst->description,
-            ]
-        ]);
+        ->assertJsonFragment($eventLast)
+        ->assertJsonMissingExact($eventFirst);
 });
 
 test('events_index_with_user', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE);
     $event = $events->first();
 
-    $event->load('user');
-
-    $this->get(route('events.index', ['with' => 'user']))
+    $this->getJson(route('events.index', ['with' => 'user']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            [
-                'id' => $event->id,
-                'name' => $event->name,
-                'description' => $event->description,
-                'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-                'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-                'price' => $event->price,
-                'location' => $event->location,
-                'is_public' => $event->is_public ? 1 : 0,
-                'user' => [
-                    'id' => $event->user->id,
-                    'name' => $event->user->name,
-                    'email' => $event->user->email,
-                ],
-            ]
-        ]);
+        ->assertJsonFragment($this->getUserResource($event->user));
 });
 
 test('events_index_with_attendees', function () {
@@ -130,77 +76,44 @@ test('events_index_with_attendees', function () {
 
     $event->load('attendees');
 
-    $this->get(route('events.index', ['with' => 'attendees']))
+    $this->getJson(route('events.index', ['with' => 'attendees']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            [
-                'id' => $event->id,
-                'name' => $event->name,
-                'description' => $event->description,
-                'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-                'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-                'price' => $event->price,
-                'location' => $event->location,
-                'is_public' => $event->is_public ? 1 : 0,
-                'attendees' => $event->attendees->map(function ($user) {
-                    return [
-                        'id' => $user->id,
-                        'name' => $user->name,
-                        'email' => $user->email,
-                    ];
-                })->toArray(),
-            ]
+            'attendees' => $event->attendees->map(function ($user) {
+                return $this->getUserResource($user);
+            })->toArray(),
         ]);
 });
 
 test('events_show', function () {
     $event = $this->getEvents(count: 1);
 
-    $this->get(route('events.show', $event))
+    $this->getJson(route('events.show', $event))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'id' => $event->id,
-            'name' => $event->name,
-            'description' => $event->description,
-            'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-            'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-            'price' => $event->price,
-            'location' => $event->location,
-            'is_public' => $event->is_public ? 1 : 0,
-        ]);
+        ->assertJsonFragment($this->getEventResource($event));
 });
 
 
 test('events_show_with_user', function () {
     $event = $this->getEvents(count: 1);
 
-    $this->get(route('events.show', [$event, 'with' => 'user']))
+    $this->getJson(route('events.show', [$event, 'with' => 'user']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'user' => [
-                'id' => $event->user->id,
-                'name' => $event->user->name,
-                'email' => $event->user->email,
-            ],
-        ]);
+        ->assertJsonFragment($this->getUserResource($event->user));
 });
 
 test('events_show_with_attendees', function () {
     $event = $this->getEvents(count: 1, attendeesCount: 5);
 
-    $this->get(route('events.show', [$event, 'with' => 'attendees']))
+    $this->getJson(route('events.show', [$event, 'with' => 'attendees']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'attendees' => $event->attendees->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                ];
+                return $this->getUserResource($user);
             })->toArray(),
         ]);
 });
@@ -220,7 +133,7 @@ test('events_store_successful', function () {
     $data = $this->getEventFormData();
 
     //TODO add user once it's managed
-    $response = $this->post(route('events.store'), $data)
+    $response = $this->postJson(route('events.store'), $data)
         ->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
@@ -265,7 +178,7 @@ test('events_update_successful', function () {
     $data = $this->getEventFormData();
 
     //TODO add user once it's managed
-    $this->put(route('events.update', $event), $data)
+    $this->putJson(route('events.update', $event), $data)
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
@@ -278,12 +191,8 @@ test('events_update_successful', function () {
             'price' => $data['price'],
             'location' => $data['location'],
             'is_public' => $data['is_public'],
-            'user' => [
-                'id' => $event->user->id,
-                'name' => $event->user->name,
-                'email' => $event->user->email,
-            ],
-        ]);
+        ])
+        ->assertJsonFragment(['user' => $this->getUserResource($event->user)]);
 
     //Make sure the event is updated in the database
     $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
@@ -295,16 +204,12 @@ test('events_update_successful', function () {
 test('events_update_with_attendees', function () {
     $event = $this->getEvents(count: 1, attendeesCount: 3);
 
-    $this->put(route('events.update', [$event, 'with' => 'attendees']), $this->getEventFormData())
+    $this->putJson(route('events.update', [$event, 'with' => 'attendees']), $this->getEventFormData())
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'attendees' => $event->attendees->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                ];
+                return $this->getUserResource($user);
             })->toArray(),
         ]);
 }); 
@@ -323,7 +228,7 @@ test("events_update_fields_optional", function () {
         else
             $value = $event->{$key};
 
-        $this->put(route('events.update', $event), Arr::except($data, $key))
+        $this->putJson(route('events.update', $event), Arr::except($data, $key))
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json')
             ->assertJsonFragment([$key => $value]);
@@ -331,7 +236,7 @@ test("events_update_fields_optional", function () {
 });
 
 test('events_update_not_found', function () {
-    $this->put(route('events.update', 1), $this->getEventFormData())
+    $this->putJson(route('events.update', 1), $this->getEventFormData())
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
@@ -343,7 +248,7 @@ test("events_destroy", function () {
     $event = $this->getEvents(count: 1);
 
     //TODO add user once it's managed
-    $this->delete(route('events.destroy', $event))
+    $this->deleteJson(route('events.destroy', $event))
         ->assertValid()
         ->assertStatus(204);
 
@@ -352,7 +257,7 @@ test("events_destroy", function () {
 });
 
 test('events_destroy_not_found', function () {
-    $this->delete(route('events.update', 1), $this->getEventFormData())
+    $this->deleteJson(route('events.update', 1), $this->getEventFormData())
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([

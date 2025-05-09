@@ -1,6 +1,8 @@
 <?php
 
 use App\Constants;
+use App\Http\Resources\EventResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 
 test('attendees_index', function () {
@@ -8,10 +10,10 @@ test('attendees_index', function () {
     $event = $this->getEvents(count: 1, attendeesCount: Constants::ATTENDEES_PER_PAGE * $countPage);
 
     $attendees = $event->attendees->sortBy(['name', 'asc']);
-    $attendeeFirst = $attendees->first();
-    $attendeeLast = $attendees->last();
+    $attendeeFirst = $this->getUserResource($attendees->first());
+    $attendeeLast = $this->getUserResource($attendees->last());
 
-    $this->get(route('attendees.index', $event))
+    $this->getJson(route('attendees.index', $event))
         ->assertOk()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([
@@ -43,85 +45,28 @@ test('attendees_index', function () {
             'per_page' => Constants::ATTENDEES_PER_PAGE,
             'total' => Constants::ATTENDEES_PER_PAGE * $countPage,
         ])
-        ->assertJsonFragment([
-            [
-                'id' => $attendeeFirst->id,
-                'name' => $attendeeFirst->name,
-                'email' => $attendeeFirst->email,
-            ],
-        ])
-        ->assertJsonMissing([
-            [
-                'id' => $attendeeLast->id,
-                'name' => $attendeeLast->name,
-                'email' => $attendeeLast->email,
-            ]
-        ]);
+        ->assertJsonFragment($attendeeFirst)
+        ->assertJsonMissingExact($attendeeLast);
 
 
-    $this->get(route('attendees.index', [$event, 'page' => $countPage]))
+    $this->getJson(route('attendees.index', [$event, 'page' => $countPage]))
         ->assertOk()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            [
-                'id' => $attendeeLast->id,
-                'name' => $attendeeLast->name,
-                'email' => $attendeeLast->email,
-            ]
-        ])
-        ->assertJsonMissing([
-            [
-                'id' => $attendeeFirst->id,
-                'name' => $attendeeFirst->name,
-                'email' => $attendeeFirst->email,
-            ]
-        ]);
+        ->assertJsonFragment($attendeeLast)
+        ->assertJsonMissingExact($attendeeFirst);
 });
 
 test('attendees_index_with_event', function () {
     $event = $this->getEvents(count: 1, attendeesCount: 1);
 
-    $attendee = $event->attendees->first();
-
-    $this->get(route('attendees.index', [$event, 'with' => 'event']))
+    $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonStructure([
-            'event' => [
-                'id',
-                'name',
-                'description',
-                'start_date',
-                'end_date',
-                'price',
-                'location',
-                'is_public',
-                'user' => [
-                    'id',
-                    'name',
-                    'email',
-                ],
-            ],
-        ])
-        ->assertJsonFragment([
-            'id' => $event->id,
-            'name' => $event->name,
-            'description' => $event->description,
-            'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-            'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-            'price' => $event->price,
-            'location' => $event->location,
-            'is_public' => $event->is_public ? 1 : 0,
-            'user' => [
-                'id' => $event->user->id,
-                'name' => $event->user->name,
-                'email' => $event->user->email,
-            ],
-        ]);
+        ->assertJsonFragment(['event' => $this->getEventResource($event, withUser: true)]);
 });
 
 test('attendees_index_not_found', function () {
-    $this->get(route('attendees.index', 10))
+    $this->getJson(route('attendees.index', 10))
         ->assertValid()
         ->assertStatus(404)
         ->assertHeader('Content-Type', 'application/json')
@@ -135,23 +80,21 @@ test('attendees_show', function () {
 
     $attendee = $event->attendees->first();
 
-    $this->get(route('attendees.show', [$event, $attendee]))
+    $this->getJson(route('attendees.show', [$event, $attendee]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonStructure([
-            'data' => [
-                'id',
-                'name',
-                'email',
-            ],
-        ])
-        ->assertJsonFragment([
-            [
-                'id' => $attendee->id,
-                'name' => $attendee->name,
-                'email' => $attendee->email,
-            ]
-        ]);
+        ->assertJsonFragment($this->getUserResource($attendee));
+});
+
+test('attendees_show_with_event', function () {
+    $event = $this->getEvents(count: 1, attendeesCount: 1);
+
+    $attendee = $event->attendees->first();
+
+    $this->getJson(route('attendees.show', [$event, $attendee, 'with' => 'event']))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment($this->getEventResource($event, withUser: true));
 });
 
 test('attendees_show_not_found', function () {
@@ -160,7 +103,7 @@ test('attendees_show_not_found', function () {
     $attendee = $event->attendees->first();
 
     // Test with a non-existing attendee
-    $this->get(route('attendees.show', [$event, 10]))
+    $this->getJson(route('attendees.show', [$event, 10]))
         ->assertValid()
         ->assertStatus(404)
         ->assertHeader('Content-Type', 'application/json')
@@ -169,7 +112,7 @@ test('attendees_show_not_found', function () {
         ]);
 
     // Test with a non-existing event
-    $this->get(route('attendees.show', [10, $attendee]))
+    $this->getJson(route('attendees.show', [10, $attendee]))
         ->assertValid()
         ->assertStatus(404)
         ->assertHeader('Content-Type', 'application/json')
@@ -185,19 +128,19 @@ test('attendees_destroy', function () {
     $attendee = $event->attendees->first();
 
     // Remove the attendee from the event
-    $this->delete(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
+    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
 
     // Check that the count of attendees has decreased
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
 
     // Try to remove the same attendee again
-    $this->delete(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
+    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
 
     // Check that the count of attendees has not changed
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
 
     // Try to remove a non-existing attendee
-    $this->delete(route('attendees.destroy', [$event, $attendeesCount * 2]))->assertNoContent();
+    $this->deleteJson(route('attendees.destroy', [$event, $attendeesCount * 2]))->assertNoContent();
 
     // Check that the count of attendees has not changed
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
@@ -208,55 +151,13 @@ test('attendees_store', function () {
 
     $user = User::factory()->create();
 
-    $this->post(route('attendees.store', $event), [
+    $this->postJson(route('attendees.store', $event), [
         'user_id' => $user->id,
     ])->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonStructure([
-            'data' => [
-                'id',
-                'name',
-                'email',
-            ],
-            'event' => [
-                'id',
-                'name',
-                'description',
-                'start_date',
-                'end_date',
-                'price',
-                'location',
-                'is_public',
-                'user' => [
-                    'id',
-                    'name',
-                    'email',
-                ],
-            ],
-        ])
-        ->assertJsonFragment([
-            [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-            ]
-        ])
-        ->assertJsonFragment([
-            'id' => $event->id,
-            'name' => $event->name,
-            'description' => $event->description,
-            'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-            'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-            'price' => $event->price,
-            'location' => $event->location,
-            'is_public' => $event->is_public ? 1 : 0,
-            'user' => [
-                'id' => $event->user->id,
-                'name' => $event->user->name,
-                'email' => $event->user->email,
-            ],
-        ]);
+        ->assertJsonFragment($this->getUserResource($user))
+        ->assertJsonFragment($this->getEventResource($event, withUser: true));
 
     // Check that the count of attendees has increased
     expect($event->attendees()->count())->toBe(1);
@@ -270,7 +171,7 @@ test('attendees_store_already_attending', function () {
 
     $user = $event->attendees->first();
 
-    $this->post(route('attendees.store', $event), [
+    $this->postJson(route('attendees.store', $event), [
         'user_id' => $user->id,
     ])->assertValid()
         ->assertStatus(422)
@@ -284,7 +185,7 @@ test('attendees_store_not_found', function () {
     $user = User::factory()->create();
 
     // Test with a non-existing event
-    $this->post(route('attendees.store', 10), [
+    $this->postJson(route('attendees.store', 10), [
         'user_id' => $user->id,
     ])->assertValid()
         ->assertStatus(404)

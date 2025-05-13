@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
-use App\Models\User;
 use App\Models\Event;
 use App\LoadRelationships;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -72,7 +72,12 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event): JsonResponse
     {
-        //TODO - Add validation for the request
+        if(!Gate::allows('update-event', $event)) {
+            return response()->json([
+                'message' => 'You do not have permission to update this event.'
+            ], 403);
+        }
+
         $event->name = $request->input('name', $event->name);
         $event->description = $request->input('description', $event->description);
         $event->start_date = $request->input('start_date', $event->start_date);

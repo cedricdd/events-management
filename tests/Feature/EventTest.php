@@ -187,11 +187,12 @@ test('events_form_validation', function () {
 });
 
 test('events_update_successful', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 3);
+    $event = $this->getEvents(count: 1, attendeesCount: 3, user: $this->user);
 
     $data = $this->getEventFormData();
 
-    //TODO add user once it's managed
+    Sanctum::actingAs($this->user);
+
     $this->putJson(route('events.update', $event), $data)
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -216,7 +217,9 @@ test('events_update_successful', function () {
 });
 
 test('events_update_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 3);
+    $event = $this->getEvents(count: 1, attendeesCount: 3, user: $this->user);
+
+    Sanctum::actingAs($this->user);
 
     $this->putJson(route('events.update', [$event, 'with' => 'attendees']), $this->getEventFormData())
         ->assertValid()
@@ -231,9 +234,10 @@ test('events_update_with_attendees', function () {
 test("events_update_fields_optional", function () {
     $data = $this->getEventFormData();
 
-    //TODO add user once it's managed
+    Sanctum::actingAs($this->user);
+
     foreach ($data as $key => $value) {
-        $event = $this->getEvents(count: 1);
+        $event = $this->getEvents(count: 1, user: $this->user);
 
         if ($event->{$key} instanceof DateTime)
             $value = $event->{$key}->format('Y-m-d H:i:s');
@@ -250,11 +254,37 @@ test("events_update_fields_optional", function () {
 });
 
 test('events_update_not_found', function () {
+    Sanctum::actingAs($this->user);
+
     $this->putJson(route('events.update', 1), $this->getEventFormData())
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => 'Event not found',
+        ]);
+});
+
+test('events_update_only_auth', function () {
+    $event = $this->getEvents(count: 1);
+
+    $this->putJson(route('events.update', $event), $this->getEventFormData())
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+});
+
+test('events_update_not_owner', function () {
+    $event = $this->getEvents(count: 1);
+
+    Sanctum::actingAs($this->user);
+
+    $this->putJson(route('events.update', $event), $this->getEventFormData())
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'You do not have permission to update this event.',
         ]);
 });
 

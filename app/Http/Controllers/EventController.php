@@ -39,7 +39,6 @@ class EventController extends Controller
      */
     public function store(EventRequest $request): JsonResponse
     {
-        $user = User::latest()->first(); //Temporary fix to associate the first user with the event
         $event = new Event();
         $event->name = $request->name;
         $event->description = $request->description;
@@ -48,9 +47,9 @@ class EventController extends Controller
         $event->price = $request->price;
         $event->location = $request->location;
         $event->is_public = $request->is_public;
-        $event->user()->associate($user)->save();
+        $event->user()->associate($request->user())->save();
 
-        $event->setRelation('user', $user);
+        $event->setRelation('user', $request->user());
 
         return EventResource::make($event)
             ->additional(["message" => "Event created successfully"])

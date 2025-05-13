@@ -3,6 +3,7 @@
 use App\Constants;
 use App\Models\Event;
 use Illuminate\Support\Arr;
+use Laravel\Sanctum\Sanctum;
 
 test('events_index', function () {
     $countPage = 2;
@@ -11,7 +12,7 @@ test('events_index', function () {
     $events = $events->sortBy(['start_date', 'asc']);
     $eventFirst = $this->getEventResource($events->first());
     $eventLast = $this->getEventResource($events->last());
-    
+
     $this->getJson(route('events.index'))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -131,27 +132,41 @@ test('events_show_not_found', function () {
 test('events_store_successful', function () {
     $data = $this->getEventFormData();
 
-    //TODO add user once it's managed
-    $response = $this->postJson(route('events.store'), $data)
+    Sanctum::actingAs($this->user);
+
+    $this->postJson(route('events.store'), $data)
         ->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => 'Event created successfully',
-            'id' => 1,
-            'name' => $data['name'],
-            'description' => $data['description'],
-            'start_date' => $data['start_date'],
-            'end_date' => $data['end_date'],
-            'price' => $data['price'],
-            'location' => $data['location'],
-            'is_public' => $data['is_public'],
+            'data' => [
+                'id' => 1,
+                'name' => $data['name'],
+                'description' => $data['description'],
+                'start_date' => $data['start_date'],
+                'end_date' => $data['end_date'],
+                'price' => $data['price'],
+                'location' => $data['location'],
+                'is_public' => $data['is_public'],
+                'user' => $this->getUserResource($this->user),
+            ]
         ]);
 
     $this->assertDatabaseHas('events', $data);
 });
 
-test('events_validation', function () {
+test('events_store_only_auth', function () {
+    $data = $this->getEventFormData();
+
+    $this->postJson(route('events.store'), $data)
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+});
+
+test('events_form_validation', function () {
     $this->checkForm(
         route('events.store'),
         $this->getEventFormData(),
@@ -211,7 +226,7 @@ test('events_update_with_attendees', function () {
                 return $this->getUserResource($user);
             })->toArray(),
         ]);
-}); 
+});
 
 test("events_update_fields_optional", function () {
     $data = $this->getEventFormData();

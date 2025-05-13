@@ -13,11 +13,11 @@ class Event extends Model
 
     public function attendees(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'attending');
+        return $this->belongsToMany(related: User::class, table: 'attending');
     }
 
-    public function user(): BelongsTo
+    public function organizer(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(related: User::class, foreignKey: 'user_id');
     }
 }

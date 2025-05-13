@@ -5,6 +5,7 @@ namespace Tests;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -33,12 +34,12 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function getEvents(int $count = 10, ?User $user = null, int $attendeesCount = 0): Event|Collection {
+    protected function getEvents(int $count = 10, ?User $organizer = null, int $attendeesCount = 0): Event|Collection {
         $count = max(1, $count); // Ensure at least 1 event is created
 
         $events = Event::factory()->count($count)
-            ->when($user, function ($query) use ($user) {
-                return $query->for($user, 'user');
+            ->when($organizer, function ($query) use ($organizer) {
+                return $query->for($organizer, 'organizer');
             })
             ->create();
 
@@ -53,7 +54,7 @@ abstract class TestCase extends BaseTestCase
         else return $events->first();
     }
 
-    protected function getEventResource(Event $event, bool $withUser = false, bool $withAttendees = false): array {
+    protected function getEventResource(Event $event, bool $withOrganizer = false, bool $withAttendees = false): array {
         $data = [
             'id' => $event->id,
             'name' => $event->name,
@@ -65,8 +66,8 @@ abstract class TestCase extends BaseTestCase
             'is_public' => $event->is_public ? 1 : 0,
         ];
 
-        if ($withUser) {
-            $data['user'] = $this->getUserResource($event->user);
+        if ($withOrganizer) {
+            $data['organizer'] = $this->getUserResource($event->organizer);
         }
 
         if($withAttendees) {
@@ -118,9 +119,11 @@ abstract class TestCase extends BaseTestCase
 
                 // dump("Checking field: {$field} with value: {$infos[2]} and error: {$error}");
 
-                $request = $user ? $this->actingAs($user) : $this;
+                if($user !== null) {
+                    Sanctum::actingAs($user);
+                }
 
-                $request->postJson($route, [$field => $infos[2]] + $defaults)
+                $this->postJson($route, [$field => $infos[2]] + $defaults)
                     ->assertUnprocessable()
                     ->assertInvalid([$field => $error]); // Assert validation errors
             }

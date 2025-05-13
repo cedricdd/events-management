@@ -60,14 +60,14 @@ test('events_index', function () {
         ->assertJsonMissingExact($eventFirst);
 });
 
-test('events_index_with_user', function () {
+test('events_index_with_organizer', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE);
     $event = $events->first();
 
-    $this->getJson(route('events.index', ['with' => 'user']))
+    $this->getJson(route('events.index', ['with' => 'organizer']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($event->user));
+        ->assertJsonFragment($this->getUserResource($event->organizer));
 });
 
 test('events_index_with_attendees', function () {
@@ -96,13 +96,13 @@ test('events_show', function () {
 });
 
 
-test('events_show_with_user', function () {
+test('events_show_with_organizer', function () {
     $event = $this->getEvents(count: 1);
 
-    $this->getJson(route('events.show', [$event, 'with' => 'user']))
+    $this->getJson(route('events.show', [$event, 'with' => 'organizer']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($event->user));
+        ->assertJsonFragment($this->getUserResource($event->organizer));
 });
 
 test('events_show_with_attendees', function () {
@@ -148,7 +148,7 @@ test('events_store_successful', function () {
                 'price' => $data['price'],
                 'location' => $data['location'],
                 'is_public' => $data['is_public'],
-                'user' => $this->getUserResource($this->user),
+                'organizer' => $this->getUserResource($this->user),
             ]
         ]);
 
@@ -181,13 +181,13 @@ test('events_form_validation', function () {
             ['price', 'numeric', 'invalide-price'],
             ['price', 'min.numeric', -10, ['min' => 0]],
             ['is_public', 'boolean', 'invalid-boolean'],
-        ]
+        ],
+        $this->user,
     );
-    //TODO add user once it's managed
 });
 
 test('events_update_successful', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 3, user: $this->user);
+    $event = $this->getEvents(count: 1, attendeesCount: 3, organizer: $this->user);
 
     $data = $this->getEventFormData();
 
@@ -207,17 +207,17 @@ test('events_update_successful', function () {
             'location' => $data['location'],
             'is_public' => $data['is_public'],
         ])
-        ->assertJsonFragment(['user' => $this->getUserResource($event->user)]);
+        ->assertJsonFragment(['organizer' => $this->getUserResource($event->organizer)]);
 
     //Make sure the event is updated in the database
     $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
 
-    //Make sure the user didn't change
-    expect($event->user->toArray())->toBe(Event::find($event->id)->user->toArray());
+    //Make sure the organizer didn't change
+    expect($event->organizer->toArray())->toBe(Event::find($event->id)->organizer->toArray());
 });
 
 test('events_update_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 3, user: $this->user);
+    $event = $this->getEvents(count: 1, attendeesCount: 3, organizer: $this->user);
 
     Sanctum::actingAs($this->user);
 
@@ -237,7 +237,7 @@ test("events_update_fields_optional", function () {
     Sanctum::actingAs($this->user);
 
     foreach ($data as $key => $value) {
-        $event = $this->getEvents(count: 1, user: $this->user);
+        $event = $this->getEvents(count: 1, organizer: $this->user);
 
         if ($event->{$key} instanceof DateTime)
             $value = $event->{$key}->format('Y-m-d H:i:s');
@@ -284,14 +284,15 @@ test('events_update_not_owner', function () {
         ->assertForbidden()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => 'You do not have permission to update this event.',
+            'message' => 'This action is unauthorized.',
         ]);
 });
 
 test("events_destroy", function () {
-    $event = $this->getEvents(count: 1);
+    $event = $this->getEvents(count: 1, organizer: $this->user);
 
-    //TODO add user once it's managed
+    Sanctum::actingAs($this->user);
+
     $this->deleteJson(route('events.destroy', $event))
         ->assertValid()
         ->assertStatus(204);
@@ -300,7 +301,33 @@ test("events_destroy", function () {
     $this->assertDatabaseMissing('events', ['id' => $event->id]);
 });
 
+test('events_destroy_only_auth', function () {
+    $event = $this->getEvents(count: 1);
+
+    $this->deleteJson(route('events.destroy', $event))
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+});
+
+test('events_destroy_not_owner', function () {
+    $event = $this->getEvents(count: 1);
+
+    Sanctum::actingAs($this->user);
+
+    $this->deleteJson(route('events.destroy', $event))
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'This action is unauthorized.',
+        ]);
+});
+
 test('events_destroy_not_found', function () {
+    Sanctum::actingAs($this->user);
+
     $this->deleteJson(route('events.update', 1), $this->getEventFormData())
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')

@@ -8,7 +8,6 @@ use App\LoadRelationships;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,7 +17,7 @@ class EventController extends Controller
     use LoadRelationships;
 
     private $defaultRelationships = [
-        'user',
+        'organizer',
         'attendees',
     ];
 
@@ -47,9 +46,9 @@ class EventController extends Controller
         $event->price = $request->price;
         $event->location = $request->location;
         $event->is_public = $request->is_public;
-        $event->user()->associate($request->user())->save();
+        $event->organizer()->associate($request->user())->save();
 
-        $event->setRelation('user', $request->user());
+        $event->setRelation('organizer', $request->user());
 
         return EventResource::make($event)
             ->additional(["message" => "Event created successfully"])
@@ -72,12 +71,6 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event): JsonResponse
     {
-        if(!Gate::allows('update-event', $event)) {
-            return response()->json([
-                'message' => 'You do not have permission to update this event.'
-            ], 403);
-        }
-
         $event->name = $request->input('name', $event->name);
         $event->description = $request->input('description', $event->description);
         $event->start_date = $request->input('start_date', $event->start_date);
@@ -87,7 +80,7 @@ class EventController extends Controller
         $event->is_public = $request->input('is_public', $event->is_public);
         $event->save();
 
-        $event->load('user');
+        $event->load('organizer');
 
         return EventResource::make($this->loadRelationships($event, ['attendees']))
             ->additional(["message" => "Event updated successfully"])
@@ -99,7 +92,6 @@ class EventController extends Controller
      */
     public function destroy(Event $event): Response
     {
-        //TODO - Add validation for the request
         $event->delete();
 
         return response()->noContent();

@@ -1,8 +1,6 @@
 <?php
 
 use App\Constants;
-use App\Http\Resources\EventResource;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 
 test('attendees_index', function () {

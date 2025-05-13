@@ -3,7 +3,6 @@
 use App\Constants;
 use App\Models\Event;
 use Illuminate\Support\Arr;
-use App\Http\Resources\EventResource;
 
 test('events_index', function () {
     $countPage = 2;

@@ -21,13 +21,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::middleware('guest:sanctum')->group(function () {
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+});
+
 Route::get('events', [EventController::class, 'index'])->name('events.index');
 Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
 
 Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->name('attendees.index');
 Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show');
-
-Route::post('login', [AuthController::class, 'login'])->name('login');
-
-
-

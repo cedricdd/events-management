@@ -26,7 +26,7 @@ class AuthController extends Controller
             ]);
         }
 
-        $token = $user->createToken(name: 'auth_token', expiresAt: now()->add('12 hours'))->plainTextToken;
+        $token = $user->createToken(name: 'auth_token')->plainTextToken;
 
         return response()->json([
             'token' => $token,
@@ -35,6 +35,8 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request) {
-        
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->noContent();
     }
 }

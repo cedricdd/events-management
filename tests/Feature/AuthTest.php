@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 
 test('login_successful', function () {
     $user = User::factory()->create();
@@ -16,6 +17,14 @@ test('login_successful', function () {
         ->assertJsonFragment([
             'user' => $this->getUserResource($user)
         ]);
+});
+
+test('login_need_to_be_guest', function () {
+    $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
+
+    $this->postJson(route('login'))->assertStatus(302);
 });
 
 test('login_invalid', function () {
@@ -36,5 +45,22 @@ test('login_form', function () {
     $this->checkForm(route('login'), ['email' => $user->email, 'password' => 'password'], [
         [['email', 'password'], 'required', ''],
         ['email', 'email', 'invalid-email'],
+    ]);
+});
+
+test('logout_need_to_be_auth', function () {
+    $this->deleteJson(route('logout'))->assertUnauthorized();
+});
+
+test('logout_successful', function () {
+    $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
+
+    $this->deleteJson(route('logout'))->assertNoContent(); 
+
+    $this->assertDatabaseMissing('personal_access_tokens', [
+        'tokenable_id' => $user->id,
+        'tokenable_type' => User::class,
     ]);
 });

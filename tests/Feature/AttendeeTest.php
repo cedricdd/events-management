@@ -2,6 +2,7 @@
 
 use App\Constants;
 use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 
 test('attendees_index', function () {
     $countPage = 2;
@@ -60,7 +61,7 @@ test('attendees_index_with_event', function () {
     $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment(['event' => $this->getEventResource($event, withUser: true)]);
+        ->assertJsonFragment(['event' => $this->getEventResource($event, withOrganizer: true)]);
 });
 
 test('attendees_index_not_found', function () {
@@ -92,7 +93,7 @@ test('attendees_show_with_event', function () {
     $this->getJson(route('attendees.show', [$event, $attendee, 'with' => 'event']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getEventResource($event, withUser: true));
+        ->assertJsonFragment($this->getEventResource($event, withOrganizer: true));
 });
 
 test('attendees_show_not_found', function () {
@@ -119,9 +120,11 @@ test('attendees_show_not_found', function () {
         ]);
 });
 
-test('attendees_destroy', function () {
+test('attendees_destroy_as_owner', function () {
     $attendeesCount = 10;
-    $event = $this->getEvents(count: 1, attendeesCount: $attendeesCount);
+    $event = $this->getEvents(count: 1, attendeesCount: $attendeesCount, organizer: $this->user);
+
+    Sanctum::actingAs($this->user);
 
     $attendee = $event->attendees->first();
 
@@ -144,24 +147,69 @@ test('attendees_destroy', function () {
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
 });
 
+test('attendees_destroy_as_attendee', function () {
+    $event = $this->getEvents(count: 1, attendeesCount: 1);
+
+    $event->attendees()->attach($this->user);
+
+    // Check that the count of attendees is 2
+    expect($event->attendees()->count())->toBe(2);
+
+    Sanctum::actingAs($this->user);
+
+    // Remove the attendee from the event
+    $this->deleteJson(route('attendees.destroy', [$event, $this->user]))->assertNoContent();
+
+    // Check that the count of attendees is 1
+    expect($event->attendees()->count())->toBe(1);
+});
+
+test('attendees_destroy_not_allowed', function () {
+    $event = $this->getEvents(count: 1, attendeesCount: 1);
+
+    Sanctum::actingAs($this->user);
+
+    $attendee = $event->attendees->first();
+
+    // Try to remove the attendee from the event
+    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'This action is unauthorized.',
+        ]);
+});
+
+test('attendees_destroy_only_auth', function () {
+    $event = $this->getEvents(count: 1, attendeesCount: 1);
+
+    $attendee = $event->attendees->first();
+
+    // Try to remove the attendee from the event
+    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+});
+
 test('attendees_store', function () {
     $event = $this->getEvents(count: 1);
 
-    $user = User::factory()->create();
+    Sanctum::actingAs($this->user);
 
-    $this->postJson(route('attendees.store', $event), [
-        'user_id' => $user->id,
-    ])->assertValid()
+    $this->postJson(route('attendees.store', $event))->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($user))
-        ->assertJsonFragment($this->getEventResource($event, withUser: true));
+        ->assertJsonFragment($this->getUserResource($this->user))
+        ->assertJsonFragment($this->getEventResource($event, withOrganizer: true));
 
     // Check that the count of attendees has increased
     expect($event->attendees()->count())->toBe(1);
 
     // Check that the user is now an attendee of the event
-    expect($event->attendees->first()->id)->toBe($user->id);
+    expect($event->attendees->first()->id)->toBe($this->user->id);
 });
 
 test('attendees_store_already_attending', function () {
@@ -169,9 +217,9 @@ test('attendees_store_already_attending', function () {
 
     $user = $event->attendees->first();
 
-    $this->postJson(route('attendees.store', $event), [
-        'user_id' => $user->id,
-    ])->assertValid()
+    Sanctum::actingAs($user);
+
+    $this->postJson(route('attendees.store', $event))->assertValid()
         ->assertStatus(422)
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
@@ -180,12 +228,10 @@ test('attendees_store_already_attending', function () {
 });
 
 test('attendees_store_not_found', function () {
-    $user = User::factory()->create();
+    Sanctum::actingAs($this->user);
 
     // Test with a non-existing event
-    $this->postJson(route('attendees.store', 10), [
-        'user_id' => $user->id,
-    ])->assertValid()
+    $this->postJson(route('attendees.store', 10))->assertValid()
         ->assertStatus(404)
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([

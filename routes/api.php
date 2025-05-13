@@ -16,7 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy')->can('destroy', 'event');
 
     Route::post('events/{event}/attendees', [AttendeeController::class, 'store'])->name('attendees.store');
-    Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy');
+    Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->middleware('can:destroy-attendee,event,attendee');
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });

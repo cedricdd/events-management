@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
-use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -29,28 +28,19 @@ class AttendeeController extends Controller
      */
     public function store(Event $event, Request $request)
     {
-        // Validate the request
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        //TODO update once user is authenticated
-
-        $user = User::findOrFail($request->user_id);
-
-        if($event->attendees()->where('user_id', $user->id)->exists()) {
+        if($event->attendees()->where('user_id', $request->user()->id)->exists()) {
             return response()->json([
                 'message' => 'User is already attending this event.',
             ], 422);
         }
 
         // Attach the user to the event
-        $event->attendees()->attach($user);
+        $event->attendees()->attach($request->user());
 
         // Load the user and event data
-        $event->load('user');
+        $event->load('organizer');
 
-        return UserResource::make($user)
+        return UserResource::make($request->user())
             ->additional(['event' => EventResource::make($event)])
             ->response()
             ->setStatusCode(201);
@@ -63,7 +53,7 @@ class AttendeeController extends Controller
     {
         $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
 
-        $event->load('user');
+        $event->load('organizer');
 
         return UserResource::make($attendee)
             ->additional($this->getAdditionalData($event));
@@ -72,12 +62,10 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event, int $userID)
+    public function destroy(Event $event, int $attendeeID)
     {
-        //TODO update once user is authenticated
-
         // Detach the attendee from the event
-        $event->attendees()->detach($userID);
+        $event->attendees()->detach($attendeeID);
 
         return response()->noContent();
     }
@@ -88,7 +76,7 @@ class AttendeeController extends Controller
 
         // User wants to get the event data
         if(strtolower(trim(request()->input('with', ''))) === 'event') {
-            $event->load('user');
+            $event->load('organizer');
             
             $additional['event'] = EventResource::make($event);
         }

@@ -24,11 +24,17 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): EventCollection
+    public function index(Request $request): EventCollection|JsonResponse
     {
-        $events = Event::isActive()->withCount('attendees')->setSorting($request->input('sort', ''));
+        $events = Event::isActive()->withCount('attendees')->setSorting($request->input('sort', ''))->paginate(Constants::EVENTS_PER_PAGE);
 
-        return new EventCollection($this->loadRelationships($events->paginate(Constants::EVENTS_PER_PAGE), $this->defaultRelationships));
+        if($request->has('page') && $request->input('page') > $events->lastPage()) {
+            return response()->json([
+                'message' => "The page " . $request->input('page') . " does not exist",
+            ], 404);
+        }
+
+        return new EventCollection($this->loadRelationships($events, $this->defaultRelationships));
     }
 
     /**

@@ -105,6 +105,17 @@ test('events_index_sorting', function () {
     }
 });
 
+test('events_index_out_of_range_page', function () {
+    $this->getEvents(count: Constants::EVENTS_PER_PAGE);
+
+    $this->getJson(route('events.index', ['page' => 10]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "The page 10 does not exist",
+        ])->assertStatus(404);
+});
+
 test('events_show', function () {
     $event = $this->getEvents(count: 1);
 

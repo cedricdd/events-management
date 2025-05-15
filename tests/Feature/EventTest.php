@@ -7,9 +7,9 @@ use Laravel\Sanctum\Sanctum;
 
 test('events_index', function () {
     $countPage = 2;
-    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendeesCount: 3);
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendees: 3);
 
-    $events = $events->sortBy(['start_date', 'asc']); // Default sorting by start date
+    $events = $events->sortBy([Constants::EVENT_DEFAULT_SORTING, 'asc']); // Default sorting by start date
     $eventFirst = $this->getEventResource($events->first());
     $eventLast = $this->getEventResource($events->last());
 
@@ -71,7 +71,7 @@ test('events_index_with_organizer', function () {
 });
 
 test('events_index_with_attendees', function () {
-    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendeesCount: 3);
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
     $event = $events->first();
 
     $event->load('attendees');
@@ -84,6 +84,25 @@ test('events_index_with_attendees', function () {
                 return $this->getUserResource($user);
             })->toArray(),
         ]);
+});
+
+test('events_index_sorting', function () {
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * 2, attendees: 'random');
+
+    $events->loadCount('attendees');
+
+    foreach(Constants::EVENT_SORTING_OPTIONS as $name => $column) {
+        $events = $events->sortBy([$column, 'asc']);
+
+        $eventFirst = $this->getEventResource($events->first());
+        $eventLast = $this->getEventResource($events->last());
+
+        $this->getJson(route('events.index', ['sort' => $name]))
+            ->assertValid()
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonFragment($eventFirst)
+            ->assertJsonMissingExact($eventLast);
+    }
 });
 
 test('events_show', function () {
@@ -106,7 +125,7 @@ test('events_show_with_organizer', function () {
 });
 
 test('events_show_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 5);
+    $event = $this->getEvents(count: 1, attendees: 5);
 
     $this->getJson(route('events.show', [$event, 'with' => 'attendees']))
         ->assertValid()
@@ -188,7 +207,7 @@ test('events_form_validation', function () {
 });
 
 test('events_update_successful', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 3, organizer: $this->user);
+    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->user);
 
     $data = $this->getEventFormData();
 
@@ -218,7 +237,7 @@ test('events_update_successful', function () {
 });
 
 test('events_update_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 3, organizer: $this->user);
+    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->user);
 
     Sanctum::actingAs($this->user);
 

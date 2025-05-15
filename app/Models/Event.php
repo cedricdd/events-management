@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,24 +35,25 @@ class Event extends Model
 
     public function scopeSetSorting(Builder $query, string $sorting): Builder
     {
-        $infos = explode(',', $sorting);
+        $order = Constants::EVENT_DEFAULT_SORTING;
+        $direction = "ASC";
 
-        if(count($infos) == 1) [$order, $direction] = [$infos[0], 'asc'];
-        elseif(count($infos) == 2) [$order, $direction] = $infos;
-        else [$order, $direction] = ['name', 'asc']; // Invalid sort, default to name asc
+        $sorting = trim(strtolower($sorting));
 
-        if($direction !== 'asc' && $direction !== 'desc') {
-            $direction = 'asc'; // Invalid direction, default to asc
+        if (!empty($sorting)) {
+            $infos = explode(',', $sorting);
+
+            if (count($infos) == 1)
+                [$order, $direction] = [$infos[0], 'asc'];
+            elseif (count($infos) == 2)
+                [$order, $direction] = $infos;
         }
 
-        return match(strtolower($order)) {
-            'name' => $query->orderBy('name', $direction),
-            'start' => $query->orderBy('start_date', $direction),
-            'end' => $query->orderBy('end_date', $direction),
-            'attendees' => $query->orderBy('attendees_count', $direction),
-            'location' => $query->orderBy('location', $direction),
-            'cost' => $query->orderBy('cost', $direction),
-            default => $query->orderBy('start_date'),
-        };
+        if ($direction !== 'asc' && $direction !== 'desc') 
+            $direction = 'asc'; // Invalid direction, default to asc
+        
+        $order = Constants::EVENT_SORTING_OPTIONS[$order] ?? Constants::EVENT_DEFAULT_SORTING;
+
+        return $query->orderBy($order, $direction);
     }
 }

@@ -34,7 +34,7 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function getEvents(int $count = 10, ?User $organizer = null, int $attendeesCount = 0): Event|Collection {
+    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0): Event|Collection {
         $count = max(1, $count); // Ensure at least 1 event is created
 
         $events = Event::factory()->count($count)
@@ -44,9 +44,14 @@ abstract class TestCase extends BaseTestCase
             ->create();
 
         // Attach attendees to the events
-        if ($attendeesCount > 0) {
-            $events->each(function ($event) use ($attendeesCount) {
-                $event->attendees()->attach(User::factory()->count($attendeesCount)->create());
+        if ($attendees) {
+            if(!is_int($attendees) && $attendees != "random") {
+                throw new \InvalidArgumentException("Attendees must be an integer or 'random'.");
+            }
+
+            $events->each(function ($event) use ($attendees) {
+                if($attendees == "random") $event->attendees()->attach(User::factory()->count(random_int(1, 10))->create());
+                else $event->attendees()->attach(User::factory()->count($attendees)->create());
             });
         }
 

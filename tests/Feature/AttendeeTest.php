@@ -6,7 +6,7 @@ use Laravel\Sanctum\Sanctum;
 
 test('attendees_index', function () {
     $countPage = 2;
-    $event = $this->getEvents(count: 1, attendeesCount: Constants::ATTENDEES_PER_PAGE * $countPage);
+    $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE * $countPage);
 
     $attendees = $event->attendees->sortBy(['name', 'asc']);
     $attendeeFirst = $this->getUserResource($attendees->first());
@@ -56,7 +56,7 @@ test('attendees_index', function () {
 });
 
 test('attendees_index_with_event', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
@@ -75,7 +75,7 @@ test('attendees_index_not_found', function () {
 });
 
 test('attendees_show', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $attendee = $event->attendees->first();
 
@@ -86,7 +86,7 @@ test('attendees_show', function () {
 });
 
 test('attendees_show_with_event', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $attendee = $event->attendees->first();
 
@@ -97,7 +97,7 @@ test('attendees_show_with_event', function () {
 });
 
 test('attendees_show_not_found', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $attendee = $event->attendees->first();
 
@@ -122,7 +122,7 @@ test('attendees_show_not_found', function () {
 
 test('attendees_destroy_as_owner', function () {
     $attendeesCount = 10;
-    $event = $this->getEvents(count: 1, attendeesCount: $attendeesCount, organizer: $this->user);
+    $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->user);
 
     Sanctum::actingAs($this->user);
 
@@ -148,7 +148,7 @@ test('attendees_destroy_as_owner', function () {
 });
 
 test('attendees_destroy_as_attendee', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $event->attendees()->attach($this->user);
 
@@ -165,7 +165,7 @@ test('attendees_destroy_as_attendee', function () {
 });
 
 test('attendees_destroy_not_allowed', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     Sanctum::actingAs($this->user);
 
@@ -181,7 +181,7 @@ test('attendees_destroy_not_allowed', function () {
 });
 
 test('attendees_destroy_only_auth', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $attendee = $event->attendees->first();
 
@@ -213,7 +213,7 @@ test('attendees_store', function () {
 });
 
 test('attendees_store_already_attending', function () {
-    $event = $this->getEvents(count: 1, attendeesCount: 1);
+    $event = $this->getEvents(count: 1, attendees: 1);
 
     $user = $event->attendees->first();
 

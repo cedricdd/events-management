@@ -19,11 +19,12 @@ class EventResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'location' => $this->location,
-            'price' => $this->price,
+            'cost' => $this->cost,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'is_public' => $this->is_public,
             'organizer' => UserResource::make($this->whenLoaded('organizer')),
+            'attendees_count' => $this->whenCounted('attendees'),
             'attendees' => UserResource::collection($this->whenLoaded('attendees')),
         ];
     }

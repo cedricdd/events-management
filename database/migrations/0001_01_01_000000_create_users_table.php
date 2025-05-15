@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('profession');
             $table->string('phone')->nullable();
             $table->string('organization')->nullable();
+            $table->string('role')->default('basic');
+            $table->integer('tokens')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

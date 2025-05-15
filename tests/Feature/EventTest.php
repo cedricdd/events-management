@@ -9,7 +9,7 @@ test('events_index', function () {
     $countPage = 2;
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendeesCount: 3);
 
-    $events = $events->sortBy(['start_date', 'asc']);
+    $events = $events->sortBy(['start_date', 'asc']); // Default sorting by start date
     $eventFirst = $this->getEventResource($events->first());
     $eventLast = $this->getEventResource($events->last());
 
@@ -24,7 +24,7 @@ test('events_index', function () {
                     'description',
                     'start_date',
                     'end_date',
-                    'price',
+                    'cost',
                     'location',
                     'is_public',
                 ],
@@ -145,7 +145,7 @@ test('events_store_successful', function () {
                 'description' => $data['description'],
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
-                'price' => $data['price'],
+                'cost' => $data['cost'],
                 'location' => $data['location'],
                 'is_public' => $data['is_public'],
                 'organizer' => $this->getUserResource($this->user),
@@ -171,15 +171,16 @@ test('events_form_validation', function () {
         route('events.store'),
         $this->getEventFormData(),
         [
-            [['name', 'description', 'start_date', 'end_date', 'location', 'price', 'is_public'], 'required', ''],
+            [['name', 'description', 'start_date', 'end_date', 'location', 'cost', 'is_public'], 'required', ''],
             [['name', 'description', 'location'], 'string', 0],
             [['name', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             ['description', 'max.string', str_repeat('a', Constants::DESCRIPTION_MAX_LENGTH + 1), ['max' => Constants::DESCRIPTION_MAX_LENGTH]],
             [['start_date', 'end_date'], 'date', 'invalid-date'],
             ['start_date', 'after_or_equal', now()->subDay()->format('Y-m-d H:i:s'), ['date' => 'today']],
             ['end_date', 'after_or_equal', now()->format('Y-m-d H:i:s'), ['date' => 'start date']],
-            ['price', 'numeric', 'invalide-price'],
-            ['price', 'min.numeric', -10, ['min' => 0]],
+            ['cost', 'integer', 'invalide-cost'],
+            ['cost', 'min.numeric', -10, ['min' => 0]],
+            ['cost', 'max.numeric', 1000, ['max' => 100]],
             ['is_public', 'boolean', 'invalid-boolean'],
         ],
         $this->user,
@@ -203,7 +204,7 @@ test('events_update_successful', function () {
             'description' => $data['description'],
             'start_date' => $data['start_date'],
             'end_date' => $data['end_date'],
-            'price' => $data['price'],
+            'cost' => $data['cost'],
             'location' => $data['location'],
             'is_public' => $data['is_public'],
         ])

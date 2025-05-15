@@ -24,13 +24,11 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): EventCollection
+    public function index(Request $request): EventCollection
     {
-        $events = Event::where('end_date', '>=', now())
-            ->orderBy('start_date', 'asc')
-            ->paginate(Constants::EVENTS_PER_PAGE);
+        $events = Event::isActive()->withCount('attendees')->setSorting($request->input('sort', ''));
 
-        return new EventCollection($this->loadRelationships($events, $this->defaultRelationships));
+        return new EventCollection($this->loadRelationships($events->paginate(Constants::EVENTS_PER_PAGE), $this->defaultRelationships));
     }
 
     /**
@@ -43,7 +41,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
-        $event->price = $request->price;
+        $event->cost = $request->cost;
         $event->location = $request->location;
         $event->is_public = $request->is_public;
         $event->organizer()->associate($request->user())->save();
@@ -75,7 +73,7 @@ class EventController extends Controller
         $event->description = $request->input('description', $event->description);
         $event->start_date = $request->input('start_date', $event->start_date);
         $event->end_date = $request->input('end_date', $event->end_date);
-        $event->price = $request->input('price', $event->price);
+        $event->cost = $request->input('cost', $event->cost);
         $event->location = $request->input('location', $event->location);
         $event->is_public = $request->input('is_public', $event->is_public);
         $event->save();

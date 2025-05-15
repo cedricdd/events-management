@@ -29,7 +29,7 @@ abstract class TestCase extends BaseTestCase
             'start_date' => now()->addDay()->setTime(12, 0)->format('Y-m-d H:i:s'),
             'end_date' => now()->addDay()->setTime(18, 0)->format('Y-m-d H:i:s'),
             'location' => 'Online',
-            'price' => 10.00,
+            'cost' => 10,
             'is_public' => true,
         ];
     }
@@ -60,7 +60,7 @@ abstract class TestCase extends BaseTestCase
             'name' => $event->name,
             'description' => $event->description,
             'location' => $event->location,
-            'price' => $event->price,
+            'cost' => $event->cost,
             'start_date' => $event->start_date->format('Y-m-d H:i:s'),
             'end_date' => $event->end_date->format('Y-m-d H:i:s'),
             'is_public' => $event->is_public ? 1 : 0,

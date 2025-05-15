@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->float('price')->default(0);
             $table->string('location');
+            $table->integer('cost')->default(0);
             $table->boolean('is_public')->default(true);
             $table->timestamps();
         });

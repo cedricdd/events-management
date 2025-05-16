@@ -4,16 +4,20 @@ use App\Constants;
 use App\Models\Event;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
+use ApiPlatform\Laravel\Test\ApiTestAssertionsTrait;
 
 test('events_index', function () {
     $countPage = 2;
-    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendees: 3);
 
-    $events = $events->sortBy([Constants::EVENT_DEFAULT_SORTING, 'asc']); // Default sorting by start date
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendees: 3)->sortBy([Constants::EVENT_SORTING_OPTIONS[Constants::EVENT_DEFAULT_SORTING], 'asc']);
+    $events->loadCount('attendees');
+
+    // dd($events->pluck('start_date')->toArray());
+
     $eventFirst = $this->getEventResource($events->first());
     $eventLast = $this->getEventResource($events->last());
 
-    $this->getJson(route('events.index'))
+    $response = $this->getJson(route('events.index'))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([
@@ -44,8 +48,6 @@ test('events_index', function () {
             ],
         ])
         ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data')
-        ->assertJsonFragment($eventFirst)
-        ->assertJsonMissingExact($eventLast)
         ->assertJsonFragment([
             'current_page' => 1,
             'last_page' => $countPage,
@@ -53,37 +55,43 @@ test('events_index', function () {
             'total' => Constants::EVENTS_PER_PAGE * $countPage,
         ]);
 
-    $this->get(route('events.index', ['page' => $countPage]))
+    expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
+    expect(collect($response->json('data'))->contains($eventLast))->toBeFalse();
+
+    $response = $this->get(route('events.index', ['page' => $countPage]))
         ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($eventLast)
-        ->assertJsonMissingExact($eventFirst);
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($eventFirst))->toBeFalse();
+    expect(collect($response->json('data'))->contains($eventLast))->toBeTrue();
 });
 
 test('events_index_with_organizer', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE);
-    $event = $events->first();
 
-    $this->getJson(route('events.index', ['with' => 'organizer']))
+    $event = $events->first();
+    $event->load('organizer');
+    $event->loadCount('attendees');
+
+    $response = $this->getJson(route('events.index', ['with' => 'organizer']))
         ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($event->organizer));
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($this->getEventResource($event, withOrganizer: true)))->toBeTrue();
 });
 
 test('events_index_with_attendees', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
+
     $event = $events->first();
-
     $event->load('attendees');
+    $event->loadCount('attendees');
 
-    $this->getJson(route('events.index', ['with' => 'attendees']))
+    $response = $this->getJson(route('events.index', ['with' => 'attendees']))
         ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'attendees' => $event->attendees->map(function ($user) {
-                return $this->getUserResource($user);
-            })->toArray(),
-        ]);
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($this->getEventResource($event, withAttendees: true)))->toBeTrue();
 });
 
 test('events_index_sorting', function () {
@@ -91,17 +99,18 @@ test('events_index_sorting', function () {
 
     $events->loadCount('attendees');
 
-    foreach(Constants::EVENT_SORTING_OPTIONS as $name => $column) {
+    foreach (Constants::EVENT_SORTING_OPTIONS as $name => $column) {
         $events = $events->sortBy([$column, 'asc']);
 
         $eventFirst = $this->getEventResource($events->first());
         $eventLast = $this->getEventResource($events->last());
 
-        $this->getJson(route('events.index', ['sort' => $name]))
+        $response = $this->getJson(route('events.index', ['sort' => $name]))
             ->assertValid()
-            ->assertHeader('Content-Type', 'application/json')
-            ->assertJsonFragment($eventFirst)
-            ->assertJsonMissingExact($eventLast);
+            ->assertHeader('Content-Type', 'application/json');
+
+        expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
+        expect(collect($response->json('data'))->contains($eventLast))->toBeFalse();
     }
 });
 
@@ -117,34 +126,41 @@ test('events_index_out_of_range_page', function () {
 });
 
 test('events_show', function () {
-    $event = $this->getEvents(count: 1);
+    $event = $this->getEvents(count: 1, attendees: 'random');
+    $event->loadCount('attendees');
 
     $this->getJson(route('events.show', $event))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getEventResource($event));
+        ->assertExactJson([
+            'data' => $this->getEventResource($event),
+        ]);
 });
 
 
 test('events_show_with_organizer', function () {
-    $event = $this->getEvents(count: 1);
+    $event = $this->getEvents(count: 1, attendees: 'random');
+    $event->loadCount('attendees');
+    $event->load('organizer');
 
     $this->getJson(route('events.show', [$event, 'with' => 'organizer']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($event->organizer));
+        ->assertExactJson([
+            'data' => $this->getEventResource($event, withOrganizer: true),
+        ]);
 });
 
 test('events_show_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendees: 5);
+    $event = $this->getEvents(count: 1, attendees: 'random');
+    $event->loadCount('attendees');
+    $event->load('attendees');
 
     $this->getJson(route('events.show', [$event, 'with' => 'attendees']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'attendees' => $event->attendees->map(function ($user) {
-                return $this->getUserResource($user);
-            })->toArray(),
+        ->assertExactJson([
+            'data' => $this->getEventResource($event, withAttendees: true),
         ]);
 });
 
@@ -162,13 +178,13 @@ test('events_show_not_found', function () {
 test('events_store_successful', function () {
     $data = $this->getEventFormData();
 
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
 
     $this->postJson(route('events.store'), $data)
         ->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
+        ->assertExactJson([
             'data' => [
                 'id' => 1,
                 'name' => $data['name'],
@@ -178,8 +194,9 @@ test('events_store_successful', function () {
                 'cost' => $data['cost'],
                 'location' => $data['location'],
                 'is_public' => $data['is_public'],
-                'organizer' => $this->getUserResource($this->user),
-            ]
+                'organizer' => $this->getUserResource($this->organizer),
+            ],
+            "message" => 'Event created successfully',
         ]);
 
     $this->assertDatabaseHas('events', $data);
@@ -193,6 +210,19 @@ test('events_store_only_auth', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => 'Unauthenticated.',
+        ]);
+});
+
+test('events_store_not_basic', function () {
+    $data = $this->getEventFormData();
+
+    Sanctum::actingAs($this->user);
+
+    $this->postJson(route('events.store'), $data)
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'This action is unauthorized.',
         ]);
 });
 
@@ -213,32 +243,34 @@ test('events_form_validation', function () {
             ['cost', 'max.numeric', 1000, ['max' => 100]],
             ['is_public', 'boolean', 'invalid-boolean'],
         ],
-        $this->user,
+        $this->organizer,
     );
 });
 
 test('events_update_successful', function () {
-    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->user);
+    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->organizer);
 
     $data = $this->getEventFormData();
 
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
 
     $this->putJson(route('events.update', $event), $data)
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'message' => 'Event updated successfully',
-            'id' => $event->id,
-            'name' => $data['name'],
-            'description' => $data['description'],
-            'start_date' => $data['start_date'],
-            'end_date' => $data['end_date'],
-            'cost' => $data['cost'],
-            'location' => $data['location'],
-            'is_public' => $data['is_public'],
-        ])
-        ->assertJsonFragment(['organizer' => $this->getUserResource($event->organizer)]);
+        ->assertExactJson([
+            'data' => [
+                'id' => $event->id,
+                'name' => $data['name'],
+                'description' => $data['description'],
+                'start_date' => $data['start_date'],
+                'end_date' => $data['end_date'],
+                'cost' => $data['cost'],
+                'location' => $data['location'],
+                'is_public' => $data['is_public'],
+                'organizer' => $this->getUserResource($this->organizer),
+            ],
+            "message" => 'Event updated successfully',
+        ]);
 
     //Make sure the event is updated in the database
     $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
@@ -247,28 +279,13 @@ test('events_update_successful', function () {
     expect($event->organizer->toArray())->toBe(Event::find($event->id)->organizer->toArray());
 });
 
-test('events_update_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->user);
-
-    Sanctum::actingAs($this->user);
-
-    $this->putJson(route('events.update', [$event, 'with' => 'attendees']), $this->getEventFormData())
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'attendees' => $event->attendees->map(function ($user) {
-                return $this->getUserResource($user);
-            })->toArray(),
-        ]);
-});
-
 test("events_update_fields_optional", function () {
     $data = $this->getEventFormData();
 
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
 
     foreach ($data as $key => $value) {
-        $event = $this->getEvents(count: 1, organizer: $this->user);
+        $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
         if ($event->{$key} instanceof DateTime)
             $value = $event->{$key}->format('Y-m-d H:i:s');
@@ -285,7 +302,7 @@ test("events_update_fields_optional", function () {
 });
 
 test('events_update_not_found', function () {
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
 
     $this->putJson(route('events.update', 1), $this->getEventFormData())
         ->assertValid()
@@ -309,7 +326,7 @@ test('events_update_only_auth', function () {
 test('events_update_not_owner', function () {
     $event = $this->getEvents(count: 1);
 
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
 
     $this->putJson(route('events.update', $event), $this->getEventFormData())
         ->assertForbidden()
@@ -319,10 +336,23 @@ test('events_update_not_owner', function () {
         ]);
 });
 
-test("events_destroy", function () {
-    $event = $this->getEvents(count: 1, organizer: $this->user);
+test("events_destroy_by_owner", function () {
+    $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
+
+    $this->deleteJson(route('events.destroy', $event))
+        ->assertValid()
+        ->assertStatus(204);
+
+    //Make sure the event is deleted from the database
+    $this->assertDatabaseMissing('events', ['id' => $event->id]);
+});
+
+test("events_destroy_by_admin", function () {
+    $event = $this->getEvents(count: 1);
+
+    Sanctum::actingAs($this->admin);
 
     $this->deleteJson(route('events.destroy', $event))
         ->assertValid()

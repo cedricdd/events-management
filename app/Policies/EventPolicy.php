@@ -8,19 +8,18 @@ use Illuminate\Auth\Access\Response;
 
 class EventPolicy
 {
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, Event $event): bool
+    public function store(User $user): bool
     {
-        return $event->organizer()->is($user);
+        return $user->role == "admin" || $user->role == "organizer";
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
+    public function update(User $user, Event $event): bool
+    {
+        return $user->role == "admin" || $event->organizer()->is($user);
+    }
+
     public function destroy(User $user, Event $event): bool
     {
-        return $event->organizer()->is($user);
+        return $user->role == "admin" || $event->organizer()->is($user);
     }
 }

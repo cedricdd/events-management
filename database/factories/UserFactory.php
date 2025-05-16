@@ -42,15 +42,34 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
 
-    public function johnDoe(): static {
-        return $this->state(fn (array $attributes) => [
+    public function johnAdmin(): static
+    {
+        return $this->state(fn(array $attributes) => [
             'name' => 'John Doe',
-            'email' => "john@doe.com",
+            'email' => "john@admin.com",
+            'role' => 'admin',
+        ]);
+    }
+
+    public function johnOrganizer(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'John Doe',
+            'email' => "john@organizer.com",
+            'role' => 'organizer',
+        ]);
+    }
+
+    public function johnBasic(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'John Doe',
+            'email' => "john@basic.com",
         ]);
     }
 }

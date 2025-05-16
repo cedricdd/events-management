@@ -14,12 +14,16 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     protected User $user;
+    protected User $organizer;
+    protected User $admin;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->user = User::factory()->create();
+        $this->organizer = User::factory()->create(['role' => 'organizer']);
+        $this->admin = User::factory()->create(['role' => 'admin']);
     }
 
     protected function getEventFormData(array $overrides = []): array {
@@ -69,6 +73,7 @@ abstract class TestCase extends BaseTestCase
             'start_date' => $event->start_date->format('Y-m-d H:i:s'),
             'end_date' => $event->end_date->format('Y-m-d H:i:s'),
             'is_public' => $event->is_public ? 1 : 0,
+            'attendees_count' => $event->attendees_count,
         ];
 
         if ($withOrganizer) {

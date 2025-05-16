@@ -57,6 +57,7 @@ test('attendees_index', function () {
 
 test('attendees_index_with_event', function () {
     $event = $this->getEvents(count: 1, attendees: 1);
+    $event->loadCount('attendees');
 
     $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
@@ -87,6 +88,7 @@ test('attendees_show', function () {
 
 test('attendees_show_with_event', function () {
     $event = $this->getEvents(count: 1, attendees: 1);
+    $event->loadCount('attendees');
 
     $attendee = $event->attendees->first();
 
@@ -196,6 +198,7 @@ test('attendees_destroy_only_auth', function () {
 
 test('attendees_store', function () {
     $event = $this->getEvents(count: 1);
+    $event->loadCount('attendees');
 
     Sanctum::actingAs($this->user);
 

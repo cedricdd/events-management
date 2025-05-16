@@ -66,6 +66,7 @@ class EventController extends Controller
     public function show(Event $event): EventResource
     {
         $event = $this->loadRelationships($event, $this->defaultRelationships);
+        $event->loadCount('attendees');
 
         return EventResource::make($event);
     }
@@ -86,7 +87,7 @@ class EventController extends Controller
 
         $event->load('organizer');
 
-        return EventResource::make($this->loadRelationships($event, ['attendees']))
+        return EventResource::make($event)
             ->additional(["message" => "Event updated successfully"])
             ->response();
     }

@@ -56,4 +56,11 @@ class User extends Authenticatable
     public function attending(): BelongsToMany {
         return $this->belongsToMany(Event::class, 'attending');
     }
+
+    public function isAdmin(): bool {
+        return $this->role == "admin";
+    }
+    public function isOrganizer(): bool {
+        return $this->role == "organizer";
+    }
 }

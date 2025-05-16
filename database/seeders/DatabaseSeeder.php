@@ -28,10 +28,12 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $john = User::factory()->johnDoe()->create(['role' => 'admin']);
+        $johnAdmin = User::factory()->johnAdmin()->create();
+        $johnOrganizer = User::factory()->johnOrganizer()->create();
+        $johnBasic = User::factory()->johnBasic()->create();
 
-        Event::factory()->count(10)->for($john, 'organizer')->create();
-        Event::factory()->count(5)->finished()->for($john, 'organizer')->create();
+        Event::factory()->count(10)->for($johnOrganizer, 'organizer')->create();
+        Event::factory()->count(5)->finished()->for($johnOrganizer, 'organizer')->create();
 
         $events = Event::select('id', 'cost')->get();
 
@@ -51,6 +53,6 @@ class DatabaseSeeder extends Seeder
         }
 
         // John Doe will attend 25 random events for free
-        $john->attending()->attach($events->random(number: 25));
+        $johnBasic->attending()->attach($events->random(number: 25));
     }
 }

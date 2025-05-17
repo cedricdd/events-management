@@ -279,6 +279,35 @@ test('events_update_successful', function () {
     expect($event->organizer->toArray())->toBe(Event::find($event->id)->organizer->toArray());
 });
 
+test('events_update_by_admin', function () {
+    $event = $this->getEvents(count: 1, attendees: 3);
+
+    $data = $this->getEventFormData();
+
+    Sanctum::actingAs($this->admin);
+
+    $this->putJson(route('events.update', $event), $data)
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson([
+            'data' => [
+                'id' => $event->id,
+                'name' => $data['name'],
+                'description' => $data['description'],
+                'start_date' => $data['start_date'],
+                'end_date' => $data['end_date'],
+                'cost' => $data['cost'],
+                'location' => $data['location'],
+                'is_public' => $data['is_public'],
+                'organizer' => $this->getUserResource($event->organizer),
+            ],
+            "message" => 'Event updated successfully',
+        ]);
+
+    //Make sure the event is updated in the database
+    $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
+});
+
 test("events_update_fields_optional", function () {
     $data = $this->getEventFormData();
 

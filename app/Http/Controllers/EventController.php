@@ -26,13 +26,17 @@ class EventController extends Controller
      */
     public function index(Request $request): EventCollection|JsonResponse
     {
-        $events = Event::isActive()->withCount('attendees')->setSorting($request->input('sort', ''))->paginate(Constants::EVENTS_PER_PAGE);
+        [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
+
+        $events = Event::isActive()->withCount('attendees')->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)->paginate(Constants::EVENTS_PER_PAGE);
 
         if($request->has('page') && $request->input('page') > $events->lastPage()) {
             return response()->json([
                 'message' => "The page " . $request->input('page') . " does not exist",
             ], 404);
         }
+
+        $events->appends(['sort' => $order . ',' . $direction]);
 
         return new EventCollection($this->loadRelationships($events, $this->defaultRelationships));
     }

@@ -37,10 +37,9 @@ class DatabaseSeeder extends Seeder
 
         $events = Event::select('id', 'cost')->get();
 
-        // Each user will attend 1 to 10 events
         foreach ($events as $event) {
             $users = $users->shuffle();
-            $attendees = random_int(1, 10);
+            $attendees = random_int(1, max: 50);
 
             foreach ($users as $user) {
                 if ($user->tokens >= $event->cost) {

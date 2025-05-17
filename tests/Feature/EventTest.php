@@ -77,7 +77,7 @@ test('events_index_with_organizer', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
 
-    expect(collect($response->json('data'))->contains($this->getEventResource($event, withOrganizer: true)))->toBeTrue();
+    expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
 });
 
 test('events_index_with_attendees', function () {
@@ -91,7 +91,7 @@ test('events_index_with_attendees', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
 
-    expect(collect($response->json('data'))->contains($this->getEventResource($event, withAttendees: true)))->toBeTrue();
+    expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
 });
 
 test('events_index_sorting', function () {
@@ -147,7 +147,7 @@ test('events_show_with_organizer', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertExactJson([
-            'data' => $this->getEventResource($event, withOrganizer: true),
+            'data' => $this->getEventResource($event),
         ]);
 });
 
@@ -160,7 +160,7 @@ test('events_show_with_attendees', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertExactJson([
-            'data' => $this->getEventResource($event, withAttendees: true),
+            'data' => $this->getEventResource($event),
         ]);
 });
 

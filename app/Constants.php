@@ -17,6 +17,14 @@ class Constants
         'cost' => 'cost',
         'attendees' => 'attendees_count',
         'location' => 'location',
+        'newest' => 'created_at',
     ];
     const EVENT_DEFAULT_SORTING = 'start';
+
+    const USER_SORTING_OPTIONS = [
+        'name' => 'name',
+        'country' => 'country',
+        'registration' => 'pivot_id',
+    ];
+    const USER_DEFAULT_SORTING = 'name';
 }

@@ -26,7 +26,8 @@ class EventFactory extends Factory
             'start_date' => ($start = $this->getRandomDateTime('now', '+1 month')),
             'end_date' => (clone $start)->modify('+' . (30 * random_int(1, 1440)) . ' minutes'),
             'cost' => $this->faker->randomNumber(2),
-            'is_public' => true
+            'is_public' => true,
+            'created_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
         ];
     }
 

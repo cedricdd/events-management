@@ -3,12 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Constants;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -49,18 +51,22 @@ class User extends Authenticatable
         ];
     }
 
-    public function events(): HasMany {
+    public function events(): HasMany
+    {
         return $this->hasMany(Event::class);
     }
 
-    public function attending(): BelongsToMany {
+    public function attending(): BelongsToMany
+    {
         return $this->belongsToMany(Event::class, 'attending');
     }
 
-    public function isAdmin(): bool {
+    public function isAdmin(): bool
+    {
         return $this->role == "admin";
     }
-    public function isOrganizer(): bool {
+    public function isOrganizer(): bool
+    {
         return $this->role == "organizer";
     }
 }

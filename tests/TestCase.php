@@ -63,7 +63,7 @@ abstract class TestCase extends BaseTestCase
         else return $events->first();
     }
 
-    protected function getEventResource(Event $event, bool $withOrganizer = false, bool $withAttendees = false): array {
+    protected function getEventResource(Event $event): array {
         $data = [
             'id' => $event->id,
             'name' => $event->name,
@@ -73,14 +73,17 @@ abstract class TestCase extends BaseTestCase
             'start_date' => $event->start_date->format('Y-m-d H:i:s'),
             'end_date' => $event->end_date->format('Y-m-d H:i:s'),
             'is_public' => $event->is_public ? 1 : 0,
-            'attendees_count' => $event->attendees_count,
         ];
 
-        if ($withOrganizer) {
+        if ($event->relationLoaded('organizer')) {
             $data['organizer'] = $this->getUserResource($event->organizer);
         }
 
-        if($withAttendees) {
+        if(isset($event->attendees_count)) {
+            $data['attendees_count'] = $event->attendees_count;
+        }
+
+        if($event->relationLoaded('attendees')) {
             $data['attendees'] = $event->attendees->map(function ($user) {
                 return $this->getUserResource($user);
             })->toArray();

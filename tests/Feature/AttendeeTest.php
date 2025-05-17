@@ -3,16 +3,18 @@
 use App\Constants;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\TextUI\Configuration\Constant;
 
 test('attendees_index', function () {
     $countPage = 2;
+
     $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE * $countPage);
 
     $attendees = $event->attendees->sortBy(['name', 'asc']);
     $attendeeFirst = $this->getUserResource($attendees->first());
     $attendeeLast = $this->getUserResource($attendees->last());
 
-    $this->getJson(route('attendees.index', $event))
+    $response = $this->getJson(route('attendees.index', $event))
         ->assertOk()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([
@@ -43,26 +45,54 @@ test('attendees_index', function () {
             'last_page' => $countPage,
             'per_page' => Constants::ATTENDEES_PER_PAGE,
             'total' => Constants::ATTENDEES_PER_PAGE * $countPage,
-        ])
-        ->assertJsonFragment($attendeeFirst)
-        ->assertJsonMissingExact($attendeeLast);
+        ]);
+
+    expect(collect($response->json('data'))->contains($attendeeFirst))->toBeTrue();
+    expect(collect($response->json('data'))->contains($attendeeLast))->toBeFalse();
 
 
-    $this->getJson(route('attendees.index', [$event, 'page' => $countPage]))
+    $response = $this->getJson(route('attendees.index', [$event, 'page' => $countPage]))
         ->assertOk()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($attendeeLast)
-        ->assertJsonMissingExact($attendeeFirst);
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($attendeeFirst))->toBeFalse();
+    expect(collect($response->json('data'))->contains($attendeeLast))->toBeTrue();
 });
 
 test('attendees_index_with_event', function () {
     $event = $this->getEvents(count: 1, attendees: 1);
-    $event->loadCount('attendees');
 
-    $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
+    $event->load('organizer');
+
+    $response = $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment(['event' => $this->getEventResource($event, withOrganizer: true)]);
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect($response->json('event'))->toBe($this->getEventResource($event));
+
+});
+
+test('attendees_index_sorting', function () {
+    $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE * 2);
+    $attendees = $event->attendees;  
+
+    foreach (Constants::USER_SORTING_OPTIONS as $name => $column) {
+        if($name == 'registration') $attendees = $attendees->sortBy(['pivot.id', 'asc']);
+        else $attendees = $attendees->sortBy([$column, 'asc']);
+
+        dump('Sorting by: ' . $name);
+        // dump($attendees->pluck($column)->toArray());
+
+        $response = $this->getJson(route('attendees.index', [$event, 'sort' => $name]))
+            ->assertValid()
+            ->assertHeader('Content-Type', 'application/json');
+
+            dump(collect($response->json('data')));
+            dump($this->getUserResource($attendees->first()));
+
+        expect(collect($response->json('data'))->contains($this->getUserResource($attendees->first())))->toBeTrue();
+        expect(collect($response->json('data'))->contains($this->getUserResource($attendees->last())))->toBeFalse();
+    }
 });
 
 test('attendees_index_not_found', function () {
@@ -72,6 +102,19 @@ test('attendees_index_not_found', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => 'Event not found',
+        ]);
+});
+
+test('attendees_index_out_of_range_page', function () {
+    $event = $this->getEvents(count: 1, attendees: 1);
+
+    // Test with a non-existing page
+    $this->getJson(route('attendees.index', [$event, 'page' => 10]))
+        ->assertValid()
+        ->assertStatus(404)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "The page 10 does not exist",
         ]);
 });
 
@@ -95,7 +138,7 @@ test('attendees_show_with_event', function () {
     $this->getJson(route('attendees.show', [$event, $attendee, 'with' => 'event']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getEventResource($event, withOrganizer: true));
+        ->assertJsonFragment($this->getEventResource($event));
 });
 
 test('attendees_show_not_found', function () {
@@ -206,7 +249,7 @@ test('attendees_store', function () {
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment($this->getUserResource($this->user))
-        ->assertJsonFragment($this->getEventResource($event, withOrganizer: true));
+        ->assertJsonFragment($this->getEventResource($event));
 
     // Check that the count of attendees has increased
     expect($event->attendees()->count())->toBe(1);

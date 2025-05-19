@@ -177,13 +177,12 @@ test('attendees_destroy_as_owner', function () {
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
 
     // Try to remove the same attendee again
-    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
-
-    // Check that the count of attendees has not changed
-    expect($event->attendees()->count())->toBe($attendeesCount - 1);
-
-    // Try to remove a non-existing attendee
-    $this->deleteJson(route('attendees.destroy', [$event, $attendeesCount * 2]))->assertNoContent();
+    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))
+        ->assertStatus(403)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "This user is not registered to the event!",
+        ]); 
 
     // Check that the count of attendees has not changed
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
@@ -233,6 +232,30 @@ test('attendees_destroy_only_auth', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => 'Unauthenticated.',
+        ]);
+});
+
+test('attendees_destroy_not_found', function () {
+    $event = $this->getEvents(count: 1, attendees: 'random');
+
+    Sanctum::actingAs($this->user);
+
+    // Test with a non-existing attendee
+    $this->deleteJson(route('attendees.destroy', [$event, 100]))
+        ->assertValid()
+        ->assertStatus(404)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'User not found',
+        ]);
+
+    // Test with a non-existing event
+    $this->deleteJson(route('attendees.destroy', [10, $event->attendees->first()]))
+        ->assertValid()
+        ->assertStatus(404)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Event not found',
         ]);
 });
 

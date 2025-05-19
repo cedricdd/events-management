@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\EventResource;
@@ -39,7 +41,7 @@ class AttendeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Event $event, Request $request)
+    public function store(Event $event, Request $request): JsonResponse|UserResource
     {
         if ($event->attendees()->where('user_id', $request->user()->id)->exists()) {
             return response()->json([
@@ -67,6 +69,8 @@ class AttendeeController extends Controller
                 'message' => "You can only register to an event before it start.",
             ], 403);
         }
+
+        $request->user()->decrement('tokens', $event->cost);
         
         // Attach the user to the event
         $event->attendees()->attach($request->user());
@@ -83,7 +87,7 @@ class AttendeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Event $event, int $userID)
+    public function show(Event $event, int $userID): UserResource
     {
         $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
 
@@ -97,10 +101,20 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event, int $attendeeID)
+    public function destroy(Event $event, User $attendee): JsonResponse|Response
     {
+        // Make the user is actually attending the event
+        if(!$event->attendees()->where('user_id', $attendee->id)->exists()) {
+            return response()->json([
+                'message' => "This user is not registered to the event!",
+            ], 403);
+        }
+
         // Detach the attendee from the event
-        $event->attendees()->detach($attendeeID);
+        $event->attendees()->detach($attendee->id);
+
+        // The attendee gets his tokens back
+        $attendee->increment('tokens', $event->cost);
 
         return response()->noContent();
     }

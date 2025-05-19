@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('destroy-attendee', function (User $user, Event $event, int $attendeeID) {
-             return $user->id === $attendeeID || $user->id === $event->user_id;
+        Gate::define('destroy-attendee', function (User $user, Event $event, User $attendee) {
+             return $user->id === $attendee->id || $user->id === $event->user_id;
         });
 
     }

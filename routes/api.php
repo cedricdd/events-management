@@ -12,11 +12,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [UserController::class, 'show'])->name('user.show');
 
     Route::post('events', [EventController::class, 'store'])->name('events.store')->can('store', Event::class);
-    Route::put('events/{event}', [EventController::class, 'update'])->name('events.update')->can('update', 'event');
-    Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy')->can('destroy', 'event');
+    Route::put('events/{event}', [EventController::class, 'update'])->name('events.update')->can('update', 'event')->where('event', '[0-9]+');
+    Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy')->can('destroy', 'event')->where('event', '[0-9]+');
 
-    Route::post('events/{event}/attendees', [AttendeeController::class, 'store'])->name('attendees.store');
-    Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->can('destroy-attendee', ['event', 'attendee']);
+    Route::post('events/{event}/attendees', [AttendeeController::class, 'store'])->name('attendees.store')->where('event', '[0-9]+');
+    Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->can('destroy-attendee', ['event', 'attendee'])->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });

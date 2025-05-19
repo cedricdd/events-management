@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
         // Most users will be attendees, create events for only some of them
         foreach ($users as $user) {
-            if ($user->id % 25 === 0) { // 10% of users
+            if ($user->id % 25 === 0) {
                 $user->update(['role' => 'organizer']);
 
                 //Future events
@@ -32,23 +32,15 @@ class DatabaseSeeder extends Seeder
         $johnOrganizer = User::factory()->johnOrganizer()->create();
         $johnBasic = User::factory()->johnBasic()->create();
 
-        Event::factory()->count(10)->for($johnOrganizer, 'organizer')->create();
+        Event::factory()->count(20)->for($johnOrganizer, 'organizer')->create();
         Event::factory()->count(5)->finished()->for($johnOrganizer, 'organizer')->create();
 
         $events = Event::select('id', 'cost')->get();
 
         foreach ($events as $event) {
             $users = $users->shuffle();
-            $attendees = random_int(1, max: 50);
 
-            foreach ($users as $user) {
-                if ($user->tokens >= $event->cost) {
-                    $event->attendees()->attach($user);
-                    $user->decrement('tokens', $event->cost);
-
-                    if (--$attendees == 0) break;
-                }
-            }
+            $event->attendees()->attach($users->slice(0, random_int(1, 50))->pluck('id'));
         }
 
         // John Doe will attend 25 random events for free

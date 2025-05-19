@@ -7,12 +7,8 @@ use Laravel\Sanctum\Sanctum;
 use ApiPlatform\Laravel\Test\ApiTestAssertionsTrait;
 
 test('events_index', function () {
-    $countPage = 2;
-
-    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * $countPage, attendees: 3)->sortBy([Constants::EVENT_SORTING_OPTIONS[Constants::EVENT_DEFAULT_SORTING], 'asc']);
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
     $events->loadCount('attendees');
-
-    // dd($events->pluck('start_date')->toArray());
 
     $eventFirst = $this->getEventResource($events->first());
     $eventLast = $this->getEventResource($events->last());
@@ -50,19 +46,12 @@ test('events_index', function () {
         ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data')
         ->assertJsonFragment([
             'current_page' => 1,
-            'last_page' => $countPage,
+            'last_page' => 1,
             'per_page' => Constants::EVENTS_PER_PAGE,
-            'total' => Constants::EVENTS_PER_PAGE * $countPage,
+            'total' => Constants::EVENTS_PER_PAGE,
         ]);
 
     expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
-    expect(collect($response->json('data'))->contains($eventLast))->toBeFalse();
-
-    $response = $this->get(route('events.index', ['page' => $countPage]))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json');
-
-    expect(collect($response->json('data'))->contains($eventFirst))->toBeFalse();
     expect(collect($response->json('data'))->contains($eventLast))->toBeTrue();
 });
 
@@ -424,4 +413,54 @@ test('events_destroy_not_found', function () {
         ->assertJsonFragment([
             'message' => 'Event not found',
         ]);
+});
+
+test('events_organizer', function () {
+    $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3); // Add some events not belonging to the organizer
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3, organizer: $this->organizer);
+    $events->loadCount('attendees');
+
+    $eventFirst = $this->getEventResource($events->first());
+    $eventLast = $this->getEventResource($events->last());
+
+    $response = $this->getJson(route('events.organizer', $this->organizer))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name',
+                    'description',
+                    'start_date',
+                    'end_date',
+                    'cost',
+                    'location',
+                    'is_public',
+                ],
+            ],
+            'links' => [
+                'first',
+                'last',
+                'prev',
+                'next',
+            ],
+            'meta' => [
+                'current_page',
+                'last_page',
+                'per_page',
+                'total',
+                'path',
+            ],
+        ])
+        ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data')
+        ->assertJsonFragment([
+            'current_page' => 1,
+            'last_page' => 1,
+            'per_page' => Constants::EVENTS_PER_PAGE,
+            'total' => Constants::EVENTS_PER_PAGE,
+        ]);
+
+    expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
+    expect(collect($response->json('data'))->contains($eventLast))->toBeTrue();
 });

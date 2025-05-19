@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
+use App\Models\User;
 use App\Models\Event;
 use App\LoadRelationships;
 use Illuminate\Http\Request;
@@ -24,11 +25,15 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): EventCollection|JsonResponse
+    public function index(Request $request, ?User $organizer): EventCollection|JsonResponse
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
-        $events = Event::isActive()->withCount('attendees')->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)->paginate(Constants::EVENTS_PER_PAGE);
+        $events = Event::isActive()
+            ->withCount('attendees')
+            ->when($organizer, fn ($query) => $query->where('user_id', $organizer->id))
+            ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
+            ->paginate(Constants::EVENTS_PER_PAGE);
 
         if($request->has('page') && $request->input('page') > $events->lastPage()) {
             return response()->json([

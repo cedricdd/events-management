@@ -26,14 +26,15 @@ Route::middleware('guest:sanctum')->group(function () {
 });
 
 Route::get('events', [EventController::class, 'index'])->name('events.index');
-Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
+Route::get('events/organizer/{organizer}', [EventController::class, 'index'])->name('events.organizer')->where('id', '[0-9]+');
+Route::get('events/{event}', [EventController::class, 'show'])->name('events.show')->where('event', '[0-9]+');
 
-Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->name('attendees.index');
-Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show');
+Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->name('attendees.index')->where('event', '[0-9]+');
+Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
 //Search events
 //User list for admins
 //Past events
 //Categories
 //private events
-//events by organizer
+//sort attendees when requestest with event

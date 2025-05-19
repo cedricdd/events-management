@@ -114,6 +114,52 @@ test('events_index_out_of_range_page', function () {
         ])->assertStatus(404);
 });
 
+test('events_index_past_events', function () {
+    $incative = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3, past: true);
+    $active = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3, past: false);
+
+    $incative->loadCount('attendees');
+    $active->loadCount('attendees');
+
+    // We should only get the past events
+    $response = $this->getJson(route('events.index', ['past' => 1]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'current_page' => 1,
+            'last_page' => 1,
+            'per_page' => Constants::EVENTS_PER_PAGE,
+            'total' => Constants::EVENTS_PER_PAGE,
+        ]);
+
+    foreach($incative as $event) {
+        dump($this->getEventResource($event));
+        expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
+    }
+    foreach($active as $event) {
+        expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeFalse();
+    }
+
+    // We should only get the active events
+    $response = $this->getJson(route('events.index'))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'current_page' => 1,
+            'last_page' => 1,
+            'per_page' => Constants::EVENTS_PER_PAGE,
+            'total' => Constants::EVENTS_PER_PAGE,
+        ]);
+
+    foreach($incative as $event) {
+        dump($this->getEventResource($event));
+        expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeFalse();
+    }
+    foreach($active as $event) {
+        expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
+    }
+});
+
 test('events_show', function () {
     $event = $this->getEvents(count: 1, attendees: 'random');
     $event->loadCount('attendees');

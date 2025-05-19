@@ -38,13 +38,12 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0): Event|Collection {
+    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0, bool $past = false): Event|Collection {
         $count = max(1, $count); // Ensure at least 1 event is created
 
         $events = Event::factory()->count($count)
-            ->when($organizer, function ($query) use ($organizer) {
-                return $query->for($organizer, 'organizer');
-            })
+            ->when($organizer, fn ($query) => $query->for($organizer, 'organizer'))
+            ->when($past, fn ($query) => $query->finished())
             ->create();
 
         // Attach attendees to the events
@@ -75,18 +74,12 @@ abstract class TestCase extends BaseTestCase
             'is_public' => $event->is_public ? 1 : 0,
         ];
 
-        if ($event->relationLoaded('organizer')) {
-            $data['organizer'] = $this->getUserResource($event->organizer);
-        }
-
         if(isset($event->attendees_count)) {
             $data['attendees_count'] = $event->attendees_count;
         }
 
-        if($event->relationLoaded('attendees')) {
-            $data['attendees'] = $event->attendees->map(function ($user) {
-                return $this->getUserResource($user);
-            })->toArray();
+        if ($event->relationLoaded('organizer')) {
+            $data['organizer'] = $this->getUserResource($event->organizer);
         }
 
         return $data;

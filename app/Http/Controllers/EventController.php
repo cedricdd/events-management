@@ -17,11 +17,6 @@ class EventController extends Controller
 {
     use LoadRelationships;
 
-    private $defaultRelationships = [
-        'organizer',
-        'attendees',
-    ];
-
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +24,7 @@ class EventController extends Controller
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
-        $events = Event::isActive()
+        $events = Event::status($request->input('past', false))
             ->withCount('attendees')
             ->when($organizer, fn ($query) => $query->where('user_id', $organizer->id))
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
@@ -46,7 +41,7 @@ class EventController extends Controller
             $events->appends(['sort' => $order . ',' . $direction]);
         }
 
-        return new EventCollection($this->loadRelationships($events, $this->defaultRelationships));
+        return new EventCollection($this->loadRelationships($events, ['organizer']));
     }
 
     /**
@@ -77,7 +72,7 @@ class EventController extends Controller
      */
     public function show(Event $event): EventResource
     {
-        $event = $this->loadRelationships($event, $this->defaultRelationships);
+        $event = $this->loadRelationships($event, ['organizer']);
         $event->loadCount('attendees');
 
         return EventResource::make($event);

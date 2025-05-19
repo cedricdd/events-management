@@ -23,13 +23,9 @@ class Event extends Model
         return $this->belongsTo(related: User::class, foreignKey: 'user_id');
     }
 
-    public function scopeIsActive(Builder $query): Builder
+    public function scopeStatus(Builder $query, bool $pastEvents = false): Builder
     {
-        return $query->where('end_date', '>=', now());
-    }
-
-    public function scopeFinished(Builder $query): Builder
-    {
-        return $query->where('end_date', '<', now());
+        if($pastEvents) return $query->where('start_date', '<', now());
+        else return $query->where('end_date', '>=', now());
     }
 }

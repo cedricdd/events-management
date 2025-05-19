@@ -37,4 +37,3 @@ Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 's
 //Past events
 //Categories
 //private events
-//sort attendees when requestest with event

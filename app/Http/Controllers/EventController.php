@@ -25,7 +25,7 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, ?User $organizer): EventCollection|JsonResponse
+    public function index(Request $request, ?User $organizer = null): EventCollection|JsonResponse
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
@@ -41,7 +41,10 @@ class EventController extends Controller
             ], 404);
         }
 
-        $events->appends(['sort' => $order . ',' . $direction]);
+        // Only add the sort parameter to the URL if it is not the default sorting
+        if($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
+            $events->appends(['sort' => $order . ',' . $direction]);
+        }
 
         return new EventCollection($this->loadRelationships($events, $this->defaultRelationships));
     }

@@ -27,7 +27,10 @@ class AttendeeController extends Controller
             ], 404);
         }
 
-        $attendees->appends(['sort' => $order . ',' . $direction]);
+        // Only add the sort parameter to the URL if it is not the default sorting
+        if($order !== Constants::USER_DEFAULT_SORTING || $direction !== 'asc') {
+            $attendees->appends(['sort' => $order . ',' . $direction]);
+        }
 
         // Return the list of attendees
         return new UserCollection($attendees)->additional($this->getAdditionalData($event));
@@ -40,15 +43,36 @@ class AttendeeController extends Controller
     {
         if ($event->attendees()->where('user_id', $request->user()->id)->exists()) {
             return response()->json([
-                'message' => 'User is already attending this event.',
-            ], 422);
+                'message' => 'You are already registered for this event.',
+            ], 409);
         }
 
+        //Make sure the user is not the organizer
+        if ($event->user_id === $request->user()->id) {
+            return response()->json([
+                'message' => "You can't register to your own event.",
+            ], 409);
+        }
+
+        // Make sure the user has enough tokens to attend the event
+        if($event->cost > $request->user()->tokens) {
+            return response()->json([
+                'message' => "You don't have enough tokens to register for this event.",
+            ], 403);
+        }
+
+        // Make sure the event hasn't already started
+        if ($event->start_date < now()) {
+            return response()->json([
+                'message' => "You can only register to an event before it start.",
+            ], 403);
+        }
+        
         // Attach the user to the event
         $event->attendees()->attach($request->user());
 
-        // Load the user and event data
         $event->load('organizer');
+        $event->loadCount('attendees');
 
         return UserResource::make($request->user())
             ->additional(['event' => EventResource::make($event)])
@@ -64,6 +88,7 @@ class AttendeeController extends Controller
         $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
 
         $event->load('organizer');
+        $event->loadCount('attendees');
 
         return UserResource::make($attendee)
             ->additional($this->getAdditionalData($event));

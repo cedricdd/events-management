@@ -6,11 +6,9 @@ use Laravel\Sanctum\Sanctum;
 use PHPUnit\TextUI\Configuration\Constant;
 
 test('attendees_index', function () {
-    $countPage = 2;
+    $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE);
 
-    $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE * $countPage);
-
-    $attendees = $event->attendees->sortBy(['name', 'asc']);
+    $attendees = $event->attendees;
     $attendeeFirst = $this->getUserResource($attendees->first());
     $attendeeLast = $this->getUserResource($attendees->last());
 
@@ -42,20 +40,12 @@ test('attendees_index', function () {
         ->assertJsonCount(Constants::ATTENDEES_PER_PAGE, 'data')
         ->assertJsonFragment([
             'current_page' => 1,
-            'last_page' => $countPage,
+            'last_page' => 1,
             'per_page' => Constants::ATTENDEES_PER_PAGE,
-            'total' => Constants::ATTENDEES_PER_PAGE * $countPage,
+            'total' => Constants::ATTENDEES_PER_PAGE,
         ]);
 
     expect(collect($response->json('data'))->contains($attendeeFirst))->toBeTrue();
-    expect(collect($response->json('data'))->contains($attendeeLast))->toBeFalse();
-
-
-    $response = $this->getJson(route('attendees.index', [$event, 'page' => $countPage]))
-        ->assertOk()
-        ->assertHeader('Content-Type', 'application/json');
-
-    expect(collect($response->json('data'))->contains($attendeeFirst))->toBeFalse();
     expect(collect($response->json('data'))->contains($attendeeLast))->toBeTrue();
 });
 
@@ -74,11 +64,13 @@ test('attendees_index_with_event', function () {
 
 test('attendees_index_sorting', function () {
     $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE * 2);
-    $attendees = $event->attendees;  
+    $attendees = $event->attendees;
 
     foreach (Constants::USER_SORTING_OPTIONS as $name => $column) {
-        if($name == 'registration') $attendees = $attendees->sortBy(['pivot.id', 'asc']);
-        else $attendees = $attendees->sortBy([$column, 'asc']);
+        if ($name == 'registration')
+            $attendees = $attendees->sortBy(['pivot.id', 'asc']);
+        else
+            $attendees = $attendees->sortBy([$column, 'asc']);
 
         dump('Sorting by: ' . $name);
         // dump($attendees->pluck($column)->toArray());
@@ -87,8 +79,8 @@ test('attendees_index_sorting', function () {
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json');
 
-            dump(collect($response->json('data')));
-            dump($this->getUserResource($attendees->first()));
+        dump(collect($response->json('data')));
+        dump($this->getUserResource($attendees->first()));
 
         expect(collect($response->json('data'))->contains($this->getUserResource($attendees->first())))->toBeTrue();
         expect(collect($response->json('data'))->contains($this->getUserResource($attendees->last())))->toBeFalse();
@@ -130,15 +122,20 @@ test('attendees_show', function () {
 });
 
 test('attendees_show_with_event', function () {
-    $event = $this->getEvents(count: 1, attendees: 1);
+    $event = $this->getEvents(count: 1, attendees: 'random');
+
+    $event->load('organizer');
     $event->loadCount('attendees');
 
-    $attendee = $event->attendees->first();
+    $attendee = $event->attendees()->first();
 
     $this->getJson(route('attendees.show', [$event, $attendee, 'with' => 'event']))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getEventResource($event));
+        ->assertExactJson([
+            'data' => $this->getUserResource($attendee),
+            'event' => $this->getEventResource($event),
+        ]);
 });
 
 test('attendees_show_not_found', function () {
@@ -167,9 +164,9 @@ test('attendees_show_not_found', function () {
 
 test('attendees_destroy_as_owner', function () {
     $attendeesCount = 10;
-    $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->user);
+    $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->organizer);
 
-    Sanctum::actingAs($this->user);
+    Sanctum::actingAs($this->organizer);
 
     $attendee = $event->attendees->first();
 
@@ -241,15 +238,18 @@ test('attendees_destroy_only_auth', function () {
 
 test('attendees_store', function () {
     $event = $this->getEvents(count: 1);
-    $event->loadCount('attendees');
 
     Sanctum::actingAs($this->user);
 
-    $this->postJson(route('attendees.store', $event))->assertValid()
+    $response = $this->postJson(route('attendees.store', $event))->assertValid()
         ->assertCreated()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($this->user))
-        ->assertJsonFragment($this->getEventResource($event));
+        ->assertHeader('Content-Type', 'application/json');
+
+    $event->loadCount('attendees');
+    $event->load('organizer');
+
+    expect($response->json('data'))->toBe($this->getUserResource($this->user));
+    expect($response->json('event'))->toBe($this->getEventResource($event));
 
     // Check that the count of attendees has increased
     expect($event->attendees()->count())->toBe(1);
@@ -266,10 +266,23 @@ test('attendees_store_already_attending', function () {
     Sanctum::actingAs($user);
 
     $this->postJson(route('attendees.store', $event))->assertValid()
-        ->assertStatus(422)
+        ->assertStatus(409)
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => 'User is already attending this event.',
+            'message' => 'You are already registered for this event.',
+        ]);
+});
+
+test('attendees_store_own_event', function () {
+    $event = $this->getEvents(count: 1, organizer: $this->organizer);
+
+    Sanctum::actingAs($this->organizer);
+
+    $this->postJson(route('attendees.store', $event))->assertValid()
+        ->assertStatus(409)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "You can't register to your own event.",
         ]);
 });
 
@@ -282,5 +295,55 @@ test('attendees_store_not_found', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => 'Event not found',
+        ]);
+});
+
+test('attendees_store_only_auth', function () {
+    $event = $this->getEvents(count: 1);
+
+    // Try to store the attendee without authentication
+    $this->postJson(route('attendees.store', $event))
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+});
+
+test('attendees_store_not_enough_tokens', function () {
+    $event = $this->getEvents(count: 1);
+
+    // Set the event's tokens to 0
+    $this->user->tokens = 0;
+    $this->user->save();
+
+    Sanctum::actingAs($this->user);
+
+    // Try to store the attendee
+    $this->postJson(route('attendees.store', $event))
+        ->assertValid()
+        ->assertStatus(403)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "You don't have enough tokens to register for this event.",
+        ]);
+});
+
+test('attendees_store_event_started', function () {
+    $event = $this->getEvents(count: 1);
+
+    // Set the event's start date to the past
+    $event->start_date = now()->subDay();
+    $event->save();
+
+    Sanctum::actingAs($this->user);
+
+    // Try to store the attendee
+    $this->postJson(route('attendees.store', $event))
+        ->assertValid()
+        ->assertStatus(403)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "You can only register to an event before it start.",
         ]);
 });

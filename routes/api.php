@@ -8,7 +8,7 @@ use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\UserController;
 use App\Models\Event;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::get('user', [UserController::class, 'show'])->name('user.show');
 
     Route::post('events', [EventController::class, 'store'])->name('events.store')->can('store', Event::class);
@@ -26,6 +26,7 @@ Route::middleware('guest:sanctum')->group(function () {
 });
 
 Route::get('events', [EventController::class, 'index'])->name('events.index');
+
 Route::get('events/organizer/{organizer}', [EventController::class, 'index'])->name('events.organizer')->where('id', '[0-9]+');
 Route::get('events/{event}', [EventController::class, 'show'])->name('events.show')->where('event', '[0-9]+');
 

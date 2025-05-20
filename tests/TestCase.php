@@ -129,7 +129,8 @@ abstract class TestCase extends BaseTestCase
                     Sanctum::actingAs($user);
                 }
 
-                $this->postJson($route, [$field => $infos[2]] + $defaults)
+                $this->withoutMiddleware(\Illuminate\Routing\Middleware\ThrottleRequests::class)
+                    ->postJson($route, [$field => $infos[2]] + $defaults)
                     ->assertUnprocessable()
                     ->assertInvalid([$field => $error]); // Assert validation errors
             }

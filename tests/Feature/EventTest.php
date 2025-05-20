@@ -4,7 +4,6 @@ use App\Constants;
 use App\Models\Event;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
-use ApiPlatform\Laravel\Test\ApiTestAssertionsTrait;
 
 test('events_index', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
@@ -133,7 +132,6 @@ test('events_index_past_events', function () {
         ]);
 
     foreach($incative as $event) {
-        dump($this->getEventResource($event));
         expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
     }
     foreach($active as $event) {

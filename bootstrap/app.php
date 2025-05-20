@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->api(append: ['throttle:api']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (Throwable $e, Request $request) {
@@ -26,8 +26,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 //Get the model name from the exception message
                 $model = Str::afterLast($e->getPrevious()->getModel(), '\\'); //extract Model name
                 return response()->json(
-                    ['message' => $model . ' not found'], 
-                    404);
+                    ['message' => $model . ' not found'],
+                    404
+                );
             }
         });
     })->create();

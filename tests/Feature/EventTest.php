@@ -4,6 +4,7 @@ use App\Constants;
 use App\Models\Event;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\TextUI\Configuration\Constant;
 
 test('events_index', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
@@ -381,6 +382,24 @@ test("events_update_fields_optional", function () {
             ->assertHeader('Content-Type', 'application/json')
             ->assertJsonFragment([$key => $value]);
     }
+});
+
+test('events_update_too_late', function () {
+    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->organizer);
+
+    $data = $this->getEventFormData();
+    Sanctum::actingAs($this->organizer);
+
+    // Set the start date to be too close and forbidding the update
+    $event->start_date = now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT - 1);
+    $event->save();
+
+    $this->putJson(route('events.update', $event), $data)
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "You can only update an event at least 24 hours before it starts.",
+        ]);
 });
 
 test('events_update_not_found', function () {

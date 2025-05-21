@@ -96,6 +96,13 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event): JsonResponse
     {
+        // We only allow the modification of an event if it's done at least 24 hours before the event starts
+        if (now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT) > $event->start_date) {
+            return response()->json([
+                'message' => "You can only update an event at least 24 hours before it starts.",
+            ], 403);
+        }
+
         $event->name = $request->input('name', $event->name);
         $event->description = $request->input('description', $event->description);
         $event->start_date = $request->input('start_date', $event->start_date);

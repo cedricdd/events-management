@@ -131,10 +131,10 @@ test('events_index_past_events', function () {
             'total' => Constants::EVENTS_PER_PAGE,
         ]);
 
-    foreach($incative as $event) {
+    foreach ($incative as $event) {
         expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
     }
-    foreach($active as $event) {
+    foreach ($active as $event) {
         expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeFalse();
     }
 
@@ -149,11 +149,11 @@ test('events_index_past_events', function () {
             'total' => Constants::EVENTS_PER_PAGE,
         ]);
 
-    foreach($incative as $event) {
+    foreach ($incative as $event) {
         dump($this->getEventResource($event));
         expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeFalse();
     }
-    foreach($active as $event) {
+    foreach ($active as $event) {
         expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
     }
 });
@@ -233,6 +233,26 @@ test('events_store_successful', function () {
         ]);
 
     $this->assertDatabaseHas('events', $data);
+});
+
+test('events_store_duplicate', function () {
+    $data = $this->getEventFormData();
+
+    Sanctum::actingAs($this->organizer);
+
+    $this->postJson(route('events.store'), $data)
+        ->assertValid()
+        ->assertCreated()
+        ->assertHeader('Content-Type', 'application/json');
+
+    $this->postJson(route('events.store'), $data)
+        ->assertValid()
+        ->assertStatus(409)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "A similar event already exists!",
+            'event' => $this->getEventResource(Event::first()),
+        ]);
 });
 
 test('events_store_only_auth', function () {

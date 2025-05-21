@@ -27,18 +27,18 @@ class EventController extends Controller
 
         $events = Event::status($request->input('past', false))
             ->withCount('attendees')
-            ->when($organizer, fn ($query) => $query->where('user_id', $organizer->id))
+            ->when($organizer, fn($query) => $query->where('user_id', $organizer->id))
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
 
-        if($request->has('page') && $request->input('page') > $events->lastPage()) {
+        if ($request->has('page') && $request->input('page') > $events->lastPage()) {
             return response()->json([
                 'message' => "The page " . $request->input('page') . " does not exist",
             ], 404);
         }
 
         // Only add the sort parameter to the URL if it is not the default sorting
-        if($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
+        if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
             $events->appends(['sort' => $order . ',' . $direction]);
         }
 
@@ -58,7 +58,17 @@ class EventController extends Controller
         $event->cost = $request->cost;
         $event->location = $request->location;
         $event->is_public = $request->is_public;
-        $event->organizer()->associate($request->user())->save();
+        $event->organizer()->associate($request->user());
+
+        //Check if an event with the same values already exists
+        if ($existingEvent = Event::where($event->getAttributes())->first()) {
+            return response()->json([
+                'message' => "A similar event already exists!",
+                'event' => new EventResource($existingEvent),
+            ], 409);
+        }
+
+        $event->save();
 
         $request->user()->notify(new EventCreationNotification($event));
 

@@ -30,7 +30,7 @@ class AttendeeController extends Controller
         }
 
         // Only add the sort parameter to the URL if it is not the default sorting
-        if($order !== Constants::USER_DEFAULT_SORTING || $direction !== 'asc') {
+        if ($order !== Constants::USER_DEFAULT_SORTING || $direction !== 'asc') {
             $attendees->appends(['sort' => $order . ',' . $direction]);
         }
 
@@ -56,13 +56,6 @@ class AttendeeController extends Controller
             ], 409);
         }
 
-        // Make sure the user has enough tokens to attend the event
-        if($event->cost > $request->user()->tokens) {
-            return response()->json([
-                'message' => "You don't have enough tokens to register for this event.",
-            ], 403);
-        }
-
         // Make sure the event hasn't already started
         if ($event->start_date < now()) {
             return response()->json([
@@ -70,8 +63,15 @@ class AttendeeController extends Controller
             ], 403);
         }
 
+        // Make sure the user has enough tokens to attend the event
+        if ($event->cost > $request->user()->tokens) {
+            return response()->json([
+                'message' => "You don't have enough tokens to register for this event.",
+            ], 403);
+        }
+
         $request->user()->decrement('tokens', $event->cost);
-        
+
         // Attach the user to the event
         $event->attendees()->attach($request->user());
 
@@ -104,7 +104,7 @@ class AttendeeController extends Controller
     public function destroy(Event $event, User $attendee): JsonResponse|Response
     {
         // Make the user is actually attending the event
-        if(!$event->attendees()->where('user_id', $attendee->id)->exists()) {
+        if (!$event->attendees()->where('user_id', $attendee->id)->exists()) {
             return response()->json([
                 'message' => "This user is not registered to the event!",
             ], 403);

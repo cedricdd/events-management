@@ -4,6 +4,8 @@ namespace Tests;
 
 use App\Models\User;
 use App\Models\Event;
+use Date;
+use DateTime;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Lang;
@@ -69,8 +71,8 @@ abstract class TestCase extends BaseTestCase
             'description' => $event->description,
             'location' => $event->location,
             'cost' => $event->cost,
-            'start_date' => $event->start_date->format('Y-m-d H:i:s'),
-            'end_date' => $event->end_date->format('Y-m-d H:i:s'),
+            'start_date' => $event->start_date instanceof DateTime ? $event->start_date->format('Y-m-d H:i:s') : $event->start_date,
+            'end_date' => $event->end_date instanceof DateTime ? $event->end_date->format('Y-m-d H:i:s') : $event->end_date,
             'is_public' => $event->is_public ? 1 : 0,
         ];
 

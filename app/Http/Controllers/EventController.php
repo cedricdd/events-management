@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
+use App\Notifications\EventCreationNotification;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class EventController extends Controller
@@ -58,6 +59,8 @@ class EventController extends Controller
         $event->location = $request->location;
         $event->is_public = $request->is_public;
         $event->organizer()->associate($request->user())->save();
+
+        $request->user()->notify(new EventCreationNotification($event));
 
         $event->setRelation('organizer', $request->user());
 

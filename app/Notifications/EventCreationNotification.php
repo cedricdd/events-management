@@ -2,13 +2,14 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use App\Models\Event;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class EventReminderNotification extends Notification
+class EventCreationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -17,7 +18,7 @@ class EventReminderNotification extends Notification
      */
     public function __construct(public Event $event)
     {
-        
+        //
     }
 
     /**
@@ -36,9 +37,12 @@ class EventReminderNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Event Reminder: ' . $this->event->name)
+            ->subject('Event Created: ' . $this->event->name)
             ->greeting("Hello {$notifiable->name}!")
-            ->line("The event '{$this->event->name}' is scheduled to start at {$this->event->start_date}, it's location will be: {$this->event->location}.");
+            ->line("The event '{$this->event->name}' was successfully created and is now visible to everybody.")
+            ->line('Event Page: ' . route('events.show', $this->event->id))
+            ->line("The event is scheduled to start " . Carbon::parse($this->event->start_date)->diffForHumans() . " ({$this->event->start_date}), it's location will be: {$this->event->location}.")
+            ->line('Thank you for using our application!');
     }
 
     /**
@@ -49,10 +53,7 @@ class EventReminderNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'event_id' => $this->event->id,
-            'event_name' => $this->event->name,
-            'start_date' => $this->event->start_date,
-            'end_date' => $this->event->end_date,
+            $this->event->toArray(),
         ];
     }
 }

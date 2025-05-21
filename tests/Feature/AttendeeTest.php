@@ -264,7 +264,8 @@ test('attendees_store', function () {
 
     Sanctum::actingAs($this->user);
 
-    $response = $this->postJson(route('attendees.store', $event))->assertValid()
+    $response = $this->postJson(route('attendees.store', $event))
+        ->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json');
 

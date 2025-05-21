@@ -36,7 +36,7 @@ abstract class TestCase extends BaseTestCase
             'end_date' => now()->addDay()->setTime(18, 0)->format('Y-m-d H:i:s'),
             'location' => 'Online',
             'cost' => 10,
-            'is_public' => true,
+            'is_public' => 1,
         ];
     }
 

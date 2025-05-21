@@ -402,6 +402,20 @@ test('events_update_too_late', function () {
         ]);
 });
 
+test('events_update_no_changes', function () {
+    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->organizer);
+
+    Sanctum::actingAs($this->organizer);
+
+    $this->putJson(route('events.update', $event), ['name' => $event->name, 'location' => $event->location])
+        ->assertValid()
+        ->assertStatus(409)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "No changes were made to the event.",
+        ]);
+});
+
 test('events_update_not_found', function () {
     Sanctum::actingAs($this->organizer);
 

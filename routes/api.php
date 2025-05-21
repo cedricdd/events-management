@@ -40,3 +40,6 @@ Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 's
 //private events
 //notify user & organizer on registration and cancellation
 //Send email to organizer when a new event is created
+//kick out attendees if organizer changes the cost
+//don't allw event with end date before start date
+//don't allow event with start date before now

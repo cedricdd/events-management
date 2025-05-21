@@ -13,6 +13,7 @@ use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use App\Notifications\EventCreationNotification;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Notifications\EventModificationNotification;
 
 class EventController extends Controller
 {
@@ -57,7 +58,7 @@ class EventController extends Controller
         $event->end_date = $request->end_date;
         $event->cost = $request->cost;
         $event->location = $request->location;
-        $event->is_public = $request->is_public;
+        $event->is_public = $request->is_public ? 1 : 0;
         $event->organizer()->associate($request->user());
 
         //Check if an event with the same values already exists
@@ -109,8 +110,19 @@ class EventController extends Controller
         $event->end_date = $request->input('end_date', $event->end_date);
         $event->cost = $request->input('cost', $event->cost);
         $event->location = $request->input('location', $event->location);
-        $event->is_public = $request->input('is_public', $event->is_public);
+        $event->is_public = $request->input('is_public', $event->is_public) ? 1 : 0;
         $event->save();
+
+        if(!$event->getChanges()) {
+            return response()->json([
+                'message' => "No changes were made to the event.",
+            ], 409);
+        }
+
+        // Let the attendees know that the event has been modified
+        foreach($event->attendees as $attendee) {
+            $attendee->notify(new EventModificationNotification($event, $event->getChanges()));
+        }
 
         $event->load('organizer');
 

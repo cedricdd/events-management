@@ -27,8 +27,8 @@ class EventRequest extends FormRequest
         return [
             'name' => 'bail|' . $ruleRequired . '|string|max:' . Constants::STRING_MAX_LENGTH,
             'description' => 'bail|' . $ruleRequired . '|string|max:' . Constants::DESCRIPTION_MAX_LENGTH,
-            'start_date' => 'bail|' . $ruleRequired . '|date|after_or_equal:today',
-            'end_date' => 'bail|' . $ruleRequired . '|date|after_or_equal:start_date',
+            'start_date' => 'bail|' . $ruleRequired . '|date|after:+' . Constants::MIN_HOURS_BEFORE_START_EVENT . ' hours',
+            'end_date' => 'bail|' . $ruleRequired . '|date|after:start_date',
             'location' => 'bail|' . $ruleRequired . '|string|max:' . Constants::STRING_MAX_LENGTH,
             'cost' => 'bail|' . $ruleRequired . '|integer|min:0|max:100',
             'is_public' => 'bail|' . $ruleRequired . '|boolean',

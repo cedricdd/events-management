@@ -97,30 +97,37 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event): JsonResponse
     {
-        // We only allow the modification of an event if it's done at least 24 hours before the event starts
+        // If the event was supposed to start soon we don't allow any changes
         if (now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT) > $event->start_date) {
             return response()->json([
-                'message' => "You can only update an event at least 24 hours before it starts.",
+                'message' => "The start of this event is too close, modification are not allowed anymore!",
             ], 403);
         }
 
         $event->name = $request->input('name', $event->name);
         $event->description = $request->input('description', $event->description);
-        $event->start_date = $request->input('start_date', $event->start_date);
-        $event->end_date = $request->input('end_date', $event->end_date);
-        $event->cost = $request->input('cost', $event->cost);
-        $event->location = $request->input('location', $event->location);
-        $event->is_public = $request->input('is_public', $event->is_public) ? 1 : 0;
+
+        $event->loadCount('attendees');
+
+        // Some user have already paid for the event, we don't allow any changes other than name & description
+        if ($event->attendees_count == 0 && $request->input('cost', $event->cost) != $event->cost) {
+            $event->start_date = $request->input('start_date', $event->start_date);
+            $event->end_date = $request->input('end_date', $event->end_date);
+            $event->cost = $request->input('cost', $event->cost);
+            $event->location = $request->input('location', $event->location);
+            $event->is_public = $request->input('is_public', $event->is_public) ? 1 : 0;
+        }
+
         $event->save();
 
-        if(!$event->getChanges()) {
+        if (!$event->getChanges()) {
             return response()->json([
                 'message' => "No changes were made to the event.",
             ], 409);
         }
 
         // Let the attendees know that the event has been modified
-        foreach($event->attendees as $attendee) {
+        foreach ($event->attendees as $attendee) {
             $attendee->notify(new EventModificationNotification($event, $event->getChanges()));
         }
 

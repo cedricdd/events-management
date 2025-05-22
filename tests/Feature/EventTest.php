@@ -151,7 +151,6 @@ test('events_index_past_events', function () {
         ]);
 
     foreach ($incative as $event) {
-        dump($this->getEventResource($event));
         expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeFalse();
     }
     foreach ($active as $event) {
@@ -302,7 +301,7 @@ test('events_form_validation', function () {
 });
 
 test('events_update_successful', function () {
-    $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->organizer);
+    $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
     $data = $this->getEventFormData();
 
@@ -321,6 +320,7 @@ test('events_update_successful', function () {
                 'cost' => $data['cost'],
                 'location' => $data['location'],
                 'is_public' => $data['is_public'],
+                'attendees_count' => 0,
                 'organizer' => $this->getUserResource($this->organizer),
             ],
             "message" => 'Event updated successfully',
@@ -334,7 +334,7 @@ test('events_update_successful', function () {
 });
 
 test('events_update_by_admin', function () {
-    $event = $this->getEvents(count: 1, attendees: 3);
+    $event = $this->getEvents(count: 1);
 
     $data = $this->getEventFormData();
 
@@ -353,6 +353,7 @@ test('events_update_by_admin', function () {
                 'cost' => $data['cost'],
                 'location' => $data['location'],
                 'is_public' => $data['is_public'],
+                'attendees_count' => 0,
                 'organizer' => $this->getUserResource($event->organizer),
             ],
             "message" => 'Event updated successfully',
@@ -398,7 +399,7 @@ test('events_update_too_late', function () {
         ->assertForbidden()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => "You can only update an event at least 24 hours before it starts.",
+            'message' => "The start of this event is too close, modification are not allowed anymore!",
         ]);
 });
 
@@ -413,6 +414,35 @@ test('events_update_no_changes', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => "No changes were made to the event.",
+        ]);
+});
+
+test('events_update_with_registered', function () {
+    $attendeesCount = 5;
+    $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->organizer);
+
+    $data = $this->getEventFormData();
+
+    Sanctum::actingAs($this->organizer);
+
+    // When an event has attendees, we don't allow any changes other than name & description
+    $this->putJson(route('events.update', $event), $data)
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson([
+            'data' => [
+                'id' => $event->id,
+                'name' => $data['name'],
+                'description' => $data['description'],
+                'start_date' => $event->start_date->format('Y-m-d H:i:s'),
+                'end_date' => $event->end_date->format('Y-m-d H:i:s'),
+                'cost' => $event->cost,
+                'location' => $event->location,
+                'is_public' => $event->is_public ? 1 : 0,
+                'attendees_count' => $attendeesCount,
+                'organizer' => $this->getUserResource($event->organizer),
+            ],
+            "message" => 'Event updated successfully',
         ]);
 });
 

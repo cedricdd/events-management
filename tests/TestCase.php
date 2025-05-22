@@ -32,8 +32,8 @@ abstract class TestCase extends BaseTestCase
         return $overrides + [
             'name' => 'Test Event',
             'description' => 'Phasellus ac nisl vitae metus blandit suscipit. Fusce rutrum faucibus accumsan. Integer ultrices aliquet nulla, vitae posuere turpis gravida ut. Ut nec suscipit nulla, vel varius velit. Nullam porttitor pharetra augue eget condimentum. Cras ut vulputate mauris. Fusce fringilla ultricies elit ut consequat. Vivamus nec diam a diam lobortis faucibus. Sed porttitor interdum odio, vitae lacinia dui eleifend a. Mauris dui libero, egestas ut vestibulum in, blandit non nibh. Cras egestas iaculis pharetra. Integer lacus ipsum, gravida ut massa eleifend, imperdiet volutpat mauris. Ut vehicula elementum rhoncus.',
-            'start_date' => now()->addDay()->setTime(12, 0)->format('Y-m-d H:i:s'),
-            'end_date' => now()->addDay()->setTime(18, 0)->format('Y-m-d H:i:s'),
+            'start_date' => now()->addWeek()->setTime(12, 0)->format('Y-m-d H:i:s'),
+            'end_date' => now()->addWeek()->setTime(18, 0)->format('Y-m-d H:i:s'),
             'location' => 'Online',
             'cost' => 10,
             'is_public' => 1,

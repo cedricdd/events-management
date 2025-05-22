@@ -95,7 +95,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event): JsonResponse
+    public function update(EventRequest $request, Event $event): JsonResponse
     {
         // If the event was supposed to start soon we don't allow any changes
         if (now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT) > $event->start_date) {
@@ -110,12 +110,18 @@ class EventController extends Controller
         $event->loadCount('attendees');
 
         // Some user have already paid for the event, we don't allow any changes other than name & description
-        if ($event->attendees_count == 0 && $request->input('cost', $event->cost) != $event->cost) {
+        if ($event->attendees_count == 0) {
             $event->start_date = $request->input('start_date', $event->start_date);
             $event->end_date = $request->input('end_date', $event->end_date);
             $event->cost = $request->input('cost', $event->cost);
             $event->location = $request->input('location', $event->location);
             $event->is_public = $request->input('is_public', $event->is_public) ? 1 : 0;
+        }
+
+        if($event->end_date <= $event->start_date) {
+            return response()->json([
+                'message' => "The end date must be after the start date.",
+            ], 403);
         }
 
         $event->save();

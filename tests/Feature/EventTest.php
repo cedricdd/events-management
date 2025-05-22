@@ -364,21 +364,14 @@ test('events_update_by_admin', function () {
 });
 
 test("events_update_fields_optional", function () {
-    $data = $this->getEventFormData();
+    $event = $this->getEvents(count: 1, organizer: $this->organizer);
+
+    $data = $this->getEventFormData(['is_public' => 0]);
 
     Sanctum::actingAs($this->organizer);
 
     foreach ($data as $key => $value) {
-        $event = $this->getEvents(count: 1, organizer: $this->organizer);
-
-        if ($event->{$key} instanceof DateTime)
-            $value = $event->{$key}->format('Y-m-d H:i:s');
-        elseif (is_bool($event->{$key}))
-            $value = $event->{$key} ? 1 : 0;
-        else
-            $value = $event->{$key};
-
-        $this->putJson(route('events.update', $event), Arr::except($data, $key))
+        $this->putJson(route('events.update', $event), [$key => $value])
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json')
             ->assertJsonFragment([$key => $value]);
@@ -443,6 +436,19 @@ test('events_update_with_registered', function () {
                 'organizer' => $this->getUserResource($event->organizer),
             ],
             "message" => 'Event updated successfully',
+        ]);
+});
+
+test('events_update_end_before_start', function () {
+    $event = $this->getEvents(count: 1, organizer: $this->organizer);
+
+    Sanctum::actingAs($this->organizer);
+
+    $this->putJson(route('events.update', $event), ['end_date' => Carbon\Carbon::parse($event->start_date)->subHour()->format('Y-m-d H:i:s')])
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "The end date must be after the start date.",
         ]);
 });
 

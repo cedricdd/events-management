@@ -28,5 +28,5 @@ class Constants
     ];
     const USER_DEFAULT_SORTING = 'name';
 
-    const MIN_HOURS_BEFORE_START_EVENT = 24;
+    const MIN_HOURS_BEFORE_START_EVENT = 96;
 }

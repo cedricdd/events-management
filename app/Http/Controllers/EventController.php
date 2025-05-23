@@ -118,7 +118,7 @@ class EventController extends Controller
             $event->is_public = $request->input('is_public', $event->is_public) ? 1 : 0;
         }
 
-        if($event->end_date <= $event->start_date) {
+        if ($event->end_date <= $event->start_date) {
             return response()->json([
                 'message' => "The end date must be after the start date.",
             ], 403);
@@ -147,8 +147,23 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event): Response
+    public function destroy(Request $request, Event $event): JsonResponse|Response
     {
+        // If the event was supposed to start soon we don't allow deletion unless the user doing it is an admin
+        if (!$request->user()->isAdmin() && now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT) > $event->start_date) {
+            return response()->json([
+                'message' => "The deletion of this event is not allowed anymore!",
+            ], 403);
+        }
+
+        // If the event has attendees, we need to refund them unless if it's an admin deleting an event that has already started or is over
+        if ($event->start_date > now()) {
+            foreach ($event->attendees as $attendee) {
+                $attendee->increment('tokens', $event->cost);
+                // $attendee->notify(new EventModificationNotification($event, ['cost' => $event->cost]));
+            }
+        }
+
         $event->delete();
 
         return response()->noContent();

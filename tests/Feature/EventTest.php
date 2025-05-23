@@ -487,8 +487,9 @@ test('events_update_not_owner', function () {
         ]);
 });
 
-test("events_destroy_by_owner", function () {
-    $event = $this->getEvents(count: 1, organizer: $this->organizer);
+test("events_destroy", function () {
+    $event = $this->getEvents(count: 1, attendees: 5, organizer: $this->organizer);
+    $attendees = $event->attendees;
 
     Sanctum::actingAs($this->organizer);
 
@@ -498,10 +499,43 @@ test("events_destroy_by_owner", function () {
 
     //Make sure the event is deleted from the database
     $this->assertDatabaseMissing('events', ['id' => $event->id]);
+
+    //Make sure the attendees are refunded
+    foreach ($attendees as $attendee) {
+        $this->assertDatabaseHas('users', ['id' => $attendee->id, 'tokens' => $attendee->tokens + $event->cost]);
+    }
 });
 
-test("events_destroy_by_admin", function () {
-    $event = $this->getEvents(count: 1);
+test('events_destroy_close_to_start', function () {
+    $event = $this->getEvents(count: 1, organizer: $this->organizer);
+
+    // Set the start date to be too close and forbidding the update
+    $event->start_date = now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT - 1);
+    $event->save();
+
+    Sanctum::actingAs($this->organizer);
+
+    $this->deleteJson(route('events.destroy', $event))
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson([
+            'message' => 'The deletion of this event is not allowed anymore!',
+        ]);
+
+    //Make sure the event can be deleted by an admin
+    Sanctum::actingAs($this->admin);
+
+    $this->deleteJson(route('events.destroy', $event))
+        ->assertValid()
+        ->assertStatus(204);
+
+    //Make sure the event is deleted from the database
+    $this->assertDatabaseMissing('events', ['id' => $event->id]);
+});
+
+test('events_destroy_past_event', function () {
+    $event = $this->getEvents(count: 1, attendees: 5, past: true);
+    $attendees = $event->attendees->keyBy('id');
 
     Sanctum::actingAs($this->admin);
 
@@ -511,6 +545,11 @@ test("events_destroy_by_admin", function () {
 
     //Make sure the event is deleted from the database
     $this->assertDatabaseMissing('events', ['id' => $event->id]);
+
+    //Make sure the attendees are not refunded
+    foreach ($event->attendees as $attendee) {
+        expect($attendees->get($attendee->id)->tokens)->toBe($attendee->tokens);
+    }
 });
 
 test('events_destroy_only_auth', function () {

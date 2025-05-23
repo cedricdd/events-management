@@ -5,6 +5,10 @@ use App\Models\Event;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
 use PHPUnit\TextUI\Configuration\Constant;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\EventCreationNotification;
+use App\Notifications\EventDeletionNotification;
+use App\Notifications\EventModificationNotification;
 
 test('events_index', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
@@ -209,6 +213,8 @@ test('events_show_not_found', function () {
 });
 
 test('events_store_successful', function () {
+    Notification::fake();
+
     $data = $this->getEventFormData();
 
     Sanctum::actingAs($this->organizer);
@@ -233,6 +239,9 @@ test('events_store_successful', function () {
         ]);
 
     $this->assertDatabaseHas('events', $data);
+
+    Notification::assertCount(1);
+    Notification::assertSentTo([$this->organizer], EventCreationNotification::class);
 });
 
 test('events_store_duplicate', function () {
@@ -301,6 +310,8 @@ test('events_form_validation', function () {
 });
 
 test('events_update_successful', function () {
+    Notification::fake();
+
     $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
     $data = $this->getEventFormData();
@@ -331,9 +342,13 @@ test('events_update_successful', function () {
 
     //Make sure the organizer didn't change
     expect($event->organizer->toArray())->toBe(Event::find($event->id)->organizer->toArray());
+
+    Notification::assertNothingSent();
 });
 
 test('events_update_by_admin', function () {
+    Notification::fake();
+
     $event = $this->getEvents(count: 1);
 
     $data = $this->getEventFormData();
@@ -364,6 +379,8 @@ test('events_update_by_admin', function () {
 });
 
 test("events_update_fields_optional", function () {
+    Notification::fake();
+
     $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
     $data = $this->getEventFormData(['is_public' => 0]);
@@ -411,6 +428,8 @@ test('events_update_no_changes', function () {
 });
 
 test('events_update_with_registered', function () {
+    Notification::fake();
+
     $attendeesCount = 5;
     $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->organizer);
 
@@ -437,6 +456,9 @@ test('events_update_with_registered', function () {
             ],
             "message" => 'Event updated successfully',
         ]);
+
+    Notification::assertCount($attendeesCount);
+    Notification::assertSentTo([$event->attendees], EventModificationNotification::class);
 });
 
 test('events_update_end_before_start', function () {
@@ -488,6 +510,8 @@ test('events_update_not_owner', function () {
 });
 
 test("events_destroy", function () {
+    Notification::fake();
+
     $event = $this->getEvents(count: 1, attendees: 5, organizer: $this->organizer);
     $attendees = $event->attendees;
 
@@ -504,9 +528,14 @@ test("events_destroy", function () {
     foreach ($attendees as $attendee) {
         $this->assertDatabaseHas('users', ['id' => $attendee->id, 'tokens' => $attendee->tokens + $event->cost]);
     }
+
+    Notification::assertCount($attendees->count());
+    Notification::assertSentTo($attendees, EventDeletionNotification::class);
 });
 
-test('events_destroy_close_to_start', function () {
+test('events_destroy_too_close_to_start', function () {
+    Notification::fake();
+
     $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
     // Set the start date to be too close and forbidding the update
@@ -534,6 +563,8 @@ test('events_destroy_close_to_start', function () {
 });
 
 test('events_destroy_past_event', function () {
+    Notification::fake();
+
     $event = $this->getEvents(count: 1, attendees: 5, past: true);
     $attendees = $event->attendees->keyBy('id');
 

@@ -11,7 +11,9 @@ use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\EventCreationNotification;
+use App\Notifications\EventDeletionNotification;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Notifications\EventModificationNotification;
 
@@ -133,9 +135,7 @@ class EventController extends Controller
         }
 
         // Let the attendees know that the event has been modified
-        foreach ($event->attendees as $attendee) {
-            $attendee->notify(new EventModificationNotification($event, $event->getChanges()));
-        }
+        Notification::send($event->attendees, new EventModificationNotification($event, $event->getChanges()));
 
         $event->load('organizer');
 
@@ -160,8 +160,10 @@ class EventController extends Controller
         if ($event->start_date > now()) {
             foreach ($event->attendees as $attendee) {
                 $attendee->increment('tokens', $event->cost);
-                // $attendee->notify(new EventModificationNotification($event, ['cost' => $event->cost]));
             }
+
+            // Let the attendees know that the event has been deleted
+            Notification::send($event->attendees, new EventDeletionNotification($event->getAttributes(), $request->user()));
         }
 
         $event->delete();

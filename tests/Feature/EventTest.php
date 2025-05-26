@@ -395,6 +395,26 @@ test("events_update_fields_optional", function () {
     }
 });
 
+test('events_update_duplicate', function () {
+    $events = $this->getEvents(count: 2, organizer: $this->organizer);
+
+    $data = $this->getEventFormData();
+
+    Sanctum::actingAs($this->organizer);
+
+    $this->putJson(route('events.update', $events->first()), $data)->assertValid();
+
+    // Try to update the event with the same data
+    $this->putJson(route('events.update', $events->last()), $data)
+        ->assertValid()
+        ->assertStatus(409)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "A similar event already exists!",
+            'id' => $events->first()->id,
+        ]);
+});
+
 test('events_update_too_late', function () {
     $event = $this->getEvents(count: 1, attendees: 3, organizer: $this->organizer);
 

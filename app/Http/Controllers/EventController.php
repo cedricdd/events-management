@@ -6,6 +6,7 @@ use App\Constants;
 use App\Models\User;
 use App\Models\Event;
 use App\LoadRelationships;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
@@ -124,6 +125,14 @@ class EventController extends Controller
             return response()->json([
                 'message' => "The end date must be after the start date.",
             ], 403);
+        }
+
+        // We don't allow for the creation of dupe events
+        if ($existingEvent = Event::where(Arr::except($event->getAttributes(), ['id', 'attendees_count', 'created_at', 'updated_at']))->where('id', '!=', $event->id)->first()) {
+            return response()->json([
+                'message' => "A similar event already exists!",
+                'event' => new EventResource($existingEvent),
+            ], 409);
         }
 
         $event->save();

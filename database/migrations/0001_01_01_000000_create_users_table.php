@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('organization')->nullable();
             $table->string('role')->default('basic');
             $table->integer('tokens')->default(0);
+            $table->integer('tokens_spend')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

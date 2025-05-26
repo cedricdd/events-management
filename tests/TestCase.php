@@ -85,8 +85,8 @@ abstract class TestCase extends BaseTestCase
         return $data;
     }
 
-    protected function getUserResource(User $user): array {
-        return [
+    protected function getUserResource(User $user, bool $extra = false): array {
+        $data = [
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
@@ -95,6 +95,13 @@ abstract class TestCase extends BaseTestCase
             'phone' => $user->phone,
             'organization' => $user->organization,
         ];
+
+        if ($extra) {
+            $data['tokens'] = $user->tokens;
+            $data['tokens_spend'] = $user->tokens_spend;
+        }
+
+        return $data;
     }
 
     /**

@@ -7,6 +7,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
+    public bool|null $extra;
+
+    public function __construct($resource, $extra = false)
+    {
+        parent::__construct($resource);
+        $this->extra = $extra;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -22,6 +30,8 @@ class UserResource extends JsonResource
             'profession' => $this->profession,
             'phone' => $this->phone,
             'organization' => $this->organization,
+            'tokens' => $this->when($this->extra, $this->tokens),
+            'tokens_spend' => $this->when($this->extra, $this->tokens_spend),
         ];
     }
 }

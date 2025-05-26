@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Event;
 
 Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
-    Route::get('user', [UserController::class, 'show'])->name('user.show');
+    Route::get('user/{user?}', [UserController::class, 'show'])->name('user.show')->where('user', '[0-9]+');
 
     Route::post('events', [EventController::class, 'store'])->name('events.store')->can('store', Event::class);
     Route::put('events/{event}', [EventController::class, 'update'])->name('events.update')->can('update', 'event')->where('event', '[0-9]+');
@@ -38,3 +38,4 @@ Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 's
 //Past events
 //Categories
 //private events
+//update tokens_spend

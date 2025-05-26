@@ -36,8 +36,7 @@ class AttendeeController extends Controller
             $attendees->appends(['sort' => $order . ',' . $direction]);
         }
 
-        // Return the list of attendees
-        return new UserCollection($attendees)->additional($this->getAdditionalData($event));
+        return (new UserCollection($attendees))->additional(array_merge($this->getAdditionalData($event)));
     }
 
     /**

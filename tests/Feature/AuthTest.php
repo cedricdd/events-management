@@ -13,7 +13,7 @@ test('login_successful', function () {
             'user'
         ])->assertStatus(200)
         ->assertJsonFragment([
-            'user' => $this->getUserResource($this->user)
+            'user' => $this->getUserResource($this->user, true)
         ]);
 });
 

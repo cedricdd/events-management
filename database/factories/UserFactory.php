@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'organization' => fake()->company(),
             'tokens' => fake()->randomNumber(3),
+            'tokens_spend' => fake()->randomNumber(3),
         ];
     }
 

@@ -8,8 +8,9 @@ use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-    public function show(Request $request)
+    public function show(Request $request, ?User $user = null): UserResource
     {
-        return new UserResource($request->user());
+        // If no user is provided, use the authenticated user
+        return new UserResource($user ?? $request->user());
     }
 }

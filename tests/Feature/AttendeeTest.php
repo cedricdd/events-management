@@ -4,6 +4,7 @@ use App\Constants;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 use PHPUnit\TextUI\Configuration\Constant;
+use Illuminate\Support\Facades\Notification;
 
 test('attendees_index', function () {
     $event = $this->getEvents(count: 1, attendees: Constants::ATTENDEES_PER_PAGE);
@@ -163,6 +164,8 @@ test('attendees_show_not_found', function () {
 });
 
 test('attendees_destroy_as_owner', function () {
+    Notification::fake();
+
     $attendeesCount = 10;
     $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->organizer);
 
@@ -186,15 +189,21 @@ test('attendees_destroy_as_owner', function () {
 
     // Check that the count of attendees has not changed
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
+
+    Notification::assertCount(1);
+    Notification::assertSentTo($attendee, \App\Notifications\EventUnRegistrationNotification::class);
 });
 
 test('attendees_destroy_as_attendee', function () {
-    $event = $this->getEvents(count: 1, attendees: 1);
+    Notification::fake();
+
+    $count = random_int(1, 5);
+    $event = $this->getEvents(count: 1, attendees: $count);
 
     $event->attendees()->attach($this->user);
 
     // Check that the count of attendees is 2
-    expect($event->attendees()->count())->toBe(2);
+    expect($event->attendees()->count())->toBe($count + 1);
 
     Sanctum::actingAs($this->user);
 
@@ -202,7 +211,30 @@ test('attendees_destroy_as_attendee', function () {
     $this->deleteJson(route('attendees.destroy', [$event, $this->user]))->assertNoContent();
 
     // Check that the count of attendees is 1
-    expect($event->attendees()->count())->toBe(1);
+    expect($event->attendees()->count())->toBe($count);
+
+    Notification::assertCount(1);
+    Notification::assertSentTo($this->user, \App\Notifications\EventUnRegistrationNotification::class);
+});
+
+test('attendees_destroy_as_admin', function () {
+    Notification::fake();
+
+    $count = random_int(1, 5);
+    $event = $this->getEvents(count: 1, attendees: $count);
+
+    Sanctum::actingAs($this->admin);
+
+    $attendee = $event->attendees->first();
+
+    // Remove the attendee from the event
+    $this->deleteJson(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
+
+    // Check that the count of attendees has decreased
+    expect($event->attendees()->count())->toBe($count - 1);
+
+    Notification::assertCount(1);
+    Notification::assertSentTo($attendee, \App\Notifications\EventUnRegistrationNotification::class);
 });
 
 test('attendees_destroy_not_allowed', function () {
@@ -260,26 +292,32 @@ test('attendees_destroy_not_found', function () {
 });
 
 test('attendees_store', function () {
-    $event = $this->getEvents(count: 1);
+    Notification::fake();
+    
+    $count = random_int(1, 5);
+    $event = $this->getEvents(count: 1, attendees: $count);
+    $event->load('organizer');
+    $event->attendees_count = $count + 1;
 
     Sanctum::actingAs($this->user);
 
     $response = $this->postJson(route('attendees.store', $event))
         ->assertValid()
         ->assertCreated()
-        ->assertHeader('Content-Type', 'application/json');
-
-    $event->loadCount('attendees');
-    $event->load('organizer');
-
-    expect($response->json('data'))->toBe($this->getUserResource($this->user));
-    expect($response->json('event'))->toBe($this->getEventResource($event));
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson([
+            'data' => $this->getUserResource($this->user),
+            'event' => $this->getEventResource($event),
+        ]);
 
     // Check that the count of attendees has increased
-    expect($event->attendees()->count())->toBe(1);
+    expect($event->attendees()->count())->toBe($count + 1);
 
     // Check that the user is now an attendee of the event
-    expect($event->attendees->first()->id)->toBe($this->user->id);
+    expect($event->attendees->last()->id)->toBe($this->user->id);
+
+    Notification::assertCount(1);
+    Notification::assertSentTo($this->user, \App\Notifications\EventRegistrationNotification::class);
 });
 
 test('attendees_store_already_attending', function () {

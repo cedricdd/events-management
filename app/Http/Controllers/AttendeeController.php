@@ -11,6 +11,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\UserCollection;
+use App\Notifications\EventRegistrationNotification;
+use App\Notifications\EventUnRegistrationNotification;
 
 class AttendeeController extends Controller
 {
@@ -75,6 +77,8 @@ class AttendeeController extends Controller
         // Attach the user to the event
         $event->attendees()->attach($request->user());
 
+        $request->user()->notify(new EventRegistrationNotification($event));
+
         $event->load('organizer');
         $event->loadCount('attendees');
 
@@ -101,7 +105,7 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event, User $attendee): JsonResponse|Response
+    public function destroy(Request $request, Event $event, User $attendee): JsonResponse|Response
     {
         // Make the user is actually attending the event
         if (!$event->attendees()->where('user_id', $attendee->id)->exists()) {
@@ -110,8 +114,22 @@ class AttendeeController extends Controller
             ], 403);
         }
 
+        if ($request->user()->id == $attendee->id)
+            $source = 'user';
+        elseif ($request->user()->id == $event->user_id)
+            $source = 'organizer';
+        elseif ($request->user()->isAdmin())
+            $source = 'admin';
+        else {
+            return response()->json([
+                'message' => "You are not allowed to unregister this user from the event!",
+            ], 403);
+        }
+
         // Detach the attendee from the event
         $event->attendees()->detach($attendee->id);
+
+        $attendee->notify(new EventUnRegistrationNotification($event, $source));
 
         // The attendee gets his tokens back
         $attendee->increment('tokens', $event->cost);

@@ -8,7 +8,7 @@ test('users_show', function () {
     $this->getJson(route('user.show'))
         ->assertValid()
         ->assertExactJson([
-            'data' => $this->getUserResource($this->user),
+            'data' => $this->getUserResource($this->user, true),
         ]);
 
     $this->getJson(route('user.show', $this->organizer->id))
@@ -16,6 +16,20 @@ test('users_show', function () {
         ->assertExactJson([
             'data' => $this->getUserResource($this->organizer),
         ]);
+});
+
+test('users_show_admin', function () {
+    Sanctum::actingAs($this->admin);
+
+    $this->getJson(route('user.show', $this->user))
+        ->assertValid()
+        ->assertExactJson([
+            'data' => $this->getUserResource($this->user, true),
+        ]);
+});
+
+test('users_show_unauthenticated', function () {
+    $this->getJson(route('user.show'))->assertUnauthorized();
 });
 
 test('users_show_dont_exist', function () {

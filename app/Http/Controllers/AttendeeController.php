@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\UserCollection;
 use App\Notifications\EventRegistrationNotification;
@@ -82,7 +83,7 @@ class AttendeeController extends Controller
         $event->load('organizer');
         $event->loadCount('attendees');
 
-        return UserResource::make($request->user())
+        return UserResource::make($request->user(), true)
             ->additional(['event' => EventResource::make($event)])
             ->response()
             ->setStatusCode(201);

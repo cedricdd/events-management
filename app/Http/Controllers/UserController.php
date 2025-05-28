@@ -11,6 +11,9 @@ class UserController extends Controller
     public function show(Request $request, ?User $user = null): UserResource
     {
         // If no user is provided, use the authenticated user
-        return new UserResource($user ?? $request->user());
+        return new UserResource(
+            $user ?? $request->user(), 
+            $request->user()->isAdmin() || $request->user()->is($user) || $user === null // Show extra information only to admins or the user themselves
+        );
     }
 }

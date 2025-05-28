@@ -321,7 +321,7 @@ test('attendees_store', function () {
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
         ->assertExactJson([
-            'data' => $this->getUserResource($this->user),
+            'data' => $this->getUserResource($this->user, true),
             'event' => $this->getEventResource($event),
         ]);
 

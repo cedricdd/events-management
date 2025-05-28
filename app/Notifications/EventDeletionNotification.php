@@ -34,7 +34,7 @@ class EventDeletionNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Event Deleted: ' . $this->event['name'])
+            ->subject('Event Deleted')
             ->greeting("Hello {$notifiable->name}!")
             ->line("An event you were registered for has been deleted. You will no longer be able to attend this event.")
             ->line("You have been refunded " . $this->event['cost'] . " tokens.")

@@ -37,7 +37,7 @@ class EventCreationNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Event Created: ' . $this->event->name)
+            ->subject('Event Created Successfully')
             ->greeting("Hello {$notifiable->name}!")
             ->line("The event '{$this->event->name}' was successfully created and is now visible to everybody.")
             ->line('Event Page: ' . route('events.show', $this->event->id))

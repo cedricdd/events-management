@@ -13,10 +13,10 @@ use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use Illuminate\Support\Facades\Notification;
+use App\Jobs\SendEventModificationNotification;
 use App\Notifications\EventCreationNotification;
 use App\Notifications\EventDeletionNotification;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use App\Notifications\EventModificationNotification;
 
 class EventController extends Controller
 {
@@ -143,8 +143,8 @@ class EventController extends Controller
             ], 409);
         }
 
-        // Let the attendees know that the event has been modified
-        Notification::send($event->attendees, new EventModificationNotification($event, $event->getChanges()));
+        // Let the attendees know that the event has been modified, organier might have messed up something, don't directly notify them
+        SendEventModificationNotification::dispatch($event->id)->delay(now()->addMinutes(value: 30));
 
         $event->load('organizer');
 

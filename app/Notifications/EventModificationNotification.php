@@ -10,14 +10,14 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class EventModificationNotification extends Notification implements ShouldQueue
+class EventModificationNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(public Event $event, public array $changes) {}
+    public function __construct(public Event $event) {}
 
     /**
      * Get the notification's delivery channels.
@@ -35,16 +35,16 @@ class EventModificationNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Event Updated: ' . $this->event->name)
+            ->subject('Event Updated')
             ->greeting("Hello {$notifiable->name}!")
             ->line("You are register to attempt the event '{$this->event->name}', the organizer has modified the event.")
-            ->line('Here are the new details (in bold):')
-            ->line("*Name*: " . (isset($this->changes['name']) ? "**{$this->event->name}**" : $this->event->name))
-            ->line("*Description*: " . (isset($this->changes['description']) ? "**{$this->event->description}**" : $this->event->description))
-            ->line("*Start*: " . Carbon::parse($this->event->start_date)->diffForHumans() . " (" . (isset($this->changes['start_date']) ? "**{$this->event->start_date}**" : $this->event->start_date) . ")")
-            ->line("*End*: " . Carbon::parse($this->event->end_date)->diffForHumans() . " (" . (isset($this->changes['end_date']) ? "**{$this->event->end_date}**" : $this->event->end_date) . ")")
-            ->line("*Location*: " . (isset($this->changes['location']) ? "**{$this->event->location}**" : $this->event->location))
-            ->line("*Cost*: " . (isset($this->changes['cost']) ? "**{$this->event->cost}**" : $this->event->cost))
+            ->line('Here are the new details:')
+            ->line("*Name*: **{$this->event->name}**")
+            ->line("*Description*: **{$this->event->description}**")
+            ->line("*Start*: " . Carbon::parse($this->event->start_date)->diffForHumans())
+            ->line("*End*: " . Carbon::parse($this->event->end_date)->diffForHumans())
+            ->line("*Location*: **{$this->event->location}**")
+            ->line("*Cost*: **{$this->event->cost}**")
             ->line('Thank you for using our application!');
     }
 

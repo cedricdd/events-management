@@ -169,6 +169,7 @@ class EventController extends Controller
         if ($event->start_date > now()) {
             foreach ($event->attendees as $attendee) {
                 $attendee->increment('tokens', $event->cost);
+                $attendee->decrement('tokens_spend', $event->cost);
             }
 
             // Let the attendees know that the event has been deleted

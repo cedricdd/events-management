@@ -171,6 +171,7 @@ test('attendees_destroy_as_owner', function () {
     Sanctum::actingAs($this->organizer);
 
     $attendee = $event->attendees->first();
+    $attributes = $attendee->getAttributes();
 
     // Remove the attendee from the event
     $this->deleteJson(route('attendees.destroy', [$event, $attendee]))->assertNoContent();
@@ -184,10 +185,16 @@ test('attendees_destroy_as_owner', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => "This user is not registered to the event!",
-        ]); 
+        ]);
 
     // Check that the count of attendees has not changed
     expect($event->attendees()->count())->toBe($attendeesCount - 1);
+
+    $attendee->refresh();
+
+    // Check that the tokens have been incremented
+    expect($attendee->tokens)->toBe($attributes['tokens'] + $event->cost);
+    expect($attendee->tokens_spend)->toBe($attributes['tokens_spend'] - $event->cost);
 
     Notification::assertCount(1);
     Notification::assertSentTo($attendee, \App\Notifications\EventUnRegistrationNotification::class);
@@ -200,6 +207,7 @@ test('attendees_destroy_as_attendee', function () {
     $event = $this->getEvents(count: 1, attendees: $count);
 
     $event->attendees()->attach($this->user);
+    $attributes = $this->user->getAttributes();
 
     // Check that the count of attendees is 2
     expect($event->attendees()->count())->toBe($count + 1);
@@ -211,6 +219,12 @@ test('attendees_destroy_as_attendee', function () {
 
     // Check that the count of attendees is 1
     expect($event->attendees()->count())->toBe($count);
+
+    $this->user->refresh();
+
+    // Check that the tokens have been incremented
+    expect($this->user->tokens)->toBe($attributes['tokens'] + $event->cost);
+    expect($this->user->tokens_spend)->toBe($attributes['tokens_spend'] - $event->cost);
 
     Notification::assertCount(1);
     Notification::assertSentTo($this->user, \App\Notifications\EventUnRegistrationNotification::class);
@@ -292,15 +306,17 @@ test('attendees_destroy_not_found', function () {
 
 test('attendees_store', function () {
     Notification::fake();
-    
+
     $count = random_int(1, 5);
     $event = $this->getEvents(count: 1, attendees: $count);
     $event->load('organizer');
     $event->attendees_count = $count + 1;
 
+    $attributes = $this->user->getAttributes();
+
     Sanctum::actingAs($this->user);
 
-    $response = $this->postJson(route('attendees.store', $event))
+    $this->postJson(route('attendees.store', $event))
         ->assertValid()
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
@@ -314,6 +330,12 @@ test('attendees_store', function () {
 
     // Check that the user is now an attendee of the event
     expect($event->attendees->last()->id)->toBe($this->user->id);
+
+    $this->user->refresh();
+
+    //Chech that the tokens have been decremented
+    expect($this->user->tokens)->toBe($attributes['tokens'] - $event->cost);
+    expect($this->user->tokens_spend)->toBe($attributes['tokens_spend'] + $event->cost);
 
     Notification::assertCount(1);
     Notification::assertSentTo($this->user, \App\Notifications\EventRegistrationNotification::class);

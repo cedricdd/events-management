@@ -38,4 +38,3 @@ Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 's
 //Past events
 //Categories
 //private events
-//update tokens_spend

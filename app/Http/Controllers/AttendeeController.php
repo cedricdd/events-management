@@ -72,6 +72,7 @@ class AttendeeController extends Controller
         }
 
         $request->user()->decrement('tokens', $event->cost);
+        $request->user()->increment('tokens_spend', $event->cost);
 
         // Attach the user to the event
         $event->attendees()->attach($request->user());
@@ -132,6 +133,7 @@ class AttendeeController extends Controller
 
         // The attendee gets his tokens back
         $attendee->increment('tokens', $event->cost);
+        $attendee->decrement('tokens_spend', $event->cost);
 
         return response()->noContent();
     }

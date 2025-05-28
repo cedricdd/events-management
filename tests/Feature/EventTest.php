@@ -546,7 +546,7 @@ test("events_destroy", function () {
 
     //Make sure the attendees are refunded
     foreach ($attendees as $attendee) {
-        $this->assertDatabaseHas('users', ['id' => $attendee->id, 'tokens' => $attendee->tokens + $event->cost]);
+        $this->assertDatabaseHas('users', ['id' => $attendee->id, 'tokens' => $attendee->tokens + $event->cost, 'tokens_spend' => $attendee->tokens_spend - $event->cost]);
     }
 
     Notification::assertCount($attendees->count());

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\EventType;
 use App\LoadRelationships;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class EventController extends Controller
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
         $events = Event::status($request->input('past', false))
+            ->with('type')
             ->withCount('attendees')
             ->when($organizer, fn($query) => $query->where('user_id', $organizer->id))
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
@@ -54,6 +56,8 @@ class EventController extends Controller
      */
     public function store(EventRequest $request): JsonResponse
     {
+        $type = EventType::where('name', $request->type)->first();
+
         $event = new Event();
         $event->name = $request->name;
         $event->description = $request->description;
@@ -62,10 +66,11 @@ class EventController extends Controller
         $event->cost = $request->cost;
         $event->location = $request->location;
         $event->is_public = $request->is_public ? 1 : 0;
+        $event->type()->associate($type);
         $event->organizer()->associate($request->user());
 
         //Check if an event with the same values already exists
-        if ($existingEvent = Event::where($event->getAttributes())->first()) {
+        if ($existingEvent = Event::with('type')->where($event->getAttributes())->first()) {
             return response()->json([
                 'message' => "A similar event already exists!",
                 'event' => new EventResource($existingEvent),
@@ -77,6 +82,7 @@ class EventController extends Controller
         $request->user()->notify(new EventCreationNotification($event));
 
         $event->setRelation('organizer', $request->user());
+        $event->setRelation('type', $type);
 
         return EventResource::make($event)
             ->additional(["message" => "Event created successfully"])
@@ -91,6 +97,7 @@ class EventController extends Controller
     {
         $event = $this->loadRelationships($event, ['organizer']);
         $event->loadCount('attendees');
+        $event->load('type');
 
         return EventResource::make($event);
     }
@@ -109,6 +116,7 @@ class EventController extends Controller
 
         $event->name = $request->input('name', $event->name);
         $event->description = $request->input('description', $event->description);
+        $event->type()->associate(EventType::where('name', $request->input('type', $event->type->name))->first());
 
         $event->loadCount('attendees');
 

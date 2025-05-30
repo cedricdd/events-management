@@ -25,9 +25,10 @@ class EventFactory extends Factory
             'location' => random_int(0, 1) ? $this->faker->city : 'Online',
             'start_date' => ($start = $this->getRandomDateTime('+1 week', '+1 month')),
             'end_date' => (clone $start)->modify('+' . (30 * random_int(1, 1440)) . ' minutes'),
-            'cost' => $this->faker->randomNumber(2),
+            'cost' => random_int(1, 9), 
             'is_public' => true,
             'created_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'event_type_id' => 1, 
         ];
     }
 

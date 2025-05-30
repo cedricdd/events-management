@@ -80,7 +80,7 @@ class AttendeeController extends Controller
 
         $request->user()->notify(new EventRegistrationNotification($event));
 
-        $event->load('organizer');
+        $event->load(['organizer', 'type']);
         $event->loadCount('attendees');
 
         return UserResource::make($request->user(), true)
@@ -95,9 +95,6 @@ class AttendeeController extends Controller
     public function show(Event $event, int $userID): UserResource
     {
         $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
-
-        $event->load('organizer');
-        $event->loadCount('attendees');
 
         return UserResource::make($attendee)
             ->additional($this->getAdditionalData($event));
@@ -145,7 +142,8 @@ class AttendeeController extends Controller
 
         // User wants to get the event data
         if (strtolower(trim(request()->input('with', ''))) === 'event') {
-            $event->load('organizer');
+            $event->load(['organizer', 'type']);
+            $event->loadCount('attendees');
 
             $additional['event'] = EventResource::make($event);
         }

@@ -34,7 +34,5 @@ Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->na
 Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
 //Search events
-//User list for admins
-//Past events
 //Categories
 //private events

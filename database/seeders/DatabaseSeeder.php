@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Constants;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Event;
+use App\Models\EventType;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $types = [];
+
+        foreach(Constants::TYPES as $type => $description) {
+            // dump("Creating category: $type");
+            $eventType = new EventType();
+            $eventType->name = $type;
+            $eventType->description = $description;
+            $eventType->save();
+
+            $types[] = $eventType;
+        }
+
         $users = User::factory(2500)->create();
 
         // Most users will be attendees, create events for only some of them
@@ -22,9 +37,17 @@ class DatabaseSeeder extends Seeder
                 $user->update(['role' => 'organizer']);
 
                 //Future events
-                Event::factory()->count(random_int(2, 20))->for($user, 'organizer')->create();
+                Event::factory()->count(random_int(2, 20))->make()->each(function (Event $event) use ($user, $types) {
+                    $event->organizer()->associate($user);
+                    $event->type()->associate(Arr::random($types));
+                    $event->save();
+                });
                 //Past events
-                Event::factory()->count(random_int(0, 5))->finished()->for($user, 'organizer')->create();
+                Event::factory()->count(random_int(0, 5))->finished()->make()->each(function (Event $event) use ($user, $types) {
+                    $event->organizer()->associate($user);
+                    $event->type()->associate(Arr::random($types));
+                    $event->save();
+                });
             }
         }
 
@@ -32,8 +55,16 @@ class DatabaseSeeder extends Seeder
         $johnOrganizer = User::factory()->johnOrganizer()->create();
         $johnBasic = User::factory()->johnBasic()->create();
 
-        Event::factory()->count(20)->for($johnOrganizer, 'organizer')->create();
-        Event::factory()->count(5)->finished()->for($johnOrganizer, 'organizer')->create();
+        Event::factory()->count(20)->make()->each(function (Event $event) use ($johnOrganizer, $types) {
+            $event->organizer()->associate($johnOrganizer);
+            $event->type()->associate(Arr::random($types));
+            $event->save();
+        });
+        Event::factory()->count(5)->finished()->make()->each(function (Event $event) use ($johnOrganizer, $types) {
+            $event->organizer()->associate($johnOrganizer);
+            $event->type()->associate(Arr::random($types));
+            $event->save();
+        });
 
         $events = Event::select('id', 'cost')->get();
 

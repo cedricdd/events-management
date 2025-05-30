@@ -228,17 +228,18 @@ test('events_store_successful', function () {
                 'id' => 1,
                 'name' => $data['name'],
                 'description' => $data['description'],
+                'location' => $data['location'],
+                'cost' => $data['cost'],
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
-                'cost' => $data['cost'],
-                'location' => $data['location'],
+                'type' => $data['type'],              
                 'is_public' => $data['is_public'],
                 'organizer' => $this->getUserResource($this->organizer),
             ],
             "message" => 'Event created successfully',
         ]);
 
-    $this->assertDatabaseHas('events', $data);
+    $this->assertDatabaseHas('events', Arr::except($data, 'type') + ['id' => 1]);
 
     Notification::assertCount(1);
     Notification::assertSentTo([$this->organizer], EventCreationNotification::class);
@@ -293,8 +294,8 @@ test('events_form_validation', function () {
         route('events.store'),
         $this->getEventFormData(),
         [
-            [['name', 'description', 'start_date', 'end_date', 'location', 'cost', 'is_public'], 'required', ''],
-            [['name', 'description', 'location'], 'string', 0],
+            [['name', 'description', 'start_date', 'end_date', 'location', 'cost', 'is_public', 'type'], 'required', ''],
+            [['name', 'description', 'location', 'type'], 'string', 0],
             [['name', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             ['description', 'max.string', str_repeat('a', Constants::DESCRIPTION_MAX_LENGTH + 1), ['max' => Constants::DESCRIPTION_MAX_LENGTH]],
             [['start_date', 'end_date'], 'date', 'invalid-date'],
@@ -304,6 +305,7 @@ test('events_form_validation', function () {
             ['cost', 'min.numeric', -10, ['min' => 0]],
             ['cost', 'max.numeric', 1000, ['max' => 100]],
             ['is_public', 'boolean', 'invalid-boolean'],
+            ['type', 'exists', 'invalid-type'],
         ],
         $this->organizer,
     );
@@ -326,10 +328,11 @@ test('events_update_successful', function () {
                 'id' => $event->id,
                 'name' => $data['name'],
                 'description' => $data['description'],
+                'location' => $data['location'],
+                'cost' => $data['cost'],
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
-                'cost' => $data['cost'],
-                'location' => $data['location'],
+                'type' => $data['type'],
                 'is_public' => $data['is_public'],
                 'attendees_count' => 0,
                 'organizer' => $this->getUserResource($this->organizer),
@@ -338,7 +341,7 @@ test('events_update_successful', function () {
         ]);
 
     //Make sure the event is updated in the database
-    $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
+    $this->assertDatabaseHas('events', Arr::except($data, 'type') + ['id' => $event->id]);
 
     //Make sure the organizer didn't change
     expect($event->organizer->toArray())->toBe(Event::find($event->id)->organizer->toArray());
@@ -363,10 +366,11 @@ test('events_update_by_admin', function () {
                 'id' => $event->id,
                 'name' => $data['name'],
                 'description' => $data['description'],
+                'location' => $data['location'],
+                'cost' => $data['cost'],
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
-                'cost' => $data['cost'],
-                'location' => $data['location'],
+                'type' => $data['type'],
                 'is_public' => $data['is_public'],
                 'attendees_count' => 0,
                 'organizer' => $this->getUserResource($event->organizer),
@@ -375,7 +379,7 @@ test('events_update_by_admin', function () {
         ]);
 
     //Make sure the event is updated in the database
-    $this->assertDatabaseHas('events', $data + ['id' => $event->id]);
+    $this->assertDatabaseHas('events', Arr::except($data, 'type') + ['id' => $event->id]);
 });
 
 test("events_update_fields_optional", function () {
@@ -457,7 +461,7 @@ test('events_update_with_registered', function () {
 
     Sanctum::actingAs($this->organizer);
 
-    // When an event has attendees, we don't allow any changes other than name & description
+    // When an event has attendees, we don't allow any changes other than name, description & type
     $this->putJson(route('events.update', $event), $data)
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -466,10 +470,11 @@ test('events_update_with_registered', function () {
                 'id' => $event->id,
                 'name' => $data['name'],
                 'description' => $data['description'],
+                'location' => $event->location,
+                'cost' => $event->cost,
                 'start_date' => $event->start_date->format('Y-m-d H:i:s'),
                 'end_date' => $event->end_date->format('Y-m-d H:i:s'),
-                'cost' => $event->cost,
-                'location' => $event->location,
+                'type' => $data['type'],
                 'is_public' => $event->is_public ? 1 : 0,
                 'attendees_count' => $attendeesCount,
                 'organizer' => $this->getUserResource($event->organizer),

@@ -22,6 +22,7 @@ class EventResource extends JsonResource
             'cost' => $this->cost,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+            'type' => $this->whenLoaded('type', fn () => $this->type->name),
             'is_public' => $this->is_public,
             'attendees_count' => $this->whenCounted('attendees'),
             'organizer' => UserResource::make($this->whenLoaded('organizer')),

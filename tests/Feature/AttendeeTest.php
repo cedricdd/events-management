@@ -52,7 +52,8 @@ test('attendees_index', function () {
 test('attendees_index_with_event', function () {
     $event = $this->getEvents(count: 1, attendees: 1);
 
-    $event->load('organizer');
+    $event->load(['organizer', 'type']);
+    $event->loadCount('attendees');
 
     $response = $this->getJson(route('attendees.index', [$event, 'with' => 'event']))
         ->assertValid()
@@ -72,15 +73,9 @@ test('attendees_index_sorting', function () {
         else
             $attendees = $attendees->sortBy([$column, 'asc']);
 
-        dump('Sorting by: ' . $name);
-        // dump($attendees->pluck($column)->toArray());
-
         $response = $this->getJson(route('attendees.index', [$event, 'sort' => $name]))
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json');
-
-        dump(collect($response->json('data')));
-        dump($this->getUserResource($attendees->first()));
 
         expect(collect($response->json('data'))->contains($this->getUserResource($attendees->first())))->toBeTrue();
         expect(collect($response->json('data'))->contains($this->getUserResource($attendees->last())))->toBeFalse();
@@ -124,7 +119,7 @@ test('attendees_show', function () {
 test('attendees_show_with_event', function () {
     $event = $this->getEvents(count: 1, attendees: 'random');
 
-    $event->load('organizer');
+    $event->load(['organizer', 'type']);
     $event->loadCount('attendees');
 
     $attendee = $event->attendees()->first();

@@ -6,6 +6,7 @@ use DateTime;
 use App\Constants;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\EventType;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +25,17 @@ abstract class TestCase extends BaseTestCase
         $this->user = User::factory()->create();
         $this->organizer = User::factory()->create(['role' => 'organizer']);
         $this->admin = User::factory()->create(['role' => 'admin']);
+
+        // Add at least two eventd type to the database
+        $type1 = new EventType();
+        $type1->name = 'Conference';
+        $type1->description = 'A large formal meeting for discussion';
+        $type1->save();
+
+        $type2 = new EventType();
+        $type2->name = 'Workshop';
+        $type2->description = 'A meeting at which a group of people engage in intensive discussion and activity on a particular subject or project';
+        $type2->save();
     }
 
     protected function getEventFormData(array $overrides = []): array {
@@ -35,6 +47,7 @@ abstract class TestCase extends BaseTestCase
             'location' => 'Random City',
             'cost' => 10,
             'is_public' => 1,
+            'type' => EventType::orderBy('id', 'desc')->first()->name,
         ];
     }
 
@@ -71,6 +84,7 @@ abstract class TestCase extends BaseTestCase
             'cost' => $event->cost,
             'start_date' => $event->start_date instanceof DateTime ? $event->start_date->format('Y-m-d H:i:s') : $event->start_date,
             'end_date' => $event->end_date instanceof DateTime ? $event->end_date->format('Y-m-d H:i:s') : $event->end_date,
+            'type' => $event->type->name,
             'is_public' => $event->is_public ? 1 : 0,
         ];
 

@@ -33,8 +33,8 @@ class UserFactory extends Factory
             'profession' => fake()->jobTitle(),
             'phone' => fake()->phoneNumber(),
             'organization' => fake()->company(),
-            'tokens' => fake()->randomNumber(3),
-            'tokens_spend' => fake()->randomNumber(3),
+            'tokens' => random_int(10, 999),
+            'tokens_spend' => random_int(0, 999),
         ];
     }
 

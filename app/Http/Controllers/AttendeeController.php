@@ -37,7 +37,19 @@ class AttendeeController extends Controller
             $attendees->appends(['sort' => $order . ',' . $direction]);
         }
 
-        return (new UserCollection($attendees))->additional(array_merge($this->getAdditionalData($event)));
+        $additional = [];
+
+        // User wants to get the event data
+        if (strtolower(trim(request()->input('with', ''))) === 'event') {
+            $event->load(['organizer', 'type']);
+            $event->loadCount('attendees');
+
+            $additional['event'] = EventResource::make($event);
+
+            $attendees->appends(['with' => 'event']);
+        }
+
+        return (new UserCollection($attendees))->additional($additional);
     }
 
     /**
@@ -96,8 +108,17 @@ class AttendeeController extends Controller
     {
         $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
 
-        return UserResource::make($attendee)
-            ->additional($this->getAdditionalData($event));
+        $additional = [];
+
+        // User wants to get the event data
+        if (strtolower(trim(request()->input('with', ''))) === 'event') {
+            $event->load(['organizer', 'type']);
+            $event->loadCount('attendees');
+
+            $additional['event'] = EventResource::make($event);
+        }
+
+        return UserResource::make($attendee)->additional($additional);
     }
 
     /**
@@ -134,20 +155,5 @@ class AttendeeController extends Controller
         $attendee->decrement('tokens_spend', $event->cost);
 
         return response()->noContent();
-    }
-
-    private function getAdditionalData(Event $event)
-    {
-        $additional = [];
-
-        // User wants to get the event data
-        if (strtolower(trim(request()->input('with', ''))) === 'event') {
-            $event->load(['organizer', 'type']);
-            $event->loadCount('attendees');
-
-            $additional['event'] = EventResource::make($event);
-        }
-
-        return $additional;
     }
 }

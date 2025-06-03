@@ -16,7 +16,6 @@ class Constants
         'end' => 'end_date',
         'cost' => 'cost',
         'attendees' => 'attendees_count',
-        'location' => 'location',
         'newest' => 'created_at',
     ];
     const EVENT_DEFAULT_SORTING = 'start';

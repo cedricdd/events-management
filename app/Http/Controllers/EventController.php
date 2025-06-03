@@ -188,4 +188,37 @@ class EventController extends Controller
 
         return response()->noContent();
     }
+
+    public function type(Request $request, string $name): EventCollection|JsonResponse
+    {
+        $eventType = EventType::where('name', $name)->first();
+
+        if (!$eventType) {
+            return response()->json([
+                'message' => "There are no events of this type.",
+            ], 404);
+        }
+
+        [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
+
+        $events = $eventType->events()
+            ->status($request->input('past', false))
+            ->with('type')
+            ->withCount('attendees')
+            ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
+            ->paginate(Constants::EVENTS_PER_PAGE);
+
+        if ($request->has('page') && $request->input('page') > $events->lastPage()) {
+            return response()->json([
+                'message' => "The page " . $request->input('page') . " does not exist",
+            ], 404);
+        }
+
+        // Only add the sort parameter to the URL if it is not the default sorting
+        if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
+            $events->appends(['sort' => $order . ',' . $direction]);
+        }
+
+        return new EventCollection($this->loadRelationships($events, ['organizer']));
+    }
 }

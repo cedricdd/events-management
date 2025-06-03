@@ -2,6 +2,7 @@
 
 use App\Constants;
 use App\Models\Event;
+use App\Models\EventType;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
 use PHPUnit\TextUI\Configuration\Constant;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\EventCreationNotification;
 use App\Notifications\EventDeletionNotification;
 use App\Notifications\EventModificationNotification;
+
+use function PHPSTORM_META\type;
 
 test('events_index', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
@@ -691,4 +694,104 @@ test('events_organizer', function () {
 
     expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
     expect(collect($response->json('data'))->contains($eventLast))->toBeTrue();
+});
+
+test('events_type', function () {
+    $type = EventType::first();
+
+    $this->getEvents(count: Constants::EVENTS_PER_PAGE, type: $type);
+
+    $this->getJson(route('events.type', $type->name))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name',
+                    'description',
+                    'start_date',
+                    'end_date',
+                    'cost',
+                    'location',
+                    'is_public',
+                ],
+            ],
+            'links' => [
+                'first',
+                'last',
+                'prev',
+                'next',
+            ],
+            'meta' => [
+                'current_page',
+                'last_page',
+                'per_page',
+                'total',
+                'path',
+            ],
+        ])->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data');
+});
+
+test('events_type_sorting', function () {
+    $type = EventType::first();
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * 2, attendees: 'random', type: $type);
+
+    $events->loadCount('attendees');
+
+    foreach (Constants::EVENT_SORTING_OPTIONS as $name => $column) {
+        $events = $events->sortBy([$column, 'asc']);
+
+        $eventFirst = $this->getEventResource($events->first());
+        $eventLast = $this->getEventResource($events->last());
+
+        $response = $this->getJson(route('events.type', [$type->name, 'sort' => $name]))
+            ->assertValid()
+            ->assertHeader('Content-Type', 'application/json');
+
+        expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
+        expect(collect($response->json('data'))->contains($eventLast))->toBeFalse();
+    }
+});
+
+test('events_type_with_organizer', function () {
+    $type = EventType::first();
+    $event = $this->getEvents(count: 1, type: $type);
+
+    $event->load('organizer');
+    $event->loadCount('attendees');
+
+    $response = $this->getJson(route('events.type', [$type->name, 'with' => 'organizer']))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
+});
+
+test('events_type_not_found', function () {
+    $this->getJson(route('events.type', "invalid"))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'There are no events of this type.',
+        ])->assertStatus(404);
+});
+
+test('events_type_out_of_range_page', function () {
+    $type = EventType::first();
+    $pages = 2;
+
+    $this->getEvents(count: Constants::EVENTS_PER_PAGE * $pages, type: $type);
+
+    $this->getJson(route('events.type',  [$type->name, 'page' => $pages + 1]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "The page " . ($pages + 1) . " does not exist",
+        ])->assertStatus(404);
+
+    $this->getJson(route('events.type',  [$type->name, 'page' => $pages]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data');
 });

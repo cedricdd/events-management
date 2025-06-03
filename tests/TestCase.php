@@ -51,12 +51,13 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0, bool $past = false): Event|Collection {
+    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0, ?EventType $type = null, bool $past = false): Event|Collection {
         $count = max(1, $count); // Ensure at least 1 event is created
 
         $events = Event::factory()->count($count)
             ->when($organizer, fn ($query) => $query->for($organizer, 'organizer'))
             ->when($past, fn ($query) => $query->finished())
+            ->when($type, fn ($query) => $query->for($type, 'type'))
             ->create();
 
         // Attach attendees to the events

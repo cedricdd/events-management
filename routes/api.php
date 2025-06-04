@@ -2,6 +2,7 @@
 
 
 use App\Models\Event;
+use App\Models\EventType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -18,6 +19,8 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
 
     Route::post('events/{event}/attendees', [AttendeeController::class, 'store'])->name('attendees.store')->where('event', '[0-9]+');
     Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->can('destroy-attendee', ['event', 'attendee'])->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
+
+    Route::post('event-types', [EventTypeController::class, 'store'])->name('event-types.store')->can('store', EventType::class);
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });

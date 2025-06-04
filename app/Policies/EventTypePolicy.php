@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 class EventTypePolicy
 {
-    public function create(User $user): bool
+    public function store(User $user): bool
     {
         return $user->isAdmin();
     }

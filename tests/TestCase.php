@@ -50,6 +50,13 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
+    protected function getEventTypeFormData(array $overrides = []): array {
+        return $overrides + [
+            'name' => 'Test Event Type',
+            'description' => 'This is a test event type description.',
+        ];
+    }
+
     protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0, ?EventType $type = null, bool $past = false): Event|Collection {
         $count = max(1, $count); // Ensure at least 1 event is created
 

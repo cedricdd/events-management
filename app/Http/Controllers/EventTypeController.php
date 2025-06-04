@@ -42,6 +42,15 @@ class EventTypeController extends Controller
 
     }
 
-    public function destroy($id) {
+    public function destroy(EventType $type)
+    {
+        // A type cannot be deleted if it is used by any event
+        if ($type->events()->exists()) {
+            return response()->json(['error' => 'Cannot delete event type that is in use!'], 422);
+        }
+
+        $type->delete();
+
+        return response()->noContent();
     }
 }

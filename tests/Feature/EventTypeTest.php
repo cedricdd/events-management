@@ -1,6 +1,7 @@
 <?php
 
 use App\Constants;
+use App\Models\EventType;
 use Laravel\Sanctum\Sanctum;
 
 test('event_types_index', function () {
@@ -24,6 +25,7 @@ test('event_types_index', function () {
 
 test('event_types_store', function () {
     $data = $this->getEventTypeFormData();
+    $count = $this->types->count();
 
     Sanctum::actingAs($this->admin, );
 
@@ -35,6 +37,8 @@ test('event_types_store', function () {
             'name' => $data['name'],
             'description' => $data['description'],
         ]);
+    
+    expect(EventType::count())->toBe($count + 1);
 });
 
 test('event_types_store_validation', function () {
@@ -78,4 +82,58 @@ test('event_types_store_duplicate', function () {
         ->assertUnprocessable()
         ->assertHeader('Content-Type', 'application/json')
         ->assertExactJson(['error' => 'Event type already exists']);
+});
+
+test('event_types_destroy', function () {
+    $count = $this->types->count();
+
+    Sanctum::actingAs($this->admin);
+
+    $this->deleteJson(route('event-types.destroy', ['type' => $this->types->first()]))
+        ->assertValid()
+        ->assertNoContent();
+
+    expect(EventType::find($this->types->first()->id))->toBeNull();
+    expect(EventType::count())->toBe($count - 1);
+});
+
+test('event_types_destroy_only_admin', function () {
+    $this->deleteJson(route('event-types.destroy', ['type' => $this->types->first()]))
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+
+    Sanctum::actingAs($this->user);
+
+    $this->deleteJson(route('event-types.destroy', ['type' => $this->types->first()]))
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'This action is unauthorized.',
+        ]);
+});
+
+test('event_types_destroy_in_use', function () {
+    Sanctum::actingAs($this->admin);
+
+    $type = $this->types->first();
+    $this->getEvents(count: Constants::EVENTS_PER_PAGE, type: $type);
+
+    $this->deleteJson(route('event-types.destroy', ['type' => $type]))
+        ->assertUnprocessable()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson(['error' => 'Cannot delete event type that is in use!']);
+
+    expect(EventType::find($type->id))->toEqual($type);
+});
+
+test('event_types_destroy_not_found', function () {
+    Sanctum::actingAs($this->admin);
+
+    $this->deleteJson(route('event-types.destroy', ['type' => 9999]))
+        ->assertNotFound()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson(['message' => 'EventType not found']);
 });

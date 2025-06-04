@@ -1,12 +1,13 @@
 <?php
 
 
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AttendeeController;
-use App\Http\Controllers\UserController;
-use App\Models\Event;
+use App\Http\Controllers\EventTypeController;
 
 Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::get('user/{user?}', [UserController::class, 'show'])->name('user.show')->where('user', '[0-9]+');
@@ -32,6 +33,8 @@ Route::get('events/{event}', [EventController::class, 'show'])->name('events.sho
 
 Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->name('attendees.index')->where('event', '[0-9]+');
 Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
+
+Route::get('event-types', [EventTypeController::class, 'index'])->name('event-types.index');
 
 //Search events
 //Categories

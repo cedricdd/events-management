@@ -17,6 +17,7 @@ abstract class TestCase extends BaseTestCase
     protected User $user;
     protected User $organizer;
     protected User $admin;
+    protected Collection $types;
 
     protected function setUp(): void
     {
@@ -26,16 +27,14 @@ abstract class TestCase extends BaseTestCase
         $this->organizer = User::factory()->create(['role' => 'organizer']);
         $this->admin = User::factory()->create(['role' => 'admin']);
 
-        // Add at least two eventd type to the database
-        $type1 = new EventType();
-        $type1->name = 'Conference';
-        $type1->description = 'A large formal meeting for discussion';
-        $type1->save();
+        foreach(Constants::TYPES as $type => $description) {
+            $eventType = new EventType();
+            $eventType->name = $type;
+            $eventType->description = $description;
+            $eventType->save();
+        }
 
-        $type2 = new EventType();
-        $type2->name = 'Workshop';
-        $type2->description = 'A meeting at which a group of people engage in intensive discussion and activity on a particular subject or project';
-        $type2->save();
+        $this->types = EventType::all();
     }
 
     protected function getEventFormData(array $overrides = []): array {
@@ -117,6 +116,14 @@ abstract class TestCase extends BaseTestCase
         }
 
         return $data;
+    }
+
+    protected function getEventTypeResource(EventType $type): array {
+        return [
+            'id' => $type->id,
+            'name' => $type->name,
+            'description' => $type->description,
+        ];
     }
 
     /**

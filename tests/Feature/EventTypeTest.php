@@ -84,6 +84,74 @@ test('event_types_store_duplicate', function () {
         ->assertExactJson(['error' => 'Event type already exists']);
 });
 
+test('event_types_update', function () {
+    $data = $this->getEventTypeFormData();
+    $type = $this->types->first();
+    $count = $this->types->count();
+
+    Sanctum::actingAs($this->admin);
+
+    $this->putJson(route('event-types.update',  $type), $data)
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson([
+            'data' => [
+                'id' => $type->id,
+                'name' => $data['name'],
+                'description' => $data['description'],
+            ],
+        ]);
+
+    expect(EventType::count())->toBe($count);
+
+    $type->refresh();
+
+    expect($type->name)->toBe($data['name']);
+    expect($type->description)->toBe($data['description']);
+});
+
+test('event_types_update_not_found', function () {
+    Sanctum::actingAs($this->admin);
+
+    $this->putJson(route('event-types.update', ['type' => EventType::count() + 1]), $this->getEventTypeFormData())
+        ->assertNotFound()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson(['message' => 'EventType not found']);
+});
+
+test('event_types_update_only_admin', function () {
+    $data = $this->getEventTypeFormData();
+    $type = $this->types->first();
+
+    $this->putJson(route('event-types.update',  $type), $data)
+        ->assertUnauthorized()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'Unauthenticated.',
+        ]);
+
+    Sanctum::actingAs($this->user);
+
+    $this->putJson(route('event-types.update',  $type), $data)
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => 'This action is unauthorized.',
+        ]);
+});
+
+test('event_types_update_duplicate', function () {
+    Sanctum::actingAs($this->admin);
+
+    $type = $this->types->first();
+    $data = $this->getEventTypeFormData(['name' => $this->types->last()->name]);
+
+    $this->putJson(route('event-types.update',  $type), $data)
+        ->assertUnprocessable()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertExactJson(['error' => 'Event type already exists']);
+});
+
 test('event_types_destroy', function () {
     $count = $this->types->count();
 

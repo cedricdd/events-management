@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::delete('events/{event}/attendees/{attendee}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->can('destroy-attendee', ['event', 'attendee'])->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
     Route::post('event-types', [EventTypeController::class, 'store'])->name('event-types.store')->can('store', EventType::class);
+    Route::put('event-types/{type}', [EventTypeController::class, 'update'])->name('event-types.update')->can('update', 'type')->where('type', '[0-9]+');
     Route::delete('event-types/{type}', [EventTypeController::class, 'destroy'])->name('event-types.destroy')->can('destroy', 'type')->where('type', '[0-9]+');
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');

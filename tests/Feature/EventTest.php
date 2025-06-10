@@ -235,7 +235,7 @@ test('events_store_successful', function () {
                 'cost' => $data['cost'],
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
-                'type' => $data['type'],              
+                'type' => $data['type'],
                 'is_public' => $data['is_public'],
                 'organizer' => $this->getUserResource($this->organizer),
             ],
@@ -294,9 +294,9 @@ test('events_store_not_basic', function () {
 
 test('events_form_validation', function () {
     $this->checkForm(
-        route('events.store'),
-        $this->getEventFormData(),
-        [
+        route: route('events.store'),
+        defaults: $this->getEventFormData(),
+        rules: [
             [['name', 'description', 'start_date', 'end_date', 'location', 'cost', 'is_public', 'type'], 'required', ''],
             [['name', 'description', 'location', 'type'], 'string', 0],
             [['name', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
@@ -310,7 +310,7 @@ test('events_form_validation', function () {
             ['is_public', 'boolean', 'invalid-boolean'],
             ['type', 'exists', 'invalid-type'],
         ],
-        $this->organizer,
+        user: $this->organizer,
     );
 });
 
@@ -783,14 +783,126 @@ test('events_type_out_of_range_page', function () {
 
     $this->getEvents(count: Constants::EVENTS_PER_PAGE * $pages, type: $type);
 
-    $this->getJson(route('events.type',  [$type->name, 'page' => $pages + 1]))
+    $this->getJson(route('events.type', [$type->name, 'page' => $pages + 1]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => "The page " . ($pages + 1) . " does not exist",
         ])->assertStatus(404);
 
-    $this->getJson(route('events.type',  [$type->name, 'page' => $pages]))
+    $this->getJson(route('events.type', [$type->name, 'page' => $pages]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data');
+});
+
+test('events_search_name', function () {
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
+    $events->loadCount('attendees');
+
+    $event = $this->getEventResource($events->first());
+
+    $response = $this->getJson(route('events.search', ['name' => $event['name']]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name',
+                    'description',
+                    'start_date',
+                    'end_date',
+                    'cost',
+                    'location',
+                    'is_public',
+                    'attendees_count',
+                ],
+            ],
+            'links' => [
+                'first',
+                'last',
+                'prev',
+                'next',
+            ],
+            'meta' => [
+                'current_page',
+                'last_page',
+                'per_page',
+                'total',
+                'path',
+            ],
+        ]);
+
+    expect(collect($response->json('data'))->contains($event))->toBeTrue();
+    expect(collect($response->json('data'))->count())->toBeGreaterThanOrEqual(1);
+
+    $response = $this->getJson(route('events.search', ['name' => '-' . $event['name']]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($event))->toBeFalse();
+});
+
+test('events_search_with_organizer', function () {
+    $events = $this->getEvents(count: 1, attendees: 3);
+
+    $event = $events->first();
+    $event->load('organizer');
+    $event->loadCount('attendees');
+
+    $response = $this->getJson(route('events.search', ['name' => $event->name, 'with' => 'organizer']))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount(1, 'data');
+
+    expect(collect($response->json('data'))->contains($this->getEventResource($event)))->toBeTrue();
+});
+
+test('events_search_sorting', function () {
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * 2, attendees: 'random', overrides: ['name' => 'test event']);
+
+    $events->loadCount('attendees');
+
+    foreach (Constants::EVENT_SORTING_OPTIONS as $name => $column) {
+        $events = $events->sortBy([$column, 'asc']);
+
+        $eventFirst = $this->getEventResource($events->first());
+        $eventLast = $this->getEventResource($events->last());
+
+        $response = $this->getJson(route('events.search', ['name' => "test event", 'sort' => $name]))
+            ->assertValid()
+            ->assertHeader('Content-Type', 'application/json');
+
+        expect(collect($response->json('data'))->contains($eventFirst))->toBeTrue();
+        expect(collect($response->json('data'))->contains($eventLast))->toBeFalse();
+    }
+});
+
+test('events_search_validation', function () {
+    $event = $this->getEvents(count: 1, attendees: 3);
+
+    $this->checkForm(
+        method: 'GET',
+        route: route('events.search'),
+        defaults: $event->toArray(),
+        rules: [
+            [['name'], 'string', ''],
+            [['name'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
+        ],
+    );
+});
+
+test('events_search_out_of_range_page', function () {
+    $nbrPages = random_int(2, 5);
+    $this->getEvents(count: Constants::EVENTS_PER_PAGE * $nbrPages, overrides: ['name' => 'test event']);
+
+    $this->getJson(route('events.search', ['name' => 'test event', 'page' => $nbrPages + 1]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment(['message' => "The page " . ($nbrPages + 1) . " does not exist"])->assertStatus(404);
+
+    $this->getJson(route('events.search', ['name' => 'test event', 'page' => $nbrPages]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data');

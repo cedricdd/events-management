@@ -43,15 +43,15 @@ test('event_types_store', function () {
 
 test('event_types_store_validation', function () {
     $this->checkForm(
-        route('events.store'),
-        $this->getEventFormData(),
-        [
+        route: route('events.store'),
+        defaults: $this->getEventFormData(),
+        rules: [
             [['name', 'description'], 'required', ''],
             [['name', 'description'], 'string', 0],
             ['name', 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             ['description', 'max.string', str_repeat('a', Constants::DESCRIPTION_MAX_LENGTH + 1), ['max' => Constants::DESCRIPTION_MAX_LENGTH]],
         ],
-        $this->admin,
+        user: $this->admin,
     );
 });
 

@@ -57,14 +57,14 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0, ?EventType $type = null, bool $past = false): Event|Collection {
+    protected function getEvents(int $count = 10, ?User $organizer = null, int|string $attendees = 0, ?EventType $type = null, bool $past = false, array $overrides = []): Event|Collection {
         $count = max(1, $count); // Ensure at least 1 event is created
 
         $events = Event::factory()->count($count)
             ->when($organizer, fn ($query) => $query->for($organizer, 'organizer'))
             ->when($past, fn ($query) => $query->finished())
             ->when($type, fn ($query) => $query->for($type, 'type'))
-            ->create();
+            ->create($overrides);
 
         // Attach attendees to the events
         if ($attendees) {
@@ -147,7 +147,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @return void
      */
-    protected function checkForm(string $route, array $defaults, array $rules, ?User $user = null): void
+    protected function checkForm(string $route, array $defaults, array $rules, string $method = "POST", ?User $user = null): void
     {
 
         foreach ($rules as $infos) {
@@ -166,7 +166,7 @@ abstract class TestCase extends BaseTestCase
                 }
 
                 $this->withoutMiddleware(\Illuminate\Routing\Middleware\ThrottleRequests::class)
-                    ->postJson($route, [$field => $infos[2]] + $defaults)
+                    ->json($method, $route, [$field => $infos[2]] + $defaults)
                     ->assertUnprocessable()
                     ->assertInvalid([$field => $error]); // Assert validation errors
             }

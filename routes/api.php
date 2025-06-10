@@ -32,6 +32,7 @@ Route::middleware('guest:sanctum')->group(function () {
 });
 
 Route::get('events', [EventController::class, 'index'])->name('events.index');
+Route::get('events/search', [EventController::class, 'search'])->name('events.search');
 Route::get('events/type/{name}', [EventController::class, 'type'])->name('events.type')->where('name', '[a-zA-Z ]+');
 Route::get('events/organizer/{organizer}', [EventController::class, 'index'])->name('events.organizer')->where('id', '[0-9]+');
 Route::get('events/{event}', [EventController::class, 'show'])->name('events.show')->where('event', '[0-9]+');

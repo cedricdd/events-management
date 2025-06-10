@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
+use App\Http\Requests\SearchEventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use Illuminate\Support\Facades\Notification;
@@ -213,6 +214,42 @@ class EventController extends Controller
                 'message' => "The page " . $request->input('page') . " does not exist",
             ], 404);
         }
+
+        // Only add the sort parameter to the URL if it is not the default sorting
+        if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
+            $events->appends(['sort' => $order . ',' . $direction]);
+        }
+
+        return new EventCollection($this->loadRelationships($events, ['organizer']));
+    }
+
+    public function search(SearchEventRequest $request): EventCollection|JsonResponse
+    {
+        [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
+
+        $events = Event::with('type')
+            ->withCount('attendees')
+            ->when($request->has('name'), function ($query) use ($request) {
+                $name = $request->input('name');
+                $operator = "LIKE";
+
+                if($name[0] === '-') {
+                    $operator = "NOT LIKE";
+                    $name = substr($name, 1);
+                } 
+
+                $query->where('name', $operator, '%' . $name . '%');
+            })
+            ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
+            ->paginate(Constants::EVENTS_PER_PAGE);
+
+        if ($request->has('page') && $request->input('page') > $events->lastPage()) {
+            return response()->json([
+                'message' => "The page " . $request->input('page') . " does not exist",
+            ], 404);
+        }
+
+        $events->appends($request->only(['name']));
 
         // Only add the sort parameter to the URL if it is not the default sorting
         if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {

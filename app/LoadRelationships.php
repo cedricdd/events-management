@@ -41,7 +41,7 @@ trait LoadRelationships
             $loadedRelationships[] = $relationship;
         }
 
-        if ($input instanceof LengthAwarePaginator) {
+        if ($input instanceof LengthAwarePaginator && $loadedRelationships) {
             $input->appends(['with' => implode(',', $loadedRelationships)]);
         }
 

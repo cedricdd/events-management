@@ -802,7 +802,6 @@ test('events_search', function () {
 
     $event = $this->getEventResource($events->first());
 
-    // Search by name
     $response = $this->getJson(route('events.search', ['name' => $event['name']]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -835,31 +834,33 @@ test('events_search', function () {
             ],
         ]);
 
+
+    foreach (['name', 'description', 'location'] as $key) {
+        // Search by including
+        $response = $this->getJson(route('events.search', [$key => $event[$key]]))
+            ->assertValid()
+            ->assertHeader('Content-Type', 'application/json');
+
+        expect(collect($response->json('data'))->contains($event))->toBeTrue();
+
+        // Search by excluding
+        $response = $this->getJson(route('events.search', [$key => '-' . $event[$key]]))
+            ->assertValid()
+            ->assertHeader('Content-Type', 'application/json');
+
+        expect(collect($response->json('data'))->contains($event))->toBeFalse();
+    }
+
+    // Search with everthing
+    $response = $this->getJson(route('events.search', [
+        'name' => $event['name'],
+        'description' => $event['description'],
+        'location' => $event['location'],
+    ]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json');
+
     expect(collect($response->json('data'))->contains($event))->toBeTrue();
-
-    // Search by name by excluding
-    $response = $this->getJson(route('events.search', ['name' => '-' . $event['name']]))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json');
-
-    expect(collect($response->json('data'))->contains($event))->toBeFalse();
-
-    $length = strlen($event['name']);
-    $description = substr($event['description'], $length >> 1, 12);
-
-    // Search by description
-    $response = $this->getJson(route('events.search', ['description' => $description]))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json');
-
-    expect(collect($response->json('data'))->contains($event))->toBeTrue();
-
-    // Search by description by excluding
-    $response = $this->getJson(route('events.search', ['description' => '-' . $description]))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json');
-
-    expect(collect($response->json('data'))->contains($event))->toBeFalse();
 });
 
 test('events_search_with_organizer', function () {

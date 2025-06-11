@@ -229,27 +229,20 @@ class EventController extends Controller
 
         $events = Event::with('type')
             ->withCount('attendees')
-            ->when($request->has('name'), function ($query) use ($request) {
-                $name = $request->input('name');
-                $operator = "LIKE";
+            ->when($request->only(['name', 'description', 'location']), function ($query) use ($request) {
+                foreach (['name', 'description', 'location'] as $field) {
+                    if ($request->has($field)) {
+                        $value = $request->input($field);
+                        $operator = "LIKE";
 
-                if($name[0] === '-') {
-                    $operator = "NOT LIKE";
-                    $name = substr($name, 1);
-                } 
-
-                $query->where('name', $operator, '%' . $name . '%');
-            })
-            ->when($request->has('description'), function ($query) use ($request) {
-                $description = $request->input('description');
-                $operator = "LIKE";
-
-                if($description[0] === '-') {
-                    $operator = "NOT LIKE";
-                    $description = substr($description, 1);
-                } 
-
-                $query->where('description', $operator, '%' . $description . '%');
+                        if (isset($value[0]) && $value[0] === '-') {
+                            $operator = "NOT LIKE";
+                            $value = substr($value, 1);
+                        }
+                        
+                        $query->where($field, $operator, '%' . $value . '%');
+                    }
+                }
             })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);

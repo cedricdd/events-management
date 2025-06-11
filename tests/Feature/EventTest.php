@@ -851,11 +851,24 @@ test('events_search', function () {
         expect(collect($response->json('data'))->contains($event))->toBeFalse();
     }
 
+    // Search by cost
+    $this->getJson(route('events.search', ['costmax' => 7]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->where('cost', '<=', 7)->count(), 'data');
+
+    $this->getJson(route('events.search', ['costmin' => 3]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->where('cost', '>=', 3)->count(), 'data');
+
     // Search with everthing
     $response = $this->getJson(route('events.search', [
         'name' => $event['name'],
         'description' => $event['description'],
         'location' => $event['location'],
+        'costmax' => $event['cost'],
+        'costmin' => $event['cost'],
     ]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');

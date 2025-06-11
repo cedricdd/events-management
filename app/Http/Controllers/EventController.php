@@ -239,10 +239,14 @@ class EventController extends Controller
                             $operator = "NOT LIKE";
                             $value = substr($value, 1);
                         }
-                        
+
                         $query->where($field, $operator, '%' . $value . '%');
                     }
                 }
+            })
+            ->when($request->only(['costmin', 'costmax']), function ($query) use ($request) {
+                if($request->has('costmax')) $query->where('cost', '<=', $request->input('costmax'));
+                else $query->where('cost', '>=', $request->input('costmin'));
             })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
@@ -253,7 +257,7 @@ class EventController extends Controller
             ], 404);
         }
 
-        $events->appends($request->only(['name', 'description']));
+        $events->appends($request->only(['name', 'description', 'location', 'costmax', 'costmin']));
 
         // Only add the sort parameter to the URL if it is not the default sorting
         if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {

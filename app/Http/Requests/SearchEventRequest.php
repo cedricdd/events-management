@@ -26,8 +26,10 @@ class SearchEventRequest extends FormRequest
             'name' => 'bail|sometimes|string|max:' . Constants::STRING_MAX_LENGTH,
             'description' => 'bail|sometimes|string|max:' . Constants::STRING_MAX_LENGTH,
             'location' => 'bail|sometimes|string|max:' . Constants::STRING_MAX_LENGTH,
-            'costmin' => 'bail|sometimes|integer|min:0',
-            'costmax' => 'bail|sometimes|integer|min:0',
+            'cost_min' => 'bail|sometimes|integer|min:0',
+            'cost_max' => 'bail|sometimes|integer|min:0',
+            'starts_before' => 'bail|sometimes|date_format:Y-m-d H:i:s',
+            'starts_after' => 'bail|sometimes|date_format:Y-m-d H:i:s',
         ];
     }
 }

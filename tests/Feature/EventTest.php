@@ -800,9 +800,10 @@ test('events_search', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
     $events->loadCount('attendees');
 
-    $event = $this->getEventResource($events->first());
+    $event = $events->first();
+    $eventResource = $this->getEventResource($event);
 
-    $response = $this->getJson(route('events.search', ['name' => $event['name']]))
+    $response = $this->getJson(route('events.search', ['name' => $event->name]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([
@@ -836,44 +837,59 @@ test('events_search', function () {
 
 
     foreach (['name', 'description', 'location'] as $key) {
+        $value = substr($event->{$key}, 0, 12);
+
         // Search by including
-        $response = $this->getJson(route('events.search', [$key => $event[$key]]))
+        $response = $this->getJson(route('events.search', [$key => $value]))
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json');
 
-        expect(collect($response->json('data'))->contains($event))->toBeTrue();
+        expect(collect($response->json('data'))->contains($eventResource))->toBeTrue();
 
         // Search by excluding
-        $response = $this->getJson(route('events.search', [$key => '-' . $event[$key]]))
+        $response = $this->getJson(route('events.search', [$key => '-' . $value]))
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json');
 
-        expect(collect($response->json('data'))->contains($event))->toBeFalse();
+        expect(collect($response->json('data'))->contains($eventResource))->toBeFalse();
     }
 
     // Search by cost
-    $this->getJson(route('events.search', ['costmax' => 7]))
+    $this->getJson(route('events.search', ['cost_max' => 7]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount($events->where('cost', '<=', 7)->count(), 'data');
 
-    $this->getJson(route('events.search', ['costmin' => 3]))
+    $this->getJson(route('events.search', ['cost_min' => 3]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount($events->where('cost', '>=', 3)->count(), 'data');
 
+    // Search by start date
+    $this->getJson(route('events.search', ['starts_before' => $event->start_date->format('Y-m-d H:i:s')]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->filter(fn($filter) => $filter->start_date <= $event->start_date)->count(), 'data');
+
+    $this->getJson(route('events.search', ['starts_after' => $event->start_date->format('Y-m-d H:i:s')]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->filter(fn($filter) => $filter->start_date >= $event->start_date)->count(), 'data');
+
     // Search with everthing
     $response = $this->getJson(route('events.search', [
-        'name' => $event['name'],
-        'description' => $event['description'],
-        'location' => $event['location'],
-        'costmax' => $event['cost'],
-        'costmin' => $event['cost'],
+        'name' => $event->name,
+        'description' => substr($event->description, 0, 12),
+        'location' => $event->location,
+        'cost_max' => $event->cost,
+        'cost_min' => $event->cost,
+        'starts_before' => $event->start_date->format('Y-m-d H:i:s'),
+        'starts_after' => $event->start_date->format('Y-m-d H:i:s'),
     ]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
 
-    expect(collect($response->json('data'))->contains($event))->toBeTrue();
+    expect(collect($response->json('data'))->contains($eventResource))->toBeTrue();
 });
 
 test('events_search_with_organizer', function () {
@@ -921,8 +937,9 @@ test('events_search_validation', function () {
         rules: [
             [['name', 'description', 'location'], 'string', ''],
             [['name', 'description', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
-            [['costmax', 'costmin'], 'integer', 'invalid'],
-            [['costmax', 'costmin'], 'min.numeric', -10, ['min' => 0]],
+            [['cost_max', 'cost_min'], 'integer', 'invalid'],
+            [['cost_max', 'cost_min'], 'min.numeric', -10, ['min' => 0]],
+            [['starts_before', 'starts_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
         ],
     );
 });

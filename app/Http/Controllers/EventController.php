@@ -244,9 +244,13 @@ class EventController extends Controller
                     }
                 }
             })
-            ->when($request->only(['costmin', 'costmax']), function ($query) use ($request) {
-                if($request->has('costmax')) $query->where('cost', '<=', $request->input('costmax'));
-                else $query->where('cost', '>=', $request->input('costmin'));
+            ->when($request->only(['cost_min', 'cost_max']), function ($query) use ($request) {
+                if($request->has('cost_max')) $query->where('cost', '<=', $request->input('cost_max'));
+                if($request->has('cost_min')) $query->where('cost', '>=', $request->input('cost_min'));
+            })
+            ->when($request->only(['starts_before', 'starts_after']), function ($query) use ($request) {
+                if($request->has('starts_before')) $query->where('start_date', '<=', $request->input('starts_before'));
+                if($request->has('starts_after')) $query->where('start_date', '>=', $request->input('starts_after'));
             })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);

@@ -887,6 +887,12 @@ test('events_search', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount($events->filter(fn($filter) => $filter->end_date >= $event->end_date)->count(), 'data');
 
+    // Search by type
+    $this->getJson(route('events.search', ['type' => $event->type->name]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->where('type_id', $event->type_id)->count(), 'data');
+
     // Search with everthing together
     $response = $this->getJson(route('events.search', [
         'name' => $event->name,
@@ -898,6 +904,7 @@ test('events_search', function () {
         'starts_after' => $event->start_date->format('Y-m-d H:i:s'),
         'ends_before' => $event->end_date->format('Y-m-d H:i:s'),
         'ends_after' => $event->end_date->format('Y-m-d H:i:s'),
+        'type' => $event->type->name,
     ]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
@@ -948,11 +955,12 @@ test('events_search_validation', function () {
         route: route('events.search'),
         defaults: $event->toArray(),
         rules: [
-            [['name', 'description', 'location'], 'string', ''],
+            [['name', 'description', 'location', 'type'], 'string', ''],
             [['name', 'description', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             [['cost_max', 'cost_min'], 'integer', 'invalid'],
             [['cost_max', 'cost_min'], 'min.numeric', -10, ['min' => 0]],
             [['starts_before', 'starts_after', 'ends_before', 'ends_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
+            ['type', 'exists', 'invalid-type'],
         ],
     );
 });

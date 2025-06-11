@@ -32,6 +32,7 @@ class SearchEventRequest extends FormRequest
             'starts_after' => 'bail|sometimes|date_format:Y-m-d H:i:s',
             'ends_before' => 'bail|sometimes|date_format:Y-m-d H:i:s',
             'ends_after' => 'bail|sometimes|date_format:Y-m-d H:i:s',
+            'type' => 'bail|sometimes|string|exists:event_types,name',
         ];
     }
 }

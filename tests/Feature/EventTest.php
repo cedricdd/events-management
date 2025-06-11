@@ -919,8 +919,10 @@ test('events_search_validation', function () {
         route: route('events.search'),
         defaults: $event->toArray(),
         rules: [
-            [['name'], 'string', ''],
-            [['name'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
+            [['name', 'description', 'location'], 'string', ''],
+            [['name', 'description', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
+            [['costmax', 'costmin'], 'integer', 'invalid'],
+            [['costmax', 'costmin'], 'min.numeric', -10, ['min' => 0]],
         ],
     );
 });

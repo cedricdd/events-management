@@ -30,6 +30,8 @@ class SearchEventRequest extends FormRequest
             'cost_max' => 'bail|sometimes|integer|min:0',
             'starts_before' => 'bail|sometimes|date_format:Y-m-d H:i:s',
             'starts_after' => 'bail|sometimes|date_format:Y-m-d H:i:s',
+            'ends_before' => 'bail|sometimes|date_format:Y-m-d H:i:s',
+            'ends_after' => 'bail|sometimes|date_format:Y-m-d H:i:s',
         ];
     }
 }

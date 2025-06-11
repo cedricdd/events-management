@@ -252,6 +252,10 @@ class EventController extends Controller
                 if($request->has('starts_before')) $query->where('start_date', '<=', $request->input('starts_before'));
                 if($request->has('starts_after')) $query->where('start_date', '>=', $request->input('starts_after'));
             })
+            ->when($request->only(['ends_before', 'ends_after']), function ($query) use ($request) {
+                if($request->has('ends_before')) $query->where('end_date', '<=', $request->input('ends_before'));
+                if($request->has('ends_after')) $query->where('end_date', '>=', $request->input('ends_after'));
+            })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
 
@@ -261,7 +265,7 @@ class EventController extends Controller
             ], 404);
         }
 
-        $events->appends($request->only(['name', 'description', 'location', 'costmax', 'costmin']));
+        $events->appends($request->only(['name', 'description', 'location', 'cost_max', 'cost_min', 'starts_before', 'starts_after', 'ends_before', 'ends_after', 'ends_before']));
 
         // Only add the sort parameter to the URL if it is not the default sorting
         if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {

@@ -876,7 +876,18 @@ test('events_search', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount($events->filter(fn($filter) => $filter->start_date >= $event->start_date)->count(), 'data');
 
-    // Search with everthing
+    // Search by end date
+    $this->getJson(route('events.search', ['ends_before' => $event->end_date->format('Y-m-d H:i:s')]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->filter(fn($filter) => $filter->end_date <= $event->end_date)->count(), 'data');
+
+    $this->getJson(route('events.search', ['ends_after' => $event->end_date->format('Y-m-d H:i:s')]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->filter(fn($filter) => $filter->end_date >= $event->end_date)->count(), 'data');
+
+    // Search with everthing together
     $response = $this->getJson(route('events.search', [
         'name' => $event->name,
         'description' => substr($event->description, 0, 12),
@@ -885,6 +896,8 @@ test('events_search', function () {
         'cost_min' => $event->cost,
         'starts_before' => $event->start_date->format('Y-m-d H:i:s'),
         'starts_after' => $event->start_date->format('Y-m-d H:i:s'),
+        'ends_before' => $event->end_date->format('Y-m-d H:i:s'),
+        'ends_after' => $event->end_date->format('Y-m-d H:i:s'),
     ]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
@@ -939,7 +952,7 @@ test('events_search_validation', function () {
             [['name', 'description', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             [['cost_max', 'cost_min'], 'integer', 'invalid'],
             [['cost_max', 'cost_min'], 'min.numeric', -10, ['min' => 0]],
-            [['starts_before', 'starts_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
+            [['starts_before', 'starts_after', 'ends_before', 'ends_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
         ],
     );
 });

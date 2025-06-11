@@ -796,12 +796,13 @@ test('events_type_out_of_range_page', function () {
         ->assertJsonCount(Constants::EVENTS_PER_PAGE, 'data');
 });
 
-test('events_search_name', function () {
+test('events_search', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
     $events->loadCount('attendees');
 
     $event = $this->getEventResource($events->first());
 
+    // Search by name
     $response = $this->getJson(route('events.search', ['name' => $event['name']]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -835,9 +836,26 @@ test('events_search_name', function () {
         ]);
 
     expect(collect($response->json('data'))->contains($event))->toBeTrue();
-    expect(collect($response->json('data'))->count())->toBeGreaterThanOrEqual(1);
 
+    // Search by name by excluding
     $response = $this->getJson(route('events.search', ['name' => '-' . $event['name']]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($event))->toBeFalse();
+
+    $length = strlen($event['name']);
+    $description = substr($event['description'], $length >> 1, 12);
+
+    // Search by description
+    $response = $this->getJson(route('events.search', ['description' => $description]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json');
+
+    expect(collect($response->json('data'))->contains($event))->toBeTrue();
+
+    // Search by description by excluding
+    $response = $this->getJson(route('events.search', ['description' => '-' . $description]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
 

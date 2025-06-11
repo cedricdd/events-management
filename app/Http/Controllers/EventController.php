@@ -240,6 +240,17 @@ class EventController extends Controller
 
                 $query->where('name', $operator, '%' . $name . '%');
             })
+            ->when($request->has('description'), function ($query) use ($request) {
+                $description = $request->input('description');
+                $operator = "LIKE";
+
+                if($description[0] === '-') {
+                    $operator = "NOT LIKE";
+                    $description = substr($description, 1);
+                } 
+
+                $query->where('description', $operator, '%' . $description . '%');
+            })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
 
@@ -249,7 +260,7 @@ class EventController extends Controller
             ], 404);
         }
 
-        $events->appends($request->only(['name']));
+        $events->appends($request->only(['name', 'description']));
 
         // Only add the sort parameter to the URL if it is not the default sorting
         if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {

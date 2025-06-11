@@ -24,6 +24,7 @@ class SearchEventRequest extends FormRequest
     {
         return [
             'name' => 'bail|sometimes|string|max:' . Constants::STRING_MAX_LENGTH,
+            'description' => 'bail|sometimes|string|max:' . Constants::DESCRIPTION_MAX_LENGTH,
         ];
     }
 }

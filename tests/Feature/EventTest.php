@@ -797,7 +797,7 @@ test('events_type_out_of_range_page', function () {
 });
 
 test('events_search', function () {
-    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 'random');
     $events->loadCount('attendees');
 
     $event = $events->first();
@@ -865,6 +865,17 @@ test('events_search', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount($events->where('cost', '>=', 3)->count(), 'data');
 
+    // Search by attendees count
+    $this->getJson(route('events.search', ['attendees_max' => 7]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->where('attendees_count', '<=', 7)->count(), 'data');
+
+    $this->getJson(route('events.search', ['attendees_min' => 3]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount($events->where('attendees_count', '>=', 3)->count(), 'data');
+
     // Search by start date
     $this->getJson(route('events.search', ['starts_before' => $event->start_date->format('Y-m-d H:i:s')]))
         ->assertValid()
@@ -900,6 +911,8 @@ test('events_search', function () {
         'location' => $event->location,
         'cost_max' => $event->cost,
         'cost_min' => $event->cost,
+        'attendees_max' => $event->attendees_count,
+        'attendees_min' => $event->attendees_count,
         'starts_before' => $event->start_date->format('Y-m-d H:i:s'),
         'starts_after' => $event->start_date->format('Y-m-d H:i:s'),
         'ends_before' => $event->end_date->format('Y-m-d H:i:s'),
@@ -957,8 +970,8 @@ test('events_search_validation', function () {
         rules: [
             [['name', 'description', 'location', 'type'], 'string', ''],
             [['name', 'description', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
-            [['cost_max', 'cost_min'], 'integer', 'invalid'],
-            [['cost_max', 'cost_min'], 'min.numeric', -10, ['min' => 0]],
+            [['cost_max', 'cost_min', 'attendees_max', 'attendees_min'], 'integer', 'invalid'],
+            [['cost_max', 'cost_min', 'attendees_max', 'attendees_min'], 'min.numeric', -10, ['min' => 0]],
             [['starts_before', 'starts_after', 'ends_before', 'ends_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
             ['type', 'exists', 'invalid-type'],
         ],

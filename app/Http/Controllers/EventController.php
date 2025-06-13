@@ -228,6 +228,7 @@ class EventController extends Controller
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
         $events = Event::with('type')
+            // ->selectRaw("events.*, (SELECT COUNT(*) FROM attending WHERE attending.event_id = events.id) as attendees_count")
             ->withCount('attendees')
             ->when($request->only(['name', 'description', 'location']), function ($query) use ($request) {
                 foreach (['name', 'description', 'location'] as $field) {
@@ -247,6 +248,19 @@ class EventController extends Controller
             ->when($request->only(['cost_min', 'cost_max']), function ($query) use ($request) {
                 if($request->has('cost_max')) $query->where('cost', '<=', $request->input('cost_max'));
                 if($request->has('cost_min')) $query->where('cost', '>=', $request->input('cost_min'));
+            })
+            /**
+             * We use a subquery to count the number of attendees for each event.
+             * We could directly use having but testing uses sqlite which would throw an "General error: 1 HAVING clause on a non-aggregate query"
+             * So we use a subquery to count the number of attendees for each event and then filter based on that count.
+             * We need to use `CAST` to ensure the count is treated as an integer in SQLite and not a string otherwise the comparison will fail.
+             */
+            ->when($request->has('attendees_max'), function ($query) use ($request) {
+                $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as INTEGER) <= ?', [$request->input('attendees_max')]);
+                // $query->where('cost', '>=', 10);
+            })
+            ->when($request->has('attendees_min'), function ($query) use ($request) {
+                $query->whereRaw('CAST((select count(*) from `users` inner join `attending` on `users`.`id` = `attending`.`user_id` where `events`.`id` = `attending`.`event_id`) as INTEGER) >= ?', [$request->input('attendees_min')]);
             })
             ->when($request->only(['starts_before', 'starts_after']), function ($query) use ($request) {
                 if($request->has('starts_before')) $query->where('start_date', '<=', $request->input('starts_before'));
@@ -270,13 +284,15 @@ class EventController extends Controller
             ], 404);
         }
 
-        $events->appends($request->only(['name', 'description', 'location', 'cost_max', 'cost_min', 'starts_before', 'starts_after', 'ends_before', 'ends_after', 'ends_before', 'type']));
+        $events->appends($request->only(['name', 'description', 'location', 'cost_max', 'cost_min', 'starts_before', 'starts_after', 'ends_before', 'ends_after', 'ends_before', 'type', 'attendees_min', 'attendees_max']));
 
         // Only add the sort parameter to the URL if it is not the default sorting
         if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
             $events->appends(['sort' => $order . ',' . $direction]);
         }
 
-        return new EventCollection($this->loadRelationships($events, ['organizer']));
+        return new EventCollection($this->loadRelationships($events, ['organizer']))->additional(
+            ['message' => $request->input('attendees_max')]
+        );
     }
 }

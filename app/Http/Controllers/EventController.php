@@ -251,16 +251,15 @@ class EventController extends Controller
             })
             /**
              * We use a subquery to count the number of attendees for each event.
-             * We could directly use having but testing uses sqlite which would throw an "General error: 1 HAVING clause on a non-aggregate query"
+             * We could directly use having but testing uses SQLite which would throw an "General error: 1 HAVING clause on a non-aggregate query"
              * So we use a subquery to count the number of attendees for each event and then filter based on that count.
              * We need to use `CAST` to ensure the count is treated as an integer in SQLite and not a string otherwise the comparison will fail.
              */
             ->when($request->has('attendees_max'), function ($query) use ($request) {
                 $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as INTEGER) <= ?', [$request->input('attendees_max')]);
-                // $query->where('cost', '>=', 10);
             })
             ->when($request->has('attendees_min'), function ($query) use ($request) {
-                $query->whereRaw('CAST((select count(*) from `users` inner join `attending` on `users`.`id` = `attending`.`user_id` where `events`.`id` = `attending`.`event_id`) as INTEGER) >= ?', [$request->input('attendees_min')]);
+                $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as INTEGER) >= ?', [$request->input('attendees_min')]);
             })
             ->when($request->only(['starts_before', 'starts_after']), function ($query) use ($request) {
                 if($request->has('starts_before')) $query->where('start_date', '<=', $request->input('starts_before'));

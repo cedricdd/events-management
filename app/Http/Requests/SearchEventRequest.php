@@ -35,6 +35,7 @@ class SearchEventRequest extends FormRequest
             'type' => 'bail|sometimes|string|exists:event_types,name',
             'attendees_min' => 'bail|sometimes|integer|min:0',
             'attendees_max' => 'bail|sometimes|integer|min:0',
+            'public' => 'bail|sometimes|boolean',
         ];
     }
 }

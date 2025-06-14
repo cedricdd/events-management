@@ -803,6 +803,11 @@ test('events_search', function () {
     $event = $events->first();
     $eventResource = $this->getEventResource($event);
 
+    // Set the last event to private
+    $lastEvent = $events->last();
+    $lastEvent->public = false;
+    $lastEvent->save();
+
     $response = $this->getJson(route('events.search', ['name' => $event->name]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -904,6 +909,12 @@ test('events_search', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount($events->where('type_id', $event->type_id)->count(), 'data');
 
+    // Search by public
+    $this->getJson(route('events.search', ['public' => 0]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount(1, 'data');
+
     // Search with everthing together
     $response = $this->getJson(route('events.search', [
         'name' => $event->name,
@@ -918,6 +929,7 @@ test('events_search', function () {
         'ends_before' => $event->end_date->format('Y-m-d H:i:s'),
         'ends_after' => $event->end_date->format('Y-m-d H:i:s'),
         'type' => $event->type->name,
+        'public' => $event->public,
     ]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
@@ -974,6 +986,7 @@ test('events_search_validation', function () {
             [['cost_max', 'cost_min', 'attendees_max', 'attendees_min'], 'min.numeric', -10, ['min' => 0]],
             [['starts_before', 'starts_after', 'ends_before', 'ends_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
             ['type', 'exists', 'invalid-type'],
+            ['public', 'boolean', 'invalid-boolean'],
         ],
     );
 });

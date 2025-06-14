@@ -274,6 +274,9 @@ class EventController extends Controller
 
                 if ($type) $query->where('event_type_id', $type->id);
             })
+            ->when($request->has('public'), function ($query) use ($request) {
+                $query->where('public', $request->input('public'));
+            })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
 
@@ -283,7 +286,7 @@ class EventController extends Controller
             ], 404);
         }
 
-        $events->appends($request->only(['name', 'description', 'location', 'cost_max', 'cost_min', 'starts_before', 'starts_after', 'ends_before', 'ends_after', 'ends_before', 'type', 'attendees_min', 'attendees_max']));
+        $events->appends($request->only(['name', 'description', 'location', 'cost_max', 'cost_min', 'starts_before', 'starts_after', 'ends_before', 'ends_after', 'ends_before', 'type', 'attendees_min', 'attendees_max', 'public']));
 
         // Only add the sort parameter to the URL if it is not the default sorting
         if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {

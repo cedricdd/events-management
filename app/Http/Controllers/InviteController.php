@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\Event;
-use Illuminate\Http\Request;
-use App\Http\Requests\InviteRequest;
 use App\Models\Invite;
+use App\Http\Requests\InviteRequest;
+use App\Http\Resources\UserResource;
+use App\Notifications\EventInviteNotification;
 
 class InviteController extends Controller
 {
@@ -41,6 +41,8 @@ class InviteController extends Controller
             // Make sure the user is not already invited to the event
             if (!Invite::where('user_id', $userId)->where('event_id', $event->id)->exists()) {
                 $event->invites()->attach($userInvited->id);
+
+                $userInvited->notify(new EventInviteNotification($event));
             }
 
             $invites[] = new UserResource($userInvited);

@@ -2,9 +2,12 @@
 
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
+use Illuminate\Support\Facades\Notification;
 
 
 test('invites_store', function () {
+    Notification::fake();
+    
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getEvents(count: 1, organizer: $this->organizer, overrides: [
@@ -25,6 +28,9 @@ test('invites_store', function () {
         ]);
 
     $this->assertDatabaseCount('invites', $users->count());
+
+    Notification::assertCount($users->count());
+    Notification::assertSentTo($users->first(), \App\Notifications\EventInviteNotification::class);
 
     // Don't duplicate invites
     $this->postJson(route('invites.store'), [

@@ -29,11 +29,12 @@ test('events_index', function () {
                     'id',
                     'name',
                     'description',
+                    'location',
+                    'cost',
                     'start_date',
                     'end_date',
-                    'cost',
-                    'location',
-                    'is_public',
+                    'type',
+                    'attendees_count',
                 ],
             ],
             'links' => [
@@ -264,7 +265,7 @@ test('events_store_duplicate', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => "A similar event already exists!",
-            'event' => $this->getEventResource(Event::first()),
+            'event' => $this->getEventResource(Event::first(), true),
         ]);
 });
 
@@ -663,11 +664,12 @@ test('events_organizer', function () {
                     'id',
                     'name',
                     'description',
+                    'location',
+                    'cost',
                     'start_date',
                     'end_date',
-                    'cost',
-                    'location',
-                    'is_public',
+                    'type',
+                    'attendees_count',
                 ],
             ],
             'links' => [
@@ -710,11 +712,12 @@ test('events_type', function () {
                     'id',
                     'name',
                     'description',
+                    'location',
+                    'cost',
                     'start_date',
                     'end_date',
-                    'cost',
-                    'location',
-                    'is_public',
+                    'type',
+                    'attendees_count',
                 ],
             ],
             'links' => [
@@ -803,6 +806,8 @@ test('events_search', function () {
     $event = $events->first();
     $eventResource = $this->getEventResource($event);
 
+    dump($eventResource);
+
     $response = $this->getJson(route('events.search', ['name' => $event->name]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
@@ -812,11 +817,11 @@ test('events_search', function () {
                     'id',
                     'name',
                     'description',
+                    'location',
+                    'cost',
                     'start_date',
                     'end_date',
-                    'cost',
-                    'location',
-                    'is_public',
+                    'type',
                     'attendees_count',
                 ],
             ],
@@ -941,7 +946,7 @@ test('events_search_with_organizer', function () {
 });
 
 test('events_search_sorting', function () {
-    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * 2, attendees: 'random', overrides: ['name' => 'test event']);
+    $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE * 2, attendees: 'random', overrides: ['description' => 'test description']);
 
     $events->loadCount('attendees');
 
@@ -951,7 +956,7 @@ test('events_search_sorting', function () {
         $eventFirst = $this->getEventResource($events->first());
         $eventLast = $this->getEventResource($events->last());
 
-        $response = $this->getJson(route('events.search', ['name' => "test event", 'sort' => $name]))
+        $response = $this->getJson(route('events.search', ['description' => "test description", 'sort' => $name]))
             ->assertValid()
             ->assertHeader('Content-Type', 'application/json');
 

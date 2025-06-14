@@ -74,7 +74,7 @@ class EventController extends Controller
         if ($existingEvent = Event::with('type')->where($event->getAttributes())->first()) {
             return response()->json([
                 'message' => "A similar event already exists!",
-                'event' => new EventResource($existingEvent),
+                'event' => new EventResource($existingEvent, true),
             ], 409);
         }
 
@@ -85,7 +85,7 @@ class EventController extends Controller
         $event->setRelation('organizer', $request->user());
         $event->setRelation('type', $type);
 
-        return EventResource::make($event)
+        return EventResource::make($event, true)
             ->additional(["message" => "Event created successfully"])
             ->response()
             ->setStatusCode(201);
@@ -140,7 +140,7 @@ class EventController extends Controller
         if ($existingEvent = Event::where(Arr::except($event->getAttributes(), ['id', 'attendees_count', 'created_at', 'updated_at']))->where('id', '!=', $event->id)->first()) {
             return response()->json([
                 'message' => "A similar event already exists!",
-                'event' => new EventResource($existingEvent),
+                'event' => new EventResource($existingEvent, true),
             ], 409);
         }
 
@@ -157,7 +157,7 @@ class EventController extends Controller
 
         $event->load('organizer');
 
-        return EventResource::make($event)
+        return EventResource::make($event, true)
             ->additional(["message" => "Event updated successfully"])
             ->response();
     }
@@ -256,10 +256,10 @@ class EventController extends Controller
              * We need to use `CAST` to ensure the count is treated as an integer in SQLite and not a string otherwise the comparison will fail.
              */
             ->when($request->has('attendees_max'), function ($query) use ($request) {
-                $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as INTEGER) <= ?', [$request->input('attendees_max')]);
+                $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as UNSIGNED) <= ?', [$request->input('attendees_max')]);
             })
             ->when($request->has('attendees_min'), function ($query) use ($request) {
-                $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as INTEGER) >= ?', [$request->input('attendees_min')]);
+                $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as UNSIGNED) >= ?', [$request->input('attendees_min')]);
             })
             ->when($request->only(['starts_before', 'starts_after']), function ($query) use ($request) {
                 if($request->has('starts_before')) $query->where('start_date', '<=', $request->input('starts_before'));

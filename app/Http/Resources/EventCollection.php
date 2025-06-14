@@ -14,7 +14,9 @@ class EventCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return ['data' => $this->collection];
+        return [
+            'data' => $this->collection->map(fn($event) => (new EventResource($event, false))),
+        ];
     }
 
     public function paginationInformation($request, $paginated, $default)

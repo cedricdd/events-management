@@ -7,6 +7,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EventResource extends JsonResource
 {
+    public bool $showVisibility;
+
+    public function __construct($resource, $showVisibility = false)
+    {
+        parent::__construct($resource);
+        $this->showVisibility = $showVisibility;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -22,8 +30,8 @@ class EventResource extends JsonResource
             'cost' => $this->cost,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'type' => $this->whenLoaded('type', fn () => $this->type->name),
-            'is_public' => $this->is_public,
+            'type' => $this->whenLoaded('type', fn() => $this->type->name),
+            'is_public' => $this->when($this->showVisibility, $this->is_public),
             'attendees_count' => $this->whenCounted('attendees'),
             'organizer' => UserResource::make($this->whenLoaded('organizer')),
         ];

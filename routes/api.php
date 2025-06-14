@@ -41,5 +41,3 @@ Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->na
 Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
 Route::get('event-types', [EventTypeController::class, 'index'])->name('event-types.index');
-
-//private events

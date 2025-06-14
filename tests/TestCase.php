@@ -82,7 +82,7 @@ abstract class TestCase extends BaseTestCase
         else return $events->first();
     }
 
-    protected function getEventResource(Event $event): array {
+    protected function getEventResource(Event $event, bool $showVisibility = false): array {
         $data = [
             'id' => $event->id,
             'name' => $event->name,
@@ -92,8 +92,11 @@ abstract class TestCase extends BaseTestCase
             'start_date' => $event->start_date instanceof DateTime ? $event->start_date->format('Y-m-d H:i:s') : $event->start_date,
             'end_date' => $event->end_date instanceof DateTime ? $event->end_date->format('Y-m-d H:i:s') : $event->end_date,
             'type' => $event->type->name,
-            'is_public' => $event->is_public ? 1 : 0,
         ];
+
+        if ($showVisibility) {
+            $data['is_public'] = $event->is_public;
+        }
 
         if(isset($event->attendees_count)) {
             $data['attendees_count'] = $event->attendees_count;

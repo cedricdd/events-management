@@ -336,6 +336,25 @@ test('attendees_store', function () {
     Notification::assertSentTo($this->user, \App\Notifications\EventRegistrationNotification::class);
 });
 
+test('attendees_store_private_event', function () {
+    Notification::fake();
+
+    $count = random_int(1, 5);
+    $event = $this->getEvents(count: 1, attendees: $count, overrides: [
+        'is_public' => false,
+    ]);
+
+    Sanctum::actingAs($this->user);
+
+    $this->postJson(route('attendees.store', $event))
+        ->assertValid()
+        ->assertStatus(403)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "You are not invited to this event.",
+        ]);
+});
+
 test('attendees_store_already_attending', function () {
     $event = $this->getEvents(count: 1, attendees: 1);
 

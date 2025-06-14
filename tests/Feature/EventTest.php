@@ -5,7 +5,6 @@ use App\Models\Event;
 use App\Models\EventType;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
-use PHPUnit\TextUI\Configuration\Constant;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\EventCreationNotification;
 use App\Notifications\EventDeletionNotification;
@@ -805,8 +804,6 @@ test('events_search', function () {
 
     $event = $events->first();
     $eventResource = $this->getEventResource($event);
-
-    dump($eventResource);
 
     $response = $this->getJson(route('events.search', ['name' => $event->name]))
         ->assertValid()

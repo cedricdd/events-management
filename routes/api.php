@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\InviteController;
 use App\Models\Event;
 use App\Models\EventType;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::post('event-types', [EventTypeController::class, 'store'])->name('event-types.store')->can('store', EventType::class);
     Route::put('event-types/{type}', [EventTypeController::class, 'update'])->name('event-types.update')->can('update', 'type')->where('type', '[0-9]+');
     Route::delete('event-types/{type}', [EventTypeController::class, 'destroy'])->name('event-types.destroy')->can('destroy', 'type')->where('type', '[0-9]+');
+
+    Route::post('invites', [InviteController::class, 'store'])->name('invites.store')->can('store', Event::class);
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });

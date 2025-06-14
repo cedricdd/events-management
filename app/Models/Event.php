@@ -28,6 +28,11 @@ class Event extends Model
         return $this->belongsTo(related: EventType::class, foreignKey: 'event_type_id');
     }
 
+    public function invites(): BelongsToMany
+    {
+        return $this->belongsToMany(related: User::class, table: 'invites')->withTimestamps();
+    }
+
     public function scopeStatus(Builder $query, bool $pastEvents = false): Builder
     {
         if($pastEvents) return $query->where('start_date', '<', now());

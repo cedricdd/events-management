@@ -15,7 +15,7 @@ class EventCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            'data' => $this->collection->map(fn($event) => (new EventResource($event, false))),
+            'data' => $this->collection->map(fn($event) => (new EventResource($event))),
         ];
     }
 

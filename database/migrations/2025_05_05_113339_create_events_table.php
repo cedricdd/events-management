@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('end_date');
             $table->string('location');
             $table->integer('cost')->default(0);
-            $table->boolean('is_public')->default(true);
+            $table->boolean('public')->default(true);
             $table->timestamps();
         });
     }

@@ -341,7 +341,7 @@ test('attendees_store_private_event', function () {
 
     $count = random_int(1, 5);
     $event = $this->getEvents(count: 1, attendees: $count, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     Sanctum::actingAs($this->user);

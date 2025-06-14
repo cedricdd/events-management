@@ -31,7 +31,7 @@ class EventRequest extends FormRequest
             'end_date' => 'bail|' . $ruleRequired . '|date|after:start_date',
             'location' => 'bail|' . $ruleRequired . '|string|max:' . Constants::STRING_MAX_LENGTH,
             'cost' => 'bail|' . $ruleRequired . '|integer|min:0|max:100',
-            'is_public' => 'bail|' . $ruleRequired . '|boolean',
+            'public' => 'bail|' . $ruleRequired . '|boolean',
             'type' => 'bail|' . $ruleRequired . '|string|exists:event_types,name',
         ];
     }

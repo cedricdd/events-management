@@ -11,7 +11,7 @@ test('invites_store', function () {
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getEvents(count: 1, organizer: $this->organizer, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     $users = User::factory()->count(random_int(5, 10))->create();
@@ -45,7 +45,7 @@ test('invites_store_bad_users', function () {
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getEvents(count: 1, organizer: $this->organizer, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     $this->postJson(route('invites.store'), [
@@ -66,7 +66,7 @@ test('invites_store_unauthorized', function () {
     Sanctum::actingAs($this->user);
 
     $event = $this->getEvents(count: 1, organizer: $this->organizer, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     $this->postJson(route('invites.store'), [
@@ -83,7 +83,7 @@ test('invites_store_not_organizer', function () {
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getEvents(count: 1, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     $this->postJson(route('invites.store'), [
@@ -115,7 +115,7 @@ test('invites_store_event_in_past', function () {
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getEvents(count: 1, organizer: $this->organizer, past: true, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     $this->postJson(route('invites.store'), [
@@ -130,7 +130,7 @@ test('invites_store_event_in_past', function () {
 
 test('invites_store_validation', function () {
     $event = $this->getEvents(count: 1, organizer: $this->organizer, overrides: [
-        'is_public' => false,
+        'public' => false,
     ]);
 
     $this->checkForm(

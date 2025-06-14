@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $types = [];
 
-        foreach(Constants::TYPES as $type => $description) {
+        foreach (Constants::TYPES as $type => $description) {
             // dump("Creating category: $type");
             $eventType = new EventType();
             $eventType->name = $type;
@@ -48,6 +48,15 @@ class DatabaseSeeder extends Seeder
                     $event->type()->associate(Arr::random($types));
                     $event->save();
                 });
+
+                // Private events
+                if ($user->id % 100 === 0) {
+                    Event::factory()->count(random_int(2, 5))->make(['public' => 0])->each(function (Event $event) use ($user, $types) {
+                        $event->organizer()->associate($user);
+                        $event->type()->associate(Arr::random($types));
+                        $event->save();
+                    });
+                }
             }
         }
 
@@ -65,13 +74,24 @@ class DatabaseSeeder extends Seeder
             $event->type()->associate(Arr::random($types));
             $event->save();
         });
+        Event::factory()->count(5)->make(['public' => 0])->each(function (Event $event) use ($johnOrganizer, $types) {
+            $event->organizer()->associate($johnOrganizer);
+            $event->type()->associate(Arr::random($types));
+            $event->save();
+        });
 
         $events = Event::select('id', 'cost')->get();
 
         foreach ($events as $event) {
             $users = $users->shuffle();
+            $ids = $users->slice(0, random_int(1, 50))->pluck('id');
 
-            $event->attendees()->attach($users->slice(0, random_int(1, 50))->pluck('id'));
+            if(!$event->public) {
+                // If the event is private, create invites for the attendees
+                $event->invites()->attach($ids);
+            }
+
+            $event->attendees()->attach($ids);
         }
 
         // John Doe will attend 25 random events for free

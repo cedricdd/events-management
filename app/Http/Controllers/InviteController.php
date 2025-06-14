@@ -26,7 +26,7 @@ class InviteController extends Controller
         }
 
         // Make sure the event is private
-        if ($event->is_public) {
+        if ($event->public) {
             return response()->json(['message' => 'You can only invite users to private events.'], 403);
         }
 

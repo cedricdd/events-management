@@ -10,8 +10,6 @@ use App\Notifications\EventCreationNotification;
 use App\Notifications\EventDeletionNotification;
 use App\Notifications\EventModificationNotification;
 
-use function PHPSTORM_META\type;
-
 test('events_index', function () {
     $events = $this->getEvents(count: Constants::EVENTS_PER_PAGE, attendees: 3);
     $events->loadCount('attendees');
@@ -236,7 +234,7 @@ test('events_store_successful', function () {
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
                 'type' => $data['type'],
-                'is_public' => $data['is_public'],
+                'public' => $data['public'] ? "yes" : "no",
                 'organizer' => $this->getUserResource($this->organizer),
             ],
             "message" => 'Event created successfully',
@@ -264,7 +262,7 @@ test('events_store_duplicate', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
             'message' => "A similar event already exists!",
-            'event' => $this->getEventResource(Event::first(), true),
+            'event' => $this->getEventResource(Event::first()),
         ]);
 });
 
@@ -297,7 +295,7 @@ test('events_form_validation', function () {
         route: route('events.store'),
         defaults: $this->getEventFormData(),
         rules: [
-            [['name', 'description', 'start_date', 'end_date', 'location', 'cost', 'is_public', 'type'], 'required', ''],
+            [['name', 'description', 'start_date', 'end_date', 'location', 'cost', 'public', 'type'], 'required', ''],
             [['name', 'description', 'location', 'type'], 'string', 0],
             [['name', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             ['description', 'max.string', str_repeat('a', Constants::DESCRIPTION_MAX_LENGTH + 1), ['max' => Constants::DESCRIPTION_MAX_LENGTH]],
@@ -307,7 +305,7 @@ test('events_form_validation', function () {
             ['cost', 'integer', 'invalide-cost'],
             ['cost', 'min.numeric', -10, ['min' => 0]],
             ['cost', 'max.numeric', 1000, ['max' => 100]],
-            ['is_public', 'boolean', 'invalid-boolean'],
+            ['public', 'boolean', 'invalid-boolean'],
             ['type', 'exists', 'invalid-type'],
         ],
         user: $this->organizer,
@@ -336,7 +334,7 @@ test('events_update_successful', function () {
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
                 'type' => $data['type'],
-                'is_public' => $data['is_public'],
+                'public' => $data['public'] ? "yes" : "no",
                 'attendees_count' => 0,
                 'organizer' => $this->getUserResource($this->organizer),
             ],
@@ -374,7 +372,7 @@ test('events_update_by_admin', function () {
                 'start_date' => $data['start_date'],
                 'end_date' => $data['end_date'],
                 'type' => $data['type'],
-                'is_public' => $data['is_public'],
+                'public' => $data['public'] ? "yes" : "no",
                 'attendees_count' => 0,
                 'organizer' => $this->getUserResource($event->organizer),
             ],
@@ -390,7 +388,7 @@ test("events_update_fields_optional", function () {
 
     $event = $this->getEvents(count: 1, organizer: $this->organizer);
 
-    $data = $this->getEventFormData(['is_public' => 0]);
+    $data = Arr::except($this->getEventFormData(), ['public']);
 
     Sanctum::actingAs($this->organizer);
 
@@ -478,7 +476,7 @@ test('events_update_with_registered', function () {
                 'start_date' => $event->start_date->format('Y-m-d H:i:s'),
                 'end_date' => $event->end_date->format('Y-m-d H:i:s'),
                 'type' => $data['type'],
-                'is_public' => $event->is_public ? 1 : 0,
+                'public' => $event->public ? "yes" : "no",
                 'attendees_count' => $attendeesCount,
                 'organizer' => $this->getUserResource($event->organizer),
             ],

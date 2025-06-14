@@ -66,7 +66,7 @@ class EventController extends Controller
         $event->end_date = $request->end_date;
         $event->cost = $request->cost;
         $event->location = $request->location;
-        $event->is_public = $request->is_public ? 1 : 0;
+        $event->public = $request->public ? 1 : 0;
         $event->type()->associate($type);
         $event->organizer()->associate($request->user());
 
@@ -74,7 +74,7 @@ class EventController extends Controller
         if ($existingEvent = Event::with('type')->where($event->getAttributes())->first()) {
             return response()->json([
                 'message' => "A similar event already exists!",
-                'event' => new EventResource($existingEvent, true),
+                'event' => new EventResource($existingEvent),
             ], 409);
         }
 
@@ -85,7 +85,7 @@ class EventController extends Controller
         $event->setRelation('organizer', $request->user());
         $event->setRelation('type', $type);
 
-        return EventResource::make($event, true)
+        return EventResource::make($event)
             ->additional(["message" => "Event created successfully"])
             ->response()
             ->setStatusCode(201);
@@ -127,7 +127,7 @@ class EventController extends Controller
             $event->end_date = $request->input('end_date', $event->end_date);
             $event->cost = $request->input('cost', $event->cost);
             $event->location = $request->input('location', $event->location);
-            $event->is_public = $request->input('is_public', $event->is_public) ? 1 : 0;
+            $event->public = $request->input('public', $event->public) ? 1 : 0;
         }
 
         if ($event->end_date <= $event->start_date) {
@@ -140,7 +140,7 @@ class EventController extends Controller
         if ($existingEvent = Event::where(Arr::except($event->getAttributes(), ['id', 'attendees_count', 'created_at', 'updated_at']))->where('id', '!=', $event->id)->first()) {
             return response()->json([
                 'message' => "A similar event already exists!",
-                'event' => new EventResource($existingEvent, true),
+                'event' => new EventResource($existingEvent),
             ], 409);
         }
 
@@ -157,7 +157,7 @@ class EventController extends Controller
 
         $event->load('organizer');
 
-        return EventResource::make($event, true)
+        return EventResource::make($event)
             ->additional(["message" => "Event updated successfully"])
             ->response();
     }

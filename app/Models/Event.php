@@ -28,7 +28,7 @@ class Event extends Model
         return $this->belongsTo(related: EventType::class, foreignKey: 'event_type_id');
     }
 
-    public function invites(): BelongsToMany
+    public function invitedUsers(): BelongsToMany
     {
         return $this->belongsToMany(related: User::class, table: 'invites')->withTimestamps();
     }

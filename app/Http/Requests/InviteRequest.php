@@ -22,7 +22,6 @@ class InviteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'event_id' => 'bail|required|integer|exists:events,id',
             'users' => 'bail|required|array',
         ];
     }

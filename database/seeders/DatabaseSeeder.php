@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
 
             if(!$event->public) {
                 // If the event is private, create invites for the attendees
-                $event->invites()->attach($ids);
+                $event->invitedUsers()->attach($ids);
             }
 
             $event->attendees()->attach($ids);

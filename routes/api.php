@@ -1,13 +1,14 @@
 <?php
 
 
-use App\Http\Controllers\InviteController;
 use App\Models\Event;
+use App\Models\Invite;
 use App\Models\EventType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\InviteController;
 use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\EventTypeController;
 
@@ -25,7 +26,8 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::put('event-types/{type}', [EventTypeController::class, 'update'])->name('event-types.update')->can('update', 'type')->where('type', '[0-9]+');
     Route::delete('event-types/{type}', [EventTypeController::class, 'destroy'])->name('event-types.destroy')->can('destroy', 'type')->where('type', '[0-9]+');
 
-    Route::post('invites', [InviteController::class, 'store'])->name('invites.store')->can('store', Event::class);
+    Route::get('events/{event}/invites', [InviteController::class, 'index'])->name('invites.index')->can('index', [Invite::class, 'event'])->where('event', '[0-9]+');
+    Route::post('events/{event}/invites', [InviteController::class, 'store'])->name('invites.store')->can('store', [Invite::class, 'event'])->where('event', '[0-9]+');
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });

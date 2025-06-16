@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
             return $user->id === $attendee->id || $user->id === $event->user_id || $user->isAdmin();
         });
 
-        // RateLimiter::for('api', function ($request) {
-        //     return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        // });
+        RateLimiter::for('api', function ($request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
     }
 }

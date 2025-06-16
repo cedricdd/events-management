@@ -82,6 +82,23 @@ abstract class TestCase extends BaseTestCase
         else return $events->first();
     }
 
+    /**
+     * Creates a private event with a random number of attendees having an invite.
+     * @param \App\Models\User $organizer
+     * @return \App\Models\Event
+     */
+    public function getPrivateEvent(User $organizer, int $countInvite = 0): Event {
+        $event = Event::factory()->for($organizer, 'organizer')->create(['public' => false]);
+
+        $users = User::factory()->count($countInvite)->create();
+
+        $users->each(function ($user) use ($event) {
+            $event->invitedUsers()->attach(['user_id' => $user->id]);
+        });
+
+        return $event;
+    }
+
     protected function getEventResource(Event $event): array {
         $data = [
             'id' => $event->id,

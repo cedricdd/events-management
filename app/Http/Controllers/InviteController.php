@@ -5,16 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Invite;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\InviteRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserCollection;
 use App\Notifications\EventInviteNotification;
 
 class InviteController extends Controller
 {
-    public function store(InviteRequest $request)
+    public function index(Request $request, Event $event): JsonResponse|UserCollection
     {
-        $event = Event::with('organizer')->findOrFail($request->input('event_id'));
+        // Make sure the event is private
+        if ($event->public) {
+            return response()->json(['message' => "This event is a public event, there are no invites."], 403);
+        }
 
+        // Get all invites for the event
+        $invites = $event->invitedUsers()->orderBy('name', 'asc')->get();
+
+        return new UserCollection($invites);
+    }
+
+    public function store(InviteRequest $request, Event $event): JsonResponse
+    {
         // First make sure the user is the organizer of the event
         if ($request->user()->is($event->organizer) == false) {
             return response()->json(['message' => 'You are not authorized to invite users to this event.'], 403);
@@ -40,7 +54,7 @@ class InviteController extends Controller
 
             // Make sure the user is not already invited to the event
             if (!Invite::where('user_id', $userId)->where('event_id', $event->id)->exists()) {
-                $event->invites()->attach($userInvited->id);
+                $event->invitedUsers()->attach($userInvited->id);
 
                 $userInvited->notify(new EventInviteNotification($event));
             }

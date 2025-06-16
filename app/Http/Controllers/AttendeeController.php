@@ -85,7 +85,7 @@ class AttendeeController extends Controller
         }
 
         // If the event is private, the user must be invited
-        if (!$event->public && !$event->invites()->where('user_id', $request->user()->id)->exists()) {
+        if (!$event->public && !$event->invitedUsers()->where('user_id', $request->user()->id)->exists()) {
             return response()->json([
                 'message' => "You are not invited to this event.",
             ], 403);

@@ -21,7 +21,7 @@ class InvitePolicy
         return $event->user_id == $user->id;
     }
 
-    public function destroy(User $user, Event $event, Invite $invite): bool
+    public function destroy(User $user, Event $event, User $attendee): bool
     {
         // Only organizers can delete invites for private events
         return $event->user_id == $user->id;

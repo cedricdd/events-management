@@ -6,11 +6,15 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Invite;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\InviteRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
-use App\Notifications\EventInviteNotification;
+use App\Jobs\SendEventInviteDeletionEmail;
+use App\Jobs\SendEventInviteEmail;
+use App\Notifications\EventInviteDeletionNotification;
+use App\Notifications\EventUnRegistrationNotification;
 
 class InviteController extends Controller
 {
@@ -50,13 +54,14 @@ class InviteController extends Controller
             $userInvited = User::find($userId);
 
             // That user doesn't exist or it's the organizer of the event
-            if ($userInvited == false || $userInvited->is($request->user())) continue;
+            if ($userInvited == false || $userInvited->is($request->user()))
+                continue;
 
             // Make sure the user is not already invited to the event
             if (!Invite::where('user_id', $userId)->where('event_id', $event->id)->exists()) {
                 $event->invitedUsers()->attach($userInvited->id);
 
-                $userInvited->notify(new EventInviteNotification($event));
+                SendEventInviteEmail::dispatch($event->id, $userInvited->id)->delay(now()->addMinutes(value: 0));
             }
 
             $invites[] = new UserResource($userInvited);
@@ -66,5 +71,25 @@ class InviteController extends Controller
             'message' => 'Invites created successfully.',
             'invites' => $invites,
         ], 201);
+    }
+
+    public function destroy(Request $request, Event $event, User $attendee): Response|JsonResponse
+    {
+        // The user had already registered for the event
+        if ($event->attendees()->where('user_id', $attendee->id)->exists()) {
+            // Detach the attendee from the event
+            $event->attendees()->detach($attendee->id);
+
+            $attendee->notify(new EventUnRegistrationNotification($event, 'organizer'));
+
+            // The attendee gets his tokens back
+            $attendee->increment('tokens', $event->cost);
+            $attendee->decrement('tokens_spend', $event->cost);
+        } else SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 0));
+
+        // Remove the invite
+        $event->invitedUsers()->detach($attendee->id);
+
+        return response()->noContent();
     }
 }

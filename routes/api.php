@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
 
     Route::get('events/{event}/invites', [InviteController::class, 'index'])->name('invites.index')->can('index', [Invite::class, 'event'])->where('event', '[0-9]+');
     Route::post('events/{event}/invites', [InviteController::class, 'store'])->name('invites.store')->can('store', [Invite::class, 'event'])->where('event', '[0-9]+');
+    Route::delete('events/{event}/invites/{attendee}', [InviteController::class, 'destroy'])->name('invites.destroy')->can('destroy', [Invite::class, 'event', 'attendee'])->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
     Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 });
@@ -46,3 +47,6 @@ Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->na
 Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
 Route::get('event-types', [EventTypeController::class, 'index'])->name('event-types.index');
+
+//test job in invites
+//delete invites on delete event

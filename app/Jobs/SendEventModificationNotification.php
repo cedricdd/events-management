@@ -21,7 +21,7 @@ class SendEventModificationNotification implements ShouldQueue, ShouldBeUnique
         //
     }
 
-    // If the event is moddified multple times before the job is processed, we want to ensure that user are only notified once
+    // If the event is moddified multiple times before the job is processed, we want to ensure that user are only notified once
     public function uniqueId(): string
     {
         return "event-modification-notification-{$this->eventID}";

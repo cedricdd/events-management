@@ -2,7 +2,6 @@
 
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
-use Illuminate\Support\Facades\Notification;
 
 test('invites_index', function () {
     Sanctum::actingAs($this->organizer);
@@ -85,8 +84,6 @@ test('invites_index_event_not_found', function () {
 }); 
 
 test('invites_store', function () {
-    Notification::fake();
-    
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getPrivateEvent($this->organizer);
@@ -104,9 +101,6 @@ test('invites_store', function () {
         ]);
 
     $this->assertDatabaseCount('invites', $users->count());
-
-    Notification::assertCount($users->count());
-    Notification::assertSentTo($users->first(), \App\Notifications\EventInviteNotification::class);
 
     // Don't duplicate invites
     $this->postJson(route('invites.store', $event->id), [
@@ -205,4 +199,44 @@ test('invites_store_validation', function () {
         ],
         user: $this->organizer,
     );
+});
+
+test('invites_destroy', function () {
+    Sanctum::actingAs($this->organizer);
+
+    $event = $this->getPrivateEvent($this->organizer, 10);
+
+    $this->deleteJson(route('invites.destroy', [$event->id, $event->invitedUsers->first()->id]))
+        ->assertValid()
+        ->assertNoContent();
+
+    $this->assertDatabaseCount('invites', $event->invitedUsers->count() - 1);
+    $this->assertDatabaseMissing('invites', [
+        'event_id' => $event->id,
+        'user_id' => $event->invitedUsers->first()->id,
+    ]);
+});
+
+test('invites_destroy_unauthorized', function () {
+    Sanctum::actingAs($this->user);
+
+    $event = $this->getPrivateEvent($this->organizer, 10);
+
+    $this->deleteJson(route('invites.destroy', [$event->id, $event->invitedUsers->first()->id]))
+        ->assertForbidden()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJson([
+            'message' => 'This action is unauthorized.',
+        ]);
+});
+
+test('invites_destroy_event_not_found', function () {
+    Sanctum::actingAs($this->organizer);
+
+    $this->deleteJson(route('invites.destroy', [1234, 1]))
+        ->assertStatus(404)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJson([
+            'message' => 'Event not found',
+        ]);
 });

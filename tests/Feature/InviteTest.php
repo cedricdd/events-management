@@ -2,6 +2,9 @@
 
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
+use App\Jobs\SendEventInviteEmail;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\SendEventInviteDeletionEmail;
 
 test('invites_index', function () {
     Sanctum::actingAs($this->organizer);
@@ -84,11 +87,13 @@ test('invites_index_event_not_found', function () {
 }); 
 
 test('invites_store', function () {
+    Queue::fake();
+    
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getPrivateEvent($this->organizer);
-
-    $users = User::factory()->count(random_int(5, 10))->create();
+    $count = random_int(5, 10);
+    $users = User::factory()->count($count)->create();
 
     $this->postJson(route('invites.store', $event->id), [
         'users' => $users->pluck('id')->toArray(),
@@ -100,14 +105,17 @@ test('invites_store', function () {
             'invites' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
         ]);
 
-    $this->assertDatabaseCount('invites', $users->count());
+    $this->assertDatabaseCount('invites', $count);
 
     // Don't duplicate invites
     $this->postJson(route('invites.store', $event->id), [
         'users' => $users->pluck('id')->toArray(),
     ])->assertCreated();
 
-    $this->assertDatabaseCount('invites', $users->count());
+    $this->assertDatabaseCount('invites', $count);
+
+    Queue::assertPushed(SendEventInviteEmail::class);
+    Queue::assertCount($count);
 });
 
 test('invites_store_bad_users', function () {
@@ -202,6 +210,8 @@ test('invites_store_validation', function () {
 });
 
 test('invites_destroy', function () {
+    Queue::fake();
+
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getPrivateEvent($this->organizer, 10);
@@ -215,6 +225,8 @@ test('invites_destroy', function () {
         'event_id' => $event->id,
         'user_id' => $event->invitedUsers->first()->id,
     ]);
+
+    Queue::assertPushed(SendEventInviteDeletionEmail::class);
 });
 
 test('invites_destroy_unauthorized', function () {

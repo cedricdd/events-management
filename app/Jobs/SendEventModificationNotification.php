@@ -4,10 +4,11 @@ namespace App\Jobs;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\Log;
+use App\Mail\EventModificationEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
-use App\Notifications\EventModificationNotification;
 
 class SendEventModificationNotification implements ShouldQueue, ShouldBeUnique
 {
@@ -42,7 +43,9 @@ class SendEventModificationNotification implements ShouldQueue, ShouldBeUnique
 
         // Send notification to all registered users
         foreach ($event->attendees as $user) {
-            $user->notify(new EventModificationNotification($event));
+            Mail::to($user)->send(
+                new EventModificationEmail($event, $user)
+            );
         }
     }
 }

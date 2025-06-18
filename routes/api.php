@@ -49,4 +49,3 @@ Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 's
 Route::get('event-types', [EventTypeController::class, 'index'])->name('event-types.index');
 
 //test job in invites
-//delete invites on delete event

@@ -61,7 +61,7 @@ class InviteController extends Controller
             if (!Invite::where('user_id', $userId)->where('event_id', $event->id)->exists()) {
                 $event->invitedUsers()->attach($userInvited->id);
 
-                SendEventInviteEmail::dispatch($event->id, $userInvited->id)->delay(now()->addMinutes(value: 0));
+                SendEventInviteEmail::dispatch($event->id, $userInvited->id)->delay(now()->addMinutes(value: 10));
             }
 
             $invites[] = new UserResource($userInvited);
@@ -85,7 +85,7 @@ class InviteController extends Controller
             // The attendee gets his tokens back
             $attendee->increment('tokens', $event->cost);
             $attendee->decrement('tokens_spend', $event->cost);
-        } else SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 0));
+        } else SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 10));
 
         // Remove the invite
         $event->invitedUsers()->detach($attendee->id);

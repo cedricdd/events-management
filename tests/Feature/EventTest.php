@@ -5,6 +5,7 @@ use App\Models\Event;
 use App\Models\EventType;
 use Illuminate\Support\Arr;
 use Laravel\Sanctum\Sanctum;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\EventCreationNotification;
 use App\Notifications\EventDeletionNotification;
@@ -453,9 +454,9 @@ test('events_update_no_changes', function () {
 });
 
 test('events_update_with_registered', function () {
-    Notification::fake();
+    Queue::fake();
 
-    $attendeesCount = 5;
+    $attendeesCount = random_int(5, 10);
     $event = $this->getEvents(count: 1, attendees: $attendeesCount, organizer: $this->organizer);
 
     $data = $this->getEventFormData();
@@ -483,8 +484,7 @@ test('events_update_with_registered', function () {
             "message" => 'Event updated successfully',
         ]);
 
-    Notification::assertCount($attendeesCount);
-    Notification::assertSentTo([$event->attendees], EventModificationNotification::class);
+    Queue::assertPushed(\App\Jobs\SendEventModificationNotification::class);
 });
 
 test('events_update_end_before_start', function () {

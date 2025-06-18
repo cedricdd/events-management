@@ -277,6 +277,9 @@ class EventController extends Controller
             ->when($request->has('public'), function ($query) use ($request) {
                 $query->where('public', $request->input('public'));
             })
+            ->when($request->has('organizer'), function ($query) use ($request) {
+                $query->where('user_id', $request->input('organizer'));
+            })
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
 

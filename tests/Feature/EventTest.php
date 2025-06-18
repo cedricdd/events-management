@@ -915,6 +915,12 @@ test('events_search', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonCount(1, 'data');
 
+    // Search by organizer
+    $this->getJson(route('events.search', ['organizer' => $event->organizer->id]))
+        ->assertValid()
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonCount(1, 'data');
+
     // Search with everthing together
     $response = $this->getJson(route('events.search', [
         'name' => $event->name,
@@ -930,6 +936,7 @@ test('events_search', function () {
         'ends_after' => $event->end_date->format('Y-m-d H:i:s'),
         'type' => $event->type->name,
         'public' => $event->public,
+        'organizer' => $event->organizer->id,
     ]))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json');
@@ -982,7 +989,7 @@ test('events_search_validation', function () {
         rules: [
             [['name', 'description', 'location', 'type'], 'string', ''],
             [['name', 'description', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
-            [['cost_max', 'cost_min', 'attendees_max', 'attendees_min'], 'integer', 'invalid'],
+            [['cost_max', 'cost_min', 'attendees_max', 'attendees_min', 'organizer'], 'integer', 'invalid'],
             [['cost_max', 'cost_min', 'attendees_max', 'attendees_min'], 'min.numeric', -10, ['min' => 0]],
             [['starts_before', 'starts_after', 'ends_before', 'ends_after'], 'date_format', 'invalid-date-format', ['format' => 'Y-m-d H:i:s']],
             ['type', 'exists', 'invalid-type'],
@@ -990,6 +997,7 @@ test('events_search_validation', function () {
         ],
     );
 });
+            
 
 test('events_search_out_of_range_page', function () {
     $nbrPages = random_int(2, 5);

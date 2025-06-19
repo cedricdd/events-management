@@ -131,12 +131,19 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Event $event, User $attendee): JsonResponse|Response
+    public function destroy(Request $request, Event $event, User|null $attendee = null): JsonResponse|Response
     {
+        // If the attendee is not provided, use the authenticated user
+        if ($attendee === null) {
+            $attendee = $request->user();
+        }
+
         // Make the user is actually attending the event
         if (!$event->attendees()->where('user_id', $attendee->id)->exists()) {
             return response()->json([
-                'message' => "This user is not registered to the event!",
+                'message' => $attendee->is($request->user())
+                    ? "You are not registered to this event!"
+                    : "This user is not registered to this event!",
             ], 403);
         }
 

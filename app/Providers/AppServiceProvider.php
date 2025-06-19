@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('destroy-attendee', function (User $user, Event $event, User $attendee) {
-            return $user->id === $attendee->id || $user->id === $event->user_id || $user->isAdmin();
+        Gate::define('destroy-attendee', function (User $user, Event $event, User|null $attendee = null) {
+            return $attendee === null || $user->id === $attendee->id || $user->id === $event->user_id || $user->isAdmin();
         });
 
         RateLimiter::for('api', function ($request) {

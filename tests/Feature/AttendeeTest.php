@@ -179,7 +179,7 @@ test('attendees_destroy_as_owner', function () {
         ->assertStatus(403)
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => "This user is not registered to the event!",
+            'message' => "This user is not registered to this event!",
         ]);
 
     // Check that the count of attendees has not changed
@@ -204,16 +204,24 @@ test('attendees_destroy_as_attendee', function () {
     $event->attendees()->attach($this->user);
     $attributes = $this->user->getAttributes();
 
-    // Check that the count of attendees is 2
+    // Check that the count of attendees is right
     expect($event->attendees()->count())->toBe($count + 1);
 
     Sanctum::actingAs($this->user);
 
     // Remove the attendee from the event
-    $this->deleteJson(route('attendees.destroy', [$event, $this->user]))->assertNoContent();
+    $this->deleteJson(route('attendees.destroy', [$event]))->assertNoContent();
 
-    // Check that the count of attendees is 1
+    // Check that the count of attendees is right
     expect($event->attendees()->count())->toBe($count);
+
+    // Try to remove yourself again
+    $this->deleteJson(route('attendees.destroy', [$event]))
+        ->assertStatus(403)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJsonFragment([
+            'message' => "You are not registered to this event!",
+        ]);
 
     $this->user->refresh();
 

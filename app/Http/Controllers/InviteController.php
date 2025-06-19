@@ -13,8 +13,6 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 use App\Jobs\SendEventInviteDeletionEmail;
 use App\Jobs\SendEventInviteEmail;
-use App\Notifications\EventInviteDeletionNotification;
-use App\Notifications\EventUnRegistrationNotification;
 
 class InviteController extends Controller
 {
@@ -80,12 +78,12 @@ class InviteController extends Controller
             // Detach the attendee from the event
             $event->attendees()->detach($attendee->id);
 
-            $attendee->notify(new EventUnRegistrationNotification($event, 'organizer'));
-
             // The attendee gets his tokens back
             $attendee->increment('tokens', $event->cost);
             $attendee->decrement('tokens_spend', $event->cost);
-        } else SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 10));
+        } 
+        
+        SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 10));
 
         // Remove the invite
         $event->invitedUsers()->detach($attendee->id);

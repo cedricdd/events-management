@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\Event;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -12,12 +13,26 @@ class EventRegistrationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public Event|null $event;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(public Event $event)
+    public function __construct(public int $eventID)
     {
         //
+    }
+
+    public function shouldSend(object $notifiable): bool
+    {
+        $this->event = Event::find($this->eventID); 
+
+        if (!$this->event) {
+            Log::warning('Event not found for ID: ' . $this->eventID . ' in EventRegistrationNotification.');
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -35,6 +50,8 @@ class EventRegistrationNotification extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $this->event = Event::find($this->eventID);    
+
         return (new MailMessage)
             ->subject('Registered from an event.')
             ->greeting("Hello *{$notifiable->name}*!")

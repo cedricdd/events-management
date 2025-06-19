@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\Event;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -12,12 +13,26 @@ class EventUnRegistrationNotification extends Notification implements ShouldQueu
 {
     use Queueable;
 
+    public Event|null $event;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(public Event $event, public string $source = 'user')
+    public function __construct(public int $eventID, public string $source = 'user')
     {
         //
+    }
+
+    public function shouldSend(object $notifiable): bool
+    {
+        $this->event = Event::find($this->eventID);
+
+        if (!$this->event) {
+            Log::warning('Event not found for ID: ' . $this->eventID . ' in EventUnRegistrationNotification.');
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -40,12 +55,12 @@ class EventUnRegistrationNotification extends Notification implements ShouldQueu
             ->greeting("Hello *{$notifiable->name}*!")
             ->line("We are confirming that you have just unregistered from the event: *" . $this->event->name . "*.")
             ->line("You have been refunded **" . $this->event->cost . "** tokens.");
-        
-        if($this->source == 'organizer') {
+
+        if ($this->source == 'organizer') {
             $mail->line("You have been removed from the event by *{$this->event->organizer->name}* (ID: {$this->event->organizer->id}), the event's organizer, please contact them for more info.");
-        } elseif($this->source == 'admin') {
+        } elseif ($this->source == 'admin') {
             $mail->line("You have been removed from the event by a member of our team, please contact us for more info.");
-        } 
+        }
 
         return $mail->line('Thank you for using our application!');
     }

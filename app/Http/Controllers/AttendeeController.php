@@ -97,7 +97,7 @@ class AttendeeController extends Controller
         // Attach the user to the event
         $event->attendees()->attach($request->user());
 
-        $request->user()->notify(new EventRegistrationNotification($event));
+        $request->user()->notify(new EventRegistrationNotification($event->id));
 
         $event->load(['organizer', 'type']);
         $event->loadCount('attendees');
@@ -162,7 +162,7 @@ class AttendeeController extends Controller
         // Detach the attendee from the event
         $event->attendees()->detach($attendee->id);
 
-        $attendee->notify(new EventUnRegistrationNotification($event, $source));
+        $attendee->notify(new EventUnRegistrationNotification($event->id, $source));
 
         // The attendee gets his tokens back
         $attendee->increment('tokens', $event->cost);

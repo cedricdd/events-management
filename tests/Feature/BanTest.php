@@ -88,3 +88,27 @@ test('bans_index_unauthenticated', function () {
     $this->postJson(route('bans.index'))
         ->assertUnauthorized();
 });
+
+test('bans_destroy', function () {
+    Sanctum::actingAs($this->organizer);
+
+    $count = random_int(5, 10);
+    $users = User::factory()->count($count)->create();
+
+    $this->postJson(route('bans.store'), ['users' => $users->pluck('id')->toArray()])->assertValid();
+
+    $this->deleteJson(route('bans.destroy'), ['users' => $users->pluck('id')->toArray()])
+        ->assertValid()
+        ->assertJsonCount($count, 'users')
+        ->assertJson([
+            'message' => 'Bans removed successfully.',
+            'users' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
+        ]);
+
+    $this->assertDatabaseCount('bans', 0);
+});
+
+test('bans_destroy_unauthenticated', function () {
+    $this->postJson(route('bans.destroy'), ['users' => [1, 2, 3, 4, 5]])
+        ->assertUnauthorized();
+});

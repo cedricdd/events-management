@@ -22,7 +22,8 @@ class BanController extends Controller
             }
 
             $bannedUsers = $user->bannedUsers()->orderBy('name', 'asc')->get();
-        } else $bannedUsers = $request->user()->bannedUsers()->orderBy('name', 'asc')->get();
+        } else
+            $bannedUsers = $request->user()->bannedUsers()->orderBy('name', 'asc')->get();
 
         return response()->json(new UserCollection($bannedUsers));
     }
@@ -31,19 +32,19 @@ class BanController extends Controller
     {
         $users = [];
 
-        foreach ($request->users as $userId) {
-            if (!is_integer($userId) || $userId <= 0)
+        foreach ($request->users as $userID) {
+            if (!is_integer($userID) || $userID <= 0)
                 continue;
 
-            $user = User::find($userId);
+            $user = User::find($userID);
 
             // That user doesn't exist or it's the same user as the one making the request
             if ($user == false || $user->is($request->user()))
                 continue;
 
             // Check if the user is already banned
-            if (!$request->user()->bannedUsers()->where('attendee_id', $userId)->exists()) {
-                $request->user()->bannedUsers()->attach($userId);
+            if (!$request->user()->bannedUsers()->where('attendee_id', $userID)->exists()) {
+                $request->user()->bannedUsers()->attach($userID);
             }
 
             $users[] = new UserResource($user);
@@ -53,5 +54,31 @@ class BanController extends Controller
             'message' => 'Bans added successfully.',
             'users' => $users,
         ], 201);
+    }
+
+    public function destroy(BanRequest $request): JsonResponse
+    {
+        $usersUnBanned = [];
+
+        foreach ($request->input('users') as $userID) {
+            if (!is_integer($userID) || $userID <= 0) continue;
+
+            $user = User::find($userID);
+
+            // That user doesn't exist or it's the same user as the one making the request
+            if ($user == false || $user->is($request->user()))
+
+            // Check if the user is banned
+            if ($request->user()->bannedUsers()->where('attendee_id', $userID)->exists()) {
+                $request->user()->bannedUsers()->detach($userID);
+            }
+
+            $usersUnBanned[] = new UserResource($user);
+        }
+
+        return response()->json([
+            'message' => 'Bans removed successfully.',
+            'users' => $usersUnBanned,
+        ]);
     }
 }

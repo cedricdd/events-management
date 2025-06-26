@@ -18,6 +18,7 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
 
     Route::get('bans/{user?}', [BanController::class, 'index'])->name('bans.index')->where('user', '[0-9]+');
     Route::post('bans', [BanController::class, 'store'])->name('bans.store');
+    Route::delete('bans', [BanController::class, 'destroy'])->name('bans.destroy');
 
     Route::post('events', [EventController::class, 'store'])->name('events.store')->can('store', Event::class);
     Route::put('events/{event}', [EventController::class, 'update'])->name('events.update')->can('update', 'event')->where('event', '[0-9]+');

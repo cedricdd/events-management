@@ -66,7 +66,7 @@ class BanController extends Controller
             $user = User::find($userID);
 
             // That user doesn't exist or it's the same user as the one making the request
-            if ($user == false || $user->is($request->user()))
+            if ($user == false || $user->is($request->user())) continue;
 
             // Check if the user is banned
             if ($request->user()->bannedUsers()->where('attendee_id', $userID)->exists()) {

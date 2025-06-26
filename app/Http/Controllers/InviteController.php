@@ -74,23 +74,40 @@ class InviteController extends Controller
         ], 201);
     }
 
-    public function destroy(Request $request, Event $event, User $attendee): Response|JsonResponse
+    public function destroy(InviteRequest $request, Event $event): Response|JsonResponse
     {
-        // The user had already registered for the event
-        if ($event->attendees()->where('user_id', $attendee->id)->exists()) {
-            // Detach the attendee from the event
-            $event->attendees()->detach($attendee->id);
+        $users = [];
 
-            // The attendee gets his tokens back
-            $attendee->increment('tokens', $event->cost);
-            $attendee->decrement('tokens_spend', $event->cost);
+        foreach ($request->input('users') as $userID) {
+            if (!is_integer($userID) || $userID <= 0)
+                continue;
+
+            $user = User::find($userID);
+
+            // That user doesn't exist or it's the same user as the one making the request
+            if ($user == false || $user->is($request->user()))
+
+            // The user had already registered for the event
+            if ($event->attendees()->where('user_id', $user->id)->exists()) {
+                // Detach the attendee from the event
+                $event->attendees()->detach($user->id);
+
+                // The attendee gets his tokens back
+                $user->increment('tokens', $event->cost);
+                $user->decrement('tokens_spend', $event->cost);
+            }
+
+            SendEventInviteDeletionEmail::dispatch($event->id, $user->id)->delay(now()->addMinutes(value: 10));
+
+            // Remove the invite
+            $event->invitedUsers()->detach($user->id);
+
+            $users[] = new UserResource($user);
         }
 
-        SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 10));
-
-        // Remove the invite
-        $event->invitedUsers()->detach($attendee->id);
-
-        return response()->noContent();
+        return response()->json([
+            'message' => 'Invites removed successfully.',
+            'users' => $users,
+        ]);
     }
 }

@@ -215,18 +215,25 @@ test('invites_destroy', function () {
     Sanctum::actingAs($this->organizer);
 
     $event = $this->getPrivateEvent($this->organizer, 10);
+    $users = $event->invitedUsers->slice(2, 5)->values();
 
-    $this->deleteJson(route('invites.destroy', [$event->id, $event->invitedUsers->first()->id]))
+    $this->deleteJson(route('invites.destroy', $event->id), ['users' => $users->pluck('id')])
         ->assertValid()
-        ->assertNoContent();
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertJson([
+            'message' => 'Invites removed successfully.',
+            'users' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
+        ]);
+        
 
-    $this->assertDatabaseCount('invites', $event->invitedUsers->count() - 1);
+    $this->assertDatabaseCount('invites', 10 - count($users));
     $this->assertDatabaseMissing('invites', [
         'event_id' => $event->id,
-        'user_id' => $event->invitedUsers->first()->id,
+        'user_id' => $users->first()->id,
     ]);
 
     Queue::assertPushed(SendEventInviteDeletionEmail::class);
+    Queue::assertCount(count($users));
 });
 
 test('invites_destroy_unauthorized', function () {

@@ -3,12 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\BanRequest;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserCollection;
 
 class BanController extends Controller
 {
+    public function index(Request $request, User|null $user = null): JsonResponse
+    {
+        if ($user !== null) {
+            // If a user is specified, check if the authenticated user is allowed to view their banned list
+            if ($request->user()->id !== $user->id && !$request->user()->isAdmin()) {
+                return response()->json([
+                    'message' => "You are not authorized to view this user's banned list.",
+                ], 403);
+            }
+
+            $bannedUsers = $user->bannedUsers()->orderBy('name', 'asc')->get();
+        } else $bannedUsers = $request->user()->bannedUsers()->orderBy('name', 'asc')->get();
+
+        return response()->json(new UserCollection($bannedUsers));
+    }
+
     public function store(BanRequest $request): JsonResponse
     {
         $users = [];

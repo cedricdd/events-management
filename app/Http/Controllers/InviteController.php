@@ -49,6 +49,9 @@ class InviteController extends Controller
         // Create invites for each user
         $invites = [];
         foreach ($request->input('users') as $userId) {
+            if (!is_integer($userId) || $userId <= 0)
+                continue;
+
             $userInvited = User::find($userId);
 
             // That user doesn't exist or it's the organizer of the event
@@ -81,8 +84,8 @@ class InviteController extends Controller
             // The attendee gets his tokens back
             $attendee->increment('tokens', $event->cost);
             $attendee->decrement('tokens_spend', $event->cost);
-        } 
-        
+        }
+
         SendEventInviteDeletionEmail::dispatch($event->id, $attendee->id)->delay(now()->addMinutes(value: 10));
 
         // Remove the invite

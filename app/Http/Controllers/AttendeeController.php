@@ -91,6 +91,13 @@ class AttendeeController extends Controller
             ], 403);
         }
 
+        // The organizer of the event has banned the user
+        if($event->organizer->bannedUsers()->where('attendee_id', $request->user()->id)->exists()) {
+            return response()->json([
+                'message' => "The organizer of this event does not allow you to join the event.",
+            ], 403);
+        }
+
         $request->user()->decrement('tokens', $event->cost);
         $request->user()->increment('tokens_spend', $event->cost);
 

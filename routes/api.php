@@ -5,6 +5,7 @@ use App\Models\Event;
 use App\Models\Invite;
 use App\Models\EventType;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
@@ -14,6 +15,8 @@ use App\Http\Controllers\EventTypeController;
 
 Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::get('user/{user?}', [UserController::class, 'show'])->name('user.show')->where('user', '[0-9]+');
+
+    Route::post('bans', [BanController::class, 'store'])->name('bans.store');
 
     Route::post('events', [EventController::class, 'store'])->name('events.store')->can('store', Event::class);
     Route::put('events/{event}', [EventController::class, 'update'])->name('events.update')->can('update', 'event')->where('event', '[0-9]+');

@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function attending(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class, 'attending');
+        return $this->belongsToMany(related: Event::class, table: 'attending');
     }
 
     public function isAdmin(): bool
@@ -68,5 +68,10 @@ class User extends Authenticatable
     public function isOrganizer(): bool
     {
         return $this->role == "organizer";
+    }
+
+    public function bannedUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(related: User::class, table: 'bans', relatedPivotKey: 'attendee_id', foreignPivotKey: 'user_id')->withTimestamps();
     }
 }

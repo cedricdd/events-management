@@ -1,37 +1,24 @@
-name: Bans
+name: Endpoints
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/bans/{user?}'
+    uri: api/
     metadata:
-      groupName: Bans
+      groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'List User Banned'
-      description: |-
-        List all the users banned by the authenticated user or a specified user.
-        * Only administrators can view other users' banned lists.
-      authenticated: true
+      title: ''
+      description: ''
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      user:
-        name: user
-        description: "The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list."
-        required: false
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      user: 16
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -39,22 +26,15 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '{"data":[{"id":3941,"name":"Ms. Elisabeth Okuneva","email":"gulgowski.asia@example.com","country":"Peru","profession":"Glass Blower","phone":"843.428.7432","organization":"Price Ltd"},{"id":3942,"name":"Pearl Hauck Sr.","email":"alayna44@example.org","country":"Saint Vincent and the Grenadines","profession":"Gas Distribution Plant Operator","phone":"870-215-1024","organization":"Leffler-Glover"}]}'
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 401
-        content: '{"message": "Unauthenticated."}'
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 403
-        content: '{"message": "You are not authorized to view this user''s banned list.."}'
-        headers: []
-        description: ''
+        status: 404
+        content: |-
+          {
+              "message": "The route api could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+        description: null
         custom: []
     responseFields: []
     auth: []
@@ -65,15 +45,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/bans
+    uri: api/events
     metadata:
-      groupName: Bans
+      groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Add Bans'
-      description: "Add users to the authenticated user's banned list."
-      authenticated: true
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
@@ -83,38 +63,226 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      users:
-        name: users
-        description: 'The IDs of the users to ban.'
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
         required: true
-        example:
-          - 1
-          - 2
-          - 3
-        type: 'integer[]'
+        example: b
+        type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Must not be greater than 4096 characters.'
+        required: true
+        example: 'Et animi quos velit et fugiat.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      start_date:
+        name: start_date
+        description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
+        required: true
+        example: '2051-07-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      end_date:
+        name: end_date
+        description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
+        required: true
+        example: '2051-07-21'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      location:
+        name: location
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cost:
+        name: cost
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      public:
+        name: public
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'The <code>name</code> of an existing record in the event_types table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      users:
-        - 1
-        - 2
-        - 3
+      name: b
+      description: 'Et animi quos velit et fugiat.'
+      start_date: '2051-07-26'
+      end_date: '2051-07-21'
+      location: 'n'
+      cost: 7
+      public: false
+      type: architecto
     fileParameters: []
-    responses:
-      -
-        status: 201
-        content: '{"data":[{"id":3943,"name":"Ms. Audra Crooks II","email":"idickens@example.org","country":"Morocco","profession":"Copy Machine Operator","phone":"+1-626-249-0432","organization":"Hauck-Leuschke"},{"id":3944,"name":"Alanis McLaughlin","email":"bauch.marcelo@example.com","country":"Holy See (Vatican City State)","profession":"Illustrator","phone":"1-915-230-6227","organization":"Schultz Group"}],"message":"Bans added successfully."}'
-        headers: []
-        description: ''
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/events/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
         custom: []
-      -
-        status: 401
-        content: '{"message": "Unauthenticated."}'
-        headers: []
-        description: ''
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
         custom: []
+      description:
+        name: description
+        description: 'Must not be greater than 4096 characters.'
+        required: true
+        example: 'Et animi quos velit et fugiat.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      start_date:
+        name: start_date
+        description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
+        required: true
+        example: '2051-07-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      end_date:
+        name: end_date
+        description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
+        required: true
+        example: '2051-07-21'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      location:
+        name: location
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cost:
+        name: cost
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      public:
+        name: public
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'The <code>name</code> of an existing record in the event_types table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: b
+      description: 'Et animi quos velit et fugiat.'
+      start_date: '2051-07-26'
+      end_date: '2051-07-21'
+      location: 'n'
+      cost: 7
+      public: false
+      type: architecto
+    fileParameters: []
+    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -124,15 +292,138 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: api/bans
+    uri: 'api/events/{id}'
     metadata:
-      groupName: Bans
+      groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove Bans'
-      description: "Remove users from the authenticated user's banned list."
-      authenticated: true
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/events/{event_id}/attendees'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/events/{event_id}/'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/event-types
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
@@ -142,37 +433,837 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      users:
-        name: users
-        description: 'The IDs of the users to ban.'
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
         required: true
-        example:
-          - 1
-          - 2
-          - 3
-        type: 'integer[]'
+        example: b
+        type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Must not be greater than 4096 characters.'
+        required: true
+        example: 'Et animi quos velit et fugiat.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
+      name: b
+      description: 'Et animi quos velit et fugiat.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/event-types/{type_id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      type_id:
+        name: type_id
+        description: 'The ID of the type.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      type_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Must not be greater than 4096 characters.'
+        required: true
+        example: 'Et animi quos velit et fugiat.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: b
+      description: 'Et animi quos velit et fugiat.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/event-types/{type_id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      type_id:
+        name: type_id
+        description: 'The ID of the type.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      type_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/events/{event_id}/invites'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/events/{event_id}/invites'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
       users:
-        - 1
-        - 2
-        - 3
+        name: users
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      users: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/events/{event_id}/invites'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      users:
+        name: users
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      users: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/events
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: '{"data":[{"id":3945,"name":"Ms. Audra Crooks II","email":"aschuster@example.com","country":"Zambia","profession":"Compacting Machine Operator","phone":"253.392.8862","organization":"McLaughlin, Leuschke and Bauch"},{"id":3946,"name":"Mr. Oswald Koch","email":"bailee15@example.org","country":"Heard Island and McDonald Islands","profession":"Chemical Plant Operator","phone":"531-539-0170","organization":"Gaylord, Hettinger and Nitzsche"}],"message":"Bans removed successfully."}'
-        headers: []
-        description: ''
+        content: '{"data":[{"id":1016,"name":"Architecto quo rerum repellat est maiores eveniet consequatur.","description":"Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.","location":"Online","cost":8,"start_date":"2025-06-26 17:00:00","end_date":"2025-07-06 17:30:00","type":"Workshop","public":"yes","attendees_count":8},{"id":889,"name":"Autem dolore omnis cupiditate quam necessitatibus minima quo.","description":"Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.","location":"Lake Coty","cost":8,"start_date":"2025-06-26 18:30:00","end_date":"2025-07-24 22:30:00","type":"Lecture","public":"yes","attendees_count":31},{"id":873,"name":"Eum iure soluta eum in minima.","description":"Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.","location":"Online","cost":5,"start_date":"2025-06-26 19:00:00","end_date":"2025-07-10 21:00:00","type":"Networking","public":"yes","attendees_count":47},{"id":323,"name":"Ipsam eaque aspernatur voluptas ut ipsa.","description":"Aspernatur voluptates ut eius nam. Molestiae molestiae modi voluptatem corrupti. Est dolorem voluptas odio dolorem.","location":"Online","cost":4,"start_date":"2025-06-26 19:30:00","end_date":"2025-07-01 00:30:00","type":"Gala","public":"yes","attendees_count":39},{"id":380,"name":"In natus voluptas dolore culpa odit et atque.","description":"Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.","location":"Online","cost":1,"start_date":"2025-06-26 20:00:00","end_date":"2025-07-22 11:30:00","type":"Open House","public":"yes","attendees_count":43},{"id":1000,"name":"Eaque natus est facilis sequi a dolore.","description":"Laudantium est corporis vitae distinctio temporibus officiis maiores. Qui praesentium tempore magnam quidem veniam ut quia. Error at delectus velit modi ipsum nostrum quis. Necessitatibus qui voluptas eius et aliquam ducimus qui.","location":"Online","cost":1,"start_date":"2025-06-26 20:00:00","end_date":"2025-07-02 04:00:00","type":"Workshop","public":"yes","attendees_count":24},{"id":975,"name":"Nesciunt explicabo ut provident temporibus nam ut quia quas.","description":"Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.","location":"Port Cindy","cost":9,"start_date":"2025-06-26 21:30:00","end_date":"2025-07-23 18:00:00","type":"Seminar","public":"yes","attendees_count":31},{"id":1143,"name":"Ut expedita aut odio voluptatibus quis harum reiciendis.","description":"Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.","location":"East Raegan","cost":6,"start_date":"2025-06-26 22:30:00","end_date":"2025-07-09 06:00:00","type":"Meetup","public":"yes","attendees_count":41},{"id":623,"name":"Expedita esse deserunt totam.","description":"Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.","location":"Online","cost":9,"start_date":"2025-06-26 22:30:00","end_date":"2025-07-06 15:00:00","type":"Exhibition","public":"yes","attendees_count":10},{"id":336,"name":"Sunt nisi sed non dolorum.","description":"Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.","location":"Online","cost":4,"start_date":"2025-06-26 23:00:00","end_date":"2025-07-15 22:30:00","type":"Ceremony","public":"yes","attendees_count":33}],"links":{"first":"https:\/\/events-management.test\/api\/events?page=1","last":"https:\/\/events-management.test\/api\/events?page=110","prev":null,"next":"https:\/\/events-management.test\/api\/events?page=2"},"meta":{"current_page":1,"last_page":110,"path":"https:\/\/events-management.test\/api\/events","per_page":10,"total":1093}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
         custom: []
-      -
-        status: 401
-        content: '{"message": "Unauthenticated."}'
-        headers: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/events/search
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'Et animi quos velit et fugiat.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      location:
+        name: location
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cost_min:
+        name: cost_min
+        description: 'Must be at least 0.'
+        required: false
+        example: 37
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cost_max:
+        name: cost_max
+        description: 'Must be at least 0.'
+        required: false
+        example: 9
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      starts_before:
+        name: starts_before
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2025-06-27 17:37:38'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      starts_after:
+        name: starts_after
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2025-06-27 17:37:38'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      ends_before:
+        name: ends_before
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2025-06-27 17:37:38'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      ends_after:
+        name: ends_after
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2025-06-27 17:37:38'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'The <code>name</code> of an existing record in the event_types table.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      attendees_min:
+        name: attendees_min
+        description: 'Must be at least 0.'
+        required: false
+        example: 39
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      attendees_max:
+        name: attendees_max
+        description: 'Must be at least 0.'
+        required: false
+        example: 84
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      public:
+        name: public
         description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      organizer:
+        name: organizer
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: b
+      description: 'Et animi quos velit et fugiat.'
+      location: d
+      cost_min: 37
+      cost_max: 9
+      starts_before: '2025-06-27 17:37:38'
+      starts_after: '2025-06-27 17:37:38'
+      ends_before: '2025-06-27 17:37:38'
+      ends_after: '2025-06-27 17:37:38'
+      type: architecto
+      attendees_min: 39
+      attendees_max: 84
+      public: true
+      organizer: 16
+    fileParameters: []
+    responses:
+      -
+        status: 422
+        content: '{"message":"The selected type is invalid.","errors":{"type":["The selected type is invalid."]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/events/type/{name}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: cIm
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      name: cIm
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"There are no events of this type."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/events/organizer/{organizer_id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      organizer_id:
+        name: organizer_id
+        description: 'The ID of the organizer.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      organizer_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[],"links":{"first":"https:\/\/events-management.test\/api\/events\/organizer\/1?page=1","last":"https:\/\/events-management.test\/api\/events\/organizer\/1?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"https:\/\/events-management.test\/api\/events\/organizer\/1","per_page":10,"total":0}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/events/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":1,"name":"Id et iste et aspernatur recusandae.","description":"Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.","location":"Online","cost":4,"start_date":"2025-07-11 22:00:00","end_date":"2025-07-23 02:00:00","type":"Hackathon","public":"yes","attendees_count":4}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/events/{event_id}/attendees'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":1387,"name":"Betty Schaefer","email":"heidenreich.sophia@example.org","country":"Svalbard & Jan Mayen Islands","profession":"Medical Scientists","phone":"(845) 794-8777","organization":"Heathcote-Franecki"},{"id":906,"name":"Hayley Harvey","email":"gerson72@example.com","country":"France","profession":"Precision Etcher and Engraver","phone":"(208) 610-3123","organization":"Batz Group"},{"id":1248,"name":"Mr. Chase Collier","email":"lhettinger@example.com","country":"Singapore","profession":"Health Services Manager","phone":"(845) 417-4790","organization":"Klein, Leffler and Metz"},{"id":763,"name":"Tyrel Batz PhD","email":"peggie84@example.com","country":"Libyan Arab Jamahiriya","profession":"Recreation and Fitness Studies Teacher","phone":"1-319-518-2721","organization":"Murphy-Hirthe"}],"links":{"first":"https:\/\/events-management.test\/api\/events\/1\/attendees?page=1","last":"https:\/\/events-management.test\/api\/events\/1\/attendees?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"https:\/\/events-management.test\/api\/events\/1\/attendees","per_page":20,"total":4}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/events/{event_id}/attendees/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      event_id:
+        name: event_id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the attendee.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      event_id: 1
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: |-
+          {
+              "message": "The route api/events/1/attendees/architecto could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/event-types
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":22,"name":"Bootcamp","description":"Intensive training sessions focused on rapid skill development."},{"id":10,"name":"Ceremony","description":"Formal occasions marking special events or achievements."},{"id":16,"name":"Charity Event","description":"Gatherings to support charitable organizations."},{"id":11,"name":"Competition","description":"Contests where participants compete for prizes."},{"id":4,"name":"Concert","description":"Live music performances by artists or bands."},{"id":1,"name":"Conference","description":"Professional gatherings for sharing knowledge and networking."},{"id":7,"name":"Exhibition","description":"Displays of art, products, or innovations."},{"id":5,"name":"Festival","description":"Large-scale celebrations featuring entertainment and activities."},{"id":9,"name":"Fundraiser","description":"Events aimed at raising money for a cause."},{"id":21,"name":"Gala","description":"Formal social gatherings often featuring dinner and entertainment."},{"id":15,"name":"Hackathon","description":"Collaborative programming and problem-solving events."},{"id":18,"name":"Lecture","description":"Educational talks by experts or academics."},{"id":6,"name":"Meetup","description":"Informal gatherings for people with shared interests."},{"id":8,"name":"Networking","description":"Events designed to connect professionals."},{"id":20,"name":"Open House","description":"Events where organizations invite the public to visit and learn more."},{"id":12,"name":"Panel Discussion","description":"Expert-led discussions on specific topics."},{"id":14,"name":"Product Launch","description":"Unveiling of new products or services."},{"id":19,"name":"Retreat","description":"Events focused on relaxation, reflection, or team building."},{"id":23,"name":"Screening","description":"Showings of films, documentaries, or videos to an audience."},{"id":3,"name":"Seminar","description":"Educational meetings for discussion and learning."},{"id":17,"name":"Sports Event","description":"Competitions or exhibitions in various sports."},{"id":13,"name":"Trade Show","description":"Industry events showcasing products and services."},{"id":2,"name":"Workshop","description":"Hands-on sessions focused on skill development."}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
         custom: []
     responseFields: []
     auth: []

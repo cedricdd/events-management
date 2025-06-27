@@ -6,16 +6,37 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Invite;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
+use App\Jobs\SendEventInviteEmail;
 use App\Http\Requests\InviteRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
+use Knuckles\Scribe\Attributes\Response;
 use App\Jobs\SendEventInviteDeletionEmail;
-use App\Jobs\SendEventInviteEmail;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
+/**
+ * @group Event Invites
+ * 
+ * Handles event invitations, allowing organizers to invite users to private events.
+ * 
+ * @authenticated
+ */
 class InviteController extends Controller
 {
+
+    /**
+     * Get Invites for an Event
+     * 
+     * Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites. 
+     * 
+     * @urlParam event_id int required The ID of the event for which to retrieve invites. Example: 1
+     */
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "This event is a public event, there are no invites."}', 403)]
+    #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[ResponseFromApiResource(UserCollection::class, User::class, 200)]
     public function index(Request $request, Event $event): JsonResponse|UserCollection
     {
         // Make sure the event is private
@@ -29,6 +50,20 @@ class InviteController extends Controller
         return new UserCollection($invites);
     }
 
+    /**
+     * Create Invites for an Event
+     * 
+     * Allows the organizer of a private event to invite users to the event.
+     * 
+     * @urlParam event_id int required The ID of the event to which users will be invited. Example: 1
+     */
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "You are not authorized to invite users to this event."}', 403)]
+    #[Response('{"message": "You cannot invite users to an event that has already started."}', 403)]
+    #[Response('{"message": "You can only invite users to private events."}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[ResponseFromApiResource(UserCollection::class, User::class, 201, additional: ['message' => 'Invites created successfully.'])]
     public function store(InviteRequest $request, Event $event): JsonResponse
     {
         // First make sure the user is the organizer of the event
@@ -68,12 +103,22 @@ class InviteController extends Controller
             $invites[] = new UserResource($userInvited);
         }
 
-        return response()->json([
+        return new UserCollection($invites)->additional([
             'message' => 'Invites created successfully.',
-            'invites' => $invites,
-        ], 201);
+        ])->response()->setStatusCode(201);
     }
 
+    /**
+     * Remove Invites for an Event
+     * 
+     * Allows the organizer of a private event to remove invites for users.
+     * 
+     * @urlParam event_id int required The ID of the event from which users will be removed. Example: 1
+     */
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[ResponseFromApiResource(UserCollection::class, User::class, 200, additional: ['message' => 'Invites removed successfully.'])]
     public function destroy(InviteRequest $request, Event $event): Response|JsonResponse
     {
         $users = [];
@@ -87,27 +132,26 @@ class InviteController extends Controller
             // That user doesn't exist or it's the same user as the one making the request
             if ($user == false || $user->is($request->user()))
 
-            // The user had already registered for the event
-            if ($event->attendees()->where('user_id', $user->id)->exists()) {
-                // Detach the attendee from the event
-                $event->attendees()->detach($user->id);
+                // The user had already registered for the event
+                if ($event->attendees()->where('user_id', $user->id)->exists()) {
+                    // Detach the attendee from the event
+                    $event->attendees()->detach($user->id);
 
-                // The attendee gets his tokens back
-                $user->increment('tokens', $event->cost);
-                $user->decrement('tokens_spend', $event->cost);
-            }
+                    // The attendee gets his tokens back
+                    $user->increment('tokens', $event->cost);
+                    $user->decrement('tokens_spend', $event->cost);
+                }
 
             SendEventInviteDeletionEmail::dispatch($event->id, $user->id)->delay(now()->addMinutes(value: 10));
 
             // Remove the invite
             $event->invitedUsers()->detach($user->id);
 
-            $users[] = new UserResource($user);
+            $users[] = $user;
         }
 
-        return response()->json([
+        return new UserCollection($users)->additional([
             'message' => 'Invites removed successfully.',
-            'users' => $users,
-        ]);
+        ])->response()->setStatusCode(200);
     }
 }

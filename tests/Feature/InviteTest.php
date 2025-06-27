@@ -62,6 +62,12 @@ test('invites_index_unauthorized', function () {
         ]);
 });
 
+test('invites_index_unauthenticated', function () {
+    $event = $this->getPrivateEvent($this->organizer, 10);
+
+    $this->deleteJson(route('invites.index', $event->id), ['users' => [$this->user->id]])->assertUnauthorized();
+});
+
 test('invites_index_not_private_event', function () {
     Sanctum::actingAs($this->organizer);
 
@@ -102,8 +108,8 @@ test('invites_store', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJson([
             'message' => 'Invites created successfully.',
-            'invites' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
-        ]);
+            'data' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
+        ])->assertJsonCount($count, 'data');
 
     $this->assertDatabaseCount('invites', $count);
 
@@ -130,8 +136,8 @@ test('invites_store_bad_users', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJson([
             'message' => 'Invites created successfully.',
-            'invites' => [],
-        ]);
+            'data' => [],
+        ])->assertJsonCount(0, 'data');
 
     $this->assertDatabaseCount('invites', 0);
 });
@@ -194,6 +200,12 @@ test('invites_store_event_in_past', function () {
         ]);
 });
 
+test('invites_store_unauthenticated', function () {
+    $event = $this->getPrivateEvent($this->organizer, 10);
+
+    $this->deleteJson(route('invites.store', $event->id), ['users' => [$this->user->id]])->assertUnauthorized();
+});
+
 test('invites_store_validation', function () {
     $event = $this->getEvents(count: 1, organizer: $this->organizer, overrides: [
         'public' => false,
@@ -222,8 +234,8 @@ test('invites_destroy', function () {
         ->assertHeader('Content-Type', 'application/json')
         ->assertJson([
             'message' => 'Invites removed successfully.',
-            'users' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
-        ]);
+            'data' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
+        ])->assertJsonCount(10 - $users->count(), 'data');
         
 
     $this->assertDatabaseCount('invites', 10 - count($users));
@@ -234,6 +246,12 @@ test('invites_destroy', function () {
 
     Queue::assertPushed(SendEventInviteDeletionEmail::class);
     Queue::assertCount(count($users));
+});
+
+test('invites_destroy_unauthenticated', function () {
+    $event = $this->getPrivateEvent($this->organizer, 10);
+
+    $this->deleteJson(route('invites.destroy', $event->id))->assertUnauthorized();
 });
 
 test('invites_destroy_unauthorized', function () {

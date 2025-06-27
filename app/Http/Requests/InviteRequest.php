@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @bodyParam users integer[] required The IDs of the users to ban. Example: [1, 2, 3]
+ */
 class InviteRequest extends FormRequest
 {
     /**

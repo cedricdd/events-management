@@ -124,15 +124,6 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-event-types--type_id-">
                                 <a href="#endpoints-DELETEapi-event-types--type_id-">DELETE api/event-types/{type_id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-events--event_id--invites">
-                                <a href="#endpoints-GETapi-events--event_id--invites">GET api/events/{event_id}/invites</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-events--event_id--invites">
-                                <a href="#endpoints-POSTapi-events--event_id--invites">POST api/events/{event_id}/invites</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-events--event_id--invites">
-                                <a href="#endpoints-DELETEapi-events--event_id--invites">DELETE api/events/{event_id}/invites</a>
-                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-events">
                                 <a href="#endpoints-GETapi-events">Display a listing of the resource.</a>
                             </li>
@@ -159,6 +150,22 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-docs">
                                 <a href="#endpoints-GETapi-docs">Invoke the controller method.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-event-invites" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="event-invites">
+                    <a href="#event-invites">Event Invites</a>
+                </li>
+                                    <ul id="tocify-subheader-event-invites" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="event-invites-GETapi-events--event_id--invites">
+                                <a href="#event-invites-GETapi-events--event_id--invites">Get Invites for an Event</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="event-invites-POSTapi-events--event_id--invites">
+                                <a href="#event-invites-POSTapi-events--event_id--invites">Create Invites for an Event</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="event-invites-DELETEapi-events--event_id--invites">
+                                <a href="#event-invites-DELETEapi-events--event_id--invites">Remove Invites for an Event</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -551,7 +558,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 4056,
+            &quot;id&quot;: 4206,
             &quot;name&quot;: &quot;Ms. Elisabeth Okuneva&quot;,
             &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
             &quot;country&quot;: &quot;Peru&quot;,
@@ -560,7 +567,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Price Ltd&quot;
         },
         {
-            &quot;id&quot;: 4057,
+            &quot;id&quot;: 4207,
             &quot;name&quot;: &quot;Pearl Hauck Sr.&quot;,
             &quot;email&quot;: &quot;alayna44@example.org&quot;,
             &quot;country&quot;: &quot;Saint Vincent and the Grenadines&quot;,
@@ -735,7 +742,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 4058,
+            &quot;id&quot;: 4208,
             &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
             &quot;email&quot;: &quot;idickens@example.org&quot;,
             &quot;country&quot;: &quot;Morocco&quot;,
@@ -744,7 +751,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Hauck-Leuschke&quot;
         },
         {
-            &quot;id&quot;: 4059,
+            &quot;id&quot;: 4209,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
             &quot;email&quot;: &quot;bauch.marcelo@example.com&quot;,
             &quot;country&quot;: &quot;Holy See (Vatican City State)&quot;,
@@ -913,7 +920,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 4060,
+            &quot;id&quot;: 4210,
             &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
             &quot;email&quot;: &quot;aschuster@example.com&quot;,
             &quot;country&quot;: &quot;Zambia&quot;,
@@ -922,7 +929,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;McLaughlin, Leuschke and Bauch&quot;
         },
         {
-            &quot;id&quot;: 4061,
+            &quot;id&quot;: 4211,
             &quot;name&quot;: &quot;Mr. Oswald Koch&quot;,
             &quot;email&quot;: &quot;bailee15@example.org&quot;,
             &quot;country&quot;: &quot;Heard Island and McDonald Islands&quot;,
@@ -1056,7 +1063,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"end_date\": \"2051-07-21\",
     \"location\": \"n\",
     \"cost\": 7,
-    \"public\": false,
+    \"public\": true,
     \"type\": \"architecto\"
 }"
 </code></pre></div>
@@ -1079,7 +1086,7 @@ let body = {
     "end_date": "2051-07-21",
     "location": "n",
     "cost": 7,
-    "public": false,
+    "public": true,
     "type": "architecto"
 };
 
@@ -1248,7 +1255,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -1286,7 +1293,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"end_date\": \"2051-07-21\",
     \"location\": \"n\",
     \"cost\": 7,
-    \"public\": false,
+    \"public\": true,
     \"type\": \"architecto\"
 }"
 </code></pre></div>
@@ -1309,7 +1316,7 @@ let body = {
     "end_date": "2051-07-21",
     "location": "n",
     "cost": 7,
-    "public": false,
+    "public": true,
     "type": "architecto"
 };
 
@@ -1490,7 +1497,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -2281,424 +2288,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-events--event_id--invites">GET api/events/{event_id}/invites</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-events--event_id--invites">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://events-management.test/api/events/1/invites" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://events-management.test/api/events/1/invites"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-events--event_id--invites">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-events--event_id--invites" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-events--event_id--invites"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-events--event_id--invites"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-events--event_id--invites" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-events--event_id--invites">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-events--event_id--invites" data-method="GET"
-      data-path="api/events/{event_id}/invites"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-events--event_id--invites', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-events--event_id--invites"
-                    onclick="tryItOut('GETapi-events--event_id--invites');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-events--event_id--invites"
-                    onclick="cancelTryOut('GETapi-events--event_id--invites');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-events--event_id--invites"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/events/{event_id}/invites</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-events--event_id--invites"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-events--event_id--invites"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="event_id"                data-endpoint="GETapi-events--event_id--invites"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the event. Example: <code>1</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-events--event_id--invites">POST api/events/{event_id}/invites</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-events--event_id--invites">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://events-management.test/api/events/1/invites" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"users\": []
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://events-management.test/api/events/1/invites"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "users": []
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-events--event_id--invites">
-</span>
-<span id="execution-results-POSTapi-events--event_id--invites" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-events--event_id--invites"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-events--event_id--invites"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-events--event_id--invites" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-events--event_id--invites">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-events--event_id--invites" data-method="POST"
-      data-path="api/events/{event_id}/invites"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-events--event_id--invites', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-events--event_id--invites"
-                    onclick="tryItOut('POSTapi-events--event_id--invites');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-events--event_id--invites"
-                    onclick="cancelTryOut('POSTapi-events--event_id--invites');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-events--event_id--invites"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/events/{event_id}/invites</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-events--event_id--invites"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-events--event_id--invites"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="event_id"                data-endpoint="POSTapi-events--event_id--invites"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the event. Example: <code>1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="users"                data-endpoint="POSTapi-events--event_id--invites"
-               value=""
-               data-component="body">
-    <br>
-
-        </div>
-        </form>
-
-                    <h2 id="endpoints-DELETEapi-events--event_id--invites">DELETE api/events/{event_id}/invites</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-DELETEapi-events--event_id--invites">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "https://events-management.test/api/events/1/invites" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"users\": []
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://events-management.test/api/events/1/invites"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "users": []
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-DELETEapi-events--event_id--invites">
-</span>
-<span id="execution-results-DELETEapi-events--event_id--invites" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-events--event_id--invites"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-events--event_id--invites"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-DELETEapi-events--event_id--invites" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-events--event_id--invites">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-DELETEapi-events--event_id--invites" data-method="DELETE"
-      data-path="api/events/{event_id}/invites"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-events--event_id--invites', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-events--event_id--invites"
-                    onclick="tryItOut('DELETEapi-events--event_id--invites');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-events--event_id--invites"
-                    onclick="cancelTryOut('DELETEapi-events--event_id--invites');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-events--event_id--invites"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/events/{event_id}/invites</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-events--event_id--invites"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-events--event_id--invites"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="event_id"                data-endpoint="DELETEapi-events--event_id--invites"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the event. Example: <code>1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="users"                data-endpoint="DELETEapi-events--event_id--invites"
-               value=""
-               data-component="body">
-    <br>
-
-        </div>
-        </form>
-
                     <h2 id="endpoints-GETapi-events">Display a listing of the resource.</h2>
 
 <p>
@@ -2883,7 +2472,7 @@ access-control-allow-origin: *
         &quot;last_page&quot;: 110,
         &quot;path&quot;: &quot;https://events-management.test/api/events&quot;,
         &quot;per_page&quot;: 10,
-        &quot;total&quot;: 1093
+        &quot;total&quot;: 1092
     }
 }</code>
  </pre>
@@ -2981,10 +2570,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"location\": \"d\",
     \"cost_min\": 37,
     \"cost_max\": 9,
-    \"starts_before\": \"2025-06-27 19:20:06\",
-    \"starts_after\": \"2025-06-27 19:20:06\",
-    \"ends_before\": \"2025-06-27 19:20:06\",
-    \"ends_after\": \"2025-06-27 19:20:06\",
+    \"starts_before\": \"2025-06-27 20:01:38\",
+    \"starts_after\": \"2025-06-27 20:01:38\",
+    \"ends_before\": \"2025-06-27 20:01:38\",
+    \"ends_after\": \"2025-06-27 20:01:38\",
     \"type\": \"architecto\",
     \"attendees_min\": 39,
     \"attendees_max\": 84,
@@ -3010,10 +2599,10 @@ let body = {
     "location": "d",
     "cost_min": 37,
     "cost_max": 9,
-    "starts_before": "2025-06-27 19:20:06",
-    "starts_after": "2025-06-27 19:20:06",
-    "ends_before": "2025-06-27 19:20:06",
-    "ends_after": "2025-06-27 19:20:06",
+    "starts_before": "2025-06-27 20:01:38",
+    "starts_after": "2025-06-27 20:01:38",
+    "ends_before": "2025-06-27 20:01:38",
+    "ends_after": "2025-06-27 20:01:38",
     "type": "architecto",
     "attendees_min": 39,
     "attendees_max": 84,
@@ -3185,10 +2774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="starts_before"                data-endpoint="GETapi-events-search"
-               value="2025-06-27 19:20:06"
+               value="2025-06-27 20:01:38"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 19:20:06</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 20:01:38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>starts_after</code></b>&nbsp;&nbsp;
@@ -3196,10 +2785,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="starts_after"                data-endpoint="GETapi-events-search"
-               value="2025-06-27 19:20:06"
+               value="2025-06-27 20:01:38"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 19:20:06</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 20:01:38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_before</code></b>&nbsp;&nbsp;
@@ -3207,10 +2796,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="ends_before"                data-endpoint="GETapi-events-search"
-               value="2025-06-27 19:20:06"
+               value="2025-06-27 20:01:38"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 19:20:06</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 20:01:38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_after</code></b>&nbsp;&nbsp;
@@ -3218,10 +2807,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="ends_after"                data-endpoint="GETapi-events-search"
-               value="2025-06-27 19:20:06"
+               value="2025-06-27 20:01:38"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 19:20:06</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-06-27 20:01:38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -4481,15 +4070,6 @@ access-control-allow-origin: *
                                                                                 &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;endpoints-DELETEapi-event-types--type_id-&quot;&gt;
                                 &lt;a href=&quot;#endpoints-DELETEapi-event-types--type_id-&quot;&gt;DELETE api/event-types/{type_id}&lt;/a&gt;
                             &lt;/li&gt;
-                                                                                &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;endpoints-GETapi-events--event_id--invites&quot;&gt;
-                                &lt;a href=&quot;#endpoints-GETapi-events--event_id--invites&quot;&gt;GET api/events/{event_id}/invites&lt;/a&gt;
-                            &lt;/li&gt;
-                                                                                &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;endpoints-POSTapi-events--event_id--invites&quot;&gt;
-                                &lt;a href=&quot;#endpoints-POSTapi-events--event_id--invites&quot;&gt;POST api/events/{event_id}/invites&lt;/a&gt;
-                            &lt;/li&gt;
-                                                                                &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;endpoints-DELETEapi-events--event_id--invites&quot;&gt;
-                                &lt;a href=&quot;#endpoints-DELETEapi-events--event_id--invites&quot;&gt;DELETE api/events/{event_id}/invites&lt;/a&gt;
-                            &lt;/li&gt;
                                                                                 &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;endpoints-GETapi-events&quot;&gt;
                                 &lt;a href=&quot;#endpoints-GETapi-events&quot;&gt;Display a listing of the resource.&lt;/a&gt;
                             &lt;/li&gt;
@@ -4519,13 +4099,29 @@ access-control-allow-origin: *
                             &lt;/li&gt;
                                                                         &lt;/ul&gt;
                             &lt;/ul&gt;
+                    &lt;ul id=&quot;tocify-header-event-invites&quot; class=&quot;tocify-header&quot;&gt;
+                &lt;li class=&quot;tocify-item level-1&quot; data-unique=&quot;event-invites&quot;&gt;
+                    &lt;a href=&quot;#event-invites&quot;&gt;Event Invites&lt;/a&gt;
+                &lt;/li&gt;
+                                    &lt;ul id=&quot;tocify-subheader-event-invites&quot; class=&quot;tocify-subheader&quot;&gt;
+                                                    &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;event-invites-GETapi-events--event_id--invites&quot;&gt;
+                                &lt;a href=&quot;#event-invites-GETapi-events--event_id--invites&quot;&gt;Get Invites for an Event&lt;/a&gt;
+                            &lt;/li&gt;
+                                                                                &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;event-invites-POSTapi-events--event_id--invites&quot;&gt;
+                                &lt;a href=&quot;#event-invites-POSTapi-events--event_id--invites&quot;&gt;Create Invites for an Event&lt;/a&gt;
+                            &lt;/li&gt;
+                                                                                &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;event-invites-DELETEapi-events--event_id--invites&quot;&gt;
+                                &lt;a href=&quot;#event-invites-DELETEapi-events--event_id--invites&quot;&gt;Remove Invites for an Event&lt;/a&gt;
+                            &lt;/li&gt;
+                                                                        &lt;/ul&gt;
+                            &lt;/ul&gt;
                     &lt;ul id=&quot;tocify-header-user-management&quot; class=&quot;tocify-header&quot;&gt;
                 &lt;li class=&quot;tocify-item level-1&quot; data-unique=&quot;user-management&quot;&gt;
                     &lt;a href=&quot;#user-management&quot;&gt;User Management&lt;/a&gt;
                 &lt;/li&gt;
                                     &lt;ul id=&quot;tocify-subheader-user-management&quot; class=&quot;tocify-subheader&quot;&gt;
-                                                    &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;user-management-GETapi-users-show--user--&quot;&gt;
-                                &lt;a href=&quot;#user-management-GETapi-users-show--user--&quot;&gt;Show User Information&lt;/a&gt;
+                                                    &lt;li class=&quot;tocify-item level-2&quot; data-unique=&quot;user-management-GETapi-users--user--&quot;&gt;
+                                &lt;a href=&quot;#user-management-GETapi-users--user--&quot;&gt;Show User Information&lt;/a&gt;
                             &lt;/li&gt;
                                                                         &lt;/ul&gt;
                             &lt;/ul&gt;
@@ -4908,7 +4504,7 @@ fetch(url, {
 &lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
     &amp;quot;data&amp;quot;: [
         {
-            &amp;quot;id&amp;quot;: 4050,
+            &amp;quot;id&amp;quot;: 4194,
             &amp;quot;name&amp;quot;: &amp;quot;Ms. Elisabeth Okuneva&amp;quot;,
             &amp;quot;email&amp;quot;: &amp;quot;gulgowski.asia@example.com&amp;quot;,
             &amp;quot;country&amp;quot;: &amp;quot;Peru&amp;quot;,
@@ -4917,7 +4513,7 @@ fetch(url, {
             &amp;quot;organization&amp;quot;: &amp;quot;Price Ltd&amp;quot;
         },
         {
-            &amp;quot;id&amp;quot;: 4051,
+            &amp;quot;id&amp;quot;: 4195,
             &amp;quot;name&amp;quot;: &amp;quot;Pearl Hauck Sr.&amp;quot;,
             &amp;quot;email&amp;quot;: &amp;quot;alayna44@example.org&amp;quot;,
             &amp;quot;country&amp;quot;: &amp;quot;Saint Vincent and the Grenadines&amp;quot;,
@@ -5092,7 +4688,7 @@ fetch(url, {
 &lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
     &amp;quot;data&amp;quot;: [
         {
-            &amp;quot;id&amp;quot;: 4052,
+            &amp;quot;id&amp;quot;: 4196,
             &amp;quot;name&amp;quot;: &amp;quot;Ms. Audra Crooks II&amp;quot;,
             &amp;quot;email&amp;quot;: &amp;quot;idickens@example.org&amp;quot;,
             &amp;quot;country&amp;quot;: &amp;quot;Morocco&amp;quot;,
@@ -5101,7 +4697,7 @@ fetch(url, {
             &amp;quot;organization&amp;quot;: &amp;quot;Hauck-Leuschke&amp;quot;
         },
         {
-            &amp;quot;id&amp;quot;: 4053,
+            &amp;quot;id&amp;quot;: 4197,
             &amp;quot;name&amp;quot;: &amp;quot;Alanis McLaughlin&amp;quot;,
             &amp;quot;email&amp;quot;: &amp;quot;bauch.marcelo@example.com&amp;quot;,
             &amp;quot;country&amp;quot;: &amp;quot;Holy See (Vatican City State)&amp;quot;,
@@ -5270,7 +4866,7 @@ fetch(url, {
 &lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
     &amp;quot;data&amp;quot;: [
         {
-            &amp;quot;id&amp;quot;: 4054,
+            &amp;quot;id&amp;quot;: 4198,
             &amp;quot;name&amp;quot;: &amp;quot;Ms. Audra Crooks II&amp;quot;,
             &amp;quot;email&amp;quot;: &amp;quot;aschuster@example.com&amp;quot;,
             &amp;quot;country&amp;quot;: &amp;quot;Zambia&amp;quot;,
@@ -5279,7 +4875,7 @@ fetch(url, {
             &amp;quot;organization&amp;quot;: &amp;quot;McLaughlin, Leuschke and Bauch&amp;quot;
         },
         {
-            &amp;quot;id&amp;quot;: 4055,
+            &amp;quot;id&amp;quot;: 4199,
             &amp;quot;name&amp;quot;: &amp;quot;Mr. Oswald Koch&amp;quot;,
             &amp;quot;email&amp;quot;: &amp;quot;bailee15@example.org&amp;quot;,
             &amp;quot;country&amp;quot;: &amp;quot;Heard Island and McDonald Islands&amp;quot;,
@@ -6638,424 +6234,6 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
             &lt;/div&gt;
                     &lt;/form&gt;
 
-                    &lt;h2 id=&quot;endpoints-GETapi-events--event_id--invites&quot;&gt;GET api/events/{event_id}/invites&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;/p&gt;
-
-
-
-&lt;span id=&quot;example-requests-GETapi-events--event_id--invites&quot;&gt;
-&lt;blockquote&gt;Example request:&lt;/blockquote&gt;
-
-
-&lt;div class=&quot;bash-example&quot;&gt;
-    &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request GET \
-    --get &quot;https://events-management.test/api/events/1/invites&quot; \
-    --header &quot;Content-Type: application/json&quot; \
-    --header &quot;Accept: application/json&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class=&quot;javascript-example&quot;&gt;
-    &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
-    &quot;https://events-management.test/api/events/1/invites&quot;
-);
-
-const headers = {
-    &quot;Content-Type&quot;: &quot;application/json&quot;,
-    &quot;Accept&quot;: &quot;application/json&quot;,
-};
-
-fetch(url, {
-    method: &quot;GET&quot;,
-    headers,
-}).then(response =&amp;gt; response.json());&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/span&gt;
-
-&lt;span id=&quot;example-responses-GETapi-events--event_id--invites&quot;&gt;
-            &lt;blockquote&gt;
-            &lt;p&gt;Example response (401):&lt;/p&gt;
-        &lt;/blockquote&gt;
-                &lt;details class=&quot;annotation&quot;&gt;
-            &lt;summary style=&quot;cursor: pointer;&quot;&gt;
-                &lt;small onclick=&quot;textContent = parentElement.parentElement.open ? &#039;Show headers&#039; : &#039;Hide headers&#039;&quot;&gt;Show headers&lt;/small&gt;
-            &lt;/summary&gt;
-            &lt;pre&gt;&lt;code class=&quot;language-http&quot;&gt;cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- &lt;/code&gt;&lt;/pre&gt;&lt;/details&gt;         &lt;pre&gt;
-
-&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
-    &amp;quot;message&amp;quot;: &amp;quot;Unauthenticated.&amp;quot;
-}&lt;/code&gt;
- &lt;/pre&gt;
-    &lt;/span&gt;
-&lt;span id=&quot;execution-results-GETapi-events--event_id--invites&quot; hidden&gt;
-    &lt;blockquote&gt;Received response&lt;span
-                id=&quot;execution-response-status-GETapi-events--event_id--invites&quot;&gt;&lt;/span&gt;:
-    &lt;/blockquote&gt;
-    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-GETapi-events--event_id--invites&quot;
-      data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/span&gt;
-&lt;span id=&quot;execution-error-GETapi-events--event_id--invites&quot; hidden&gt;
-    &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
-    &lt;pre&gt;&lt;code id=&quot;execution-error-message-GETapi-events--event_id--invites&quot;&gt;
-
-Tip: Check that you&amp;#039;re properly connected to the network.
-If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
-&lt;/span&gt;
-&lt;form id=&quot;form-GETapi-events--event_id--invites&quot; data-method=&quot;GET&quot;
-      data-path=&quot;api/events/{event_id}/invites&quot;
-      data-authed=&quot;0&quot;
-      data-hasfiles=&quot;0&quot;
-      data-isarraybody=&quot;0&quot;
-      autocomplete=&quot;off&quot;
-      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;GETapi-events--event_id--invites&#039;, this);&quot;&gt;
-    &lt;h3&gt;
-        Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                    &lt;button type=&quot;button&quot;
-                    style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-tryout-GETapi-events--event_id--invites&quot;
-                    onclick=&quot;tryItOut(&#039;GETapi-events--event_id--invites&#039;);&quot;&gt;Try it out ⚡
-            &lt;/button&gt;
-            &lt;button type=&quot;button&quot;
-                    style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-canceltryout-GETapi-events--event_id--invites&quot;
-                    onclick=&quot;cancelTryOut(&#039;GETapi-events--event_id--invites&#039;);&quot; hidden&gt;Cancel 🛑
-            &lt;/button&gt;&amp;nbsp;&amp;nbsp;
-            &lt;button type=&quot;submit&quot;
-                    style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-executetryout-GETapi-events--event_id--invites&quot;
-                    data-initial-text=&quot;Send Request 💥&quot;
-                    data-loading-text=&quot;⏱ Sending...&quot;
-                    hidden&gt;Send Request 💥
-            &lt;/button&gt;
-            &lt;/h3&gt;
-            &lt;p&gt;
-            &lt;small class=&quot;badge badge-green&quot;&gt;GET&lt;/small&gt;
-            &lt;b&gt;&lt;code&gt;api/events/{event_id}/invites&lt;/code&gt;&lt;/b&gt;
-        &lt;/p&gt;
-                &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
-                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Content-Type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Content-Type&quot;                data-endpoint=&quot;GETapi-events--event_id--invites&quot;
-               value=&quot;application/json&quot;
-               data-component=&quot;header&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Accept&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Accept&quot;                data-endpoint=&quot;GETapi-events--event_id--invites&quot;
-               value=&quot;application/json&quot;
-               data-component=&quot;header&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                        &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;URL Parameters&lt;/b&gt;&lt;/h4&gt;
-                    &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;event_id&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
-               step=&quot;any&quot;               name=&quot;event_id&quot;                data-endpoint=&quot;GETapi-events--event_id--invites&quot;
-               value=&quot;1&quot;
-               data-component=&quot;url&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;The ID of the event. Example: &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                    &lt;/form&gt;
-
-                    &lt;h2 id=&quot;endpoints-POSTapi-events--event_id--invites&quot;&gt;POST api/events/{event_id}/invites&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;/p&gt;
-
-
-
-&lt;span id=&quot;example-requests-POSTapi-events--event_id--invites&quot;&gt;
-&lt;blockquote&gt;Example request:&lt;/blockquote&gt;
-
-
-&lt;div class=&quot;bash-example&quot;&gt;
-    &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request POST \
-    &quot;https://events-management.test/api/events/1/invites&quot; \
-    --header &quot;Content-Type: application/json&quot; \
-    --header &quot;Accept: application/json&quot; \
-    --data &quot;{
-    \&quot;users\&quot;: []
-}&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class=&quot;javascript-example&quot;&gt;
-    &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
-    &quot;https://events-management.test/api/events/1/invites&quot;
-);
-
-const headers = {
-    &quot;Content-Type&quot;: &quot;application/json&quot;,
-    &quot;Accept&quot;: &quot;application/json&quot;,
-};
-
-let body = {
-    &quot;users&quot;: []
-};
-
-fetch(url, {
-    method: &quot;POST&quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;gt; response.json());&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/span&gt;
-
-&lt;span id=&quot;example-responses-POSTapi-events--event_id--invites&quot;&gt;
-&lt;/span&gt;
-&lt;span id=&quot;execution-results-POSTapi-events--event_id--invites&quot; hidden&gt;
-    &lt;blockquote&gt;Received response&lt;span
-                id=&quot;execution-response-status-POSTapi-events--event_id--invites&quot;&gt;&lt;/span&gt;:
-    &lt;/blockquote&gt;
-    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-POSTapi-events--event_id--invites&quot;
-      data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/span&gt;
-&lt;span id=&quot;execution-error-POSTapi-events--event_id--invites&quot; hidden&gt;
-    &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
-    &lt;pre&gt;&lt;code id=&quot;execution-error-message-POSTapi-events--event_id--invites&quot;&gt;
-
-Tip: Check that you&amp;#039;re properly connected to the network.
-If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
-&lt;/span&gt;
-&lt;form id=&quot;form-POSTapi-events--event_id--invites&quot; data-method=&quot;POST&quot;
-      data-path=&quot;api/events/{event_id}/invites&quot;
-      data-authed=&quot;0&quot;
-      data-hasfiles=&quot;0&quot;
-      data-isarraybody=&quot;0&quot;
-      autocomplete=&quot;off&quot;
-      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;POSTapi-events--event_id--invites&#039;, this);&quot;&gt;
-    &lt;h3&gt;
-        Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                    &lt;button type=&quot;button&quot;
-                    style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-tryout-POSTapi-events--event_id--invites&quot;
-                    onclick=&quot;tryItOut(&#039;POSTapi-events--event_id--invites&#039;);&quot;&gt;Try it out ⚡
-            &lt;/button&gt;
-            &lt;button type=&quot;button&quot;
-                    style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-canceltryout-POSTapi-events--event_id--invites&quot;
-                    onclick=&quot;cancelTryOut(&#039;POSTapi-events--event_id--invites&#039;);&quot; hidden&gt;Cancel 🛑
-            &lt;/button&gt;&amp;nbsp;&amp;nbsp;
-            &lt;button type=&quot;submit&quot;
-                    style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-executetryout-POSTapi-events--event_id--invites&quot;
-                    data-initial-text=&quot;Send Request 💥&quot;
-                    data-loading-text=&quot;⏱ Sending...&quot;
-                    hidden&gt;Send Request 💥
-            &lt;/button&gt;
-            &lt;/h3&gt;
-            &lt;p&gt;
-            &lt;small class=&quot;badge badge-black&quot;&gt;POST&lt;/small&gt;
-            &lt;b&gt;&lt;code&gt;api/events/{event_id}/invites&lt;/code&gt;&lt;/b&gt;
-        &lt;/p&gt;
-                &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
-                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Content-Type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Content-Type&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
-               value=&quot;application/json&quot;
-               data-component=&quot;header&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Accept&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Accept&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
-               value=&quot;application/json&quot;
-               data-component=&quot;header&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                        &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;URL Parameters&lt;/b&gt;&lt;/h4&gt;
-                    &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;event_id&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
-               step=&quot;any&quot;               name=&quot;event_id&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
-               value=&quot;1&quot;
-               data-component=&quot;url&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;The ID of the event. Example: &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                            &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Body Parameters&lt;/b&gt;&lt;/h4&gt;
-        &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
-            &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;users&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&lt;small&gt;object&lt;/small&gt;&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;users&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
-               value=&quot;&quot;
-               data-component=&quot;body&quot;&gt;
-    &lt;br&gt;
-
-        &lt;/div&gt;
-        &lt;/form&gt;
-
-                    &lt;h2 id=&quot;endpoints-DELETEapi-events--event_id--invites&quot;&gt;DELETE api/events/{event_id}/invites&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;/p&gt;
-
-
-
-&lt;span id=&quot;example-requests-DELETEapi-events--event_id--invites&quot;&gt;
-&lt;blockquote&gt;Example request:&lt;/blockquote&gt;
-
-
-&lt;div class=&quot;bash-example&quot;&gt;
-    &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request DELETE \
-    &quot;https://events-management.test/api/events/1/invites&quot; \
-    --header &quot;Content-Type: application/json&quot; \
-    --header &quot;Accept: application/json&quot; \
-    --data &quot;{
-    \&quot;users\&quot;: []
-}&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class=&quot;javascript-example&quot;&gt;
-    &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
-    &quot;https://events-management.test/api/events/1/invites&quot;
-);
-
-const headers = {
-    &quot;Content-Type&quot;: &quot;application/json&quot;,
-    &quot;Accept&quot;: &quot;application/json&quot;,
-};
-
-let body = {
-    &quot;users&quot;: []
-};
-
-fetch(url, {
-    method: &quot;DELETE&quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;gt; response.json());&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/span&gt;
-
-&lt;span id=&quot;example-responses-DELETEapi-events--event_id--invites&quot;&gt;
-&lt;/span&gt;
-&lt;span id=&quot;execution-results-DELETEapi-events--event_id--invites&quot; hidden&gt;
-    &lt;blockquote&gt;Received response&lt;span
-                id=&quot;execution-response-status-DELETEapi-events--event_id--invites&quot;&gt;&lt;/span&gt;:
-    &lt;/blockquote&gt;
-    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-DELETEapi-events--event_id--invites&quot;
-      data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/span&gt;
-&lt;span id=&quot;execution-error-DELETEapi-events--event_id--invites&quot; hidden&gt;
-    &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
-    &lt;pre&gt;&lt;code id=&quot;execution-error-message-DELETEapi-events--event_id--invites&quot;&gt;
-
-Tip: Check that you&amp;#039;re properly connected to the network.
-If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
-&lt;/span&gt;
-&lt;form id=&quot;form-DELETEapi-events--event_id--invites&quot; data-method=&quot;DELETE&quot;
-      data-path=&quot;api/events/{event_id}/invites&quot;
-      data-authed=&quot;0&quot;
-      data-hasfiles=&quot;0&quot;
-      data-isarraybody=&quot;0&quot;
-      autocomplete=&quot;off&quot;
-      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;DELETEapi-events--event_id--invites&#039;, this);&quot;&gt;
-    &lt;h3&gt;
-        Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                    &lt;button type=&quot;button&quot;
-                    style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-tryout-DELETEapi-events--event_id--invites&quot;
-                    onclick=&quot;tryItOut(&#039;DELETEapi-events--event_id--invites&#039;);&quot;&gt;Try it out ⚡
-            &lt;/button&gt;
-            &lt;button type=&quot;button&quot;
-                    style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-canceltryout-DELETEapi-events--event_id--invites&quot;
-                    onclick=&quot;cancelTryOut(&#039;DELETEapi-events--event_id--invites&#039;);&quot; hidden&gt;Cancel 🛑
-            &lt;/button&gt;&amp;nbsp;&amp;nbsp;
-            &lt;button type=&quot;submit&quot;
-                    style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-executetryout-DELETEapi-events--event_id--invites&quot;
-                    data-initial-text=&quot;Send Request 💥&quot;
-                    data-loading-text=&quot;⏱ Sending...&quot;
-                    hidden&gt;Send Request 💥
-            &lt;/button&gt;
-            &lt;/h3&gt;
-            &lt;p&gt;
-            &lt;small class=&quot;badge badge-red&quot;&gt;DELETE&lt;/small&gt;
-            &lt;b&gt;&lt;code&gt;api/events/{event_id}/invites&lt;/code&gt;&lt;/b&gt;
-        &lt;/p&gt;
-                &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
-                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Content-Type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Content-Type&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
-               value=&quot;application/json&quot;
-               data-component=&quot;header&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Accept&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Accept&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
-               value=&quot;application/json&quot;
-               data-component=&quot;header&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                        &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;URL Parameters&lt;/b&gt;&lt;/h4&gt;
-                    &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
-                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;event_id&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
-               step=&quot;any&quot;               name=&quot;event_id&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
-               value=&quot;1&quot;
-               data-component=&quot;url&quot;&gt;
-    &lt;br&gt;
-&lt;p&gt;The ID of the event. Example: &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
-            &lt;/div&gt;
-                            &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Body Parameters&lt;/b&gt;&lt;/h4&gt;
-        &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
-            &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;users&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
-&lt;small&gt;object&lt;/small&gt;&amp;nbsp;
- &amp;nbsp;
-                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;users&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
-               value=&quot;&quot;
-               data-component=&quot;body&quot;&gt;
-    &lt;br&gt;
-
-        &lt;/div&gt;
-        &lt;/form&gt;
-
                     &lt;h2 id=&quot;endpoints-GETapi-events&quot;&gt;Display a listing of the resource.&lt;/h2&gt;
 
 &lt;p&gt;
@@ -7240,7 +6418,7 @@ access-control-allow-origin: *
         &amp;quot;last_page&amp;quot;: 110,
         &amp;quot;path&amp;quot;: &amp;quot;https://events-management.test/api/events&amp;quot;,
         &amp;quot;per_page&amp;quot;: 10,
-        &amp;quot;total&amp;quot;: 1093
+        &amp;quot;total&amp;quot;: 1092
     }
 }&lt;/code&gt;
  &lt;/pre&gt;
@@ -7338,10 +6516,10 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
     \&quot;location\&quot;: \&quot;d\&quot;,
     \&quot;cost_min\&quot;: 37,
     \&quot;cost_max\&quot;: 9,
-    \&quot;starts_before\&quot;: \&quot;2025-06-27 19:19:44\&quot;,
-    \&quot;starts_after\&quot;: \&quot;2025-06-27 19:19:44\&quot;,
-    \&quot;ends_before\&quot;: \&quot;2025-06-27 19:19:44\&quot;,
-    \&quot;ends_after\&quot;: \&quot;2025-06-27 19:19:44\&quot;,
+    \&quot;starts_before\&quot;: \&quot;2025-06-27 19:56:37\&quot;,
+    \&quot;starts_after\&quot;: \&quot;2025-06-27 19:56:37\&quot;,
+    \&quot;ends_before\&quot;: \&quot;2025-06-27 19:56:37\&quot;,
+    \&quot;ends_after\&quot;: \&quot;2025-06-27 19:56:37\&quot;,
     \&quot;type\&quot;: \&quot;architecto\&quot;,
     \&quot;attendees_min\&quot;: 39,
     \&quot;attendees_max\&quot;: 84,
@@ -7367,10 +6545,10 @@ let body = {
     &quot;location&quot;: &quot;d&quot;,
     &quot;cost_min&quot;: 37,
     &quot;cost_max&quot;: 9,
-    &quot;starts_before&quot;: &quot;2025-06-27 19:19:44&quot;,
-    &quot;starts_after&quot;: &quot;2025-06-27 19:19:44&quot;,
-    &quot;ends_before&quot;: &quot;2025-06-27 19:19:44&quot;,
-    &quot;ends_after&quot;: &quot;2025-06-27 19:19:44&quot;,
+    &quot;starts_before&quot;: &quot;2025-06-27 19:56:37&quot;,
+    &quot;starts_after&quot;: &quot;2025-06-27 19:56:37&quot;,
+    &quot;ends_before&quot;: &quot;2025-06-27 19:56:37&quot;,
+    &quot;ends_after&quot;: &quot;2025-06-27 19:56:37&quot;,
     &quot;type&quot;: &quot;architecto&quot;,
     &quot;attendees_min&quot;: 39,
     &quot;attendees_max&quot;: 84,
@@ -7542,10 +6720,10 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &lt;i&gt;optional&lt;/i&gt; &amp;nbsp;
                 &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
                               name=&quot;starts_before&quot;                data-endpoint=&quot;GETapi-events-search&quot;
-               value=&quot;2025-06-27 19:19:44&quot;
+               value=&quot;2025-06-27 19:56:37&quot;
                data-component=&quot;body&quot;&gt;
     &lt;br&gt;
-&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:19:44&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:56:37&lt;/code&gt;&lt;/p&gt;
         &lt;/div&gt;
                 &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
             &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;starts_after&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
@@ -7553,10 +6731,10 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &lt;i&gt;optional&lt;/i&gt; &amp;nbsp;
                 &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
                               name=&quot;starts_after&quot;                data-endpoint=&quot;GETapi-events-search&quot;
-               value=&quot;2025-06-27 19:19:44&quot;
+               value=&quot;2025-06-27 19:56:37&quot;
                data-component=&quot;body&quot;&gt;
     &lt;br&gt;
-&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:19:44&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:56:37&lt;/code&gt;&lt;/p&gt;
         &lt;/div&gt;
                 &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
             &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;ends_before&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
@@ -7564,10 +6742,10 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &lt;i&gt;optional&lt;/i&gt; &amp;nbsp;
                 &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
                               name=&quot;ends_before&quot;                data-endpoint=&quot;GETapi-events-search&quot;
-               value=&quot;2025-06-27 19:19:44&quot;
+               value=&quot;2025-06-27 19:56:37&quot;
                data-component=&quot;body&quot;&gt;
     &lt;br&gt;
-&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:19:44&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:56:37&lt;/code&gt;&lt;/p&gt;
         &lt;/div&gt;
                 &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
             &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;ends_after&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
@@ -7575,10 +6753,10 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &lt;i&gt;optional&lt;/i&gt; &amp;nbsp;
                 &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
                               name=&quot;ends_after&quot;                data-endpoint=&quot;GETapi-events-search&quot;
-               value=&quot;2025-06-27 19:19:44&quot;
+               value=&quot;2025-06-27 19:56:37&quot;
                data-component=&quot;body&quot;&gt;
     &lt;br&gt;
-&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:19:44&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Must be a valid date in the format &lt;code&gt;Y-m-d H:i:s&lt;/code&gt;. Example: &lt;code&gt;2025-06-27 19:56:37&lt;/code&gt;&lt;/p&gt;
         &lt;/div&gt;
                 &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
             &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
@@ -8838,15 +8016,6 @@ access-control-allow-origin: *
                                                                                 &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-DELETEapi-event-types--type_id-&amp;quot;&amp;gt;
                                 &amp;lt;a href=&amp;quot;#endpoints-DELETEapi-event-types--type_id-&amp;quot;&amp;gt;DELETE api/event-types/{type_id}&amp;lt;/a&amp;gt;
                             &amp;lt;/li&amp;gt;
-                                                                                &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-GETapi-events--event_id--invites&amp;quot;&amp;gt;
-                                &amp;lt;a href=&amp;quot;#endpoints-GETapi-events--event_id--invites&amp;quot;&amp;gt;GET api/events/{event_id}/invites&amp;lt;/a&amp;gt;
-                            &amp;lt;/li&amp;gt;
-                                                                                &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
-                                &amp;lt;a href=&amp;quot;#endpoints-POSTapi-events--event_id--invites&amp;quot;&amp;gt;POST api/events/{event_id}/invites&amp;lt;/a&amp;gt;
-                            &amp;lt;/li&amp;gt;
-                                                                                &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
-                                &amp;lt;a href=&amp;quot;#endpoints-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;DELETE api/events/{event_id}/invites&amp;lt;/a&amp;gt;
-                            &amp;lt;/li&amp;gt;
                                                                                 &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-GETapi-events&amp;quot;&amp;gt;
                                 &amp;lt;a href=&amp;quot;#endpoints-GETapi-events&amp;quot;&amp;gt;Display a listing of the resource.&amp;lt;/a&amp;gt;
                             &amp;lt;/li&amp;gt;
@@ -8871,8 +8040,21 @@ access-control-allow-origin: *
                                                                                 &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-GETapi-event-types&amp;quot;&amp;gt;
                                 &amp;lt;a href=&amp;quot;#endpoints-GETapi-event-types&amp;quot;&amp;gt;GET api/event-types&amp;lt;/a&amp;gt;
                             &amp;lt;/li&amp;gt;
-                                                                                &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;endpoints-GETapi-docs&amp;quot;&amp;gt;
-                                &amp;lt;a href=&amp;quot;#endpoints-GETapi-docs&amp;quot;&amp;gt;Invoke the controller method.&amp;lt;/a&amp;gt;
+                                                                        &amp;lt;/ul&amp;gt;
+                            &amp;lt;/ul&amp;gt;
+                    &amp;lt;ul id=&amp;quot;tocify-header-event-invites&amp;quot; class=&amp;quot;tocify-header&amp;quot;&amp;gt;
+                &amp;lt;li class=&amp;quot;tocify-item level-1&amp;quot; data-unique=&amp;quot;event-invites&amp;quot;&amp;gt;
+                    &amp;lt;a href=&amp;quot;#event-invites&amp;quot;&amp;gt;Event Invites&amp;lt;/a&amp;gt;
+                &amp;lt;/li&amp;gt;
+                                    &amp;lt;ul id=&amp;quot;tocify-subheader-event-invites&amp;quot; class=&amp;quot;tocify-subheader&amp;quot;&amp;gt;
+                                                    &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;event-invites-GETapi-events--event_id--invites&amp;quot;&amp;gt;
+                                &amp;lt;a href=&amp;quot;#event-invites-GETapi-events--event_id--invites&amp;quot;&amp;gt;Get Invites for an Event&amp;lt;/a&amp;gt;
+                            &amp;lt;/li&amp;gt;
+                                                                                &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;event-invites-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
+                                &amp;lt;a href=&amp;quot;#event-invites-POSTapi-events--event_id--invites&amp;quot;&amp;gt;Create Invites for an Event&amp;lt;/a&amp;gt;
+                            &amp;lt;/li&amp;gt;
+                                                                                &amp;lt;li class=&amp;quot;tocify-item level-2&amp;quot; data-unique=&amp;quot;event-invites-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
+                                &amp;lt;a href=&amp;quot;#event-invites-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;Remove Invites for an Event&amp;lt;/a&amp;gt;
                             &amp;lt;/li&amp;gt;
                                                                         &amp;lt;/ul&amp;gt;
                             &amp;lt;/ul&amp;gt;
@@ -9265,7 +8447,7 @@ fetch(url, {
 &amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
     &amp;amp;quot;data&amp;amp;quot;: [
         {
-            &amp;amp;quot;id&amp;amp;quot;: 4044,
+            &amp;amp;quot;id&amp;amp;quot;: 4182,
             &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Ms. Elisabeth Okuneva&amp;amp;quot;,
             &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;gulgowski.asia@example.com&amp;amp;quot;,
             &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Peru&amp;amp;quot;,
@@ -9274,7 +8456,7 @@ fetch(url, {
             &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Price Ltd&amp;amp;quot;
         },
         {
-            &amp;amp;quot;id&amp;amp;quot;: 4045,
+            &amp;amp;quot;id&amp;amp;quot;: 4183,
             &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Pearl Hauck Sr.&amp;amp;quot;,
             &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;alayna44@example.org&amp;amp;quot;,
             &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Saint Vincent and the Grenadines&amp;amp;quot;,
@@ -9449,7 +8631,7 @@ fetch(url, {
 &amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
     &amp;amp;quot;data&amp;amp;quot;: [
         {
-            &amp;amp;quot;id&amp;amp;quot;: 4046,
+            &amp;amp;quot;id&amp;amp;quot;: 4184,
             &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Ms. Audra Crooks II&amp;amp;quot;,
             &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;idickens@example.org&amp;amp;quot;,
             &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Morocco&amp;amp;quot;,
@@ -9458,7 +8640,7 @@ fetch(url, {
             &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Hauck-Leuschke&amp;amp;quot;
         },
         {
-            &amp;amp;quot;id&amp;amp;quot;: 4047,
+            &amp;amp;quot;id&amp;amp;quot;: 4185,
             &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Alanis McLaughlin&amp;amp;quot;,
             &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;bauch.marcelo@example.com&amp;amp;quot;,
             &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Holy See (Vatican City State)&amp;amp;quot;,
@@ -9627,7 +8809,7 @@ fetch(url, {
 &amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
     &amp;amp;quot;data&amp;amp;quot;: [
         {
-            &amp;amp;quot;id&amp;amp;quot;: 4048,
+            &amp;amp;quot;id&amp;amp;quot;: 4186,
             &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Ms. Audra Crooks II&amp;amp;quot;,
             &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;aschuster@example.com&amp;amp;quot;,
             &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Zambia&amp;amp;quot;,
@@ -9636,7 +8818,7 @@ fetch(url, {
             &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;McLaughlin, Leuschke and Bauch&amp;amp;quot;
         },
         {
-            &amp;amp;quot;id&amp;amp;quot;: 4049,
+            &amp;amp;quot;id&amp;amp;quot;: 4187,
             &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Mr. Oswald Koch&amp;amp;quot;,
             &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;bailee15@example.org&amp;amp;quot;,
             &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Heard Island and McDonald Islands&amp;amp;quot;,
@@ -9770,7 +8952,7 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
     \&amp;quot;end_date\&amp;quot;: \&amp;quot;2051-07-21\&amp;quot;,
     \&amp;quot;location\&amp;quot;: \&amp;quot;n\&amp;quot;,
     \&amp;quot;cost\&amp;quot;: 7,
-    \&amp;quot;public\&amp;quot;: false,
+    \&amp;quot;public\&amp;quot;: true,
     \&amp;quot;type\&amp;quot;: \&amp;quot;architecto\&amp;quot;
 }&amp;quot;
 &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
@@ -9793,7 +8975,7 @@ let body = {
     &amp;quot;end_date&amp;quot;: &amp;quot;2051-07-21&amp;quot;,
     &amp;quot;location&amp;quot;: &amp;quot;n&amp;quot;,
     &amp;quot;cost&amp;quot;: 7,
-    &amp;quot;public&amp;quot;: false,
+    &amp;quot;public&amp;quot;: true,
     &amp;quot;type&amp;quot;: &amp;quot;architecto&amp;quot;
 };
 
@@ -9962,7 +9144,7 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
             &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;
         &amp;lt;/label&amp;gt;
     &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
         &amp;lt;/div&amp;gt;
                 &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
             &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
@@ -10995,424 +10177,6 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
             &amp;lt;/div&amp;gt;
                     &amp;lt;/form&amp;gt;
 
-                    &amp;lt;h2 id=&amp;quot;endpoints-GETapi-events--event_id--invites&amp;quot;&amp;gt;GET api/events/{event_id}/invites&amp;lt;/h2&amp;gt;
-
-&amp;lt;p&amp;gt;
-&amp;lt;/p&amp;gt;
-
-
-
-&amp;lt;span id=&amp;quot;example-requests-GETapi-events--event_id--invites&amp;quot;&amp;gt;
-&amp;lt;blockquote&amp;gt;Example request:&amp;lt;/blockquote&amp;gt;
-
-
-&amp;lt;div class=&amp;quot;bash-example&amp;quot;&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot;&amp;gt;curl --request GET \
-    --get &amp;quot;https://events-management.test/api/events/1/invites&amp;quot; \
-    --header &amp;quot;Content-Type: application/json&amp;quot; \
-    --header &amp;quot;Accept: application/json&amp;quot;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
-
-
-&amp;lt;div class=&amp;quot;javascript-example&amp;quot;&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-javascript&amp;quot;&amp;gt;const url = new URL(
-    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot;
-);
-
-const headers = {
-    &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
-    &amp;quot;Accept&amp;quot;: &amp;quot;application/json&amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;quot;GET&amp;quot;,
-    headers,
-}).then(response =&amp;amp;gt; response.json());&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;/span&amp;gt;
-
-&amp;lt;span id=&amp;quot;example-responses-GETapi-events--event_id--invites&amp;quot;&amp;gt;
-            &amp;lt;blockquote&amp;gt;
-            &amp;lt;p&amp;gt;Example response (401):&amp;lt;/p&amp;gt;
-        &amp;lt;/blockquote&amp;gt;
-                &amp;lt;details class=&amp;quot;annotation&amp;quot;&amp;gt;
-            &amp;lt;summary style=&amp;quot;cursor: pointer;&amp;quot;&amp;gt;
-                &amp;lt;small onclick=&amp;quot;textContent = parentElement.parentElement.open ? &amp;#039;Show headers&amp;#039; : &amp;#039;Hide headers&amp;#039;&amp;quot;&amp;gt;Show headers&amp;lt;/small&amp;gt;
-            &amp;lt;/summary&amp;gt;
-            &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-http&amp;quot;&amp;gt;cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/details&amp;gt;         &amp;lt;pre&amp;gt;
-
-&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
-    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Unauthenticated.&amp;amp;quot;
-}&amp;lt;/code&amp;gt;
- &amp;lt;/pre&amp;gt;
-    &amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-results-GETapi-events--event_id--invites&amp;quot; hidden&amp;gt;
-    &amp;lt;blockquote&amp;gt;Received response&amp;lt;span
-                id=&amp;quot;execution-response-status-GETapi-events--event_id--invites&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
-    &amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-GETapi-events--event_id--invites&amp;quot;
-      data-empty-response-text=&amp;quot;&amp;lt;Empty response&amp;gt;&amp;quot; style=&amp;quot;max-height: 400px;&amp;quot;&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-error-GETapi-events--event_id--invites&amp;quot; hidden&amp;gt;
-    &amp;lt;blockquote&amp;gt;Request failed with error:&amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-GETapi-events--event_id--invites&amp;quot;&amp;gt;
-
-Tip: Check that you&amp;amp;#039;re properly connected to the network.
-If you&amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;form id=&amp;quot;form-GETapi-events--event_id--invites&amp;quot; data-method=&amp;quot;GET&amp;quot;
-      data-path=&amp;quot;api/events/{event_id}/invites&amp;quot;
-      data-authed=&amp;quot;0&amp;quot;
-      data-hasfiles=&amp;quot;0&amp;quot;
-      data-isarraybody=&amp;quot;0&amp;quot;
-      autocomplete=&amp;quot;off&amp;quot;
-      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;GETapi-events--event_id--invites&amp;#039;, this);&amp;quot;&amp;gt;
-    &amp;lt;h3&amp;gt;
-        Request&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;
-                    &amp;lt;button type=&amp;quot;button&amp;quot;
-                    style=&amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-tryout-GETapi-events--event_id--invites&amp;quot;
-                    onclick=&amp;quot;tryItOut(&amp;#039;GETapi-events--event_id--invites&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
-            &amp;lt;/button&amp;gt;
-            &amp;lt;button type=&amp;quot;button&amp;quot;
-                    style=&amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-canceltryout-GETapi-events--event_id--invites&amp;quot;
-                    onclick=&amp;quot;cancelTryOut(&amp;#039;GETapi-events--event_id--invites&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
-            &amp;lt;/button&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-            &amp;lt;button type=&amp;quot;submit&amp;quot;
-                    style=&amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-executetryout-GETapi-events--event_id--invites&amp;quot;
-                    data-initial-text=&amp;quot;Send Request 💥&amp;quot;
-                    data-loading-text=&amp;quot;⏱ Sending...&amp;quot;
-                    hidden&amp;gt;Send Request 💥
-            &amp;lt;/button&amp;gt;
-            &amp;lt;/h3&amp;gt;
-            &amp;lt;p&amp;gt;
-            &amp;lt;small class=&amp;quot;badge badge-green&amp;quot;&amp;gt;GET&amp;lt;/small&amp;gt;
-            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/events/{event_id}/invites&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
-        &amp;lt;/p&amp;gt;
-                &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Headers&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Content-Type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;GETapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;application/json&amp;quot;
-               data-component=&amp;quot;header&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Accept&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;GETapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;application/json&amp;quot;
-               data-component=&amp;quot;header&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                        &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;URL Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-                    &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;event_id&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;lt;small&amp;gt;integer&amp;lt;/small&amp;gt;&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
-               step=&amp;quot;any&amp;quot;               name=&amp;quot;event_id&amp;quot;                data-endpoint=&amp;quot;GETapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;1&amp;quot;
-               data-component=&amp;quot;url&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;The ID of the event. Example: &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                    &amp;lt;/form&amp;gt;
-
-                    &amp;lt;h2 id=&amp;quot;endpoints-POSTapi-events--event_id--invites&amp;quot;&amp;gt;POST api/events/{event_id}/invites&amp;lt;/h2&amp;gt;
-
-&amp;lt;p&amp;gt;
-&amp;lt;/p&amp;gt;
-
-
-
-&amp;lt;span id=&amp;quot;example-requests-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
-&amp;lt;blockquote&amp;gt;Example request:&amp;lt;/blockquote&amp;gt;
-
-
-&amp;lt;div class=&amp;quot;bash-example&amp;quot;&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot;&amp;gt;curl --request POST \
-    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot; \
-    --header &amp;quot;Content-Type: application/json&amp;quot; \
-    --header &amp;quot;Accept: application/json&amp;quot; \
-    --data &amp;quot;{
-    \&amp;quot;users\&amp;quot;: []
-}&amp;quot;
-&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
-
-
-&amp;lt;div class=&amp;quot;javascript-example&amp;quot;&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-javascript&amp;quot;&amp;gt;const url = new URL(
-    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot;
-);
-
-const headers = {
-    &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
-    &amp;quot;Accept&amp;quot;: &amp;quot;application/json&amp;quot;,
-};
-
-let body = {
-    &amp;quot;users&amp;quot;: []
-};
-
-fetch(url, {
-    method: &amp;quot;POST&amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;gt; response.json());&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;/span&amp;gt;
-
-&amp;lt;span id=&amp;quot;example-responses-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-results-POSTapi-events--event_id--invites&amp;quot; hidden&amp;gt;
-    &amp;lt;blockquote&amp;gt;Received response&amp;lt;span
-                id=&amp;quot;execution-response-status-POSTapi-events--event_id--invites&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
-    &amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-POSTapi-events--event_id--invites&amp;quot;
-      data-empty-response-text=&amp;quot;&amp;lt;Empty response&amp;gt;&amp;quot; style=&amp;quot;max-height: 400px;&amp;quot;&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-error-POSTapi-events--event_id--invites&amp;quot; hidden&amp;gt;
-    &amp;lt;blockquote&amp;gt;Request failed with error:&amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
-
-Tip: Check that you&amp;amp;#039;re properly connected to the network.
-If you&amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;form id=&amp;quot;form-POSTapi-events--event_id--invites&amp;quot; data-method=&amp;quot;POST&amp;quot;
-      data-path=&amp;quot;api/events/{event_id}/invites&amp;quot;
-      data-authed=&amp;quot;0&amp;quot;
-      data-hasfiles=&amp;quot;0&amp;quot;
-      data-isarraybody=&amp;quot;0&amp;quot;
-      autocomplete=&amp;quot;off&amp;quot;
-      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;POSTapi-events--event_id--invites&amp;#039;, this);&amp;quot;&amp;gt;
-    &amp;lt;h3&amp;gt;
-        Request&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;
-                    &amp;lt;button type=&amp;quot;button&amp;quot;
-                    style=&amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-tryout-POSTapi-events--event_id--invites&amp;quot;
-                    onclick=&amp;quot;tryItOut(&amp;#039;POSTapi-events--event_id--invites&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
-            &amp;lt;/button&amp;gt;
-            &amp;lt;button type=&amp;quot;button&amp;quot;
-                    style=&amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-canceltryout-POSTapi-events--event_id--invites&amp;quot;
-                    onclick=&amp;quot;cancelTryOut(&amp;#039;POSTapi-events--event_id--invites&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
-            &amp;lt;/button&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-            &amp;lt;button type=&amp;quot;submit&amp;quot;
-                    style=&amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-executetryout-POSTapi-events--event_id--invites&amp;quot;
-                    data-initial-text=&amp;quot;Send Request 💥&amp;quot;
-                    data-loading-text=&amp;quot;⏱ Sending...&amp;quot;
-                    hidden&amp;gt;Send Request 💥
-            &amp;lt;/button&amp;gt;
-            &amp;lt;/h3&amp;gt;
-            &amp;lt;p&amp;gt;
-            &amp;lt;small class=&amp;quot;badge badge-black&amp;quot;&amp;gt;POST&amp;lt;/small&amp;gt;
-            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/events/{event_id}/invites&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
-        &amp;lt;/p&amp;gt;
-                &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Headers&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Content-Type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;application/json&amp;quot;
-               data-component=&amp;quot;header&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Accept&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;application/json&amp;quot;
-               data-component=&amp;quot;header&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                        &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;URL Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-                    &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;event_id&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;lt;small&amp;gt;integer&amp;lt;/small&amp;gt;&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
-               step=&amp;quot;any&amp;quot;               name=&amp;quot;event_id&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;1&amp;quot;
-               data-component=&amp;quot;url&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;The ID of the event. Example: &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                            &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Body Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-        &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
-            &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;users&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;lt;small&amp;gt;object&amp;lt;/small&amp;gt;&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;users&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;&amp;quot;
-               data-component=&amp;quot;body&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-
-        &amp;lt;/div&amp;gt;
-        &amp;lt;/form&amp;gt;
-
-                    &amp;lt;h2 id=&amp;quot;endpoints-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;DELETE api/events/{event_id}/invites&amp;lt;/h2&amp;gt;
-
-&amp;lt;p&amp;gt;
-&amp;lt;/p&amp;gt;
-
-
-
-&amp;lt;span id=&amp;quot;example-requests-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
-&amp;lt;blockquote&amp;gt;Example request:&amp;lt;/blockquote&amp;gt;
-
-
-&amp;lt;div class=&amp;quot;bash-example&amp;quot;&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot;&amp;gt;curl --request DELETE \
-    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot; \
-    --header &amp;quot;Content-Type: application/json&amp;quot; \
-    --header &amp;quot;Accept: application/json&amp;quot; \
-    --data &amp;quot;{
-    \&amp;quot;users\&amp;quot;: []
-}&amp;quot;
-&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
-
-
-&amp;lt;div class=&amp;quot;javascript-example&amp;quot;&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-javascript&amp;quot;&amp;gt;const url = new URL(
-    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot;
-);
-
-const headers = {
-    &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
-    &amp;quot;Accept&amp;quot;: &amp;quot;application/json&amp;quot;,
-};
-
-let body = {
-    &amp;quot;users&amp;quot;: []
-};
-
-fetch(url, {
-    method: &amp;quot;DELETE&amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;gt; response.json());&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
-
-&amp;lt;/span&amp;gt;
-
-&amp;lt;span id=&amp;quot;example-responses-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-results-DELETEapi-events--event_id--invites&amp;quot; hidden&amp;gt;
-    &amp;lt;blockquote&amp;gt;Received response&amp;lt;span
-                id=&amp;quot;execution-response-status-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
-    &amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-DELETEapi-events--event_id--invites&amp;quot;
-      data-empty-response-text=&amp;quot;&amp;lt;Empty response&amp;gt;&amp;quot; style=&amp;quot;max-height: 400px;&amp;quot;&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-error-DELETEapi-events--event_id--invites&amp;quot; hidden&amp;gt;
-    &amp;lt;blockquote&amp;gt;Request failed with error:&amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
-
-Tip: Check that you&amp;amp;#039;re properly connected to the network.
-If you&amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
-&amp;lt;/span&amp;gt;
-&amp;lt;form id=&amp;quot;form-DELETEapi-events--event_id--invites&amp;quot; data-method=&amp;quot;DELETE&amp;quot;
-      data-path=&amp;quot;api/events/{event_id}/invites&amp;quot;
-      data-authed=&amp;quot;0&amp;quot;
-      data-hasfiles=&amp;quot;0&amp;quot;
-      data-isarraybody=&amp;quot;0&amp;quot;
-      autocomplete=&amp;quot;off&amp;quot;
-      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;DELETEapi-events--event_id--invites&amp;#039;, this);&amp;quot;&amp;gt;
-    &amp;lt;h3&amp;gt;
-        Request&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;
-                    &amp;lt;button type=&amp;quot;button&amp;quot;
-                    style=&amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-tryout-DELETEapi-events--event_id--invites&amp;quot;
-                    onclick=&amp;quot;tryItOut(&amp;#039;DELETEapi-events--event_id--invites&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
-            &amp;lt;/button&amp;gt;
-            &amp;lt;button type=&amp;quot;button&amp;quot;
-                    style=&amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-canceltryout-DELETEapi-events--event_id--invites&amp;quot;
-                    onclick=&amp;quot;cancelTryOut(&amp;#039;DELETEapi-events--event_id--invites&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
-            &amp;lt;/button&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-            &amp;lt;button type=&amp;quot;submit&amp;quot;
-                    style=&amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-executetryout-DELETEapi-events--event_id--invites&amp;quot;
-                    data-initial-text=&amp;quot;Send Request 💥&amp;quot;
-                    data-loading-text=&amp;quot;⏱ Sending...&amp;quot;
-                    hidden&amp;gt;Send Request 💥
-            &amp;lt;/button&amp;gt;
-            &amp;lt;/h3&amp;gt;
-            &amp;lt;p&amp;gt;
-            &amp;lt;small class=&amp;quot;badge badge-red&amp;quot;&amp;gt;DELETE&amp;lt;/small&amp;gt;
-            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/events/{event_id}/invites&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
-        &amp;lt;/p&amp;gt;
-                &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Headers&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Content-Type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;application/json&amp;quot;
-               data-component=&amp;quot;header&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Accept&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;application/json&amp;quot;
-               data-component=&amp;quot;header&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                        &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;URL Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-                    &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
-                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;event_id&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;lt;small&amp;gt;integer&amp;lt;/small&amp;gt;&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
-               step=&amp;quot;any&amp;quot;               name=&amp;quot;event_id&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;1&amp;quot;
-               data-component=&amp;quot;url&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;The ID of the event. Example: &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
-            &amp;lt;/div&amp;gt;
-                            &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Body Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
-        &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
-            &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;users&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
-&amp;lt;small&amp;gt;object&amp;lt;/small&amp;gt;&amp;amp;nbsp;
- &amp;amp;nbsp;
-                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;users&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
-               value=&amp;quot;&amp;quot;
-               data-component=&amp;quot;body&amp;quot;&amp;gt;
-    &amp;lt;br&amp;gt;
-
-        &amp;lt;/div&amp;gt;
-        &amp;lt;/form&amp;gt;
-
                     &amp;lt;h2 id=&amp;quot;endpoints-GETapi-events&amp;quot;&amp;gt;Display a listing of the resource.&amp;lt;/h2&amp;gt;
 
 &amp;lt;p&amp;gt;
@@ -11597,7 +10361,7 @@ access-control-allow-origin: *
         &amp;amp;quot;last_page&amp;amp;quot;: 110,
         &amp;amp;quot;path&amp;amp;quot;: &amp;amp;quot;https://events-management.test/api/events&amp;amp;quot;,
         &amp;amp;quot;per_page&amp;amp;quot;: 10,
-        &amp;amp;quot;total&amp;amp;quot;: 1093
+        &amp;amp;quot;total&amp;amp;quot;: 1092
     }
 }&amp;lt;/code&amp;gt;
  &amp;lt;/pre&amp;gt;
@@ -11695,10 +10459,10 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
     \&amp;quot;location\&amp;quot;: \&amp;quot;d\&amp;quot;,
     \&amp;quot;cost_min\&amp;quot;: 37,
     \&amp;quot;cost_max\&amp;quot;: 9,
-    \&amp;quot;starts_before\&amp;quot;: \&amp;quot;2025-06-27 19:18:59\&amp;quot;,
-    \&amp;quot;starts_after\&amp;quot;: \&amp;quot;2025-06-27 19:18:59\&amp;quot;,
-    \&amp;quot;ends_before\&amp;quot;: \&amp;quot;2025-06-27 19:18:59\&amp;quot;,
-    \&amp;quot;ends_after\&amp;quot;: \&amp;quot;2025-06-27 19:18:59\&amp;quot;,
+    \&amp;quot;starts_before\&amp;quot;: \&amp;quot;2025-06-27 19:55:59\&amp;quot;,
+    \&amp;quot;starts_after\&amp;quot;: \&amp;quot;2025-06-27 19:55:59\&amp;quot;,
+    \&amp;quot;ends_before\&amp;quot;: \&amp;quot;2025-06-27 19:55:59\&amp;quot;,
+    \&amp;quot;ends_after\&amp;quot;: \&amp;quot;2025-06-27 19:55:59\&amp;quot;,
     \&amp;quot;type\&amp;quot;: \&amp;quot;architecto\&amp;quot;,
     \&amp;quot;attendees_min\&amp;quot;: 39,
     \&amp;quot;attendees_max\&amp;quot;: 84,
@@ -11724,10 +10488,10 @@ let body = {
     &amp;quot;location&amp;quot;: &amp;quot;d&amp;quot;,
     &amp;quot;cost_min&amp;quot;: 37,
     &amp;quot;cost_max&amp;quot;: 9,
-    &amp;quot;starts_before&amp;quot;: &amp;quot;2025-06-27 19:18:59&amp;quot;,
-    &amp;quot;starts_after&amp;quot;: &amp;quot;2025-06-27 19:18:59&amp;quot;,
-    &amp;quot;ends_before&amp;quot;: &amp;quot;2025-06-27 19:18:59&amp;quot;,
-    &amp;quot;ends_after&amp;quot;: &amp;quot;2025-06-27 19:18:59&amp;quot;,
+    &amp;quot;starts_before&amp;quot;: &amp;quot;2025-06-27 19:55:59&amp;quot;,
+    &amp;quot;starts_after&amp;quot;: &amp;quot;2025-06-27 19:55:59&amp;quot;,
+    &amp;quot;ends_before&amp;quot;: &amp;quot;2025-06-27 19:55:59&amp;quot;,
+    &amp;quot;ends_after&amp;quot;: &amp;quot;2025-06-27 19:55:59&amp;quot;,
     &amp;quot;type&amp;quot;: &amp;quot;architecto&amp;quot;,
     &amp;quot;attendees_min&amp;quot;: 39,
     &amp;quot;attendees_max&amp;quot;: 84,
@@ -11899,10 +10663,10 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
 &amp;lt;i&amp;gt;optional&amp;lt;/i&amp;gt; &amp;amp;nbsp;
                 &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
                               name=&amp;quot;starts_before&amp;quot;                data-endpoint=&amp;quot;GETapi-events-search&amp;quot;
-               value=&amp;quot;2025-06-27 19:18:59&amp;quot;
+               value=&amp;quot;2025-06-27 19:55:59&amp;quot;
                data-component=&amp;quot;body&amp;quot;&amp;gt;
     &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:18:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:55:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
         &amp;lt;/div&amp;gt;
                 &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
             &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;starts_after&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
@@ -11910,10 +10674,10 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
 &amp;lt;i&amp;gt;optional&amp;lt;/i&amp;gt; &amp;amp;nbsp;
                 &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
                               name=&amp;quot;starts_after&amp;quot;                data-endpoint=&amp;quot;GETapi-events-search&amp;quot;
-               value=&amp;quot;2025-06-27 19:18:59&amp;quot;
+               value=&amp;quot;2025-06-27 19:55:59&amp;quot;
                data-component=&amp;quot;body&amp;quot;&amp;gt;
     &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:18:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:55:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
         &amp;lt;/div&amp;gt;
                 &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
             &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;ends_before&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
@@ -11921,10 +10685,10 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
 &amp;lt;i&amp;gt;optional&amp;lt;/i&amp;gt; &amp;amp;nbsp;
                 &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
                               name=&amp;quot;ends_before&amp;quot;                data-endpoint=&amp;quot;GETapi-events-search&amp;quot;
-               value=&amp;quot;2025-06-27 19:18:59&amp;quot;
+               value=&amp;quot;2025-06-27 19:55:59&amp;quot;
                data-component=&amp;quot;body&amp;quot;&amp;gt;
     &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:18:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:55:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
         &amp;lt;/div&amp;gt;
                 &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
             &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;ends_after&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
@@ -11932,10 +10696,10 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
 &amp;lt;i&amp;gt;optional&amp;lt;/i&amp;gt; &amp;amp;nbsp;
                 &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
                               name=&amp;quot;ends_after&amp;quot;                data-endpoint=&amp;quot;GETapi-events-search&amp;quot;
-               value=&amp;quot;2025-06-27 19:18:59&amp;quot;
+               value=&amp;quot;2025-06-27 19:55:59&amp;quot;
                data-component=&amp;quot;body&amp;quot;&amp;gt;
     &amp;lt;br&amp;gt;
-&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:18:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Must be a valid date in the format &amp;lt;code&amp;gt;Y-m-d H:i:s&amp;lt;/code&amp;gt;. Example: &amp;lt;code&amp;gt;2025-06-27 19:55:59&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
         &amp;lt;/div&amp;gt;
                 &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
             &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
@@ -13019,27 +11783,32 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
             &amp;lt;/div&amp;gt;
                         &amp;lt;/form&amp;gt;
 
-                    &amp;lt;h2 id=&amp;quot;endpoints-GETapi-docs&amp;quot;&amp;gt;Invoke the controller method.&amp;lt;/h2&amp;gt;
+                &amp;lt;h1 id=&amp;quot;event-invites&amp;quot;&amp;gt;Event Invites&amp;lt;/h1&amp;gt;
+
+    &amp;lt;p&amp;gt;Handles event invitations, allowing organizers to invite users to private events.&amp;lt;/p&amp;gt;
+
+                                &amp;lt;h2 id=&amp;quot;event-invites-GETapi-events--event_id--invites&amp;quot;&amp;gt;Get Invites for an Event&amp;lt;/h2&amp;gt;
 
 &amp;lt;p&amp;gt;
+&amp;lt;small class=&amp;quot;badge badge-darkred&amp;quot;&amp;gt;requires authentication&amp;lt;/small&amp;gt;
 &amp;lt;/p&amp;gt;
 
+&amp;lt;p&amp;gt;Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites.&amp;lt;/p&amp;gt;
 
-
-&amp;lt;span id=&amp;quot;example-requests-GETapi-docs&amp;quot;&amp;gt;
+&amp;lt;span id=&amp;quot;example-requests-GETapi-events--event_id--invites&amp;quot;&amp;gt;
 &amp;lt;blockquote&amp;gt;Example request:&amp;lt;/blockquote&amp;gt;
 
 
 &amp;lt;div class=&amp;quot;bash-example&amp;quot;&amp;gt;
     &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot;&amp;gt;curl --request GET \
-    --get &amp;quot;https://events-management.test/api/docs&amp;quot; \
+    --get &amp;quot;https://events-management.test/api/events/1/invites&amp;quot; \
     --header &amp;quot;Content-Type: application/json&amp;quot; \
     --header &amp;quot;Accept: application/json&amp;quot;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
 
 
 &amp;lt;div class=&amp;quot;javascript-example&amp;quot;&amp;gt;
     &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-javascript&amp;quot;&amp;gt;const url = new URL(
-    &amp;quot;https://events-management.test/api/docs&amp;quot;
+    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot;
 );
 
 const headers = {
@@ -13054,4532 +11823,109 @@ fetch(url, {
 
 &amp;lt;/span&amp;gt;
 
-&amp;lt;span id=&amp;quot;example-responses-GETapi-docs&amp;quot;&amp;gt;
+&amp;lt;span id=&amp;quot;example-responses-GETapi-events--event_id--invites&amp;quot;&amp;gt;
             &amp;lt;blockquote&amp;gt;
             &amp;lt;p&amp;gt;Example response (200):&amp;lt;/p&amp;gt;
         &amp;lt;/blockquote&amp;gt;
-                &amp;lt;details class=&amp;quot;annotation&amp;quot;&amp;gt;
-            &amp;lt;summary style=&amp;quot;cursor: pointer;&amp;quot;&amp;gt;
-                &amp;lt;small onclick=&amp;quot;textContent = parentElement.parentElement.open ? &amp;#039;Show headers&amp;#039; : &amp;#039;Hide headers&amp;#039;&amp;quot;&amp;gt;Show headers&amp;lt;/small&amp;gt;
-            &amp;lt;/summary&amp;gt;
-            &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-http&amp;quot;&amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/details&amp;gt;         &amp;lt;pre&amp;gt;
+                &amp;lt;pre&amp;gt;
 
-&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;&amp;amp;lt;!doctype html&amp;amp;gt;
-&amp;amp;lt;html lang=&amp;amp;quot;en&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;head&amp;amp;gt;
-    &amp;amp;lt;meta charset=&amp;amp;quot;utf-8&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;meta content=&amp;amp;quot;IE=edge,chrome=1&amp;amp;quot; http-equiv=&amp;amp;quot;X-UA-Compatible&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;meta name=&amp;amp;quot;viewport&amp;amp;quot; content=&amp;amp;quot;width=device-width, initial-scale=1, maximum-scale=1&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;title&amp;amp;gt;Events Management LLC API Documentation&amp;amp;lt;/title&amp;amp;gt;
-
-    &amp;amp;lt;link href=&amp;amp;quot;https://fonts.googleapis.com/css?family=Open+Sans&amp;amp;amp;display=swap&amp;amp;quot; rel=&amp;amp;quot;stylesheet&amp;amp;quot;&amp;amp;gt;
-
-    &amp;amp;lt;link rel=&amp;amp;quot;stylesheet&amp;amp;quot; href=&amp;amp;quot;https://events-management.test/vendor/scribe/css/theme-default.style.css&amp;amp;quot; media=&amp;amp;quot;screen&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;link rel=&amp;amp;quot;stylesheet&amp;amp;quot; href=&amp;amp;quot;https://events-management.test/vendor/scribe/css/theme-default.print.css&amp;amp;quot; media=&amp;amp;quot;print&amp;amp;quot;&amp;amp;gt;
-
-    &amp;amp;lt;script src=&amp;amp;quot;https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&amp;amp;gt;
-
-    &amp;amp;lt;link rel=&amp;amp;quot;stylesheet&amp;amp;quot;
-          href=&amp;amp;quot;https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;script src=&amp;amp;quot;https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&amp;amp;gt;
-
-    &amp;amp;lt;script src=&amp;amp;quot;https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&amp;amp;gt;
-
-    &amp;amp;lt;style id=&amp;amp;quot;language-style&amp;amp;quot;&amp;amp;gt;
-        /* starts out as display none and is replaced with js later  */
-                    body .content .bash-example code { display: none; }
-                    body .content .javascript-example code { display: none; }
-            &amp;amp;lt;/style&amp;amp;gt;
-
-    &amp;amp;lt;script&amp;amp;gt;
-        var tryItOutBaseUrl = &amp;amp;quot;https://events-management.test&amp;amp;quot;;
-        var useCsrf = Boolean();
-        var csrfUrl = &amp;amp;quot;/sanctum/csrf-cookie&amp;amp;quot;;
-    &amp;amp;lt;/script&amp;amp;gt;
-    &amp;amp;lt;script src=&amp;amp;quot;https://events-management.test/vendor/scribe/js/tryitout-5.2.1.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&amp;amp;gt;
-
-    &amp;amp;lt;script src=&amp;amp;quot;https://events-management.test/vendor/scribe/js/theme-default-5.2.1.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&amp;amp;gt;
-
-&amp;amp;lt;/head&amp;amp;gt;
-
-&amp;amp;lt;body data-languages=&amp;amp;quot;[&amp;amp;amp;quot;bash&amp;amp;amp;quot;,&amp;amp;amp;quot;javascript&amp;amp;amp;quot;]&amp;amp;quot;&amp;amp;gt;
-
-&amp;amp;lt;a href=&amp;amp;quot;#&amp;amp;quot; id=&amp;amp;quot;nav-button&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;span&amp;amp;gt;
-        MENU
-        &amp;amp;lt;img src=&amp;amp;quot;https://events-management.test/vendor/scribe/images/navbar.png&amp;amp;quot; alt=&amp;amp;quot;navbar-image&amp;amp;quot;/&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;/a&amp;amp;gt;
-&amp;amp;lt;div class=&amp;amp;quot;tocify-wrapper&amp;amp;quot;&amp;amp;gt;
-    
-            &amp;amp;lt;div class=&amp;amp;quot;lang-selector&amp;amp;quot;&amp;amp;gt;
-                                            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot; class=&amp;amp;quot;lang-button&amp;amp;quot; data-language-name=&amp;amp;quot;bash&amp;amp;quot;&amp;amp;gt;bash&amp;amp;lt;/button&amp;amp;gt;
-                                            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot; class=&amp;amp;quot;lang-button&amp;amp;quot; data-language-name=&amp;amp;quot;javascript&amp;amp;quot;&amp;amp;gt;javascript&amp;amp;lt;/button&amp;amp;gt;
-                    &amp;amp;lt;/div&amp;amp;gt;
-    
-    &amp;amp;lt;div class=&amp;amp;quot;search&amp;amp;quot;&amp;amp;gt;
-        &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; class=&amp;amp;quot;search&amp;amp;quot; id=&amp;amp;quot;input-search&amp;amp;quot; placeholder=&amp;amp;quot;Search&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;/div&amp;amp;gt;
-
-    &amp;amp;lt;div id=&amp;amp;quot;toc&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-header-introduction&amp;amp;quot; class=&amp;amp;quot;tocify-header&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-1&amp;amp;quot; data-unique=&amp;amp;quot;introduction&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;a href=&amp;amp;quot;#introduction&amp;amp;quot;&amp;amp;gt;Introduction&amp;amp;lt;/a&amp;amp;gt;
-                &amp;amp;lt;/li&amp;amp;gt;
-                            &amp;amp;lt;/ul&amp;amp;gt;
-                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-header-authenticating-requests&amp;amp;quot; class=&amp;amp;quot;tocify-header&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-1&amp;amp;quot; data-unique=&amp;amp;quot;authenticating-requests&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;a href=&amp;amp;quot;#authenticating-requests&amp;amp;quot;&amp;amp;gt;Authenticating requests&amp;amp;lt;/a&amp;amp;gt;
-                &amp;amp;lt;/li&amp;amp;gt;
-                            &amp;amp;lt;/ul&amp;amp;gt;
-                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-header-authentication&amp;amp;quot; class=&amp;amp;quot;tocify-header&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-1&amp;amp;quot; data-unique=&amp;amp;quot;authentication&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;a href=&amp;amp;quot;#authentication&amp;amp;quot;&amp;amp;gt;Authentication&amp;amp;lt;/a&amp;amp;gt;
-                &amp;amp;lt;/li&amp;amp;gt;
-                                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-subheader-authentication&amp;amp;quot; class=&amp;amp;quot;tocify-subheader&amp;amp;quot;&amp;amp;gt;
-                                                    &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;authentication-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#authentication-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;Logout&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;authentication-POSTapi-login&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#authentication-POSTapi-login&amp;amp;quot;&amp;amp;gt;Login&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                        &amp;amp;lt;/ul&amp;amp;gt;
-                            &amp;amp;lt;/ul&amp;amp;gt;
-                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-header-bans&amp;amp;quot; class=&amp;amp;quot;tocify-header&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-1&amp;amp;quot; data-unique=&amp;amp;quot;bans&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;a href=&amp;amp;quot;#bans&amp;amp;quot;&amp;amp;gt;Bans&amp;amp;lt;/a&amp;amp;gt;
-                &amp;amp;lt;/li&amp;amp;gt;
-                                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-subheader-bans&amp;amp;quot; class=&amp;amp;quot;tocify-subheader&amp;amp;quot;&amp;amp;gt;
-                                                    &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;bans-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#bans-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;List User Banned&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;bans-POSTapi-bans&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#bans-POSTapi-bans&amp;amp;quot;&amp;amp;gt;Add Bans&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;bans-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#bans-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;Remove Bans&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                        &amp;amp;lt;/ul&amp;amp;gt;
-                            &amp;amp;lt;/ul&amp;amp;gt;
-                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-header-endpoints&amp;amp;quot; class=&amp;amp;quot;tocify-header&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-1&amp;amp;quot; data-unique=&amp;amp;quot;endpoints&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;a href=&amp;amp;quot;#endpoints&amp;amp;quot;&amp;amp;gt;Endpoints&amp;amp;lt;/a&amp;amp;gt;
-                &amp;amp;lt;/li&amp;amp;gt;
-                                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-subheader-endpoints&amp;amp;quot; class=&amp;amp;quot;tocify-subheader&amp;amp;quot;&amp;amp;gt;
-                                                    &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-POSTapi-events&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-POSTapi-events&amp;amp;quot;&amp;amp;gt;Store a newly created resource in storage.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;Update the specified resource in storage.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;Remove the specified resource from storage.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;Store a newly created resource in storage.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;Remove the specified resource from storage.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;POST api/event-types&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;PUT api/event-types/{type_id}&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;DELETE api/event-types/{type_id}&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;GET api/events/{event_id}/invites&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;POST api/events/{event_id}/invites&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;DELETE api/events/{event_id}/invites&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events&amp;amp;quot;&amp;amp;gt;Display a listing of the resource.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events-search&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events-search&amp;amp;quot;&amp;amp;gt;GET api/events/search&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;GET api/events/type/{name}&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;Display a listing of the resource.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;Display the specified resource.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;Display a listing of the resource.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;Display the specified resource.&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;endpoints-GETapi-event-types&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#endpoints-GETapi-event-types&amp;amp;quot;&amp;amp;gt;GET api/event-types&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                        &amp;amp;lt;/ul&amp;amp;gt;
-                            &amp;amp;lt;/ul&amp;amp;gt;
-                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-header-user-management&amp;amp;quot; class=&amp;amp;quot;tocify-header&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-1&amp;amp;quot; data-unique=&amp;amp;quot;user-management&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;a href=&amp;amp;quot;#user-management&amp;amp;quot;&amp;amp;gt;User Management&amp;amp;lt;/a&amp;amp;gt;
-                &amp;amp;lt;/li&amp;amp;gt;
-                                    &amp;amp;lt;ul id=&amp;amp;quot;tocify-subheader-user-management&amp;amp;quot; class=&amp;amp;quot;tocify-subheader&amp;amp;quot;&amp;amp;gt;
-                                                    &amp;amp;lt;li class=&amp;amp;quot;tocify-item level-2&amp;amp;quot; data-unique=&amp;amp;quot;user-management-GETapi-&amp;amp;quot;&amp;amp;gt;
-                                &amp;amp;lt;a href=&amp;amp;quot;#user-management-GETapi-&amp;amp;quot;&amp;amp;gt;Show User Information&amp;amp;lt;/a&amp;amp;gt;
-                            &amp;amp;lt;/li&amp;amp;gt;
-                                                                        &amp;amp;lt;/ul&amp;amp;gt;
-                            &amp;amp;lt;/ul&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-
-    &amp;amp;lt;ul class=&amp;amp;quot;toc-footer&amp;amp;quot; id=&amp;amp;quot;toc-footer&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;li style=&amp;amp;quot;padding-bottom: 5px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;a href=&amp;amp;quot;https://events-management.test/docs.postman&amp;amp;quot;&amp;amp;gt;View Postman collection&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/li&amp;amp;gt;
-                            &amp;amp;lt;li style=&amp;amp;quot;padding-bottom: 5px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;a href=&amp;amp;quot;https://events-management.test/docs.openapi&amp;amp;quot;&amp;amp;gt;View OpenAPI spec&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/li&amp;amp;gt;
-                &amp;amp;lt;li&amp;amp;gt;&amp;amp;lt;a href=&amp;amp;quot;http://github.com/knuckleswtf/scribe&amp;amp;quot;&amp;amp;gt;Documentation powered by Scribe ✍&amp;amp;lt;/a&amp;amp;gt;&amp;amp;lt;/li&amp;amp;gt;
-    &amp;amp;lt;/ul&amp;amp;gt;
-
-    &amp;amp;lt;ul class=&amp;amp;quot;toc-footer&amp;amp;quot; id=&amp;amp;quot;last-updated&amp;amp;quot;&amp;amp;gt;
-        &amp;amp;lt;li&amp;amp;gt;Last updated: June 27, 2025&amp;amp;lt;/li&amp;amp;gt;
-    &amp;amp;lt;/ul&amp;amp;gt;
-&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;div class=&amp;amp;quot;page-wrapper&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;div class=&amp;amp;quot;dark-box&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-    &amp;amp;lt;div class=&amp;amp;quot;content&amp;amp;quot;&amp;amp;gt;
-        &amp;amp;lt;h1 id=&amp;amp;quot;introduction&amp;amp;quot;&amp;amp;gt;Introduction&amp;amp;lt;/h1&amp;amp;gt;
-&amp;amp;lt;aside&amp;amp;gt;
-    &amp;amp;lt;strong&amp;amp;gt;Base URL&amp;amp;lt;/strong&amp;amp;gt;: &amp;amp;lt;code&amp;amp;gt;https://events-management.test&amp;amp;lt;/code&amp;amp;gt;
-&amp;amp;lt;/aside&amp;amp;gt;
-&amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;This documentation aims to provide all the information you need to work with our API.
-
-&amp;amp;amp;lt;aside&amp;amp;amp;gt;As you scroll, you&amp;amp;#039;ll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).&amp;amp;amp;lt;/aside&amp;amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-
-        &amp;amp;lt;h1 id=&amp;amp;quot;authenticating-requests&amp;amp;quot;&amp;amp;gt;Authenticating requests&amp;amp;lt;/h1&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;This API is not authenticated.&amp;amp;lt;/p&amp;amp;gt;
-
-        &amp;amp;lt;h1 id=&amp;amp;quot;authentication&amp;amp;quot;&amp;amp;gt;Authentication&amp;amp;lt;/h1&amp;amp;gt;
-
-    &amp;amp;lt;p&amp;amp;gt;Handles user authentication, including login and logout.&amp;amp;lt;/p&amp;amp;gt;
-
-                                &amp;amp;lt;h2 id=&amp;amp;quot;authentication-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;Logout&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;small class=&amp;amp;quot;badge badge-darkred&amp;amp;quot;&amp;amp;gt;requires authentication&amp;amp;lt;/small&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;Logs out the authenticated user by deleting their current access token.&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request DELETE \
-    &amp;amp;quot;https://events-management.test/api/logout&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/logout&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;DELETE&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (204):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-&amp;amp;lt;code&amp;amp;gt;Empty response&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (401):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Unauthenticated.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-DELETEapi-logout&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-DELETEapi-logout&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-DELETEapi-logout&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-DELETEapi-logout&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-DELETEapi-logout&amp;amp;quot; data-method=&amp;amp;quot;DELETE&amp;amp;quot;
-      data-path=&amp;amp;quot;api/logout&amp;amp;quot;
-      data-authed=&amp;amp;quot;1&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;DELETEapi-logout&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-DELETEapi-logout&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;DELETEapi-logout&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-DELETEapi-logout&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;DELETEapi-logout&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-DELETEapi-logout&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-red&amp;amp;quot;&amp;amp;gt;DELETE&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/logout&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-logout&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-logout&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;authentication-POSTapi-login&amp;amp;quot;&amp;amp;gt;Login&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;Handles user authentication by validating credentials and generating an access token.&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-POSTapi-login&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request POST \
-    &amp;amp;quot;https://events-management.test/api/login&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;email\&amp;amp;quot;: \&amp;amp;quot;\\\&amp;amp;quot;string@email.com\\\&amp;amp;quot;\&amp;amp;quot;,
-    \&amp;amp;quot;password\&amp;amp;quot;: \&amp;amp;quot;\\\&amp;amp;quot;password123\\\&amp;amp;quot;\&amp;amp;quot;
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/login&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;\&amp;amp;quot;string@email.com\&amp;amp;quot;&amp;amp;quot;,
-    &amp;amp;quot;password&amp;amp;quot;: &amp;amp;quot;\&amp;amp;quot;password123\&amp;amp;quot;&amp;amp;quot;
-};
-
-fetch(url, {
-    method: &amp;amp;quot;POST&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-POSTapi-login&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;token&amp;amp;amp;quot;: &amp;amp;amp;quot;Your Token.&amp;amp;amp;quot;,
-    &amp;amp;amp;quot;user&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;John Doe&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;john@doe.com&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;USA&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Programmer&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;123-456-789&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;World Incorporated&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;tokens&amp;amp;amp;quot;: 100,
-        &amp;amp;amp;quot;tokens_spend&amp;amp;amp;quot;: 100
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (422):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;The provided credentials are incorrect.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-POSTapi-login&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-POSTapi-login&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-POSTapi-login&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-POSTapi-login&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-POSTapi-login&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-POSTapi-login&amp;amp;quot; data-method=&amp;amp;quot;POST&amp;amp;quot;
-      data-path=&amp;amp;quot;api/login&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;POSTapi-login&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-POSTapi-login&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;POSTapi-login&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-POSTapi-login&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;POSTapi-login&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-POSTapi-login&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-black&amp;amp;quot;&amp;amp;gt;POST&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/login&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-login&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-login&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;email&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;email&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-login&amp;amp;quot;
-               value=&amp;amp;quot;&amp;amp;quot;string@email.com&amp;amp;quot;&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The user&amp;amp;#039;s email address. Example: &amp;amp;lt;code&amp;amp;gt;&amp;amp;quot;string@email.com&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;password&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;password&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-login&amp;amp;quot;
-               value=&amp;amp;quot;&amp;amp;quot;password123&amp;amp;quot;&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The user&amp;amp;#039;s password. Example: &amp;amp;lt;code&amp;amp;gt;&amp;amp;quot;password123&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                &amp;amp;lt;h1 id=&amp;amp;quot;bans&amp;amp;quot;&amp;amp;gt;Bans&amp;amp;lt;/h1&amp;amp;gt;
-
-    
-
-                                &amp;amp;lt;h2 id=&amp;amp;quot;bans-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;List User Banned&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;small class=&amp;amp;quot;badge badge-darkred&amp;amp;quot;&amp;amp;gt;requires authentication&amp;amp;lt;/small&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;List all the users banned by the authenticated user or a specified user.&amp;amp;lt;/p&amp;amp;gt;
-&amp;amp;lt;ul&amp;amp;gt;
-&amp;amp;lt;li&amp;amp;gt;Only administrators can view other users&amp;amp;#039; banned lists.&amp;amp;lt;/li&amp;amp;gt;
-&amp;amp;lt;/ul&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/bans/16&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/bans/16&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;data&amp;amp;quot;: [
         {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4038,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Ms. Elisabeth Okuneva&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;gulgowski.asia@example.com&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Peru&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Glass Blower&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;843.428.7432&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Price Ltd&amp;amp;amp;quot;
+            &amp;amp;quot;id&amp;amp;quot;: 4188,
+            &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Justina Gaylord&amp;amp;quot;,
+            &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;lafayette.considine@example.com&amp;amp;quot;,
+            &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Gabon&amp;amp;quot;,
+            &amp;amp;quot;profession&amp;amp;quot;: &amp;amp;quot;Logging Tractor Operator&amp;amp;quot;,
+            &amp;amp;quot;phone&amp;amp;quot;: &amp;amp;quot;(806) 721-0719&amp;amp;quot;,
+            &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Baumbach Ltd&amp;amp;quot;
         },
         {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4039,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Pearl Hauck Sr.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;alayna44@example.org&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Saint Vincent and the Grenadines&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Gas Distribution Plant Operator&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;870-215-1024&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Leffler-Glover&amp;amp;amp;quot;
+            &amp;amp;quot;id&amp;amp;quot;: 4189,
+            &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Mina Bauch&amp;amp;quot;,
+            &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;okeefe.isidro@example.org&amp;amp;quot;,
+            &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Antarctica (the territory South of 60 deg S)&amp;amp;quot;,
+            &amp;amp;quot;profession&amp;amp;quot;: &amp;amp;quot;Claims Examiner&amp;amp;quot;,
+            &amp;amp;quot;phone&amp;amp;quot;: &amp;amp;quot;283.476.7809&amp;amp;quot;,
+            &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Haag and Sons&amp;amp;quot;
         }
     ]
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (401):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Unauthenticated.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (403):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;You are not authorized to view this user&amp;amp;amp;#039;s banned list..&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-bans--user--&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-bans--user--&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-bans--user--&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-bans--user--&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-bans--user--&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/bans/{user?}&amp;amp;quot;
-      data-authed=&amp;amp;quot;1&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-bans--user--&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-bans--user--&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-bans--user--&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-bans--user--&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-bans--user--&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-bans--user--&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/bans/{user?}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-bans--user--&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-bans--user--&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;user&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;user&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-bans--user--&amp;amp;quot;
-               value=&amp;amp;quot;16&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user&amp;amp;#039;s banned list. Example: &amp;amp;lt;code&amp;amp;gt;16&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;bans-POSTapi-bans&amp;amp;quot;&amp;amp;gt;Add Bans&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;small class=&amp;amp;quot;badge badge-darkred&amp;amp;quot;&amp;amp;gt;requires authentication&amp;amp;lt;/small&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;Add users to the authenticated user&amp;amp;#039;s banned list.&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-POSTapi-bans&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request POST \
-    &amp;amp;quot;https://events-management.test/api/bans&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;users\&amp;amp;quot;: [
-        1,
-        2,
-        3
-    ]
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/bans&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;users&amp;amp;quot;: [
-        1,
-        2,
-        3
-    ]
-};
-
-fetch(url, {
-    method: &amp;amp;quot;POST&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-POSTapi-bans&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (201):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4040,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Ms. Audra Crooks II&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;idickens@example.org&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Morocco&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Copy Machine Operator&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;+1-626-249-0432&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Hauck-Leuschke&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4041,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Alanis McLaughlin&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;bauch.marcelo@example.com&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Holy See (Vatican City State)&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Illustrator&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;1-915-230-6227&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Schultz Group&amp;amp;amp;quot;
-        }
-    ],
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Bans added successfully.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (401):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Unauthenticated.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-POSTapi-bans&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-POSTapi-bans&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-POSTapi-bans&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-POSTapi-bans&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-POSTapi-bans&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-POSTapi-bans&amp;amp;quot; data-method=&amp;amp;quot;POST&amp;amp;quot;
-      data-path=&amp;amp;quot;api/bans&amp;amp;quot;
-      data-authed=&amp;amp;quot;1&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;POSTapi-bans&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-POSTapi-bans&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;POSTapi-bans&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-POSTapi-bans&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;POSTapi-bans&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-POSTapi-bans&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-black&amp;amp;quot;&amp;amp;gt;POST&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/bans&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-bans&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-bans&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;users&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer[]&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;users[0]&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-bans&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-        &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               name=&amp;amp;quot;users[1]&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-bans&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The IDs of the users to ban.&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;bans-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;Remove Bans&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;small class=&amp;amp;quot;badge badge-darkred&amp;amp;quot;&amp;amp;gt;requires authentication&amp;amp;lt;/small&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;Remove users from the authenticated user&amp;amp;#039;s banned list.&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request DELETE \
-    &amp;amp;quot;https://events-management.test/api/bans&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;users\&amp;amp;quot;: [
-        1,
-        2,
-        3
-    ]
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/bans&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;users&amp;amp;quot;: [
-        1,
-        2,
-        3
-    ]
-};
-
-fetch(url, {
-    method: &amp;amp;quot;DELETE&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4042,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Ms. Audra Crooks II&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;aschuster@example.com&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Zambia&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Compacting Machine Operator&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;253.392.8862&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;McLaughlin, Leuschke and Bauch&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4043,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Mr. Oswald Koch&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;bailee15@example.org&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Heard Island and McDonald Islands&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Chemical Plant Operator&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;531-539-0170&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Gaylord, Hettinger and Nitzsche&amp;amp;amp;quot;
-        }
-    ],
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Bans removed successfully.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (401):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Unauthenticated.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-DELETEapi-bans&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-DELETEapi-bans&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-DELETEapi-bans&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-DELETEapi-bans&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-DELETEapi-bans&amp;amp;quot; data-method=&amp;amp;quot;DELETE&amp;amp;quot;
-      data-path=&amp;amp;quot;api/bans&amp;amp;quot;
-      data-authed=&amp;amp;quot;1&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;DELETEapi-bans&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-DELETEapi-bans&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;DELETEapi-bans&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-DELETEapi-bans&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;DELETEapi-bans&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-DELETEapi-bans&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-red&amp;amp;quot;&amp;amp;gt;DELETE&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/bans&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-bans&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-bans&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;users&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer[]&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;users[0]&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-bans&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-        &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               name=&amp;amp;quot;users[1]&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-bans&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The IDs of the users to ban.&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                &amp;amp;lt;h1 id=&amp;amp;quot;endpoints&amp;amp;quot;&amp;amp;gt;Endpoints&amp;amp;lt;/h1&amp;amp;gt;
-
-    
-
-                                &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-POSTapi-events&amp;amp;quot;&amp;amp;gt;Store a newly created resource in storage.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-POSTapi-events&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request POST \
-    &amp;amp;quot;https://events-management.test/api/events&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;name\&amp;amp;quot;: \&amp;amp;quot;b\&amp;amp;quot;,
-    \&amp;amp;quot;description\&amp;amp;quot;: \&amp;amp;quot;Et animi quos velit et fugiat.\&amp;amp;quot;,
-    \&amp;amp;quot;start_date\&amp;amp;quot;: \&amp;amp;quot;2051-07-26\&amp;amp;quot;,
-    \&amp;amp;quot;end_date\&amp;amp;quot;: \&amp;amp;quot;2051-07-21\&amp;amp;quot;,
-    \&amp;amp;quot;location\&amp;amp;quot;: \&amp;amp;quot;n\&amp;amp;quot;,
-    \&amp;amp;quot;cost\&amp;amp;quot;: 7,
-    \&amp;amp;quot;public\&amp;amp;quot;: false,
-    \&amp;amp;quot;type\&amp;amp;quot;: \&amp;amp;quot;architecto\&amp;amp;quot;
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;b&amp;amp;quot;,
-    &amp;amp;quot;description&amp;amp;quot;: &amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;,
-    &amp;amp;quot;start_date&amp;amp;quot;: &amp;amp;quot;2051-07-26&amp;amp;quot;,
-    &amp;amp;quot;end_date&amp;amp;quot;: &amp;amp;quot;2051-07-21&amp;amp;quot;,
-    &amp;amp;quot;location&amp;amp;quot;: &amp;amp;quot;n&amp;amp;quot;,
-    &amp;amp;quot;cost&amp;amp;quot;: 7,
-    &amp;amp;quot;public&amp;amp;quot;: false,
-    &amp;amp;quot;type&amp;amp;quot;: &amp;amp;quot;architecto&amp;amp;quot;
-};
-
-fetch(url, {
-    method: &amp;amp;quot;POST&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-POSTapi-events&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-POSTapi-events&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-POSTapi-events&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-POSTapi-events&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-POSTapi-events&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-POSTapi-events&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-POSTapi-events&amp;amp;quot; data-method=&amp;amp;quot;POST&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;POSTapi-events&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-POSTapi-events&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;POSTapi-events&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-POSTapi-events&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;POSTapi-events&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-POSTapi-events&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-black&amp;amp;quot;&amp;amp;gt;POST&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;name&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;b&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;b&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;description&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;description&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 4096 characters. Example: &amp;amp;lt;code&amp;amp;gt;Et animi quos velit et fugiat.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;start_date&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;start_date&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;2051-07-26&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date. Must be a date after &amp;amp;lt;code&amp;amp;gt;+96 hours&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2051-07-26&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;end_date&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;end_date&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;2051-07-21&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date. Must be a date after &amp;amp;lt;code&amp;amp;gt;start_date&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2051-07-21&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;location&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;location&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;n&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;n&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;cost&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;cost&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;7&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be at least 0. Must not be greater than 100. Example: &amp;amp;lt;code&amp;amp;gt;7&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;public&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;boolean&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;label data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;input type=&amp;amp;quot;radio&amp;amp;quot; name=&amp;amp;quot;public&amp;amp;quot;
-                   value=&amp;amp;quot;true&amp;amp;quot;
-                   data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-                   data-component=&amp;amp;quot;body&amp;amp;quot;             &amp;amp;gt;
-            &amp;amp;lt;code&amp;amp;gt;true&amp;amp;lt;/code&amp;amp;gt;
-        &amp;amp;lt;/label&amp;amp;gt;
-        &amp;amp;lt;label data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;input type=&amp;amp;quot;radio&amp;amp;quot; name=&amp;amp;quot;public&amp;amp;quot;
-                   value=&amp;amp;quot;false&amp;amp;quot;
-                   data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-                   data-component=&amp;amp;quot;body&amp;amp;quot;             &amp;amp;gt;
-            &amp;amp;lt;code&amp;amp;gt;false&amp;amp;lt;/code&amp;amp;gt;
-        &amp;amp;lt;/label&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;false&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events&amp;amp;quot;
-               value=&amp;amp;quot;architecto&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The &amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt; of an existing record in the event_types table. Example: &amp;amp;lt;code&amp;amp;gt;architecto&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;Update the specified resource in storage.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request PUT \
-    &amp;amp;quot;https://events-management.test/api/events/1&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;name\&amp;amp;quot;: \&amp;amp;quot;b\&amp;amp;quot;,
-    \&amp;amp;quot;description\&amp;amp;quot;: \&amp;amp;quot;Et animi quos velit et fugiat.\&amp;amp;quot;,
-    \&amp;amp;quot;start_date\&amp;amp;quot;: \&amp;amp;quot;2051-07-26\&amp;amp;quot;,
-    \&amp;amp;quot;end_date\&amp;amp;quot;: \&amp;amp;quot;2051-07-21\&amp;amp;quot;,
-    \&amp;amp;quot;location\&amp;amp;quot;: \&amp;amp;quot;n\&amp;amp;quot;,
-    \&amp;amp;quot;cost\&amp;amp;quot;: 7,
-    \&amp;amp;quot;public\&amp;amp;quot;: true,
-    \&amp;amp;quot;type\&amp;amp;quot;: \&amp;amp;quot;architecto\&amp;amp;quot;
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;b&amp;amp;quot;,
-    &amp;amp;quot;description&amp;amp;quot;: &amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;,
-    &amp;amp;quot;start_date&amp;amp;quot;: &amp;amp;quot;2051-07-26&amp;amp;quot;,
-    &amp;amp;quot;end_date&amp;amp;quot;: &amp;amp;quot;2051-07-21&amp;amp;quot;,
-    &amp;amp;quot;location&amp;amp;quot;: &amp;amp;quot;n&amp;amp;quot;,
-    &amp;amp;quot;cost&amp;amp;quot;: 7,
-    &amp;amp;quot;public&amp;amp;quot;: true,
-    &amp;amp;quot;type&amp;amp;quot;: &amp;amp;quot;architecto&amp;amp;quot;
-};
-
-fetch(url, {
-    method: &amp;amp;quot;PUT&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-PUTapi-events--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-PUTapi-events--id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-PUTapi-events--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-PUTapi-events--id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-PUTapi-events--id-&amp;amp;quot; data-method=&amp;amp;quot;PUT&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;PUTapi-events--id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-PUTapi-events--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;PUTapi-events--id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-PUTapi-events--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;PUTapi-events--id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-PUTapi-events--id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-darkblue&amp;amp;quot;&amp;amp;gt;PUT&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;id&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                            &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;name&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;b&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;b&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;description&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;description&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 4096 characters. Example: &amp;amp;lt;code&amp;amp;gt;Et animi quos velit et fugiat.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;start_date&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;start_date&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;2051-07-26&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date. Must be a date after &amp;amp;lt;code&amp;amp;gt;+96 hours&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2051-07-26&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;end_date&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;end_date&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;2051-07-21&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date. Must be a date after &amp;amp;lt;code&amp;amp;gt;start_date&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2051-07-21&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;location&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;location&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;n&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;n&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;cost&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;cost&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;7&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be at least 0. Must not be greater than 100. Example: &amp;amp;lt;code&amp;amp;gt;7&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;public&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;boolean&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;label data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;input type=&amp;amp;quot;radio&amp;amp;quot; name=&amp;amp;quot;public&amp;amp;quot;
-                   value=&amp;amp;quot;true&amp;amp;quot;
-                   data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-                   data-component=&amp;amp;quot;body&amp;amp;quot;             &amp;amp;gt;
-            &amp;amp;lt;code&amp;amp;gt;true&amp;amp;lt;/code&amp;amp;gt;
-        &amp;amp;lt;/label&amp;amp;gt;
-        &amp;amp;lt;label data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;input type=&amp;amp;quot;radio&amp;amp;quot; name=&amp;amp;quot;public&amp;amp;quot;
-                   value=&amp;amp;quot;false&amp;amp;quot;
-                   data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-                   data-component=&amp;amp;quot;body&amp;amp;quot;             &amp;amp;gt;
-            &amp;amp;lt;code&amp;amp;gt;false&amp;amp;lt;/code&amp;amp;gt;
-        &amp;amp;lt;/label&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;true&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;type&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;architecto&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The &amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt; of an existing record in the event_types table. Example: &amp;amp;lt;code&amp;amp;gt;architecto&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;Remove the specified resource from storage.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request DELETE \
-    &amp;amp;quot;https://events-management.test/api/events/1&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;DELETE&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-DELETEapi-events--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-DELETEapi-events--id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-DELETEapi-events--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-DELETEapi-events--id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-DELETEapi-events--id-&amp;amp;quot; data-method=&amp;amp;quot;DELETE&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;DELETEapi-events--id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-DELETEapi-events--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;DELETEapi-events--id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-DELETEapi-events--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;DELETEapi-events--id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-DELETEapi-events--id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-red&amp;amp;quot;&amp;amp;gt;DELETE&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;id&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;Store a newly created resource in storage.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request POST \
-    &amp;amp;quot;https://events-management.test/api/events/1/attendees&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/attendees&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;POST&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-POSTapi-events--event_id--attendees&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-POSTapi-events--event_id--attendees&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-POSTapi-events--event_id--attendees&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-POSTapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-POSTapi-events--event_id--attendees&amp;amp;quot; data-method=&amp;amp;quot;POST&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/attendees&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;POSTapi-events--event_id--attendees&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-POSTapi-events--event_id--attendees&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;POSTapi-events--event_id--attendees&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-POSTapi-events--event_id--attendees&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;POSTapi-events--event_id--attendees&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-POSTapi-events--event_id--attendees&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-black&amp;amp;quot;&amp;amp;gt;POST&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/attendees&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--attendees&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--attendees&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--attendees&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;Remove the specified resource from storage.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request DELETE \
-    &amp;amp;quot;https://events-management.test/api/events/1/&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;DELETE&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-DELETEapi-events--event_id--&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-DELETEapi-events--event_id--&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-DELETEapi-events--event_id--&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-DELETEapi-events--event_id--&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-DELETEapi-events--event_id--&amp;amp;quot; data-method=&amp;amp;quot;DELETE&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;DELETEapi-events--event_id--&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-DELETEapi-events--event_id--&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;DELETEapi-events--event_id--&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-DELETEapi-events--event_id--&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;DELETEapi-events--event_id--&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-DELETEapi-events--event_id--&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-red&amp;amp;quot;&amp;amp;gt;DELETE&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;POST api/event-types&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request POST \
-    &amp;amp;quot;https://events-management.test/api/event-types&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;name\&amp;amp;quot;: \&amp;amp;quot;b\&amp;amp;quot;,
-    \&amp;amp;quot;description\&amp;amp;quot;: \&amp;amp;quot;Et animi quos velit et fugiat.\&amp;amp;quot;
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/event-types&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;b&amp;amp;quot;,
-    &amp;amp;quot;description&amp;amp;quot;: &amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-};
-
-fetch(url, {
-    method: &amp;amp;quot;POST&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-POSTapi-event-types&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-POSTapi-event-types&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-POSTapi-event-types&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-POSTapi-event-types&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-POSTapi-event-types&amp;amp;quot; data-method=&amp;amp;quot;POST&amp;amp;quot;
-      data-path=&amp;amp;quot;api/event-types&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;POSTapi-event-types&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-POSTapi-event-types&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;POSTapi-event-types&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-POSTapi-event-types&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;POSTapi-event-types&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-POSTapi-event-types&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-black&amp;amp;quot;&amp;amp;gt;POST&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/event-types&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-event-types&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-event-types&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;name&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-event-types&amp;amp;quot;
-               value=&amp;amp;quot;b&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;b&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;description&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;description&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-event-types&amp;amp;quot;
-               value=&amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 4096 characters. Example: &amp;amp;lt;code&amp;amp;gt;Et animi quos velit et fugiat.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;PUT api/event-types/{type_id}&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request PUT \
-    &amp;amp;quot;https://events-management.test/api/event-types/1&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;name\&amp;amp;quot;: \&amp;amp;quot;b\&amp;amp;quot;,
-    \&amp;amp;quot;description\&amp;amp;quot;: \&amp;amp;quot;Et animi quos velit et fugiat.\&amp;amp;quot;
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/event-types/1&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;b&amp;amp;quot;,
-    &amp;amp;quot;description&amp;amp;quot;: &amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-};
-
-fetch(url, {
-    method: &amp;amp;quot;PUT&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-PUTapi-event-types--type_id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-PUTapi-event-types--type_id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-PUTapi-event-types--type_id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-PUTapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-PUTapi-event-types--type_id-&amp;amp;quot; data-method=&amp;amp;quot;PUT&amp;amp;quot;
-      data-path=&amp;amp;quot;api/event-types/{type_id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;PUTapi-event-types--type_id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-PUTapi-event-types--type_id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;PUTapi-event-types--type_id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-PUTapi-event-types--type_id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;PUTapi-event-types--type_id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-PUTapi-event-types--type_id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-darkblue&amp;amp;quot;&amp;amp;gt;PUT&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/event-types/{type_id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;type_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;type_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the type. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                            &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;name&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;b&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;b&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;description&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;description&amp;amp;quot;                data-endpoint=&amp;amp;quot;PUTapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 4096 characters. Example: &amp;amp;lt;code&amp;amp;gt;Et animi quos velit et fugiat.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;DELETE api/event-types/{type_id}&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request DELETE \
-    &amp;amp;quot;https://events-management.test/api/event-types/1&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/event-types/1&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;DELETE&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-DELETEapi-event-types--type_id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-DELETEapi-event-types--type_id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-DELETEapi-event-types--type_id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-DELETEapi-event-types--type_id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-DELETEapi-event-types--type_id-&amp;amp;quot; data-method=&amp;amp;quot;DELETE&amp;amp;quot;
-      data-path=&amp;amp;quot;api/event-types/{type_id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;DELETEapi-event-types--type_id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-DELETEapi-event-types--type_id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;DELETEapi-event-types--type_id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-DELETEapi-event-types--type_id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;DELETEapi-event-types--type_id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-DELETEapi-event-types--type_id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-red&amp;amp;quot;&amp;amp;gt;DELETE&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/event-types/{type_id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;type_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;type_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-event-types--type_id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the type. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;GET api/events/{event_id}/invites&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/1/invites&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/invites&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (401):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Unauthenticated.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events--event_id--invites&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events--event_id--invites&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events--event_id--invites&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events--event_id--invites&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/invites&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events--event_id--invites&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events--event_id--invites&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events--event_id--invites&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events--event_id--invites&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events--event_id--invites&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events--event_id--invites&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/invites&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;POST api/events/{event_id}/invites&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request POST \
-    &amp;amp;quot;https://events-management.test/api/events/1/invites&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;users\&amp;amp;quot;: []
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/invites&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;users&amp;amp;quot;: []
-};
-
-fetch(url, {
-    method: &amp;amp;quot;POST&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-POSTapi-events--event_id--invites&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-POSTapi-events--event_id--invites&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-POSTapi-events--event_id--invites&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-POSTapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-POSTapi-events--event_id--invites&amp;amp;quot; data-method=&amp;amp;quot;POST&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/invites&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;POSTapi-events--event_id--invites&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-POSTapi-events--event_id--invites&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;POSTapi-events--event_id--invites&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-POSTapi-events--event_id--invites&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;POSTapi-events--event_id--invites&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-POSTapi-events--event_id--invites&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-black&amp;amp;quot;&amp;amp;gt;POST&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/invites&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                            &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;users&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;object&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;users&amp;amp;quot;                data-endpoint=&amp;amp;quot;POSTapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;DELETE api/events/{event_id}/invites&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request DELETE \
-    &amp;amp;quot;https://events-management.test/api/events/1/invites&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;users\&amp;amp;quot;: []
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/invites&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;users&amp;amp;quot;: []
-};
-
-fetch(url, {
-    method: &amp;amp;quot;DELETE&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-DELETEapi-events--event_id--invites&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-DELETEapi-events--event_id--invites&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-DELETEapi-events--event_id--invites&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-DELETEapi-events--event_id--invites&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-DELETEapi-events--event_id--invites&amp;amp;quot; data-method=&amp;amp;quot;DELETE&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/invites&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;DELETEapi-events--event_id--invites&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-DELETEapi-events--event_id--invites&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;DELETEapi-events--event_id--invites&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-DELETEapi-events--event_id--invites&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;DELETEapi-events--event_id--invites&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-DELETEapi-events--event_id--invites&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-red&amp;amp;quot;&amp;amp;gt;DELETE&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/invites&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                            &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;users&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;object&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;users&amp;amp;quot;                data-endpoint=&amp;amp;quot;DELETEapi-events--event_id--invites&amp;amp;quot;
-               value=&amp;amp;quot;&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events&amp;amp;quot;&amp;amp;gt;Display a listing of the resource.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1016,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Architecto quo rerum repellat est maiores eveniet consequatur.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 8,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 17:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-06 17:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Workshop&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 8
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 889,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Autem dolore omnis cupiditate quam necessitatibus minima quo.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Lake Coty&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 8,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 18:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-24 22:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Lecture&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 31
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 873,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Eum iure soluta eum in minima.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 5,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 19:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-10 21:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Networking&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 47
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 323,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Ipsam eaque aspernatur voluptas ut ipsa.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Aspernatur voluptates ut eius nam. Molestiae molestiae modi voluptatem corrupti. Est dolorem voluptas odio dolorem.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 4,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 19:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-01 00:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Gala&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 39
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 380,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;In natus voluptas dolore culpa odit et atque.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 1,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 20:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-22 11:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Open House&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 43
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1000,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Eaque natus est facilis sequi a dolore.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Laudantium est corporis vitae distinctio temporibus officiis maiores. Qui praesentium tempore magnam quidem veniam ut quia. Error at delectus velit modi ipsum nostrum quis. Necessitatibus qui voluptas eius et aliquam ducimus qui.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 1,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 20:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-02 04:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Workshop&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 24
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 975,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Nesciunt explicabo ut provident temporibus nam ut quia quas.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Port Cindy&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 9,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 21:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-23 18:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Seminar&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 31
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1143,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Ut expedita aut odio voluptatibus quis harum reiciendis.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;East Raegan&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 6,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 22:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-09 06:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Meetup&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 41
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 623,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Expedita esse deserunt totam.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 9,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 22:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-06 15:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Exhibition&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 10
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 336,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Sunt nisi sed non dolorum.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 4,
-            &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-06-26 23:00:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-15 22:30:00&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Ceremony&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 33
-        }
-    ],
-    &amp;amp;amp;quot;links&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;first&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events?page=1&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;last&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events?page=110&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;prev&amp;amp;amp;quot;: null,
-        &amp;amp;amp;quot;next&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events?page=2&amp;amp;amp;quot;
-    },
-    &amp;amp;amp;quot;meta&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;current_page&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;last_page&amp;amp;amp;quot;: 110,
-        &amp;amp;amp;quot;path&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;per_page&amp;amp;amp;quot;: 10,
-        &amp;amp;amp;quot;total&amp;amp;amp;quot;: 1093
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events-search&amp;amp;quot;&amp;amp;gt;GET api/events/search&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events-search&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/search&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot; \
-    --data &amp;amp;quot;{
-    \&amp;amp;quot;name\&amp;amp;quot;: \&amp;amp;quot;b\&amp;amp;quot;,
-    \&amp;amp;quot;description\&amp;amp;quot;: \&amp;amp;quot;Et animi quos velit et fugiat.\&amp;amp;quot;,
-    \&amp;amp;quot;location\&amp;amp;quot;: \&amp;amp;quot;d\&amp;amp;quot;,
-    \&amp;amp;quot;cost_min\&amp;amp;quot;: 37,
-    \&amp;amp;quot;cost_max\&amp;amp;quot;: 9,
-    \&amp;amp;quot;starts_before\&amp;amp;quot;: \&amp;amp;quot;2025-06-27 19:17:08\&amp;amp;quot;,
-    \&amp;amp;quot;starts_after\&amp;amp;quot;: \&amp;amp;quot;2025-06-27 19:17:08\&amp;amp;quot;,
-    \&amp;amp;quot;ends_before\&amp;amp;quot;: \&amp;amp;quot;2025-06-27 19:17:08\&amp;amp;quot;,
-    \&amp;amp;quot;ends_after\&amp;amp;quot;: \&amp;amp;quot;2025-06-27 19:17:08\&amp;amp;quot;,
-    \&amp;amp;quot;type\&amp;amp;quot;: \&amp;amp;quot;architecto\&amp;amp;quot;,
-    \&amp;amp;quot;attendees_min\&amp;amp;quot;: 39,
-    \&amp;amp;quot;attendees_max\&amp;amp;quot;: 84,
-    \&amp;amp;quot;public\&amp;amp;quot;: true,
-    \&amp;amp;quot;organizer\&amp;amp;quot;: 16
-}&amp;amp;quot;
-&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/search&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-let body = {
-    &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;b&amp;amp;quot;,
-    &amp;amp;quot;description&amp;amp;quot;: &amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;,
-    &amp;amp;quot;location&amp;amp;quot;: &amp;amp;quot;d&amp;amp;quot;,
-    &amp;amp;quot;cost_min&amp;amp;quot;: 37,
-    &amp;amp;quot;cost_max&amp;amp;quot;: 9,
-    &amp;amp;quot;starts_before&amp;amp;quot;: &amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;,
-    &amp;amp;quot;starts_after&amp;amp;quot;: &amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;,
-    &amp;amp;quot;ends_before&amp;amp;quot;: &amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;,
-    &amp;amp;quot;ends_after&amp;amp;quot;: &amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;,
-    &amp;amp;quot;type&amp;amp;quot;: &amp;amp;quot;architecto&amp;amp;quot;,
-    &amp;amp;quot;attendees_min&amp;amp;quot;: 39,
-    &amp;amp;quot;attendees_max&amp;amp;quot;: 84,
-    &amp;amp;quot;public&amp;amp;quot;: true,
-    &amp;amp;quot;organizer&amp;amp;quot;: 16
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events-search&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (422):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;The selected type is invalid.&amp;amp;amp;quot;,
-    &amp;amp;amp;quot;errors&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;type&amp;amp;amp;quot;: [
-            &amp;amp;amp;quot;The selected type is invalid.&amp;amp;amp;quot;
-        ]
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events-search&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events-search&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events-search&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events-search&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events-search&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events-search&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/search&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events-search&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events-search&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events-search&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events-search&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events-search&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events-search&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/search&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Body Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-        &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;name&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;b&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;b&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;description&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;description&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;Et animi quos velit et fugiat.&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;Et animi quos velit et fugiat.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;location&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;location&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;d&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must not be greater than 255 characters. Example: &amp;amp;lt;code&amp;amp;gt;d&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;cost_min&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;cost_min&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;37&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be at least 0. Example: &amp;amp;lt;code&amp;amp;gt;37&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;cost_max&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;cost_max&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;9&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be at least 0. Example: &amp;amp;lt;code&amp;amp;gt;9&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;starts_before&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;starts_before&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date in the format &amp;amp;lt;code&amp;amp;gt;Y-m-d H:i:s&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2025-06-27 19:17:08&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;starts_after&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;starts_after&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date in the format &amp;amp;lt;code&amp;amp;gt;Y-m-d H:i:s&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2025-06-27 19:17:08&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;ends_before&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;ends_before&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date in the format &amp;amp;lt;code&amp;amp;gt;Y-m-d H:i:s&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2025-06-27 19:17:08&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;ends_after&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;ends_after&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;2025-06-27 19:17:08&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be a valid date in the format &amp;amp;lt;code&amp;amp;gt;Y-m-d H:i:s&amp;amp;lt;/code&amp;amp;gt;. Example: &amp;amp;lt;code&amp;amp;gt;2025-06-27 19:17:08&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;architecto&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The &amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt; of an existing record in the event_types table. Example: &amp;amp;lt;code&amp;amp;gt;architecto&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;attendees_min&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;attendees_min&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;39&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be at least 0. Example: &amp;amp;lt;code&amp;amp;gt;39&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;attendees_max&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;attendees_max&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;84&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Must be at least 0. Example: &amp;amp;lt;code&amp;amp;gt;84&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;public&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;boolean&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;label data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;input type=&amp;amp;quot;radio&amp;amp;quot; name=&amp;amp;quot;public&amp;amp;quot;
-                   value=&amp;amp;quot;true&amp;amp;quot;
-                   data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-                   data-component=&amp;amp;quot;body&amp;amp;quot;             &amp;amp;gt;
-            &amp;amp;lt;code&amp;amp;gt;true&amp;amp;lt;/code&amp;amp;gt;
-        &amp;amp;lt;/label&amp;amp;gt;
-        &amp;amp;lt;label data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;input type=&amp;amp;quot;radio&amp;amp;quot; name=&amp;amp;quot;public&amp;amp;quot;
-                   value=&amp;amp;quot;false&amp;amp;quot;
-                   data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-                   data-component=&amp;amp;quot;body&amp;amp;quot;             &amp;amp;gt;
-            &amp;amp;lt;code&amp;amp;gt;false&amp;amp;lt;/code&amp;amp;gt;
-        &amp;amp;lt;/label&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;true&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-                &amp;amp;lt;div style=&amp;amp;quot; padding-left: 28px;  clear: unset;&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;organizer&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;organizer&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-search&amp;amp;quot;
-               value=&amp;amp;quot;16&amp;amp;quot;
-               data-component=&amp;amp;quot;body&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;16&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/div&amp;amp;gt;
-        &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;GET api/events/type/{name}&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/type/cIm&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/type/cIm&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (404):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;There are no events of this type.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events-type--name-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events-type--name-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events-type--name-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events-type--name-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events-type--name-&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/type/{name}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events-type--name-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events-type--name-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events-type--name-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events-type--name-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events-type--name-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events-type--name-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/type/{name}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-type--name-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-type--name-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;name&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;name&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-type--name-&amp;amp;quot;
-               value=&amp;amp;quot;cIm&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;cIm&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;Display a listing of the resource.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/organizer/1&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/organizer/1&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [],
-    &amp;amp;amp;quot;links&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;first&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events/organizer/1?page=1&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;last&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events/organizer/1?page=1&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;prev&amp;amp;amp;quot;: null,
-        &amp;amp;amp;quot;next&amp;amp;amp;quot;: null
-    },
-    &amp;amp;amp;quot;meta&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;current_page&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;last_page&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;path&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events/organizer/1&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;per_page&amp;amp;amp;quot;: 10,
-        &amp;amp;amp;quot;total&amp;amp;amp;quot;: 0
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events-organizer--organizer_id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events-organizer--organizer_id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events-organizer--organizer_id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events-organizer--organizer_id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events-organizer--organizer_id-&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/organizer/{organizer_id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events-organizer--organizer_id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events-organizer--organizer_id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events-organizer--organizer_id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events-organizer--organizer_id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events-organizer--organizer_id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events-organizer--organizer_id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/organizer/{organizer_id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-organizer--organizer_id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-organizer--organizer_id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;organizer_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;organizer_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events-organizer--organizer_id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the organizer. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;Display the specified resource.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/1&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Id et iste et aspernatur recusandae.&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;location&amp;amp;amp;quot;: &amp;amp;amp;quot;Online&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;cost&amp;amp;amp;quot;: 4,
-        &amp;amp;amp;quot;start_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-11 22:00:00&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;end_date&amp;amp;amp;quot;: &amp;amp;amp;quot;2025-07-23 02:00:00&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;type&amp;amp;amp;quot;: &amp;amp;amp;quot;Hackathon&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;public&amp;amp;amp;quot;: &amp;amp;amp;quot;yes&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;attendees_count&amp;amp;amp;quot;: 4
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events--id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events--id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events--id-&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events--id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events--id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events--id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events--id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;id&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;Display a listing of the resource.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/1/attendees&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/attendees&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1387,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Betty Schaefer&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;heidenreich.sophia@example.org&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Svalbard &amp;amp;amp;amp; Jan Mayen Islands&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Medical Scientists&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;(845) 794-8777&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Heathcote-Franecki&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 906,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Hayley Harvey&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;gerson72@example.com&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;France&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Precision Etcher and Engraver&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;(208) 610-3123&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Batz Group&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1248,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Mr. Chase Collier&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;lhettinger@example.com&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Singapore&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Health Services Manager&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;(845) 417-4790&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Klein, Leffler and Metz&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 763,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Tyrel Batz PhD&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;peggie84@example.com&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;Libyan Arab Jamahiriya&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Recreation and Fitness Studies Teacher&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;1-319-518-2721&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;Murphy-Hirthe&amp;amp;amp;quot;
-        }
-    ],
-    &amp;amp;amp;quot;links&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;first&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events/1/attendees?page=1&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;last&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events/1/attendees?page=1&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;prev&amp;amp;amp;quot;: null,
-        &amp;amp;amp;quot;next&amp;amp;amp;quot;: null
-    },
-    &amp;amp;amp;quot;meta&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;current_page&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;last_page&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;path&amp;amp;amp;quot;: &amp;amp;amp;quot;https://events-management.test/api/events/1/attendees&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;per_page&amp;amp;amp;quot;: 20,
-        &amp;amp;amp;quot;total&amp;amp;amp;quot;: 4
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events--event_id--attendees&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events--event_id--attendees&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events--event_id--attendees&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events--event_id--attendees&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events--event_id--attendees&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/attendees&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events--event_id--attendees&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events--event_id--attendees&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events--event_id--attendees&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events--event_id--attendees&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events--event_id--attendees&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events--event_id--attendees&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/attendees&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;Display the specified resource.&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/events/1/attendees/architecto&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/events/1/attendees/architecto&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (404):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;The route api/events/1/attendees/architecto could not be found.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-events--event_id--attendees--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-events--event_id--attendees--id-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-events--event_id--attendees--id-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-events--event_id--attendees--id-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-events--event_id--attendees--id-&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/events/{event_id}/attendees/{id}&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-events--event_id--attendees--id-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-events--event_id--attendees--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-events--event_id--attendees--id-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-events--event_id--attendees--id-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-events--event_id--attendees--id-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-events--event_id--attendees--id-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/events/{event_id}/attendees/{id}&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees--id-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;event_id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;event_id&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees--id-&amp;amp;quot;
-               value=&amp;amp;quot;1&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the event. Example: &amp;amp;lt;code&amp;amp;gt;1&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;id&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;string&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;id&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-events--event_id--attendees--id-&amp;amp;quot;
-               value=&amp;amp;quot;architecto&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the attendee. Example: &amp;amp;lt;code&amp;amp;gt;architecto&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-                    &amp;amp;lt;h2 id=&amp;amp;quot;endpoints-GETapi-event-types&amp;amp;quot;&amp;amp;gt;GET api/event-types&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-event-types&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/event-types&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/event-types&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-event-types&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;details class=&amp;amp;quot;annotation&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;summary style=&amp;amp;quot;cursor: pointer;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;small onclick=&amp;amp;quot;textContent = parentElement.parentElement.open ? &amp;amp;#039;Show headers&amp;amp;#039; : &amp;amp;#039;Hide headers&amp;amp;#039;&amp;amp;quot;&amp;amp;gt;Show headers&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;/summary&amp;amp;gt;
-            &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-http&amp;amp;quot;&amp;amp;gt;cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- &amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/details&amp;amp;gt;         &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: [
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 22,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Bootcamp&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Intensive training sessions focused on rapid skill development.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 10,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Ceremony&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Formal occasions marking special events or achievements.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 16,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Charity Event&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Gatherings to support charitable organizations.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 11,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Competition&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Contests where participants compete for prizes.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 4,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Concert&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Live music performances by artists or bands.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Conference&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Professional gatherings for sharing knowledge and networking.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 7,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Exhibition&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Displays of art, products, or innovations.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 5,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Festival&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Large-scale celebrations featuring entertainment and activities.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 9,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Fundraiser&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Events aimed at raising money for a cause.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 21,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Gala&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Formal social gatherings often featuring dinner and entertainment.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 15,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Hackathon&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Collaborative programming and problem-solving events.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 18,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Lecture&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Educational talks by experts or academics.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 6,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Meetup&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Informal gatherings for people with shared interests.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 8,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Networking&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Events designed to connect professionals.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 20,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Open House&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Events where organizations invite the public to visit and learn more.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 12,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Panel Discussion&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Expert-led discussions on specific topics.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 14,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Product Launch&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Unveiling of new products or services.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 19,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Retreat&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Events focused on relaxation, reflection, or team building.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 23,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Screening&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Showings of films, documentaries, or videos to an audience.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 3,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Seminar&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Educational meetings for discussion and learning.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 17,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Sports Event&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Competitions or exhibitions in various sports.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 13,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Trade Show&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Industry events showcasing products and services.&amp;amp;amp;quot;
-        },
-        {
-            &amp;amp;amp;quot;id&amp;amp;amp;quot;: 2,
-            &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;Workshop&amp;amp;amp;quot;,
-            &amp;amp;amp;quot;description&amp;amp;amp;quot;: &amp;amp;amp;quot;Hands-on sessions focused on skill development.&amp;amp;amp;quot;
-        }
-    ]
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-event-types&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-event-types&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-event-types&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-event-types&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-event-types&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-event-types&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/event-types&amp;amp;quot;
-      data-authed=&amp;amp;quot;0&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-event-types&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-event-types&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-event-types&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-event-types&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-event-types&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-event-types&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/event-types&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-event-types&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-event-types&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;/form&amp;amp;gt;
-
-                &amp;amp;lt;h1 id=&amp;amp;quot;user-management&amp;amp;quot;&amp;amp;gt;User Management&amp;amp;lt;/h1&amp;amp;gt;
-
-    &amp;amp;lt;p&amp;amp;gt;Handles user-related operations, including viewing user profiles.&amp;amp;lt;/p&amp;amp;gt;
-
-                                &amp;amp;lt;h2 id=&amp;amp;quot;user-management-GETapi-&amp;amp;quot;&amp;amp;gt;Show User Information&amp;amp;lt;/h2&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;
-&amp;amp;lt;small class=&amp;amp;quot;badge badge-darkred&amp;amp;quot;&amp;amp;gt;requires authentication&amp;amp;lt;/small&amp;amp;gt;
-&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;p&amp;amp;gt;Displays the profile of a user. If no user is specified, it shows the authenticated user&amp;amp;#039;s profile.&amp;amp;lt;br/&amp;amp;gt;
-(Only admins can see other users&amp;amp;#039; profiles.)&amp;amp;lt;/p&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-requests-GETapi-&amp;amp;quot;&amp;amp;gt;
-&amp;amp;lt;blockquote&amp;amp;gt;Example request:&amp;amp;lt;/blockquote&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;bash-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-bash&amp;amp;quot;&amp;amp;gt;curl --request GET \
-    --get &amp;amp;quot;https://events-management.test/api/&amp;amp;quot; \
-    --header &amp;amp;quot;Content-Type: application/json&amp;amp;quot; \
-    --header &amp;amp;quot;Accept: application/json&amp;amp;quot;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-
-&amp;amp;lt;div class=&amp;amp;quot;javascript-example&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code class=&amp;amp;quot;language-javascript&amp;amp;quot;&amp;amp;gt;const url = new URL(
-    &amp;amp;quot;https://events-management.test/api/&amp;amp;quot;
-);
-
-const headers = {
-    &amp;amp;quot;Content-Type&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-    &amp;amp;quot;Accept&amp;amp;quot;: &amp;amp;quot;application/json&amp;amp;quot;,
-};
-
-fetch(url, {
-    method: &amp;amp;quot;GET&amp;amp;quot;,
-    headers,
-}).then(response =&amp;amp;amp;gt; response.json());&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;
-
-&amp;amp;lt;/span&amp;amp;gt;
-
-&amp;amp;lt;span id=&amp;amp;quot;example-responses-GETapi-&amp;amp;quot;&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (200):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;data&amp;amp;amp;quot;: {
-        &amp;amp;amp;quot;id&amp;amp;amp;quot;: 1,
-        &amp;amp;amp;quot;name&amp;amp;amp;quot;: &amp;amp;amp;quot;John Doe&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;email&amp;amp;amp;quot;: &amp;amp;amp;quot;john@doe.com&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;country&amp;amp;amp;quot;: &amp;amp;amp;quot;USA&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;profession&amp;amp;amp;quot;: &amp;amp;amp;quot;Programmer&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;phone&amp;amp;amp;quot;: &amp;amp;amp;quot;123-456-789&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;organization&amp;amp;amp;quot;: &amp;amp;amp;quot;World Incorporated&amp;amp;amp;quot;,
-        &amp;amp;amp;quot;tokens&amp;amp;amp;quot;: 100,
-        &amp;amp;amp;quot;tokens_spend&amp;amp;amp;quot;: 100
-    }
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-            &amp;amp;lt;blockquote&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;Example response (401):&amp;amp;lt;/p&amp;amp;gt;
-        &amp;amp;lt;/blockquote&amp;amp;gt;
-                &amp;amp;lt;pre&amp;amp;gt;
-
-&amp;amp;lt;code class=&amp;amp;quot;language-json&amp;amp;quot; style=&amp;amp;quot;max-height: 300px;&amp;amp;quot;&amp;amp;gt;{
-    &amp;amp;amp;quot;message&amp;amp;amp;quot;: &amp;amp;amp;quot;Unauthenticated.&amp;amp;amp;quot;
-}&amp;amp;lt;/code&amp;amp;gt;
- &amp;amp;lt;/pre&amp;amp;gt;
-    &amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-results-GETapi-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Received response&amp;amp;lt;span
-                id=&amp;amp;quot;execution-response-status-GETapi-&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/span&amp;amp;gt;:
-    &amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre class=&amp;amp;quot;json&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-response-content-GETapi-&amp;amp;quot;
-      data-empty-response-text=&amp;amp;quot;&amp;amp;lt;Empty response&amp;amp;gt;&amp;amp;quot; style=&amp;amp;quot;max-height: 400px;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;span id=&amp;amp;quot;execution-error-GETapi-&amp;amp;quot; hidden&amp;amp;gt;
-    &amp;amp;lt;blockquote&amp;amp;gt;Request failed with error:&amp;amp;lt;/blockquote&amp;amp;gt;
-    &amp;amp;lt;pre&amp;amp;gt;&amp;amp;lt;code id=&amp;amp;quot;execution-error-message-GETapi-&amp;amp;quot;&amp;amp;gt;
-
-Tip: Check that you&amp;amp;amp;#039;re properly connected to the network.
-If you&amp;amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;amp;#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/pre&amp;amp;gt;
-&amp;amp;lt;/span&amp;amp;gt;
-&amp;amp;lt;form id=&amp;amp;quot;form-GETapi-&amp;amp;quot; data-method=&amp;amp;quot;GET&amp;amp;quot;
-      data-path=&amp;amp;quot;api/&amp;amp;quot;
-      data-authed=&amp;amp;quot;1&amp;amp;quot;
-      data-hasfiles=&amp;amp;quot;0&amp;amp;quot;
-      data-isarraybody=&amp;amp;quot;0&amp;amp;quot;
-      autocomplete=&amp;amp;quot;off&amp;amp;quot;
-      onsubmit=&amp;amp;quot;event.preventDefault(); executeTryOut(&amp;amp;#039;GETapi-&amp;amp;#039;, this);&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;h3&amp;amp;gt;
-        Request&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-                    &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-tryout-GETapi-&amp;amp;quot;
-                    onclick=&amp;amp;quot;tryItOut(&amp;amp;#039;GETapi-&amp;amp;#039;);&amp;amp;quot;&amp;amp;gt;Try it out ⚡
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-canceltryout-GETapi-&amp;amp;quot;
-                    onclick=&amp;amp;quot;cancelTryOut(&amp;amp;#039;GETapi-&amp;amp;#039;);&amp;amp;quot; hidden&amp;amp;gt;Cancel 🛑
-            &amp;amp;lt;/button&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-            &amp;amp;lt;button type=&amp;amp;quot;submit&amp;amp;quot;
-                    style=&amp;amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;amp;quot;
-                    id=&amp;amp;quot;btn-executetryout-GETapi-&amp;amp;quot;
-                    data-initial-text=&amp;amp;quot;Send Request 💥&amp;amp;quot;
-                    data-loading-text=&amp;amp;quot;⏱ Sending...&amp;amp;quot;
-                    hidden&amp;amp;gt;Send Request 💥
-            &amp;amp;lt;/button&amp;amp;gt;
-            &amp;amp;lt;/h3&amp;amp;gt;
-            &amp;amp;lt;p&amp;amp;gt;
-            &amp;amp;lt;small class=&amp;amp;quot;badge badge-green&amp;amp;quot;&amp;amp;gt;GET&amp;amp;lt;/small&amp;amp;gt;
-            &amp;amp;lt;b&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;api/&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;
-        &amp;amp;lt;/p&amp;amp;gt;
-                &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;Headers&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Content-Type&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Content-Type&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                                &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;Accept&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;amp;nbsp;
- &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;text&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-                              name=&amp;amp;quot;Accept&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-&amp;amp;quot;
-               value=&amp;amp;quot;application/json&amp;amp;quot;
-               data-component=&amp;amp;quot;header&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;Example: &amp;amp;lt;code&amp;amp;gt;application/json&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                        &amp;amp;lt;h4 class=&amp;amp;quot;fancy-heading-panel&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;b&amp;amp;gt;URL Parameters&amp;amp;lt;/b&amp;amp;gt;&amp;amp;lt;/h4&amp;amp;gt;
-                    &amp;amp;lt;div style=&amp;amp;quot;padding-left: 28px; clear: unset;&amp;amp;quot;&amp;amp;gt;
-                &amp;amp;lt;b style=&amp;amp;quot;line-height: 2;&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;code&amp;amp;gt;user&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/b&amp;amp;gt;&amp;amp;amp;nbsp;&amp;amp;amp;nbsp;
-&amp;amp;lt;small&amp;amp;gt;integer&amp;amp;lt;/small&amp;amp;gt;&amp;amp;amp;nbsp;
-&amp;amp;lt;i&amp;amp;gt;optional&amp;amp;lt;/i&amp;amp;gt; &amp;amp;amp;nbsp;
-                &amp;amp;lt;input type=&amp;amp;quot;number&amp;amp;quot; style=&amp;amp;quot;display: none&amp;amp;quot;
-               step=&amp;amp;quot;any&amp;amp;quot;               name=&amp;amp;quot;user&amp;amp;quot;                data-endpoint=&amp;amp;quot;GETapi-&amp;amp;quot;
-               value=&amp;amp;quot;16&amp;amp;quot;
-               data-component=&amp;amp;quot;url&amp;amp;quot;&amp;amp;gt;
-    &amp;amp;lt;br&amp;amp;gt;
-&amp;amp;lt;p&amp;amp;gt;The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user&amp;amp;#039;s profile. Example: &amp;amp;lt;code&amp;amp;gt;16&amp;amp;lt;/code&amp;amp;gt;&amp;amp;lt;/p&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-                    &amp;amp;lt;/form&amp;amp;gt;
-
-            
-
-        
-    &amp;amp;lt;/div&amp;amp;gt;
-    &amp;amp;lt;div class=&amp;amp;quot;dark-box&amp;amp;quot;&amp;amp;gt;
-                    &amp;amp;lt;div class=&amp;amp;quot;lang-selector&amp;amp;quot;&amp;amp;gt;
-                                                        &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot; class=&amp;amp;quot;lang-button&amp;amp;quot; data-language-name=&amp;amp;quot;bash&amp;amp;quot;&amp;amp;gt;bash&amp;amp;lt;/button&amp;amp;gt;
-                                                        &amp;amp;lt;button type=&amp;amp;quot;button&amp;amp;quot; class=&amp;amp;quot;lang-button&amp;amp;quot; data-language-name=&amp;amp;quot;javascript&amp;amp;quot;&amp;amp;gt;javascript&amp;amp;lt;/button&amp;amp;gt;
-                            &amp;amp;lt;/div&amp;amp;gt;
-            &amp;amp;lt;/div&amp;amp;gt;
-&amp;amp;lt;/div&amp;amp;gt;
-&amp;amp;lt;/body&amp;amp;gt;
-&amp;amp;lt;/html&amp;amp;gt;
-&amp;lt;/code&amp;gt;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (401):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Unauthenticated.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;This event is a public event, there are no invites.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;This action is unauthorized.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (404):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Event not found.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
  &amp;lt;/pre&amp;gt;
     &amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-results-GETapi-docs&amp;quot; hidden&amp;gt;
+&amp;lt;span id=&amp;quot;execution-results-GETapi-events--event_id--invites&amp;quot; hidden&amp;gt;
     &amp;lt;blockquote&amp;gt;Received response&amp;lt;span
-                id=&amp;quot;execution-response-status-GETapi-docs&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
+                id=&amp;quot;execution-response-status-GETapi-events--event_id--invites&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
     &amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-GETapi-docs&amp;quot;
+    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-GETapi-events--event_id--invites&amp;quot;
       data-empty-response-text=&amp;quot;&amp;lt;Empty response&amp;gt;&amp;quot; style=&amp;quot;max-height: 400px;&amp;quot;&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
 &amp;lt;/span&amp;gt;
-&amp;lt;span id=&amp;quot;execution-error-GETapi-docs&amp;quot; hidden&amp;gt;
+&amp;lt;span id=&amp;quot;execution-error-GETapi-events--event_id--invites&amp;quot; hidden&amp;gt;
     &amp;lt;blockquote&amp;gt;Request failed with error:&amp;lt;/blockquote&amp;gt;
-    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-GETapi-docs&amp;quot;&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-GETapi-events--event_id--invites&amp;quot;&amp;gt;
 
 Tip: Check that you&amp;amp;#039;re properly connected to the network.
 If you&amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
 &amp;lt;/span&amp;gt;
-&amp;lt;form id=&amp;quot;form-GETapi-docs&amp;quot; data-method=&amp;quot;GET&amp;quot;
-      data-path=&amp;quot;api/docs&amp;quot;
-      data-authed=&amp;quot;0&amp;quot;
+&amp;lt;form id=&amp;quot;form-GETapi-events--event_id--invites&amp;quot; data-method=&amp;quot;GET&amp;quot;
+      data-path=&amp;quot;api/events/{event_id}/invites&amp;quot;
+      data-authed=&amp;quot;1&amp;quot;
       data-hasfiles=&amp;quot;0&amp;quot;
       data-isarraybody=&amp;quot;0&amp;quot;
       autocomplete=&amp;quot;off&amp;quot;
-      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;GETapi-docs&amp;#039;, this);&amp;quot;&amp;gt;
+      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;GETapi-events--event_id--invites&amp;#039;, this);&amp;quot;&amp;gt;
     &amp;lt;h3&amp;gt;
         Request&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;
                     &amp;lt;button type=&amp;quot;button&amp;quot;
                     style=&amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-tryout-GETapi-docs&amp;quot;
-                    onclick=&amp;quot;tryItOut(&amp;#039;GETapi-docs&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
+                    id=&amp;quot;btn-tryout-GETapi-events--event_id--invites&amp;quot;
+                    onclick=&amp;quot;tryItOut(&amp;#039;GETapi-events--event_id--invites&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
             &amp;lt;/button&amp;gt;
             &amp;lt;button type=&amp;quot;button&amp;quot;
                     style=&amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-canceltryout-GETapi-docs&amp;quot;
-                    onclick=&amp;quot;cancelTryOut(&amp;#039;GETapi-docs&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
+                    id=&amp;quot;btn-canceltryout-GETapi-events--event_id--invites&amp;quot;
+                    onclick=&amp;quot;cancelTryOut(&amp;#039;GETapi-events--event_id--invites&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
             &amp;lt;/button&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
             &amp;lt;button type=&amp;quot;submit&amp;quot;
                     style=&amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
-                    id=&amp;quot;btn-executetryout-GETapi-docs&amp;quot;
+                    id=&amp;quot;btn-executetryout-GETapi-events--event_id--invites&amp;quot;
                     data-initial-text=&amp;quot;Send Request 💥&amp;quot;
                     data-loading-text=&amp;quot;⏱ Sending...&amp;quot;
                     hidden&amp;gt;Send Request 💥
@@ -17587,7 +11933,7 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
             &amp;lt;/h3&amp;gt;
             &amp;lt;p&amp;gt;
             &amp;lt;small class=&amp;quot;badge badge-green&amp;quot;&amp;gt;GET&amp;lt;/small&amp;gt;
-            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/docs&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
+            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/events/{event_id}/invites&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
         &amp;lt;/p&amp;gt;
                 &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Headers&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
                                 &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
@@ -17595,7 +11941,7 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
 &amp;amp;nbsp;
  &amp;amp;nbsp;
                 &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;GETapi-docs&amp;quot;
+                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;GETapi-events--event_id--invites&amp;quot;
                value=&amp;quot;application/json&amp;quot;
                data-component=&amp;quot;header&amp;quot;&amp;gt;
     &amp;lt;br&amp;gt;
@@ -17606,13 +11952,468 @@ You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;
 &amp;amp;nbsp;
  &amp;amp;nbsp;
                 &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
-                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;GETapi-docs&amp;quot;
+                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;GETapi-events--event_id--invites&amp;quot;
                value=&amp;quot;application/json&amp;quot;
                data-component=&amp;quot;header&amp;quot;&amp;gt;
     &amp;lt;br&amp;gt;
 &amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
             &amp;lt;/div&amp;gt;
-                        &amp;lt;/form&amp;gt;
+                        &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;URL Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+                    &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;event_id&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;lt;small&amp;gt;integer&amp;lt;/small&amp;gt;&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               step=&amp;quot;any&amp;quot;               name=&amp;quot;event_id&amp;quot;                data-endpoint=&amp;quot;GETapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;1&amp;quot;
+               data-component=&amp;quot;url&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;The ID of the event for which to retrieve invites. Example: &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                    &amp;lt;/form&amp;gt;
+
+                    &amp;lt;h2 id=&amp;quot;event-invites-POSTapi-events--event_id--invites&amp;quot;&amp;gt;Create Invites for an Event&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;
+&amp;lt;small class=&amp;quot;badge badge-darkred&amp;quot;&amp;gt;requires authentication&amp;lt;/small&amp;gt;
+&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Allows the organizer of a private event to invite users to the event.&amp;lt;/p&amp;gt;
+
+&amp;lt;span id=&amp;quot;example-requests-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
+&amp;lt;blockquote&amp;gt;Example request:&amp;lt;/blockquote&amp;gt;
+
+
+&amp;lt;div class=&amp;quot;bash-example&amp;quot;&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot;&amp;gt;curl --request POST \
+    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot; \
+    --header &amp;quot;Content-Type: application/json&amp;quot; \
+    --header &amp;quot;Accept: application/json&amp;quot; \
+    --data &amp;quot;{
+    \&amp;quot;users\&amp;quot;: [
+        1,
+        2,
+        3
+    ]
+}&amp;quot;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+
+&amp;lt;div class=&amp;quot;javascript-example&amp;quot;&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-javascript&amp;quot;&amp;gt;const url = new URL(
+    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot;
+);
+
+const headers = {
+    &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
+    &amp;quot;Accept&amp;quot;: &amp;quot;application/json&amp;quot;,
+};
+
+let body = {
+    &amp;quot;users&amp;quot;: [
+        1,
+        2,
+        3
+    ]
+};
+
+fetch(url, {
+    method: &amp;quot;POST&amp;quot;,
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&amp;amp;gt; response.json());&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;/span&amp;gt;
+
+&amp;lt;span id=&amp;quot;example-responses-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (201):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;data&amp;amp;quot;: [
+        {
+            &amp;amp;quot;id&amp;amp;quot;: 4190,
+            &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Ms. Audra Crooks II&amp;amp;quot;,
+            &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;gilbert32@example.com&amp;amp;quot;,
+            &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Liechtenstein&amp;amp;quot;,
+            &amp;amp;quot;profession&amp;amp;quot;: &amp;amp;quot;Registered Nurse&amp;amp;quot;,
+            &amp;amp;quot;phone&amp;amp;quot;: &amp;amp;quot;364-447-5052&amp;amp;quot;,
+            &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Predovic Inc&amp;amp;quot;
+        },
+        {
+            &amp;amp;quot;id&amp;amp;quot;: 4191,
+            &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Myrtis Tromp&amp;amp;quot;,
+            &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;nstokes@example.org&amp;amp;quot;,
+            &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Solomon Islands&amp;amp;quot;,
+            &amp;amp;quot;profession&amp;amp;quot;: &amp;amp;quot;Extruding Machine Operator&amp;amp;quot;,
+            &amp;amp;quot;phone&amp;amp;quot;: &amp;amp;quot;1-539-501-0782&amp;amp;quot;,
+            &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Nitzsche-Ankunding&amp;amp;quot;
+        }
+    ],
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Invites created successfully.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (401):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Unauthenticated.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;This action is unauthorized.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;You are not authorized to invite users to this event.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;You cannot invite users to an event that has already started.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;You can only invite users to private events.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (404):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Event not found.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+    &amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;quot;execution-results-POSTapi-events--event_id--invites&amp;quot; hidden&amp;gt;
+    &amp;lt;blockquote&amp;gt;Received response&amp;lt;span
+                id=&amp;quot;execution-response-status-POSTapi-events--event_id--invites&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
+    &amp;lt;/blockquote&amp;gt;
+    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-POSTapi-events--event_id--invites&amp;quot;
+      data-empty-response-text=&amp;quot;&amp;lt;Empty response&amp;gt;&amp;quot; style=&amp;quot;max-height: 400px;&amp;quot;&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;quot;execution-error-POSTapi-events--event_id--invites&amp;quot; hidden&amp;gt;
+    &amp;lt;blockquote&amp;gt;Request failed with error:&amp;lt;/blockquote&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-POSTapi-events--event_id--invites&amp;quot;&amp;gt;
+
+Tip: Check that you&amp;amp;#039;re properly connected to the network.
+If you&amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&amp;lt;/span&amp;gt;
+&amp;lt;form id=&amp;quot;form-POSTapi-events--event_id--invites&amp;quot; data-method=&amp;quot;POST&amp;quot;
+      data-path=&amp;quot;api/events/{event_id}/invites&amp;quot;
+      data-authed=&amp;quot;1&amp;quot;
+      data-hasfiles=&amp;quot;0&amp;quot;
+      data-isarraybody=&amp;quot;0&amp;quot;
+      autocomplete=&amp;quot;off&amp;quot;
+      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;POSTapi-events--event_id--invites&amp;#039;, this);&amp;quot;&amp;gt;
+    &amp;lt;h3&amp;gt;
+        Request&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;
+                    &amp;lt;button type=&amp;quot;button&amp;quot;
+                    style=&amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
+                    id=&amp;quot;btn-tryout-POSTapi-events--event_id--invites&amp;quot;
+                    onclick=&amp;quot;tryItOut(&amp;#039;POSTapi-events--event_id--invites&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
+            &amp;lt;/button&amp;gt;
+            &amp;lt;button type=&amp;quot;button&amp;quot;
+                    style=&amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
+                    id=&amp;quot;btn-canceltryout-POSTapi-events--event_id--invites&amp;quot;
+                    onclick=&amp;quot;cancelTryOut(&amp;#039;POSTapi-events--event_id--invites&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
+            &amp;lt;/button&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+            &amp;lt;button type=&amp;quot;submit&amp;quot;
+                    style=&amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
+                    id=&amp;quot;btn-executetryout-POSTapi-events--event_id--invites&amp;quot;
+                    data-initial-text=&amp;quot;Send Request 💥&amp;quot;
+                    data-loading-text=&amp;quot;⏱ Sending...&amp;quot;
+                    hidden&amp;gt;Send Request 💥
+            &amp;lt;/button&amp;gt;
+            &amp;lt;/h3&amp;gt;
+            &amp;lt;p&amp;gt;
+            &amp;lt;small class=&amp;quot;badge badge-black&amp;quot;&amp;gt;POST&amp;lt;/small&amp;gt;
+            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/events/{event_id}/invites&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
+        &amp;lt;/p&amp;gt;
+                &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Headers&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Content-Type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
+                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;application/json&amp;quot;
+               data-component=&amp;quot;header&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Accept&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
+                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;application/json&amp;quot;
+               data-component=&amp;quot;header&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                        &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;URL Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+                    &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;event_id&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;lt;small&amp;gt;integer&amp;lt;/small&amp;gt;&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               step=&amp;quot;any&amp;quot;               name=&amp;quot;event_id&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;1&amp;quot;
+               data-component=&amp;quot;url&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;The ID of the event to which users will be invited. Example: &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                            &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Body Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+        &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
+            &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;users&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;lt;small&amp;gt;integer[]&amp;lt;/small&amp;gt;&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               step=&amp;quot;any&amp;quot;               name=&amp;quot;users[0]&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
+               data-component=&amp;quot;body&amp;quot;&amp;gt;
+        &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               name=&amp;quot;users[1]&amp;quot;                data-endpoint=&amp;quot;POSTapi-events--event_id--invites&amp;quot;
+               data-component=&amp;quot;body&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;The IDs of the users to ban.&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+        &amp;lt;/form&amp;gt;
+
+                    &amp;lt;h2 id=&amp;quot;event-invites-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;Remove Invites for an Event&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;
+&amp;lt;small class=&amp;quot;badge badge-darkred&amp;quot;&amp;gt;requires authentication&amp;lt;/small&amp;gt;
+&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;Allows the organizer of a private event to remove invites for users.&amp;lt;/p&amp;gt;
+
+&amp;lt;span id=&amp;quot;example-requests-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
+&amp;lt;blockquote&amp;gt;Example request:&amp;lt;/blockquote&amp;gt;
+
+
+&amp;lt;div class=&amp;quot;bash-example&amp;quot;&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-bash&amp;quot;&amp;gt;curl --request DELETE \
+    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot; \
+    --header &amp;quot;Content-Type: application/json&amp;quot; \
+    --header &amp;quot;Accept: application/json&amp;quot; \
+    --data &amp;quot;{
+    \&amp;quot;users\&amp;quot;: [
+        1,
+        2,
+        3
+    ]
+}&amp;quot;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+
+&amp;lt;div class=&amp;quot;javascript-example&amp;quot;&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;language-javascript&amp;quot;&amp;gt;const url = new URL(
+    &amp;quot;https://events-management.test/api/events/1/invites&amp;quot;
+);
+
+const headers = {
+    &amp;quot;Content-Type&amp;quot;: &amp;quot;application/json&amp;quot;,
+    &amp;quot;Accept&amp;quot;: &amp;quot;application/json&amp;quot;,
+};
+
+let body = {
+    &amp;quot;users&amp;quot;: [
+        1,
+        2,
+        3
+    ]
+};
+
+fetch(url, {
+    method: &amp;quot;DELETE&amp;quot;,
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&amp;amp;gt; response.json());&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;/span&amp;gt;
+
+&amp;lt;span id=&amp;quot;example-responses-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (201):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;data&amp;amp;quot;: [
+        {
+            &amp;amp;quot;id&amp;amp;quot;: 4192,
+            &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Ms. Audra Crooks II&amp;amp;quot;,
+            &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;hirthe.theo@example.com&amp;amp;quot;,
+            &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Cocos (Keeling) Islands&amp;amp;quot;,
+            &amp;amp;quot;profession&amp;amp;quot;: &amp;amp;quot;Product Specialist&amp;amp;quot;,
+            &amp;amp;quot;phone&amp;amp;quot;: &amp;amp;quot;+14324666067&amp;amp;quot;,
+            &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Leffler PLC&amp;amp;quot;
+        },
+        {
+            &amp;amp;quot;id&amp;amp;quot;: 4193,
+            &amp;amp;quot;name&amp;amp;quot;: &amp;amp;quot;Domingo Leuschke&amp;amp;quot;,
+            &amp;amp;quot;email&amp;amp;quot;: &amp;amp;quot;jleffler@example.com&amp;amp;quot;,
+            &amp;amp;quot;country&amp;amp;quot;: &amp;amp;quot;Pitcairn Islands&amp;amp;quot;,
+            &amp;amp;quot;profession&amp;amp;quot;: &amp;amp;quot;Electronic Masking System Operator&amp;amp;quot;,
+            &amp;amp;quot;phone&amp;amp;quot;: &amp;amp;quot;(585) 986-2203&amp;amp;quot;,
+            &amp;amp;quot;organization&amp;amp;quot;: &amp;amp;quot;Mayer-Kutch&amp;amp;quot;
+        }
+    ],
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Invites removed successfully.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (401):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Unauthenticated.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (403):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;This action is unauthorized.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+            &amp;lt;blockquote&amp;gt;
+            &amp;lt;p&amp;gt;Example response (404):&amp;lt;/p&amp;gt;
+        &amp;lt;/blockquote&amp;gt;
+                &amp;lt;pre&amp;gt;
+
+&amp;lt;code class=&amp;quot;language-json&amp;quot; style=&amp;quot;max-height: 300px;&amp;quot;&amp;gt;{
+    &amp;amp;quot;message&amp;amp;quot;: &amp;amp;quot;Event not found.&amp;amp;quot;
+}&amp;lt;/code&amp;gt;
+ &amp;lt;/pre&amp;gt;
+    &amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;quot;execution-results-DELETEapi-events--event_id--invites&amp;quot; hidden&amp;gt;
+    &amp;lt;blockquote&amp;gt;Received response&amp;lt;span
+                id=&amp;quot;execution-response-status-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;:
+    &amp;lt;/blockquote&amp;gt;
+    &amp;lt;pre class=&amp;quot;json&amp;quot;&amp;gt;&amp;lt;code id=&amp;quot;execution-response-content-DELETEapi-events--event_id--invites&amp;quot;
+      data-empty-response-text=&amp;quot;&amp;lt;Empty response&amp;gt;&amp;quot; style=&amp;quot;max-height: 400px;&amp;quot;&amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;quot;execution-error-DELETEapi-events--event_id--invites&amp;quot; hidden&amp;gt;
+    &amp;lt;blockquote&amp;gt;Request failed with error:&amp;lt;/blockquote&amp;gt;
+    &amp;lt;pre&amp;gt;&amp;lt;code id=&amp;quot;execution-error-message-DELETEapi-events--event_id--invites&amp;quot;&amp;gt;
+
+Tip: Check that you&amp;amp;#039;re properly connected to the network.
+If you&amp;amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;amp;#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&amp;lt;/span&amp;gt;
+&amp;lt;form id=&amp;quot;form-DELETEapi-events--event_id--invites&amp;quot; data-method=&amp;quot;DELETE&amp;quot;
+      data-path=&amp;quot;api/events/{event_id}/invites&amp;quot;
+      data-authed=&amp;quot;1&amp;quot;
+      data-hasfiles=&amp;quot;0&amp;quot;
+      data-isarraybody=&amp;quot;0&amp;quot;
+      autocomplete=&amp;quot;off&amp;quot;
+      onsubmit=&amp;quot;event.preventDefault(); executeTryOut(&amp;#039;DELETEapi-events--event_id--invites&amp;#039;, this);&amp;quot;&amp;gt;
+    &amp;lt;h3&amp;gt;
+        Request&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;
+                    &amp;lt;button type=&amp;quot;button&amp;quot;
+                    style=&amp;quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
+                    id=&amp;quot;btn-tryout-DELETEapi-events--event_id--invites&amp;quot;
+                    onclick=&amp;quot;tryItOut(&amp;#039;DELETEapi-events--event_id--invites&amp;#039;);&amp;quot;&amp;gt;Try it out ⚡
+            &amp;lt;/button&amp;gt;
+            &amp;lt;button type=&amp;quot;button&amp;quot;
+                    style=&amp;quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
+                    id=&amp;quot;btn-canceltryout-DELETEapi-events--event_id--invites&amp;quot;
+                    onclick=&amp;quot;cancelTryOut(&amp;#039;DELETEapi-events--event_id--invites&amp;#039;);&amp;quot; hidden&amp;gt;Cancel 🛑
+            &amp;lt;/button&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+            &amp;lt;button type=&amp;quot;submit&amp;quot;
+                    style=&amp;quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&amp;quot;
+                    id=&amp;quot;btn-executetryout-DELETEapi-events--event_id--invites&amp;quot;
+                    data-initial-text=&amp;quot;Send Request 💥&amp;quot;
+                    data-loading-text=&amp;quot;⏱ Sending...&amp;quot;
+                    hidden&amp;gt;Send Request 💥
+            &amp;lt;/button&amp;gt;
+            &amp;lt;/h3&amp;gt;
+            &amp;lt;p&amp;gt;
+            &amp;lt;small class=&amp;quot;badge badge-red&amp;quot;&amp;gt;DELETE&amp;lt;/small&amp;gt;
+            &amp;lt;b&amp;gt;&amp;lt;code&amp;gt;api/events/{event_id}/invites&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;
+        &amp;lt;/p&amp;gt;
+                &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Headers&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Content-Type&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
+                              name=&amp;quot;Content-Type&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;application/json&amp;quot;
+               data-component=&amp;quot;header&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                                &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;Accept&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;text&amp;quot; style=&amp;quot;display: none&amp;quot;
+                              name=&amp;quot;Accept&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;application/json&amp;quot;
+               data-component=&amp;quot;header&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;Example: &amp;lt;code&amp;gt;application/json&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                        &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;URL Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+                    &amp;lt;div style=&amp;quot;padding-left: 28px; clear: unset;&amp;quot;&amp;gt;
+                &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;event_id&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;lt;small&amp;gt;integer&amp;lt;/small&amp;gt;&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               step=&amp;quot;any&amp;quot;               name=&amp;quot;event_id&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
+               value=&amp;quot;1&amp;quot;
+               data-component=&amp;quot;url&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;The ID of the event from which users will be removed. Example: &amp;lt;code&amp;gt;1&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+                            &amp;lt;h4 class=&amp;quot;fancy-heading-panel&amp;quot;&amp;gt;&amp;lt;b&amp;gt;Body Parameters&amp;lt;/b&amp;gt;&amp;lt;/h4&amp;gt;
+        &amp;lt;div style=&amp;quot; padding-left: 28px;  clear: unset;&amp;quot;&amp;gt;
+            &amp;lt;b style=&amp;quot;line-height: 2;&amp;quot;&amp;gt;&amp;lt;code&amp;gt;users&amp;lt;/code&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;
+&amp;lt;small&amp;gt;integer[]&amp;lt;/small&amp;gt;&amp;amp;nbsp;
+ &amp;amp;nbsp;
+                &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               step=&amp;quot;any&amp;quot;               name=&amp;quot;users[0]&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
+               data-component=&amp;quot;body&amp;quot;&amp;gt;
+        &amp;lt;input type=&amp;quot;number&amp;quot; style=&amp;quot;display: none&amp;quot;
+               name=&amp;quot;users[1]&amp;quot;                data-endpoint=&amp;quot;DELETEapi-events--event_id--invites&amp;quot;
+               data-component=&amp;quot;body&amp;quot;&amp;gt;
+    &amp;lt;br&amp;gt;
+&amp;lt;p&amp;gt;The IDs of the users to ban.&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+        &amp;lt;/form&amp;gt;
 
                 &amp;lt;h1 id=&amp;quot;user-management&amp;quot;&amp;gt;User Management&amp;lt;/h1&amp;gt;
 
@@ -17855,33 +12656,32 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
             &lt;/div&gt;
                         &lt;/form&gt;
 
-                &lt;h1 id=&quot;user-management&quot;&gt;User Management&lt;/h1&gt;
+                &lt;h1 id=&quot;event-invites&quot;&gt;Event Invites&lt;/h1&gt;
 
-    &lt;p&gt;Handles user-related operations, including viewing user profiles.&lt;/p&gt;
+    &lt;p&gt;Handles event invitations, allowing organizers to invite users to private events.&lt;/p&gt;
 
-                                &lt;h2 id=&quot;user-management-GETapi-users-show--user--&quot;&gt;Show User Information&lt;/h2&gt;
+                                &lt;h2 id=&quot;event-invites-GETapi-events--event_id--invites&quot;&gt;Get Invites for an Event&lt;/h2&gt;
 
 &lt;p&gt;
 &lt;small class=&quot;badge badge-darkred&quot;&gt;requires authentication&lt;/small&gt;
 &lt;/p&gt;
 
-&lt;p&gt;Displays the profile of a user. If no user is specified, it shows the authenticated user&#039;s profile.&lt;br/&gt;
-(Only admins can see other users&#039; profiles.)&lt;/p&gt;
+&lt;p&gt;Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites.&lt;/p&gt;
 
-&lt;span id=&quot;example-requests-GETapi-users-show--user--&quot;&gt;
+&lt;span id=&quot;example-requests-GETapi-events--event_id--invites&quot;&gt;
 &lt;blockquote&gt;Example request:&lt;/blockquote&gt;
 
 
 &lt;div class=&quot;bash-example&quot;&gt;
     &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request GET \
-    --get &quot;https://events-management.test/api/users/show/16&quot; \
+    --get &quot;https://events-management.test/api/events/1/invites&quot; \
     --header &quot;Content-Type: application/json&quot; \
     --header &quot;Accept: application/json&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;div class=&quot;javascript-example&quot;&gt;
     &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
-    &quot;https://events-management.test/api/users/show/16&quot;
+    &quot;https://events-management.test/api/events/1/invites&quot;
 );
 
 const headers = {
@@ -17896,7 +12696,640 @@ fetch(url, {
 
 &lt;/span&gt;
 
-&lt;span id=&quot;example-responses-GETapi-users-show--user--&quot;&gt;
+&lt;span id=&quot;example-responses-GETapi-events--event_id--invites&quot;&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (200):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;id&amp;quot;: 4200,
+            &amp;quot;name&amp;quot;: &amp;quot;Justina Gaylord&amp;quot;,
+            &amp;quot;email&amp;quot;: &amp;quot;lafayette.considine@example.com&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Gabon&amp;quot;,
+            &amp;quot;profession&amp;quot;: &amp;quot;Logging Tractor Operator&amp;quot;,
+            &amp;quot;phone&amp;quot;: &amp;quot;(806) 721-0719&amp;quot;,
+            &amp;quot;organization&amp;quot;: &amp;quot;Baumbach Ltd&amp;quot;
+        },
+        {
+            &amp;quot;id&amp;quot;: 4201,
+            &amp;quot;name&amp;quot;: &amp;quot;Mina Bauch&amp;quot;,
+            &amp;quot;email&amp;quot;: &amp;quot;okeefe.isidro@example.org&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Antarctica (the territory South of 60 deg S)&amp;quot;,
+            &amp;quot;profession&amp;quot;: &amp;quot;Claims Examiner&amp;quot;,
+            &amp;quot;phone&amp;quot;: &amp;quot;283.476.7809&amp;quot;,
+            &amp;quot;organization&amp;quot;: &amp;quot;Haag and Sons&amp;quot;
+        }
+    ]
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (401):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Unauthenticated.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;This event is a public event, there are no invites.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;This action is unauthorized.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (404):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Event not found.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+    &lt;/span&gt;
+&lt;span id=&quot;execution-results-GETapi-events--event_id--invites&quot; hidden&gt;
+    &lt;blockquote&gt;Received response&lt;span
+                id=&quot;execution-response-status-GETapi-events--event_id--invites&quot;&gt;&lt;/span&gt;:
+    &lt;/blockquote&gt;
+    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-GETapi-events--event_id--invites&quot;
+      data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;
+&lt;span id=&quot;execution-error-GETapi-events--event_id--invites&quot; hidden&gt;
+    &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
+    &lt;pre&gt;&lt;code id=&quot;execution-error-message-GETapi-events--event_id--invites&quot;&gt;
+
+Tip: Check that you&amp;#039;re properly connected to the network.
+If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;
+&lt;form id=&quot;form-GETapi-events--event_id--invites&quot; data-method=&quot;GET&quot;
+      data-path=&quot;api/events/{event_id}/invites&quot;
+      data-authed=&quot;1&quot;
+      data-hasfiles=&quot;0&quot;
+      data-isarraybody=&quot;0&quot;
+      autocomplete=&quot;off&quot;
+      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;GETapi-events--event_id--invites&#039;, this);&quot;&gt;
+    &lt;h3&gt;
+        Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                    &lt;button type=&quot;button&quot;
+                    style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-tryout-GETapi-events--event_id--invites&quot;
+                    onclick=&quot;tryItOut(&#039;GETapi-events--event_id--invites&#039;);&quot;&gt;Try it out ⚡
+            &lt;/button&gt;
+            &lt;button type=&quot;button&quot;
+                    style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-canceltryout-GETapi-events--event_id--invites&quot;
+                    onclick=&quot;cancelTryOut(&#039;GETapi-events--event_id--invites&#039;);&quot; hidden&gt;Cancel 🛑
+            &lt;/button&gt;&amp;nbsp;&amp;nbsp;
+            &lt;button type=&quot;submit&quot;
+                    style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-executetryout-GETapi-events--event_id--invites&quot;
+                    data-initial-text=&quot;Send Request 💥&quot;
+                    data-loading-text=&quot;⏱ Sending...&quot;
+                    hidden&gt;Send Request 💥
+            &lt;/button&gt;
+            &lt;/h3&gt;
+            &lt;p&gt;
+            &lt;small class=&quot;badge badge-green&quot;&gt;GET&lt;/small&gt;
+            &lt;b&gt;&lt;code&gt;api/events/{event_id}/invites&lt;/code&gt;&lt;/b&gt;
+        &lt;/p&gt;
+                &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
+                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Content-Type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
+                              name=&quot;Content-Type&quot;                data-endpoint=&quot;GETapi-events--event_id--invites&quot;
+               value=&quot;application/json&quot;
+               data-component=&quot;header&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Accept&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
+                              name=&quot;Accept&quot;                data-endpoint=&quot;GETapi-events--event_id--invites&quot;
+               value=&quot;application/json&quot;
+               data-component=&quot;header&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                        &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;URL Parameters&lt;/b&gt;&lt;/h4&gt;
+                    &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;event_id&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               step=&quot;any&quot;               name=&quot;event_id&quot;                data-endpoint=&quot;GETapi-events--event_id--invites&quot;
+               value=&quot;1&quot;
+               data-component=&quot;url&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;The ID of the event for which to retrieve invites. Example: &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                    &lt;/form&gt;
+
+                    &lt;h2 id=&quot;event-invites-POSTapi-events--event_id--invites&quot;&gt;Create Invites for an Event&lt;/h2&gt;
+
+&lt;p&gt;
+&lt;small class=&quot;badge badge-darkred&quot;&gt;requires authentication&lt;/small&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Allows the organizer of a private event to invite users to the event.&lt;/p&gt;
+
+&lt;span id=&quot;example-requests-POSTapi-events--event_id--invites&quot;&gt;
+&lt;blockquote&gt;Example request:&lt;/blockquote&gt;
+
+
+&lt;div class=&quot;bash-example&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request POST \
+    &quot;https://events-management.test/api/events/1/invites&quot; \
+    --header &quot;Content-Type: application/json&quot; \
+    --header &quot;Accept: application/json&quot; \
+    --data &quot;{
+    \&quot;users\&quot;: [
+        1,
+        2,
+        3
+    ]
+}&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;javascript-example&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
+    &quot;https://events-management.test/api/events/1/invites&quot;
+);
+
+const headers = {
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+    &quot;Accept&quot;: &quot;application/json&quot;,
+};
+
+let body = {
+    &quot;users&quot;: [
+        1,
+        2,
+        3
+    ]
+};
+
+fetch(url, {
+    method: &quot;POST&quot;,
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&amp;gt; response.json());&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/span&gt;
+
+&lt;span id=&quot;example-responses-POSTapi-events--event_id--invites&quot;&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (201):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;id&amp;quot;: 4202,
+            &amp;quot;name&amp;quot;: &amp;quot;Ms. Audra Crooks II&amp;quot;,
+            &amp;quot;email&amp;quot;: &amp;quot;gilbert32@example.com&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Liechtenstein&amp;quot;,
+            &amp;quot;profession&amp;quot;: &amp;quot;Registered Nurse&amp;quot;,
+            &amp;quot;phone&amp;quot;: &amp;quot;364-447-5052&amp;quot;,
+            &amp;quot;organization&amp;quot;: &amp;quot;Predovic Inc&amp;quot;
+        },
+        {
+            &amp;quot;id&amp;quot;: 4203,
+            &amp;quot;name&amp;quot;: &amp;quot;Myrtis Tromp&amp;quot;,
+            &amp;quot;email&amp;quot;: &amp;quot;nstokes@example.org&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Solomon Islands&amp;quot;,
+            &amp;quot;profession&amp;quot;: &amp;quot;Extruding Machine Operator&amp;quot;,
+            &amp;quot;phone&amp;quot;: &amp;quot;1-539-501-0782&amp;quot;,
+            &amp;quot;organization&amp;quot;: &amp;quot;Nitzsche-Ankunding&amp;quot;
+        }
+    ],
+    &amp;quot;message&amp;quot;: &amp;quot;Invites created successfully.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (401):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Unauthenticated.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;This action is unauthorized.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;You are not authorized to invite users to this event.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;You cannot invite users to an event that has already started.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;You can only invite users to private events.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (404):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Event not found.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+    &lt;/span&gt;
+&lt;span id=&quot;execution-results-POSTapi-events--event_id--invites&quot; hidden&gt;
+    &lt;blockquote&gt;Received response&lt;span
+                id=&quot;execution-response-status-POSTapi-events--event_id--invites&quot;&gt;&lt;/span&gt;:
+    &lt;/blockquote&gt;
+    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-POSTapi-events--event_id--invites&quot;
+      data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;
+&lt;span id=&quot;execution-error-POSTapi-events--event_id--invites&quot; hidden&gt;
+    &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
+    &lt;pre&gt;&lt;code id=&quot;execution-error-message-POSTapi-events--event_id--invites&quot;&gt;
+
+Tip: Check that you&amp;#039;re properly connected to the network.
+If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;
+&lt;form id=&quot;form-POSTapi-events--event_id--invites&quot; data-method=&quot;POST&quot;
+      data-path=&quot;api/events/{event_id}/invites&quot;
+      data-authed=&quot;1&quot;
+      data-hasfiles=&quot;0&quot;
+      data-isarraybody=&quot;0&quot;
+      autocomplete=&quot;off&quot;
+      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;POSTapi-events--event_id--invites&#039;, this);&quot;&gt;
+    &lt;h3&gt;
+        Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                    &lt;button type=&quot;button&quot;
+                    style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-tryout-POSTapi-events--event_id--invites&quot;
+                    onclick=&quot;tryItOut(&#039;POSTapi-events--event_id--invites&#039;);&quot;&gt;Try it out ⚡
+            &lt;/button&gt;
+            &lt;button type=&quot;button&quot;
+                    style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-canceltryout-POSTapi-events--event_id--invites&quot;
+                    onclick=&quot;cancelTryOut(&#039;POSTapi-events--event_id--invites&#039;);&quot; hidden&gt;Cancel 🛑
+            &lt;/button&gt;&amp;nbsp;&amp;nbsp;
+            &lt;button type=&quot;submit&quot;
+                    style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-executetryout-POSTapi-events--event_id--invites&quot;
+                    data-initial-text=&quot;Send Request 💥&quot;
+                    data-loading-text=&quot;⏱ Sending...&quot;
+                    hidden&gt;Send Request 💥
+            &lt;/button&gt;
+            &lt;/h3&gt;
+            &lt;p&gt;
+            &lt;small class=&quot;badge badge-black&quot;&gt;POST&lt;/small&gt;
+            &lt;b&gt;&lt;code&gt;api/events/{event_id}/invites&lt;/code&gt;&lt;/b&gt;
+        &lt;/p&gt;
+                &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
+                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Content-Type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
+                              name=&quot;Content-Type&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
+               value=&quot;application/json&quot;
+               data-component=&quot;header&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Accept&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
+                              name=&quot;Accept&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
+               value=&quot;application/json&quot;
+               data-component=&quot;header&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                        &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;URL Parameters&lt;/b&gt;&lt;/h4&gt;
+                    &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;event_id&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               step=&quot;any&quot;               name=&quot;event_id&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
+               value=&quot;1&quot;
+               data-component=&quot;url&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;The ID of the event to which users will be invited. Example: &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                            &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Body Parameters&lt;/b&gt;&lt;/h4&gt;
+        &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
+            &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;users&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&lt;small&gt;integer[]&lt;/small&gt;&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               step=&quot;any&quot;               name=&quot;users[0]&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
+               data-component=&quot;body&quot;&gt;
+        &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               name=&quot;users[1]&quot;                data-endpoint=&quot;POSTapi-events--event_id--invites&quot;
+               data-component=&quot;body&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;The IDs of the users to ban.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/form&gt;
+
+                    &lt;h2 id=&quot;event-invites-DELETEapi-events--event_id--invites&quot;&gt;Remove Invites for an Event&lt;/h2&gt;
+
+&lt;p&gt;
+&lt;small class=&quot;badge badge-darkred&quot;&gt;requires authentication&lt;/small&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Allows the organizer of a private event to remove invites for users.&lt;/p&gt;
+
+&lt;span id=&quot;example-requests-DELETEapi-events--event_id--invites&quot;&gt;
+&lt;blockquote&gt;Example request:&lt;/blockquote&gt;
+
+
+&lt;div class=&quot;bash-example&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request DELETE \
+    &quot;https://events-management.test/api/events/1/invites&quot; \
+    --header &quot;Content-Type: application/json&quot; \
+    --header &quot;Accept: application/json&quot; \
+    --data &quot;{
+    \&quot;users\&quot;: [
+        1,
+        2,
+        3
+    ]
+}&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;javascript-example&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
+    &quot;https://events-management.test/api/events/1/invites&quot;
+);
+
+const headers = {
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+    &quot;Accept&quot;: &quot;application/json&quot;,
+};
+
+let body = {
+    &quot;users&quot;: [
+        1,
+        2,
+        3
+    ]
+};
+
+fetch(url, {
+    method: &quot;DELETE&quot;,
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&amp;gt; response.json());&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/span&gt;
+
+&lt;span id=&quot;example-responses-DELETEapi-events--event_id--invites&quot;&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (200):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;id&amp;quot;: 4204,
+            &amp;quot;name&amp;quot;: &amp;quot;Ms. Audra Crooks II&amp;quot;,
+            &amp;quot;email&amp;quot;: &amp;quot;hirthe.theo@example.com&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Cocos (Keeling) Islands&amp;quot;,
+            &amp;quot;profession&amp;quot;: &amp;quot;Product Specialist&amp;quot;,
+            &amp;quot;phone&amp;quot;: &amp;quot;+14324666067&amp;quot;,
+            &amp;quot;organization&amp;quot;: &amp;quot;Leffler PLC&amp;quot;
+        },
+        {
+            &amp;quot;id&amp;quot;: 4205,
+            &amp;quot;name&amp;quot;: &amp;quot;Domingo Leuschke&amp;quot;,
+            &amp;quot;email&amp;quot;: &amp;quot;jleffler@example.com&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Pitcairn Islands&amp;quot;,
+            &amp;quot;profession&amp;quot;: &amp;quot;Electronic Masking System Operator&amp;quot;,
+            &amp;quot;phone&amp;quot;: &amp;quot;(585) 986-2203&amp;quot;,
+            &amp;quot;organization&amp;quot;: &amp;quot;Mayer-Kutch&amp;quot;
+        }
+    ],
+    &amp;quot;message&amp;quot;: &amp;quot;Invites removed successfully.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (401):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Unauthenticated.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (403):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;This action is unauthorized.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+            &lt;blockquote&gt;
+            &lt;p&gt;Example response (404):&lt;/p&gt;
+        &lt;/blockquote&gt;
+                &lt;pre&gt;
+
+&lt;code class=&quot;language-json&quot; style=&quot;max-height: 300px;&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Event not found.&amp;quot;
+}&lt;/code&gt;
+ &lt;/pre&gt;
+    &lt;/span&gt;
+&lt;span id=&quot;execution-results-DELETEapi-events--event_id--invites&quot; hidden&gt;
+    &lt;blockquote&gt;Received response&lt;span
+                id=&quot;execution-response-status-DELETEapi-events--event_id--invites&quot;&gt;&lt;/span&gt;:
+    &lt;/blockquote&gt;
+    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-DELETEapi-events--event_id--invites&quot;
+      data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;
+&lt;span id=&quot;execution-error-DELETEapi-events--event_id--invites&quot; hidden&gt;
+    &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
+    &lt;pre&gt;&lt;code id=&quot;execution-error-message-DELETEapi-events--event_id--invites&quot;&gt;
+
+Tip: Check that you&amp;#039;re properly connected to the network.
+If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;
+&lt;form id=&quot;form-DELETEapi-events--event_id--invites&quot; data-method=&quot;DELETE&quot;
+      data-path=&quot;api/events/{event_id}/invites&quot;
+      data-authed=&quot;1&quot;
+      data-hasfiles=&quot;0&quot;
+      data-isarraybody=&quot;0&quot;
+      autocomplete=&quot;off&quot;
+      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;DELETEapi-events--event_id--invites&#039;, this);&quot;&gt;
+    &lt;h3&gt;
+        Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                    &lt;button type=&quot;button&quot;
+                    style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-tryout-DELETEapi-events--event_id--invites&quot;
+                    onclick=&quot;tryItOut(&#039;DELETEapi-events--event_id--invites&#039;);&quot;&gt;Try it out ⚡
+            &lt;/button&gt;
+            &lt;button type=&quot;button&quot;
+                    style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-canceltryout-DELETEapi-events--event_id--invites&quot;
+                    onclick=&quot;cancelTryOut(&#039;DELETEapi-events--event_id--invites&#039;);&quot; hidden&gt;Cancel 🛑
+            &lt;/button&gt;&amp;nbsp;&amp;nbsp;
+            &lt;button type=&quot;submit&quot;
+                    style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
+                    id=&quot;btn-executetryout-DELETEapi-events--event_id--invites&quot;
+                    data-initial-text=&quot;Send Request 💥&quot;
+                    data-loading-text=&quot;⏱ Sending...&quot;
+                    hidden&gt;Send Request 💥
+            &lt;/button&gt;
+            &lt;/h3&gt;
+            &lt;p&gt;
+            &lt;small class=&quot;badge badge-red&quot;&gt;DELETE&lt;/small&gt;
+            &lt;b&gt;&lt;code&gt;api/events/{event_id}/invites&lt;/code&gt;&lt;/b&gt;
+        &lt;/p&gt;
+                &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
+                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Content-Type&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
+                              name=&quot;Content-Type&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
+               value=&quot;application/json&quot;
+               data-component=&quot;header&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                                &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;Accept&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
+                              name=&quot;Accept&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
+               value=&quot;application/json&quot;
+               data-component=&quot;header&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;Example: &lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                        &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;URL Parameters&lt;/b&gt;&lt;/h4&gt;
+                    &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
+                &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;event_id&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               step=&quot;any&quot;               name=&quot;event_id&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
+               value=&quot;1&quot;
+               data-component=&quot;url&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;The ID of the event from which users will be removed. Example: &lt;code&gt;1&lt;/code&gt;&lt;/p&gt;
+            &lt;/div&gt;
+                            &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Body Parameters&lt;/b&gt;&lt;/h4&gt;
+        &lt;div style=&quot; padding-left: 28px;  clear: unset;&quot;&gt;
+            &lt;b style=&quot;line-height: 2;&quot;&gt;&lt;code&gt;users&lt;/code&gt;&lt;/b&gt;&amp;nbsp;&amp;nbsp;
+&lt;small&gt;integer[]&lt;/small&gt;&amp;nbsp;
+ &amp;nbsp;
+                &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               step=&quot;any&quot;               name=&quot;users[0]&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
+               data-component=&quot;body&quot;&gt;
+        &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
+               name=&quot;users[1]&quot;                data-endpoint=&quot;DELETEapi-events--event_id--invites&quot;
+               data-component=&quot;body&quot;&gt;
+    &lt;br&gt;
+&lt;p&gt;The IDs of the users to ban.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/form&gt;
+
+                &lt;h1 id=&quot;user-management&quot;&gt;User Management&lt;/h1&gt;
+
+    &lt;p&gt;Handles user-related operations, including viewing user profiles.&lt;/p&gt;
+
+                                &lt;h2 id=&quot;user-management-GETapi-users--user--&quot;&gt;Show User Information&lt;/h2&gt;
+
+&lt;p&gt;
+&lt;small class=&quot;badge badge-darkred&quot;&gt;requires authentication&lt;/small&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Displays the profile of a user. If no user is specified, it shows the authenticated user&#039;s profile.&lt;br/&gt;
+(Only admins can see other users&#039; profiles.)&lt;/p&gt;
+
+&lt;span id=&quot;example-requests-GETapi-users--user--&quot;&gt;
+&lt;blockquote&gt;Example request:&lt;/blockquote&gt;
+
+
+&lt;div class=&quot;bash-example&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl --request GET \
+    --get &quot;https://events-management.test/api/users/16&quot; \
+    --header &quot;Content-Type: application/json&quot; \
+    --header &quot;Accept: application/json&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;javascript-example&quot;&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const url = new URL(
+    &quot;https://events-management.test/api/users/16&quot;
+);
+
+const headers = {
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+    &quot;Accept&quot;: &quot;application/json&quot;,
+};
+
+fetch(url, {
+    method: &quot;GET&quot;,
+    headers,
+}).then(response =&amp;gt; response.json());&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/span&gt;
+
+&lt;span id=&quot;example-responses-GETapi-users--user--&quot;&gt;
             &lt;blockquote&gt;
             &lt;p&gt;Example response (200):&lt;/p&gt;
         &lt;/blockquote&gt;
@@ -17926,43 +13359,43 @@ fetch(url, {
 }&lt;/code&gt;
  &lt;/pre&gt;
     &lt;/span&gt;
-&lt;span id=&quot;execution-results-GETapi-users-show--user--&quot; hidden&gt;
+&lt;span id=&quot;execution-results-GETapi-users--user--&quot; hidden&gt;
     &lt;blockquote&gt;Received response&lt;span
-                id=&quot;execution-response-status-GETapi-users-show--user--&quot;&gt;&lt;/span&gt;:
+                id=&quot;execution-response-status-GETapi-users--user--&quot;&gt;&lt;/span&gt;:
     &lt;/blockquote&gt;
-    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-GETapi-users-show--user--&quot;
+    &lt;pre class=&quot;json&quot;&gt;&lt;code id=&quot;execution-response-content-GETapi-users--user--&quot;
       data-empty-response-text=&quot;&lt;Empty response&gt;&quot; style=&quot;max-height: 400px;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/span&gt;
-&lt;span id=&quot;execution-error-GETapi-users-show--user--&quot; hidden&gt;
+&lt;span id=&quot;execution-error-GETapi-users--user--&quot; hidden&gt;
     &lt;blockquote&gt;Request failed with error:&lt;/blockquote&gt;
-    &lt;pre&gt;&lt;code id=&quot;execution-error-message-GETapi-users-show--user--&quot;&gt;
+    &lt;pre&gt;&lt;code id=&quot;execution-error-message-GETapi-users--user--&quot;&gt;
 
 Tip: Check that you&amp;#039;re properly connected to the network.
 If you&amp;#039;re a maintainer of ths API, verify that your API is running and you&amp;#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/pre&gt;
 &lt;/span&gt;
-&lt;form id=&quot;form-GETapi-users-show--user--&quot; data-method=&quot;GET&quot;
-      data-path=&quot;api/users/show/{user?}&quot;
+&lt;form id=&quot;form-GETapi-users--user--&quot; data-method=&quot;GET&quot;
+      data-path=&quot;api/users/{user?}&quot;
       data-authed=&quot;1&quot;
       data-hasfiles=&quot;0&quot;
       data-isarraybody=&quot;0&quot;
       autocomplete=&quot;off&quot;
-      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;GETapi-users-show--user--&#039;, this);&quot;&gt;
+      onsubmit=&quot;event.preventDefault(); executeTryOut(&#039;GETapi-users--user--&#039;, this);&quot;&gt;
     &lt;h3&gt;
         Request&amp;nbsp;&amp;nbsp;&amp;nbsp;
                     &lt;button type=&quot;button&quot;
                     style=&quot;background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-tryout-GETapi-users-show--user--&quot;
-                    onclick=&quot;tryItOut(&#039;GETapi-users-show--user--&#039;);&quot;&gt;Try it out ⚡
+                    id=&quot;btn-tryout-GETapi-users--user--&quot;
+                    onclick=&quot;tryItOut(&#039;GETapi-users--user--&#039;);&quot;&gt;Try it out ⚡
             &lt;/button&gt;
             &lt;button type=&quot;button&quot;
                     style=&quot;background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-canceltryout-GETapi-users-show--user--&quot;
-                    onclick=&quot;cancelTryOut(&#039;GETapi-users-show--user--&#039;);&quot; hidden&gt;Cancel 🛑
+                    id=&quot;btn-canceltryout-GETapi-users--user--&quot;
+                    onclick=&quot;cancelTryOut(&#039;GETapi-users--user--&#039;);&quot; hidden&gt;Cancel 🛑
             &lt;/button&gt;&amp;nbsp;&amp;nbsp;
             &lt;button type=&quot;submit&quot;
                     style=&quot;background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;&quot;
-                    id=&quot;btn-executetryout-GETapi-users-show--user--&quot;
+                    id=&quot;btn-executetryout-GETapi-users--user--&quot;
                     data-initial-text=&quot;Send Request 💥&quot;
                     data-loading-text=&quot;⏱ Sending...&quot;
                     hidden&gt;Send Request 💥
@@ -17970,7 +13403,7 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
             &lt;/h3&gt;
             &lt;p&gt;
             &lt;small class=&quot;badge badge-green&quot;&gt;GET&lt;/small&gt;
-            &lt;b&gt;&lt;code&gt;api/users/show/{user?}&lt;/code&gt;&lt;/b&gt;
+            &lt;b&gt;&lt;code&gt;api/users/{user?}&lt;/code&gt;&lt;/b&gt;
         &lt;/p&gt;
                 &lt;h4 class=&quot;fancy-heading-panel&quot;&gt;&lt;b&gt;Headers&lt;/b&gt;&lt;/h4&gt;
                                 &lt;div style=&quot;padding-left: 28px; clear: unset;&quot;&gt;
@@ -17978,7 +13411,7 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &amp;nbsp;
  &amp;nbsp;
                 &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Content-Type&quot;                data-endpoint=&quot;GETapi-users-show--user--&quot;
+                              name=&quot;Content-Type&quot;                data-endpoint=&quot;GETapi-users--user--&quot;
                value=&quot;application/json&quot;
                data-component=&quot;header&quot;&gt;
     &lt;br&gt;
@@ -17989,7 +13422,7 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &amp;nbsp;
  &amp;nbsp;
                 &lt;input type=&quot;text&quot; style=&quot;display: none&quot;
-                              name=&quot;Accept&quot;                data-endpoint=&quot;GETapi-users-show--user--&quot;
+                              name=&quot;Accept&quot;                data-endpoint=&quot;GETapi-users--user--&quot;
                value=&quot;application/json&quot;
                data-component=&quot;header&quot;&gt;
     &lt;br&gt;
@@ -18001,7 +13434,7 @@ You can check the Dev Tools console for debugging information.&lt;/code&gt;&lt;/
 &lt;small&gt;integer&lt;/small&gt;&amp;nbsp;
 &lt;i&gt;optional&lt;/i&gt; &amp;nbsp;
                 &lt;input type=&quot;number&quot; style=&quot;display: none&quot;
-               step=&quot;any&quot;               name=&quot;user&quot;                data-endpoint=&quot;GETapi-users-show--user--&quot;
+               step=&quot;any&quot;               name=&quot;user&quot;                data-endpoint=&quot;GETapi-users--user--&quot;
                value=&quot;16&quot;
                data-component=&quot;url&quot;&gt;
     &lt;br&gt;
@@ -18095,6 +13528,638 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>application/json</code></p>
             </div>
                         </form>
+
+                <h1 id="event-invites">Event Invites</h1>
+
+    <p>Handles event invitations, allowing organizers to invite users to private events.</p>
+
+                                <h2 id="event-invites-GETapi-events--event_id--invites">Get Invites for an Event</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites.</p>
+
+<span id="example-requests-GETapi-events--event_id--invites">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://events-management.test/api/events/1/invites" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://events-management.test/api/events/1/invites"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-events--event_id--invites">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4212,
+            &quot;name&quot;: &quot;Justina Gaylord&quot;,
+            &quot;email&quot;: &quot;lafayette.considine@example.com&quot;,
+            &quot;country&quot;: &quot;Gabon&quot;,
+            &quot;profession&quot;: &quot;Logging Tractor Operator&quot;,
+            &quot;phone&quot;: &quot;(806) 721-0719&quot;,
+            &quot;organization&quot;: &quot;Baumbach Ltd&quot;
+        },
+        {
+            &quot;id&quot;: 4213,
+            &quot;name&quot;: &quot;Mina Bauch&quot;,
+            &quot;email&quot;: &quot;okeefe.isidro@example.org&quot;,
+            &quot;country&quot;: &quot;Antarctica (the territory South of 60 deg S)&quot;,
+            &quot;profession&quot;: &quot;Claims Examiner&quot;,
+            &quot;phone&quot;: &quot;283.476.7809&quot;,
+            &quot;organization&quot;: &quot;Haag and Sons&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This event is a public event, there are no invites.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Event not found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-events--event_id--invites" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-events--event_id--invites"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-events--event_id--invites"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-events--event_id--invites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-events--event_id--invites">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-events--event_id--invites" data-method="GET"
+      data-path="api/events/{event_id}/invites"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-events--event_id--invites', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-events--event_id--invites"
+                    onclick="tryItOut('GETapi-events--event_id--invites');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-events--event_id--invites"
+                    onclick="cancelTryOut('GETapi-events--event_id--invites');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-events--event_id--invites"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/events/{event_id}/invites</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-events--event_id--invites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-events--event_id--invites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_id"                data-endpoint="GETapi-events--event_id--invites"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the event for which to retrieve invites. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="event-invites-POSTapi-events--event_id--invites">Create Invites for an Event</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Allows the organizer of a private event to invite users to the event.</p>
+
+<span id="example-requests-POSTapi-events--event_id--invites">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://events-management.test/api/events/1/invites" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"users\": [
+        1,
+        2,
+        3
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://events-management.test/api/events/1/invites"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "users": [
+        1,
+        2,
+        3
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-events--event_id--invites">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4214,
+            &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
+            &quot;email&quot;: &quot;gilbert32@example.com&quot;,
+            &quot;country&quot;: &quot;Liechtenstein&quot;,
+            &quot;profession&quot;: &quot;Registered Nurse&quot;,
+            &quot;phone&quot;: &quot;364-447-5052&quot;,
+            &quot;organization&quot;: &quot;Predovic Inc&quot;
+        },
+        {
+            &quot;id&quot;: 4215,
+            &quot;name&quot;: &quot;Myrtis Tromp&quot;,
+            &quot;email&quot;: &quot;nstokes@example.org&quot;,
+            &quot;country&quot;: &quot;Solomon Islands&quot;,
+            &quot;profession&quot;: &quot;Extruding Machine Operator&quot;,
+            &quot;phone&quot;: &quot;1-539-501-0782&quot;,
+            &quot;organization&quot;: &quot;Nitzsche-Ankunding&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Invites created successfully.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;You are not authorized to invite users to this event.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;You cannot invite users to an event that has already started.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;You can only invite users to private events.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Event not found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-events--event_id--invites" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-events--event_id--invites"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-events--event_id--invites"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-events--event_id--invites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-events--event_id--invites">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-events--event_id--invites" data-method="POST"
+      data-path="api/events/{event_id}/invites"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-events--event_id--invites', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-events--event_id--invites"
+                    onclick="tryItOut('POSTapi-events--event_id--invites');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-events--event_id--invites"
+                    onclick="cancelTryOut('POSTapi-events--event_id--invites');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-events--event_id--invites"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/events/{event_id}/invites</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-events--event_id--invites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-events--event_id--invites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_id"                data-endpoint="POSTapi-events--event_id--invites"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the event to which users will be invited. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="users[0]"                data-endpoint="POSTapi-events--event_id--invites"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="users[1]"                data-endpoint="POSTapi-events--event_id--invites"
+               data-component="body">
+    <br>
+<p>The IDs of the users to ban.</p>
+        </div>
+        </form>
+
+                    <h2 id="event-invites-DELETEapi-events--event_id--invites">Remove Invites for an Event</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Allows the organizer of a private event to remove invites for users.</p>
+
+<span id="example-requests-DELETEapi-events--event_id--invites">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://events-management.test/api/events/1/invites" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"users\": [
+        1,
+        2,
+        3
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://events-management.test/api/events/1/invites"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "users": [
+        1,
+        2,
+        3
+    ]
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-events--event_id--invites">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4216,
+            &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
+            &quot;email&quot;: &quot;hirthe.theo@example.com&quot;,
+            &quot;country&quot;: &quot;Cocos (Keeling) Islands&quot;,
+            &quot;profession&quot;: &quot;Product Specialist&quot;,
+            &quot;phone&quot;: &quot;+14324666067&quot;,
+            &quot;organization&quot;: &quot;Leffler PLC&quot;
+        },
+        {
+            &quot;id&quot;: 4217,
+            &quot;name&quot;: &quot;Domingo Leuschke&quot;,
+            &quot;email&quot;: &quot;jleffler@example.com&quot;,
+            &quot;country&quot;: &quot;Pitcairn Islands&quot;,
+            &quot;profession&quot;: &quot;Electronic Masking System Operator&quot;,
+            &quot;phone&quot;: &quot;(585) 986-2203&quot;,
+            &quot;organization&quot;: &quot;Mayer-Kutch&quot;
+        }
+    ],
+    &quot;message&quot;: &quot;Invites removed successfully.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Event not found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-events--event_id--invites" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-events--event_id--invites"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-events--event_id--invites"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-events--event_id--invites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-events--event_id--invites">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-events--event_id--invites" data-method="DELETE"
+      data-path="api/events/{event_id}/invites"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-events--event_id--invites', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-events--event_id--invites"
+                    onclick="tryItOut('DELETEapi-events--event_id--invites');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-events--event_id--invites"
+                    onclick="cancelTryOut('DELETEapi-events--event_id--invites');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-events--event_id--invites"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/events/{event_id}/invites</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-events--event_id--invites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-events--event_id--invites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_id"                data-endpoint="DELETEapi-events--event_id--invites"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the event from which users will be removed. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>users</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="users[0]"                data-endpoint="DELETEapi-events--event_id--invites"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="users[1]"                data-endpoint="DELETEapi-events--event_id--invites"
+               data-component="body">
+    <br>
+<p>The IDs of the users to ban.</p>
+        </div>
+        </form>
 
                 <h1 id="user-management">User Management</h1>
 

@@ -12,10 +12,10 @@ test('bans_store', function () {
 
     $this->postJson(route('bans.store'), ['users' => $users->pluck('id')->toArray()])->assertValid()
         ->assertCreated()
-        ->assertJsonCount($count + 1, 'users')
+        ->assertJsonCount($count + 1, 'data')
         ->assertJson([
             'message' => 'Bans added successfully.',
-            'users' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
+            'data' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
         ]);
 
     $this->assertDatabaseCount('bans', $count + 1);
@@ -99,10 +99,10 @@ test('bans_destroy', function () {
 
     $this->deleteJson(route('bans.destroy'), ['users' => $users->pluck('id')->toArray()])
         ->assertValid()
-        ->assertJsonCount($count, 'users')
+        ->assertJsonCount($count, 'data')
         ->assertJson([
             'message' => 'Bans removed successfully.',
-            'users' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
+            'data' => $users->map(fn($user) => $this->getUserResource($user))->toArray(),
         ]);
 
     $this->assertDatabaseCount('bans', 0);

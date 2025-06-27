@@ -14,7 +14,7 @@ use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\EventTypeController;
 
 Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
-    Route::get('user/{user?}', [UserController::class, 'show'])->name('user.show')->where('user', '[0-9]+');
+    Route::get('users/{user?}', [UserController::class, 'show'])->name('user.show')->where('user', '[0-9]+');
 
     Route::get('bans/{user?}', [BanController::class, 'index'])->name('bans.index')->where('user', '[0-9]+');
     Route::post('bans', [BanController::class, 'store'])->name('bans.store');
@@ -52,3 +52,5 @@ Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->na
 Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
 Route::get('event-types', [EventTypeController::class, 'index'])->name('event-types.index');
+
+Route::view('/docs', 'scribe.index');

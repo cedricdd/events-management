@@ -101,59 +101,7 @@ test('attendees_index_out_of_range_page', function () {
         ->assertStatus(404)
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => "The page 10 does not exist",
-        ]);
-});
-
-test('attendees_show', function () {
-    $event = $this->getEvents(count: 1, attendees: 1);
-
-    $attendee = $event->attendees->first();
-
-    $this->getJson(route('attendees.show', [$event, $attendee]))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment($this->getUserResource($attendee));
-});
-
-test('attendees_show_with_event', function () {
-    $event = $this->getEvents(count: 1, attendees: 'random');
-
-    $event->load(['organizer', 'type']);
-    $event->loadCount('attendees');
-
-    $attendee = $event->attendees()->first();
-
-    $this->getJson(route('attendees.show', [$event, $attendee, 'with' => 'event']))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertExactJson([
-            'data' => $this->getUserResource($attendee),
-            'event' => $this->getEventResource($event),
-        ]);
-});
-
-test('attendees_show_not_found', function () {
-    $event = $this->getEvents(count: 1, attendees: 1);
-
-    $attendee = $event->attendees->first();
-
-    // Test with a non-existing attendee
-    $this->getJson(route('attendees.show', [$event, 10]))
-        ->assertValid()
-        ->assertStatus(404)
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'message' => 'User not found',
-        ]);
-
-    // Test with a non-existing event
-    $this->getJson(route('attendees.show', [10, $attendee]))
-        ->assertValid()
-        ->assertStatus(404)
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertJsonFragment([
-            'message' => 'Event not found',
+            'message' => "The page 10 does not exist.",
         ]);
 });
 
@@ -324,8 +272,8 @@ test('attendees_store', function () {
         ->assertCreated()
         ->assertHeader('Content-Type', 'application/json')
         ->assertExactJson([
-            'data' => $this->getUserResource($this->user, true),
-            'event' => $this->getEventResource($event),
+            'data' => $this->getEventResource($event),
+            'message' => "You have successfully registered for the event.",
         ]);
 
     // Check that the count of attendees has increased

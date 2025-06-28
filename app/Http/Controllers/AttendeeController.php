@@ -6,20 +6,35 @@ use App\Constants;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\UserCollection;
+use Knuckles\Scribe\Attributes\Response;
 use App\Notifications\EventRegistrationNotification;
 use App\Notifications\EventUnRegistrationNotification;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
+/**
+ * 
+ * @group Attendee
+ * 
+ * Handles event attendees, allowing users to register, view, and unregister from events.
+ */
 class AttendeeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Attendee's List
+     * 
+     * Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.
+     * 
+     * @urlParam event_id integer required The ID of the event to retrieve attendees for. Example: 1
+     * @queryParam  sort string The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order. Enum: name&#44;asc, name&#44;desc, country&#44;asc, country&#44;desc, registration&#44;asc, registration&#44;desc No-example
+     * @queryParam  with string The additional data to include in the response. Enum: event Example: event
      */
+    #[Response('{"message": "Event not found."}', 404)]
+    #[Response('{"message": "The page 10 does not exist."}', 404)]
+    #[ResponseFromApiResource(UserCollection::class, User::class, 200, paginate: Constants::ATTENDEES_PER_PAGE)]
     public function index(Request $request, Event $event): JsonResponse|UserCollection
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'user');
@@ -28,7 +43,7 @@ class AttendeeController extends Controller
 
         if ($request->has('page') && $request->input('page') > $attendees->lastPage()) {
             return response()->json([
-                'message' => "The page " . $request->input('page') . " does not exist",
+                'message' => "The page " . $request->input('page') . " does not exist.",
             ], 404);
         }
 
@@ -53,8 +68,21 @@ class AttendeeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Register to an Event
+     * 
+     * Allows a user to register for an event, provided they meet the necessary conditions such as not being already registered, not being the organizer, having enough tokens, and being invited if the event is private.
+     * 
+     * @urlParam event_id integer required The ID of the event to retrieve attendees for. Example: 1
      */
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "You can only register to an event before it start."}', 403)]
+    #[Response('{"message": "You are not invited to this event."}', 403)]
+    #[Response('{"message": "You don\'t have enough tokens to register for this event."}', 403)]
+    #[Response('{"message": "The organizer of this event does not allow you to join the event."}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[Response('{"message": "You are already registered for this event."}', 409)]
+    #[Response('{"message": "You can\'t register to your own event."}', 409)]
+    #[ResponseFromApiResource(EventResource::class, Event::class, 201, with: ['organizer', 'type'], additional: ['message' => 'You have successfully registered for the event.'])]
     public function store(Event $event, Request $request): JsonResponse|UserResource
     {
         if ($event->attendees()->where('user_id', $request->user()->id)->exists()) {
@@ -109,52 +137,41 @@ class AttendeeController extends Controller
         $event->load(['organizer', 'type']);
         $event->loadCount('attendees');
 
-        return UserResource::make($request->user(), true)
-            ->additional(['event' => EventResource::make($event)])
+        return EventResource::make($event)
+            ->additional(['message' => "You have successfully registered for the event."])
             ->response()
             ->setStatusCode(201);
     }
 
     /**
-     * Display the specified resource.
+     * Unregister from an Event
+     * 
+     * Allows a user to unregister from an event, provided they are registered and the request is made by the user themselves, the event organizer, or an admin.
+     * 
+     * @urlParam event_id integer required The ID of the event to unregister from. Example: 1
+     * @urlParam user integer The ID of the user to unregister. If not provided, the authenticated user will be unregistered. Example: 2
      */
-    public function show(Event $event, int $userID): UserResource
-    {
-        $attendee = $event->attendees()->where('user_id', $userID)->firstOrFail();
-
-        $additional = [];
-
-        // User wants to get the event data
-        if (strtolower(trim(request()->input('with', ''))) === 'event') {
-            $event->load(['organizer', 'type']);
-            $event->loadCount('attendees');
-
-            $additional['event'] = EventResource::make($event);
-        }
-
-        return UserResource::make($attendee)->additional($additional);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request, Event $event, User|null $attendee = null): JsonResponse|Response
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "You are not registered to this event!"}', 403)]
+    #[Response('{"message": "You are not allowed to unregister this user from the event!"}', 403)]
+    #[Response(status: 204)]
+    public function destroy(Request $request, Event $event, User|null $user = null): JsonResponse|\Illuminate\Http\Response
     {
         // If the attendee is not provided, use the authenticated user
-        if ($attendee === null) {
-            $attendee = $request->user();
+        if ($user === null) {
+            $user = $request->user();
         }
 
         // Make the user is actually attending the event
-        if (!$event->attendees()->where('user_id', $attendee->id)->exists()) {
+        if (!$event->attendees()->where('user_id', $user->id)->exists()) {
             return response()->json([
-                'message' => $attendee->is($request->user())
+                'message' => $user->is($request->user())
                     ? "You are not registered to this event!"
                     : "This user is not registered to this event!",
             ], 403);
         }
 
-        if ($request->user()->id == $attendee->id)
+        if ($request->user()->id == $user->id)
             $source = 'user';
         elseif ($request->user()->id == $event->user_id)
             $source = 'organizer';
@@ -167,13 +184,13 @@ class AttendeeController extends Controller
         }
 
         // Detach the attendee from the event
-        $event->attendees()->detach($attendee->id);
+        $event->attendees()->detach($user->id);
 
-        $attendee->notify(new EventUnRegistrationNotification($event->id, $source));
+        $user->notify(new EventUnRegistrationNotification($event->id, $source));
 
         // The attendee gets his tokens back
-        $attendee->increment('tokens', $event->cost);
-        $attendee->decrement('tokens_spend', $event->cost);
+        $user->increment('tokens', $event->cost);
+        $user->decrement('tokens_spend', $event->cost);
 
         return response()->noContent();
     }

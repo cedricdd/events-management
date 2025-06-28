@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum', 'throttle:10,1'])->group(function () {
     Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy')->can('destroy', 'event')->where('event', '[0-9]+');
 
     Route::post('events/{event}/attendees', [AttendeeController::class, 'store'])->name('attendees.store')->where('event', '[0-9]+');
-    Route::delete('events/{event}/attendees/{attendee?}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->can('destroy-attendee', ['event', 'attendee'])->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
+    Route::delete('events/{event}/attendees/{user?}', [AttendeeController::class, 'destroy'])->name('attendees.destroy')->can('destroy-attendee', ['event', 'user'])->where(['event' => '[0-9]+', 'user' => '[0-9]+']);
 
     Route::post('event-types', [EventTypeController::class, 'store'])->name('event-types.store')->can('store', EventType::class);
     Route::put('event-types/{type}', [EventTypeController::class, 'update'])->name('event-types.update')->can('update', 'type')->where('type', '[0-9]+');
@@ -49,7 +49,6 @@ Route::get('events/organizer/{organizer}', [EventController::class, 'index'])->n
 Route::get('events/{event}', [EventController::class, 'show'])->name('events.show')->where('event', '[0-9]+');
 
 Route::get('events/{event}/attendees', [AttendeeController::class, 'index'])->name('attendees.index')->where('event', '[0-9]+');
-Route::get('events/{event}/attendees/{attendee}', [AttendeeController::class, 'show'])->name('attendees.show')->where(['event' => '[0-9]+', 'attendee' => '[0-9]+']);
 
 Route::get('event-types', [EventTypeController::class, 'index'])->name('event-types.index');
 

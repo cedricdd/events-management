@@ -1,0 +1,2503 @@
+openapi: 3.0.3
+info:
+  title: 'Events Management LLC API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://events-management.test'
+tags:
+  -
+    name: Attendee
+    description: "\nHandles event attendees, allowing users to register, view, and unregister from events."
+  -
+    name: Authentication
+    description: "\nHandles user authentication, including login and logout."
+  -
+    name: Bans
+    description: ''
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: 'Event Invites'
+    description: "\nHandles event invitations, allowing organizers to invite users to private events."
+  -
+    name: 'Event Types'
+    description: "\nHandles event types, allowing administrators to create, update, and delete event types."
+  -
+    name: 'User Management'
+    description: "\nHandles user-related operations, including viewing user profiles."
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []
+paths:
+  '/api/events/{event_id}/attendees':
+    post:
+      summary: 'Register to an Event'
+      operationId: registerToAnEvent
+      description: 'Allows a user to register for an event, provided they meet the necessary conditions such as not being already registered, not being the organizer, having enough tokens, and being invited if the event is private.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1373
+                    name: 'Et animi quos velit et fugiat.'
+                    description: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
+                    location: Online
+                    cost: 2
+                    start_date: '2025-07-30 10:30:00'
+                    end_date: '2025-08-16 17:00:00'
+                    type: aut
+                    public: 'yes'
+                    organizer:
+                      id: 5030
+                      name: 'Carey Smitham'
+                      email: sleffler@example.org
+                      country: 'Antarctica (the territory South of 60 deg S)'
+                      profession: 'Bindery Machine Operator'
+                      phone: '(458) 539-0170'
+                      organization: 'Gaylord, Hettinger and Nitzsche'
+                  message: 'You have successfully registered for the event.'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1373
+                      name:
+                        type: string
+                        example: 'Et animi quos velit et fugiat.'
+                      description:
+                        type: string
+                        example: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
+                      location:
+                        type: string
+                        example: Online
+                      cost:
+                        type: integer
+                        example: 2
+                      start_date:
+                        type: string
+                        example: '2025-07-30 10:30:00'
+                      end_date:
+                        type: string
+                        example: '2025-08-16 17:00:00'
+                      type:
+                        type: string
+                        example: aut
+                      public:
+                        type: string
+                        example: 'yes'
+                      organizer:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 5030
+                          name:
+                            type: string
+                            example: 'Carey Smitham'
+                          email:
+                            type: string
+                            example: sleffler@example.org
+                          country:
+                            type: string
+                            example: 'Antarctica (the territory South of 60 deg S)'
+                          profession:
+                            type: string
+                            example: 'Bindery Machine Operator'
+                          phone:
+                            type: string
+                            example: '(458) 539-0170'
+                          organization:
+                            type: string
+                            example: 'Gaylord, Hettinger and Nitzsche'
+                  message:
+                    type: string
+                    example: 'You have successfully registered for the event.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You can only register to an event before it start.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You can only register to an event before it start.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You are not invited to this event.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You are not invited to this event.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: "You don't have enough tokens to register for this event."
+                    properties:
+                      message:
+                        type: string
+                        example: "You don't have enough tokens to register for this event."
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'The organizer of this event does not allow you to join the event.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'The organizer of this event does not allow you to join the event.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event not found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Event not found.'
+        409:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You are already registered for this event.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You are already registered for this event.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: "You can't register to your own event."
+                    properties:
+                      message:
+                        type: string
+                        example: "You can't register to your own event."
+      tags:
+        - Attendee
+      security: []
+    get:
+      summary: "Attendee's List"
+      operationId: attendeesList
+      description: 'Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.'
+      parameters:
+        -
+          in: query
+          name: sort
+          description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
+          example: null
+          required: false
+          schema:
+            type: string
+            description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
+            example: null
+            nullable: false
+            enum:
+              - 'name&#44;asc'
+              - 'name&#44;desc'
+              - 'country&#44;asc'
+              - 'country&#44;desc'
+              - 'registration&#44;asc'
+              - 'registration&#44;desc'
+        -
+          in: query
+          name: with
+          description: 'The additional data to include in the response.'
+          example: event
+          required: false
+          schema:
+            type: string
+            description: 'The additional data to include in the response.'
+            example: event
+            nullable: false
+            enum:
+              - event
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5037
+                      name: 'Mr. Gerhard Dach Jr.'
+                      email: lafayette.considine@example.com
+                      country: Gabon
+                      profession: 'Logging Tractor Operator'
+                      phone: '(806) 721-0719'
+                      organization: 'Baumbach Ltd'
+                    -
+                      id: 5038
+                      name: 'Mina Bauch'
+                      email: okeefe.isidro@example.org
+                      country: 'Antarctica (the territory South of 60 deg S)'
+                      profession: 'Claims Examiner'
+                      phone: 283.476.7809
+                      organization: 'Haag and Sons'
+                  links:
+                    first: '/?page=1'
+                    last: '/?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    last_page: 1
+                    path: /
+                    per_page: 20
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5037
+                        name: 'Mr. Gerhard Dach Jr.'
+                        email: lafayette.considine@example.com
+                        country: Gabon
+                        profession: 'Logging Tractor Operator'
+                        phone: '(806) 721-0719'
+                        organization: 'Baumbach Ltd'
+                      -
+                        id: 5038
+                        name: 'Mina Bauch'
+                        email: okeefe.isidro@example.org
+                        country: 'Antarctica (the territory South of 60 deg S)'
+                        profession: 'Claims Examiner'
+                        phone: 283.476.7809
+                        organization: 'Haag and Sons'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5037
+                        name:
+                          type: string
+                          example: 'Mr. Gerhard Dach Jr.'
+                        email:
+                          type: string
+                          example: lafayette.considine@example.com
+                        country:
+                          type: string
+                          example: Gabon
+                        profession:
+                          type: string
+                          example: 'Logging Tractor Operator'
+                        phone:
+                          type: string
+                          example: '(806) 721-0719'
+                        organization:
+                          type: string
+                          example: 'Baumbach Ltd'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: '/?page=1'
+                      last:
+                        type: string
+                        example: '/?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      path:
+                        type: string
+                        example: /
+                      per_page:
+                        type: integer
+                        example: 20
+                      total:
+                        type: integer
+                        example: 2
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'Event not found.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'Event not found.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'The page 10 does not exist.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'The page 10 does not exist.'
+      tags:
+        - Attendee
+      security: []
+    parameters:
+      -
+        in: path
+        name: event_id
+        description: 'The ID of the event to retrieve attendees for.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/events/{event_id}/attendees/{user}':
+    delete:
+      summary: 'Unregister from an Event'
+      operationId: unregisterFromAnEvent
+      description: 'Allows a user to unregister from an event, provided they are registered and the request is made by the user themselves, the event organizer, or an admin.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You are not registered to this event!'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You are not registered to this event!'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You are not allowed to unregister this user from the event!'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You are not allowed to unregister this user from the event!'
+      tags:
+        - Attendee
+      security: []
+    parameters:
+      -
+        in: path
+        name: event_id
+        description: 'The ID of the event to unregister from.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: user
+        description: 'Optional parameter. The ID of the user to unregister. If not provided, the authenticated user will be unregistered.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 2
+  /api/logout:
+    delete:
+      summary: Logout
+      operationId: logout
+      description: 'Logs out the authenticated user by deleting their current access token.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Authentication
+  /api/login:
+    post:
+      summary: Login
+      operationId: login
+      description: 'Handles user authentication by validating credentials and generating an access token.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  token: 'Your Token.'
+                  user:
+                    id: 1
+                    name: 'John Doe'
+                    email: john@doe.com
+                    country: USA
+                    profession: Programmer
+                    phone: 123-456-789
+                    organization: 'World Incorporated'
+                    tokens: 100
+                    tokens_spend: 100
+                properties:
+                  token:
+                    type: string
+                    example: 'Your Token.'
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: john@doe.com
+                      country:
+                        type: string
+                        example: USA
+                      profession:
+                        type: string
+                        example: Programmer
+                      phone:
+                        type: string
+                        example: 123-456-789
+                      organization:
+                        type: string
+                        example: 'World Incorporated'
+                      tokens:
+                        type: integer
+                        example: 100
+                      tokens_spend:
+                        type: integer
+                        example: 100
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The provided credentials are incorrect.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The provided credentials are incorrect.'
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "The user's email address."
+                  example: '"string@email.com"'
+                  nullable: false
+                password:
+                  type: string
+                  description: "The user's password."
+                  example: '"password123"'
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
+  '/api/bans/{user}':
+    get:
+      summary: 'List User Banned'
+      operationId: listUserBanned
+      description: "List all the users banned by the authenticated user or a specified user.\n* Only administrators can view other users' banned lists."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5024
+                      name: 'Morgan Hirthe'
+                      email: dare.emelie@example.com
+                      country: Peru
+                      profession: 'Compliance Officers'
+                      phone: 562.471.7515
+                      organization: Mitchell-VonRueden
+                    -
+                      id: 5025
+                      name: 'Dr. Grayson Glover'
+                      email: schultz.audrey@example.org
+                      country: 'French Polynesia'
+                      profession: 'Extraction Worker'
+                      phone: +1.518.885.7351
+                      organization: 'Fahey, Cartwright and Balistreri'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5024
+                        name: 'Morgan Hirthe'
+                        email: dare.emelie@example.com
+                        country: Peru
+                        profession: 'Compliance Officers'
+                        phone: 562.471.7515
+                        organization: Mitchell-VonRueden
+                      -
+                        id: 5025
+                        name: 'Dr. Grayson Glover'
+                        email: schultz.audrey@example.org
+                        country: 'French Polynesia'
+                        profession: 'Extraction Worker'
+                        phone: +1.518.885.7351
+                        organization: 'Fahey, Cartwright and Balistreri'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5024
+                        name:
+                          type: string
+                          example: 'Morgan Hirthe'
+                        email:
+                          type: string
+                          example: dare.emelie@example.com
+                        country:
+                          type: string
+                          example: Peru
+                        profession:
+                          type: string
+                          example: 'Compliance Officers'
+                        phone:
+                          type: string
+                          example: 562.471.7515
+                        organization:
+                          type: string
+                          example: Mitchell-VonRueden
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: "You are not authorized to view this user's banned list."
+                properties:
+                  message:
+                    type: string
+                    example: "You are not authorized to view this user's banned list."
+      tags:
+        - Bans
+    parameters:
+      -
+        in: path
+        name: user
+        description: "Optional parameter. The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list."
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 16
+  /api/bans:
+    post:
+      summary: 'Add Bans'
+      operationId: addBans
+      description: "Add users to the authenticated user's banned list."
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5026
+                      name: 'Ms. Audra Crooks II'
+                      email: gulgowski.asia@example.com
+                      country: Peru
+                      profession: 'Glass Blower'
+                      phone: 843.428.7432
+                      organization: 'Price Ltd'
+                    -
+                      id: 5027
+                      name: 'Pearl Hauck Sr.'
+                      email: alayna44@example.org
+                      country: 'Saint Vincent and the Grenadines'
+                      profession: 'Gas Distribution Plant Operator'
+                      phone: 870-215-1024
+                      organization: Leffler-Glover
+                  message: 'Bans added successfully.'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5026
+                        name: 'Ms. Audra Crooks II'
+                        email: gulgowski.asia@example.com
+                        country: Peru
+                        profession: 'Glass Blower'
+                        phone: 843.428.7432
+                        organization: 'Price Ltd'
+                      -
+                        id: 5027
+                        name: 'Pearl Hauck Sr.'
+                        email: alayna44@example.org
+                        country: 'Saint Vincent and the Grenadines'
+                        profession: 'Gas Distribution Plant Operator'
+                        phone: 870-215-1024
+                        organization: Leffler-Glover
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5026
+                        name:
+                          type: string
+                          example: 'Ms. Audra Crooks II'
+                        email:
+                          type: string
+                          example: gulgowski.asia@example.com
+                        country:
+                          type: string
+                          example: Peru
+                        profession:
+                          type: string
+                          example: 'Glass Blower'
+                        phone:
+                          type: string
+                          example: 843.428.7432
+                        organization:
+                          type: string
+                          example: 'Price Ltd'
+                  message:
+                    type: string
+                    example: 'Bans added successfully.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Bans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  description: 'The IDs of the users to ban.'
+                  example:
+                    - 1
+                    - 2
+                    - 3
+                  items:
+                    type: integer
+              required:
+                - users
+    delete:
+      summary: 'Remove Bans'
+      operationId: removeBans
+      description: "Remove users from the authenticated user's banned list."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5028
+                      name: 'Ms. Audra Crooks II'
+                      email: idickens@example.org
+                      country: Morocco
+                      profession: 'Copy Machine Operator'
+                      phone: +1-626-249-0432
+                      organization: Hauck-Leuschke
+                    -
+                      id: 5029
+                      name: 'Alanis McLaughlin'
+                      email: bauch.marcelo@example.com
+                      country: 'Holy See (Vatican City State)'
+                      profession: Illustrator
+                      phone: 1-915-230-6227
+                      organization: 'Schultz Group'
+                  message: 'Bans removed successfully.'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5028
+                        name: 'Ms. Audra Crooks II'
+                        email: idickens@example.org
+                        country: Morocco
+                        profession: 'Copy Machine Operator'
+                        phone: +1-626-249-0432
+                        organization: Hauck-Leuschke
+                      -
+                        id: 5029
+                        name: 'Alanis McLaughlin'
+                        email: bauch.marcelo@example.com
+                        country: 'Holy See (Vatican City State)'
+                        profession: Illustrator
+                        phone: 1-915-230-6227
+                        organization: 'Schultz Group'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5028
+                        name:
+                          type: string
+                          example: 'Ms. Audra Crooks II'
+                        email:
+                          type: string
+                          example: idickens@example.org
+                        country:
+                          type: string
+                          example: Morocco
+                        profession:
+                          type: string
+                          example: 'Copy Machine Operator'
+                        phone:
+                          type: string
+                          example: +1-626-249-0432
+                        organization:
+                          type: string
+                          example: Hauck-Leuschke
+                  message:
+                    type: string
+                    example: 'Bans removed successfully.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Bans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  description: 'The IDs of the users to ban.'
+                  example:
+                    - 1
+                    - 2
+                    - 3
+                  items:
+                    type: integer
+              required:
+                - users
+  /api/events:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 4096 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                  nullable: false
+                start_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
+                  example: '2051-07-31'
+                  nullable: false
+                end_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
+                  example: '2051-07-26'
+                  nullable: false
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                  nullable: false
+                cost:
+                  type: integer
+                  description: 'Must be at least 0. Must not be greater than 100.'
+                  example: 7
+                  nullable: false
+                public:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+                type:
+                  type: string
+                  description: 'The <code>name</code> of an existing record in the event_types table.'
+                  example: architecto
+                  nullable: false
+              required:
+                - name
+                - description
+                - start_date
+                - end_date
+                - location
+                - cost
+                - public
+                - type
+      security: []
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1016
+                      name: 'Architecto quo rerum repellat est maiores eveniet consequatur.'
+                      description: 'Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.'
+                      location: Online
+                      cost: 8
+                      start_date: '2025-06-26 17:00:00'
+                      end_date: '2025-07-06 17:30:00'
+                      type: Workshop
+                      public: 'yes'
+                      attendees_count: 8
+                    -
+                      id: 889
+                      name: 'Autem dolore omnis cupiditate quam necessitatibus minima quo.'
+                      description: 'Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.'
+                      location: 'Lake Coty'
+                      cost: 8
+                      start_date: '2025-06-26 18:30:00'
+                      end_date: '2025-07-24 22:30:00'
+                      type: Lecture
+                      public: 'yes'
+                      attendees_count: 31
+                    -
+                      id: 873
+                      name: 'Eum iure soluta eum in minima.'
+                      description: 'Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.'
+                      location: Online
+                      cost: 5
+                      start_date: '2025-06-26 19:00:00'
+                      end_date: '2025-07-10 21:00:00'
+                      type: Networking
+                      public: 'yes'
+                      attendees_count: 47
+                    -
+                      id: 380
+                      name: 'In natus voluptas dolore culpa odit et atque.'
+                      description: 'Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.'
+                      location: Online
+                      cost: 1
+                      start_date: '2025-06-26 20:00:00'
+                      end_date: '2025-07-22 11:30:00'
+                      type: 'Open House'
+                      public: 'yes'
+                      attendees_count: 43
+                    -
+                      id: 975
+                      name: 'Nesciunt explicabo ut provident temporibus nam ut quia quas.'
+                      description: 'Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.'
+                      location: 'Port Cindy'
+                      cost: 9
+                      start_date: '2025-06-26 21:30:00'
+                      end_date: '2025-07-23 18:00:00'
+                      type: Seminar
+                      public: 'yes'
+                      attendees_count: 31
+                    -
+                      id: 623
+                      name: 'Expedita esse deserunt totam.'
+                      description: 'Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.'
+                      location: Online
+                      cost: 9
+                      start_date: '2025-06-26 22:30:00'
+                      end_date: '2025-07-06 15:00:00'
+                      type: Exhibition
+                      public: 'yes'
+                      attendees_count: 10
+                    -
+                      id: 1143
+                      name: 'Ut expedita aut odio voluptatibus quis harum reiciendis.'
+                      description: 'Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.'
+                      location: 'East Raegan'
+                      cost: 6
+                      start_date: '2025-06-26 22:30:00'
+                      end_date: '2025-07-09 06:00:00'
+                      type: Meetup
+                      public: 'yes'
+                      attendees_count: 41
+                    -
+                      id: 336
+                      name: 'Sunt nisi sed non dolorum.'
+                      description: 'Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.'
+                      location: Online
+                      cost: 4
+                      start_date: '2025-06-26 23:00:00'
+                      end_date: '2025-07-15 22:30:00'
+                      type: Ceremony
+                      public: 'yes'
+                      attendees_count: 33
+                    -
+                      id: 49
+                      name: 'Ut doloremque ipsam qui quis sunt error molestias non.'
+                      description: 'Placeat voluptatem quia sint perspiciatis et. Distinctio praesentium modi aliquid praesentium voluptas id quae. Omnis ducimus quas beatae iusto molestias. Provident earum architecto commodi provident est.'
+                      location: Myrtiston
+                      cost: 2
+                      start_date: '2025-06-26 23:30:00'
+                      end_date: '2025-07-23 15:30:00'
+                      type: 'Open House'
+                      public: 'yes'
+                      attendees_count: 26
+                    -
+                      id: 128
+                      name: 'Nam sunt eum dignissimos itaque ducimus aperiam sapiente.'
+                      description: 'Sit et maiores rerum et corporis ut dolor. Deleniti facere aspernatur ut praesentium mollitia praesentium laboriosam. Cupiditate exercitationem quia eveniet voluptas autem. Pariatur reprehenderit dolorem iure.'
+                      location: Online
+                      cost: 7
+                      start_date: '2025-06-26 23:30:00'
+                      end_date: '2025-07-12 00:30:00'
+                      type: Festival
+                      public: 'yes'
+                      attendees_count: 42
+                  links:
+                    first: 'https://events-management.test/api/events?page=1'
+                    last: 'https://events-management.test/api/events?page=108'
+                    prev: null
+                    next: 'https://events-management.test/api/events?page=2'
+                  meta:
+                    current_page: 1
+                    last_page: 108
+                    path: 'https://events-management.test/api/events'
+                    per_page: 10
+                    total: 1077
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1016
+                        name: 'Architecto quo rerum repellat est maiores eveniet consequatur.'
+                        description: 'Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.'
+                        location: Online
+                        cost: 8
+                        start_date: '2025-06-26 17:00:00'
+                        end_date: '2025-07-06 17:30:00'
+                        type: Workshop
+                        public: 'yes'
+                        attendees_count: 8
+                      -
+                        id: 889
+                        name: 'Autem dolore omnis cupiditate quam necessitatibus minima quo.'
+                        description: 'Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.'
+                        location: 'Lake Coty'
+                        cost: 8
+                        start_date: '2025-06-26 18:30:00'
+                        end_date: '2025-07-24 22:30:00'
+                        type: Lecture
+                        public: 'yes'
+                        attendees_count: 31
+                      -
+                        id: 873
+                        name: 'Eum iure soluta eum in minima.'
+                        description: 'Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.'
+                        location: Online
+                        cost: 5
+                        start_date: '2025-06-26 19:00:00'
+                        end_date: '2025-07-10 21:00:00'
+                        type: Networking
+                        public: 'yes'
+                        attendees_count: 47
+                      -
+                        id: 380
+                        name: 'In natus voluptas dolore culpa odit et atque.'
+                        description: 'Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.'
+                        location: Online
+                        cost: 1
+                        start_date: '2025-06-26 20:00:00'
+                        end_date: '2025-07-22 11:30:00'
+                        type: 'Open House'
+                        public: 'yes'
+                        attendees_count: 43
+                      -
+                        id: 975
+                        name: 'Nesciunt explicabo ut provident temporibus nam ut quia quas.'
+                        description: 'Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.'
+                        location: 'Port Cindy'
+                        cost: 9
+                        start_date: '2025-06-26 21:30:00'
+                        end_date: '2025-07-23 18:00:00'
+                        type: Seminar
+                        public: 'yes'
+                        attendees_count: 31
+                      -
+                        id: 623
+                        name: 'Expedita esse deserunt totam.'
+                        description: 'Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.'
+                        location: Online
+                        cost: 9
+                        start_date: '2025-06-26 22:30:00'
+                        end_date: '2025-07-06 15:00:00'
+                        type: Exhibition
+                        public: 'yes'
+                        attendees_count: 10
+                      -
+                        id: 1143
+                        name: 'Ut expedita aut odio voluptatibus quis harum reiciendis.'
+                        description: 'Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.'
+                        location: 'East Raegan'
+                        cost: 6
+                        start_date: '2025-06-26 22:30:00'
+                        end_date: '2025-07-09 06:00:00'
+                        type: Meetup
+                        public: 'yes'
+                        attendees_count: 41
+                      -
+                        id: 336
+                        name: 'Sunt nisi sed non dolorum.'
+                        description: 'Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.'
+                        location: Online
+                        cost: 4
+                        start_date: '2025-06-26 23:00:00'
+                        end_date: '2025-07-15 22:30:00'
+                        type: Ceremony
+                        public: 'yes'
+                        attendees_count: 33
+                      -
+                        id: 49
+                        name: 'Ut doloremque ipsam qui quis sunt error molestias non.'
+                        description: 'Placeat voluptatem quia sint perspiciatis et. Distinctio praesentium modi aliquid praesentium voluptas id quae. Omnis ducimus quas beatae iusto molestias. Provident earum architecto commodi provident est.'
+                        location: Myrtiston
+                        cost: 2
+                        start_date: '2025-06-26 23:30:00'
+                        end_date: '2025-07-23 15:30:00'
+                        type: 'Open House'
+                        public: 'yes'
+                        attendees_count: 26
+                      -
+                        id: 128
+                        name: 'Nam sunt eum dignissimos itaque ducimus aperiam sapiente.'
+                        description: 'Sit et maiores rerum et corporis ut dolor. Deleniti facere aspernatur ut praesentium mollitia praesentium laboriosam. Cupiditate exercitationem quia eveniet voluptas autem. Pariatur reprehenderit dolorem iure.'
+                        location: Online
+                        cost: 7
+                        start_date: '2025-06-26 23:30:00'
+                        end_date: '2025-07-12 00:30:00'
+                        type: Festival
+                        public: 'yes'
+                        attendees_count: 42
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1016
+                        name:
+                          type: string
+                          example: 'Architecto quo rerum repellat est maiores eveniet consequatur.'
+                        description:
+                          type: string
+                          example: 'Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.'
+                        location:
+                          type: string
+                          example: Online
+                        cost:
+                          type: integer
+                          example: 8
+                        start_date:
+                          type: string
+                          example: '2025-06-26 17:00:00'
+                        end_date:
+                          type: string
+                          example: '2025-07-06 17:30:00'
+                        type:
+                          type: string
+                          example: Workshop
+                        public:
+                          type: string
+                          example: 'yes'
+                        attendees_count:
+                          type: integer
+                          example: 8
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://events-management.test/api/events?page=1'
+                      last:
+                        type: string
+                        example: 'https://events-management.test/api/events?page=108'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: 'https://events-management.test/api/events?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 108
+                      path:
+                        type: string
+                        example: 'https://events-management.test/api/events'
+                      per_page:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 1077
+      tags:
+        - Endpoints
+      security: []
+  '/api/events/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 4096 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                  nullable: false
+                start_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
+                  example: '2051-07-31'
+                  nullable: false
+                end_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
+                  example: '2051-07-26'
+                  nullable: false
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                  nullable: false
+                cost:
+                  type: integer
+                  description: 'Must be at least 0. Must not be greater than 100.'
+                  example: 7
+                  nullable: false
+                public:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+                type:
+                  type: string
+                  description: 'The <code>name</code> of an existing record in the event_types table.'
+                  example: architecto
+                  nullable: false
+              required:
+                - name
+                - description
+                - start_date
+                - end_date
+                - location
+                - cost
+                - public
+                - type
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: 'Id et iste et aspernatur recusandae.'
+                    description: 'Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.'
+                    location: Online
+                    cost: 4
+                    start_date: '2025-07-11 22:00:00'
+                    end_date: '2025-07-23 02:00:00'
+                    type: Hackathon
+                    public: 'yes'
+                    attendees_count: 4
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Id et iste et aspernatur recusandae.'
+                      description:
+                        type: string
+                        example: 'Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.'
+                      location:
+                        type: string
+                        example: Online
+                      cost:
+                        type: integer
+                        example: 4
+                      start_date:
+                        type: string
+                        example: '2025-07-11 22:00:00'
+                      end_date:
+                        type: string
+                        example: '2025-07-23 02:00:00'
+                      type:
+                        type: string
+                        example: Hackathon
+                      public:
+                        type: string
+                        example: 'yes'
+                      attendees_count:
+                        type: integer
+                        example: 4
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the event.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/events/search:
+    get:
+      summary: ''
+      operationId: getApiEventsSearch
+      description: ''
+      parameters: []
+      responses:
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The selected type is invalid.'
+                  errors:
+                    type:
+                      - 'The selected type is invalid.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The selected type is invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      type:
+                        type: array
+                        example:
+                          - 'The selected type is invalid.'
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                  nullable: false
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: d
+                  nullable: false
+                cost_min:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 37
+                  nullable: false
+                cost_max:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 9
+                  nullable: false
+                starts_before:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 15:51:42'
+                  nullable: false
+                starts_after:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 15:51:42'
+                  nullable: false
+                ends_before:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 15:51:42'
+                  nullable: false
+                ends_after:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 15:51:42'
+                  nullable: false
+                type:
+                  type: string
+                  description: 'The <code>name</code> of an existing record in the event_types table.'
+                  example: architecto
+                  nullable: false
+                attendees_min:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 39
+                  nullable: false
+                attendees_max:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 84
+                  nullable: false
+                public:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                organizer:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: false
+      security: []
+  '/api/events/type/{name}':
+    get:
+      summary: ''
+      operationId: getApiEventsTypeName
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'There are no events of this type.'
+                properties:
+                  message:
+                    type: string
+                    example: 'There are no events of this type.'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: name
+        description: ''
+        example: cIm
+        required: true
+        schema:
+          type: string
+  '/api/events/organizer/{organizer_id}':
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'https://events-management.test/api/events/organizer/1?page=1'
+                    last: 'https://events-management.test/api/events/organizer/1?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    last_page: 1
+                    path: 'https://events-management.test/api/events/organizer/1'
+                    per_page: 10
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://events-management.test/api/events/organizer/1?page=1'
+                      last:
+                        type: string
+                        example: 'https://events-management.test/api/events/organizer/1?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      path:
+                        type: string
+                        example: 'https://events-management.test/api/events/organizer/1'
+                      per_page:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: organizer_id
+        description: 'The ID of the organizer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/docs:
+    get:
+      summary: 'Invoke the controller method.'
+      operationId: invokeTheControllerMethod
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Endpoints
+      security: []
+  '/api/events/{event_id}/invites':
+    get:
+      summary: 'Get Invites for an Event'
+      operationId: getInvitesForAnEvent
+      description: 'Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5031
+                      name: 'Morgan Hirthe'
+                      email: imclaughlin@example.org
+                      country: 'Saint Vincent and the Grenadines'
+                      profession: 'Gas Distribution Plant Operator'
+                      phone: 870-215-1024
+                      organization: Leffler-Glover
+                    -
+                      id: 5032
+                      name: 'Annette Labadie'
+                      email: kconsidine@example.net
+                      country: 'Holy See (Vatican City State)'
+                      profession: 'Construction Equipment Operator'
+                      phone: +1-678-651-3805
+                      organization: Cartwright-Balistreri
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5031
+                        name: 'Morgan Hirthe'
+                        email: imclaughlin@example.org
+                        country: 'Saint Vincent and the Grenadines'
+                        profession: 'Gas Distribution Plant Operator'
+                        phone: 870-215-1024
+                        organization: Leffler-Glover
+                      -
+                        id: 5032
+                        name: 'Annette Labadie'
+                        email: kconsidine@example.net
+                        country: 'Holy See (Vatican City State)'
+                        profession: 'Construction Equipment Operator'
+                        phone: +1-678-651-3805
+                        organization: Cartwright-Balistreri
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5031
+                        name:
+                          type: string
+                          example: 'Morgan Hirthe'
+                        email:
+                          type: string
+                          example: imclaughlin@example.org
+                        country:
+                          type: string
+                          example: 'Saint Vincent and the Grenadines'
+                        profession:
+                          type: string
+                          example: 'Gas Distribution Plant Operator'
+                        phone:
+                          type: string
+                          example: 870-215-1024
+                        organization:
+                          type: string
+                          example: Leffler-Glover
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'This event is a public event, there are no invites.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'This event is a public event, there are no invites.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'This action is unauthorized.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'This action is unauthorized.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event not found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Event not found.'
+      tags:
+        - 'Event Invites'
+    post:
+      summary: 'Create Invites for an Event'
+      operationId: createInvitesForAnEvent
+      description: 'Allows the organizer of a private event to invite users to the event.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5033
+                      name: 'Ms. Audra Crooks II'
+                      email: aschuster@example.com
+                      country: Zambia
+                      profession: 'Compacting Machine Operator'
+                      phone: 253.392.8862
+                      organization: 'McLaughlin, Leuschke and Bauch'
+                    -
+                      id: 5034
+                      name: 'Mr. Oswald Koch'
+                      email: bailee15@example.org
+                      country: 'Heard Island and McDonald Islands'
+                      profession: 'Chemical Plant Operator'
+                      phone: 531-539-0170
+                      organization: 'Gaylord, Hettinger and Nitzsche'
+                  message: 'Invites created successfully.'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5033
+                        name: 'Ms. Audra Crooks II'
+                        email: aschuster@example.com
+                        country: Zambia
+                        profession: 'Compacting Machine Operator'
+                        phone: 253.392.8862
+                        organization: 'McLaughlin, Leuschke and Bauch'
+                      -
+                        id: 5034
+                        name: 'Mr. Oswald Koch'
+                        email: bailee15@example.org
+                        country: 'Heard Island and McDonald Islands'
+                        profession: 'Chemical Plant Operator'
+                        phone: 531-539-0170
+                        organization: 'Gaylord, Hettinger and Nitzsche'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5033
+                        name:
+                          type: string
+                          example: 'Ms. Audra Crooks II'
+                        email:
+                          type: string
+                          example: aschuster@example.com
+                        country:
+                          type: string
+                          example: Zambia
+                        profession:
+                          type: string
+                          example: 'Compacting Machine Operator'
+                        phone:
+                          type: string
+                          example: 253.392.8862
+                        organization:
+                          type: string
+                          example: 'McLaughlin, Leuschke and Bauch'
+                  message:
+                    type: string
+                    example: 'Invites created successfully.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'This action is unauthorized.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'This action is unauthorized.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You are not authorized to invite users to this event.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You are not authorized to invite users to this event.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You cannot invite users to an event that has already started.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You cannot invite users to an event that has already started.'
+                  -
+                    description: ''
+                    type: object
+                    example:
+                      message: 'You can only invite users to private events.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'You can only invite users to private events.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event not found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Event not found.'
+      tags:
+        - 'Event Invites'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  description: 'The IDs of the users to ban.'
+                  example:
+                    - 1
+                    - 2
+                    - 3
+                  items:
+                    type: integer
+              required:
+                - users
+    delete:
+      summary: 'Remove Invites for an Event'
+      operationId: removeInvitesForAnEvent
+      description: 'Allows the organizer of a private event to remove invites for users.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 5035
+                      name: 'Ms. Audra Crooks II'
+                      email: gilbert32@example.com
+                      country: Liechtenstein
+                      profession: 'Registered Nurse'
+                      phone: 364-447-5052
+                      organization: 'Predovic Inc'
+                    -
+                      id: 5036
+                      name: 'Myrtis Tromp'
+                      email: nstokes@example.org
+                      country: 'Solomon Islands'
+                      profession: 'Extruding Machine Operator'
+                      phone: 1-539-501-0782
+                      organization: Nitzsche-Ankunding
+                  message: 'Invites removed successfully.'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 5035
+                        name: 'Ms. Audra Crooks II'
+                        email: gilbert32@example.com
+                        country: Liechtenstein
+                        profession: 'Registered Nurse'
+                        phone: 364-447-5052
+                        organization: 'Predovic Inc'
+                      -
+                        id: 5036
+                        name: 'Myrtis Tromp'
+                        email: nstokes@example.org
+                        country: 'Solomon Islands'
+                        profession: 'Extruding Machine Operator'
+                        phone: 1-539-501-0782
+                        organization: Nitzsche-Ankunding
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5035
+                        name:
+                          type: string
+                          example: 'Ms. Audra Crooks II'
+                        email:
+                          type: string
+                          example: gilbert32@example.com
+                        country:
+                          type: string
+                          example: Liechtenstein
+                        profession:
+                          type: string
+                          example: 'Registered Nurse'
+                        phone:
+                          type: string
+                          example: 364-447-5052
+                        organization:
+                          type: string
+                          example: 'Predovic Inc'
+                  message:
+                    type: string
+                    example: 'Invites removed successfully.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event not found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Event not found.'
+      tags:
+        - 'Event Invites'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  description: 'The IDs of the users to ban.'
+                  example:
+                    - 1
+                    - 2
+                    - 3
+                  items:
+                    type: integer
+              required:
+                - users
+    parameters:
+      -
+        in: path
+        name: event_id
+        description: 'The ID of the event for which to retrieve invites.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/event-types:
+    post:
+      summary: 'Create Event Type'
+      operationId: createEventType
+      description: 'Creates a new event type. Only administrators can create event types.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 90
+                    name: sunt
+                    description: 'Accusantium harum mollitia modi deserunt aut ab.'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 90
+                      name:
+                        type: string
+                        example: sunt
+                      description:
+                        type: string
+                        example: 'Accusantium harum mollitia modi deserunt aut ab.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event type already exists!'
+                properties:
+                  message:
+                    type: string
+                    example: 'Event type already exists!'
+      tags:
+        - 'Event Types'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the event type. (Max 255 characters)'
+                  example: Concert
+                  nullable: false
+                description:
+                  type: string
+                  description: 'The description of the event type. (Max 4096 characters)'
+                  example: Concert
+                  nullable: false
+              required:
+                - name
+                - description
+      security: []
+    get:
+      summary: 'List Event Types'
+      operationId: listEventTypes
+      description: 'Lists all available event types.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 92
+                      name: deleniti
+                      description: 'Eum doloremque id aut libero aliquam veniam corporis.'
+                    -
+                      id: 93
+                      name: dolorem
+                      description: 'Deleniti nemo odit quia officia.'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 92
+                        name: deleniti
+                        description: 'Eum doloremque id aut libero aliquam veniam corporis.'
+                      -
+                        id: 93
+                        name: dolorem
+                        description: 'Deleniti nemo odit quia officia.'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 92
+                        name:
+                          type: string
+                          example: deleniti
+                        description:
+                          type: string
+                          example: 'Eum doloremque id aut libero aliquam veniam corporis.'
+      tags:
+        - 'Event Types'
+      security: []
+  '/api/event-types/{type_id}':
+    put:
+      summary: 'Update Event Type'
+      operationId: updateEventType
+      description: 'Updates an existing event type. Only administrators can update event types.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 91
+                    name: nihil
+                    description: 'Harum mollitia modi deserunt aut ab provident perspiciatis quo.'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 91
+                      name:
+                        type: string
+                        example: nihil
+                      description:
+                        type: string
+                        example: 'Harum mollitia modi deserunt aut ab provident perspiciatis quo.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event type already exists!'
+                properties:
+                  message:
+                    type: string
+                    example: 'Event type already exists!'
+      tags:
+        - 'Event Types'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the event type. (Max 255 characters)'
+                  example: Concert
+                  nullable: false
+                description:
+                  type: string
+                  description: 'The description of the event type. (Max 4096 characters)'
+                  example: Concert
+                  nullable: false
+              required:
+                - name
+                - description
+      security: []
+    delete:
+      summary: 'Delete Event Type'
+      operationId: deleteEventType
+      description: 'Deletes an event type. A type cannot be deleted if it is used by any event.<br/>Only administrators can delete event types.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Cannot delete event type that is in use!'
+                properties:
+                  message:
+                    type: string
+                    example: 'Cannot delete event type that is in use!'
+      tags:
+        - 'Event Types'
+      security: []
+    parameters:
+      -
+        in: path
+        name: type_id
+        description: 'The ID of the type'
+        example: '1'
+        required: true
+        schema:
+          type: integer
+  '/api/users/{user}':
+    get:
+      summary: 'Show User Information'
+      operationId: showUserInformation
+      description: "Displays the profile of a user. If no user is specified, it shows the authenticated user's profile.<br/>\n(Only admins can see other users' profiles.)"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: 'John Doe'
+                    email: john@doe.com
+                    country: USA
+                    profession: Programmer
+                    phone: 123-456-789
+                    organization: 'World Incorporated'
+                    tokens: 100
+                    tokens_spend: 100
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: john@doe.com
+                      country:
+                        type: string
+                        example: USA
+                      profession:
+                        type: string
+                        example: Programmer
+                      phone:
+                        type: string
+                        example: 123-456-789
+                      organization:
+                        type: string
+                        example: 'World Incorporated'
+                      tokens:
+                        type: integer
+                        example: 100
+                      tokens_spend:
+                        type: integer
+                        example: 100
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'User Management'
+    parameters:
+      -
+        in: path
+        name: user
+        description: "Optional parameter. The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile."
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 16

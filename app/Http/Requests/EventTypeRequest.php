@@ -3,8 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Constants;
+use Knuckles\Scribe\Attributes\BodyParam;
 use Illuminate\Foundation\Http\FormRequest;
 
+#[BodyParam("name", "string", "The name of the event type. (Max " . Constants::STRING_MAX_LENGTH . " characters)", true, "Concert")]
+#[BodyParam("description", "string", "The description of the event type. (Max " . Constants::DESCRIPTION_MAX_LENGTH . " characters)", true, "Concert")]
 class EventTypeRequest extends FormRequest
 {
     /**

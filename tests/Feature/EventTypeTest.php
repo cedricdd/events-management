@@ -81,7 +81,7 @@ test('event_types_store_duplicate', function () {
     $this->postJson(route('event-types.store'), $this->getEventTypeFormData(['name' => $this->types->first()->name]))
         ->assertUnprocessable()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertExactJson(['error' => 'Event type already exists']);
+        ->assertExactJson(['error' => 'Event type already exists!']);
 });
 
 test('event_types_update', function () {
@@ -149,7 +149,7 @@ test('event_types_update_duplicate', function () {
     $this->putJson(route('event-types.update',  $type), $data)
         ->assertUnprocessable()
         ->assertHeader('Content-Type', 'application/json')
-        ->assertExactJson(['error' => 'Event type already exists']);
+        ->assertExactJson(['error' => 'Event type already exists!']);
 });
 
 test('event_types_destroy', function () {

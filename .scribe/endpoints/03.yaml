@@ -42,7 +42,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":{"id":1353,"name":"Et animi quos velit et fugiat.","description":"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.","location":"Online","cost":9,"start_date":"2025-07-25 16:00:00","end_date":"2025-08-05 02:00:00","type":"aut","public":"yes","organizer":{"id":4738,"name":"Carey Smitham","email":"sleffler@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Bindery Machine Operator","phone":"(458) 539-0170","organization":"Gaylord, Hettinger and Nitzsche"}},"message":"You have successfully registered for the event."}'
+        content: '{"data":{"id":1373,"name":"Et animi quos velit et fugiat.","description":"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.","location":"Online","cost":2,"start_date":"2025-07-30 10:30:00","end_date":"2025-08-16 17:00:00","type":"aut","public":"yes","organizer":{"id":5030,"name":"Carey Smitham","email":"sleffler@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Bindery Machine Operator","phone":"(458) 539-0170","organization":"Gaylord, Hettinger and Nitzsche"}},"message":"You have successfully registered for the event."}'
         headers: []
         description: ''
         custom: []
@@ -245,7 +245,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":4745,"name":"Mr. Gerhard Dach Jr.","email":"lafayette.considine@example.com","country":"Gabon","profession":"Logging Tractor Operator","phone":"(806) 721-0719","organization":"Baumbach Ltd"},{"id":4746,"name":"Mina Bauch","email":"okeefe.isidro@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Claims Examiner","phone":"283.476.7809","organization":"Haag and Sons"}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"\/","per_page":20,"total":2}}'
+        content: '{"data":[{"id":5037,"name":"Mr. Gerhard Dach Jr.","email":"lafayette.considine@example.com","country":"Gabon","profession":"Logging Tractor Operator","phone":"(806) 721-0719","organization":"Baumbach Ltd"},{"id":5038,"name":"Mina Bauch","email":"okeefe.isidro@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Claims Examiner","phone":"283.476.7809","organization":"Haag and Sons"}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"\/","per_page":20,"total":2}}'
         headers: []
         description: ''
         custom: []

@@ -27,7 +27,7 @@ class BanController extends Controller
      * @urlParam user int The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list.
      */
     #[Response('{"message": "Unauthenticated."}', 401, )]
-    #[Response('{"message": "You are not authorized to view this user\'s banned list.."}', 403, )]
+    #[Response('{"message": "You are not authorized to view this user\'s banned list."}', 403, )]
     #[ResponseFromApiResource(UserCollection::class, User::class, 200)]
     public function index(Request $request, User|null $user = null): JsonResponse
     {

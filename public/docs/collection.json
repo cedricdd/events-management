@@ -1,0 +1,1447 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/events-management.test"
+        }
+    ],
+    "info": {
+        "name": "Events Management LLC API Documentation",
+        "_postman_id": "d5cbda20-1f15-4e04-b0c6-de2a1c6efafe",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Attendee",
+            "description": "\nHandles event attendees, allowing users to register, view, and unregister from events.",
+            "item": [
+                {
+                    "name": "Register to an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/attendees",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/attendees",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event to retrieve attendees for."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Allows a user to register for an event, provided they meet the necessary conditions such as not being already registered, not being the organizer, having enough tokens, and being invited if the event is private.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":1373,\"name\":\"Et animi quos velit et fugiat.\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.\",\"location\":\"Online\",\"cost\":2,\"start_date\":\"2025-07-30 10:30:00\",\"end_date\":\"2025-08-16 17:00:00\",\"type\":\"aut\",\"public\":\"yes\",\"organizer\":{\"id\":5030,\"name\":\"Carey Smitham\",\"email\":\"sleffler@example.org\",\"country\":\"Antarctica (the territory South of 60 deg S)\",\"profession\":\"Bindery Machine Operator\",\"phone\":\"(458) 539-0170\",\"organization\":\"Gaylord, Hettinger and Nitzsche\"}},\"message\":\"You have successfully registered for the event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You can only register to an event before it start.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You are not invited to this event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You don't have enough tokens to register for this event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"The organizer of this event does not allow you to join the event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"message\": \"You are already registered for this event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"message\": \"You can't register to your own event.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Unregister from an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/attendees\/:user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/attendees\/:user",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event to unregister from."
+                                },
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "2",
+                                    "description": "The ID of the user to unregister. If not provided, the authenticated user will be unregistered."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Allows a user to unregister from an event, provided they are registered and the request is made by the user themselves, the event organizer, or an admin.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": null,
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You are not registered to this event!\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You are not allowed to unregister this user from the event!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Attendee's List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/attendees",
+                            "query": [
+                                {
+                                    "key": "sort",
+                                    "value": "",
+                                    "description": "The sorting criteria for the attendees. Default is 'user,asc'.Consisting of two parts, the sorting criteria and the sorting order.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "with",
+                                    "value": "event",
+                                    "description": "The additional data to include in the response.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/attendees?sort=&with=event",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event to retrieve attendees for."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5037,\"name\":\"Mr. Gerhard Dach Jr.\",\"email\":\"lafayette.considine@example.com\",\"country\":\"Gabon\",\"profession\":\"Logging Tractor Operator\",\"phone\":\"(806) 721-0719\",\"organization\":\"Baumbach Ltd\"},{\"id\":5038,\"name\":\"Mina Bauch\",\"email\":\"okeefe.isidro@example.org\",\"country\":\"Antarctica (the territory South of 60 deg S)\",\"profession\":\"Claims Examiner\",\"phone\":\"283.476.7809\",\"organization\":\"Haag and Sons\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"last_page\":1,\"path\":\"\\\/\",\"per_page\":20,\"total\":2}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"The page 10 does not exist.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Authentication",
+            "description": "\nHandles user authentication, including login and logout.",
+            "item": [
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Logs out the authenticated user by deleting their current access token."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"\\\"string@email.com\\\"\",\"password\":\"\\\"password123\\\"\"}"
+                        },
+                        "description": "Handles user authentication by validating credentials and generating an access token.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"token\": \"Your Token.\", \"user\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john@doe.com\",\n        \"country\": \"USA\",\n        \"profession\": \"Programmer\",\n        \"phone\": \"123-456-789\",\n        \"organization\": \"World Incorporated\",\n        \"tokens\": 100,\n        \"tokens_spend\": 100\n    }}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"The provided credentials are incorrect.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Bans",
+            "description": "",
+            "item": [
+                {
+                    "name": "List User Banned",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bans\/:user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bans\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "16",
+                                    "description": "The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "List all the users banned by the authenticated user or a specified user.\n* Only administrators can view other users' banned lists."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5024,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"country\":\"Peru\",\"profession\":\"Compliance Officers\",\"phone\":\"562.471.7515\",\"organization\":\"Mitchell-VonRueden\"},{\"id\":5025,\"name\":\"Dr. Grayson Glover\",\"email\":\"schultz.audrey@example.org\",\"country\":\"French Polynesia\",\"profession\":\"Extraction Worker\",\"phone\":\"+1.518.885.7351\",\"organization\":\"Fahey, Cartwright and Balistreri\"}]}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You are not authorized to view this user's banned list.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Bans",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bans",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bans"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"users\":[1,2,3]}"
+                        },
+                        "description": "Add users to the authenticated user's banned list."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":[{\"id\":5026,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"country\":\"Peru\",\"profession\":\"Glass Blower\",\"phone\":\"843.428.7432\",\"organization\":\"Price Ltd\"},{\"id\":5027,\"name\":\"Pearl Hauck Sr.\",\"email\":\"alayna44@example.org\",\"country\":\"Saint Vincent and the Grenadines\",\"profession\":\"Gas Distribution Plant Operator\",\"phone\":\"870-215-1024\",\"organization\":\"Leffler-Glover\"}],\"message\":\"Bans added successfully.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove Bans",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bans",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bans"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"users\":[1,2,3]}"
+                        },
+                        "description": "Remove users from the authenticated user's banned list."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5028,\"name\":\"Ms. Audra Crooks II\",\"email\":\"idickens@example.org\",\"country\":\"Morocco\",\"profession\":\"Copy Machine Operator\",\"phone\":\"+1-626-249-0432\",\"organization\":\"Hauck-Leuschke\"},{\"id\":5029,\"name\":\"Alanis McLaughlin\",\"email\":\"bauch.marcelo@example.com\",\"country\":\"Holy See (Vatican City State)\",\"profession\":\"Illustrator\",\"phone\":\"1-915-230-6227\",\"organization\":\"Schultz Group\"}],\"message\":\"Bans removed successfully.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"start_date\":\"2051-07-31\",\"end_date\":\"2051-07-26\",\"location\":\"n\",\"cost\":7,\"public\":false,\"type\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"start_date\":\"2051-07-31\",\"end_date\":\"2051-07-26\",\"location\":\"n\",\"cost\":7,\"public\":false,\"type\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1016,\"name\":\"Architecto quo rerum repellat est maiores eveniet consequatur.\",\"description\":\"Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.\",\"location\":\"Online\",\"cost\":8,\"start_date\":\"2025-06-26 17:00:00\",\"end_date\":\"2025-07-06 17:30:00\",\"type\":\"Workshop\",\"public\":\"yes\",\"attendees_count\":8},{\"id\":889,\"name\":\"Autem dolore omnis cupiditate quam necessitatibus minima quo.\",\"description\":\"Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.\",\"location\":\"Lake Coty\",\"cost\":8,\"start_date\":\"2025-06-26 18:30:00\",\"end_date\":\"2025-07-24 22:30:00\",\"type\":\"Lecture\",\"public\":\"yes\",\"attendees_count\":31},{\"id\":873,\"name\":\"Eum iure soluta eum in minima.\",\"description\":\"Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.\",\"location\":\"Online\",\"cost\":5,\"start_date\":\"2025-06-26 19:00:00\",\"end_date\":\"2025-07-10 21:00:00\",\"type\":\"Networking\",\"public\":\"yes\",\"attendees_count\":47},{\"id\":380,\"name\":\"In natus voluptas dolore culpa odit et atque.\",\"description\":\"Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.\",\"location\":\"Online\",\"cost\":1,\"start_date\":\"2025-06-26 20:00:00\",\"end_date\":\"2025-07-22 11:30:00\",\"type\":\"Open House\",\"public\":\"yes\",\"attendees_count\":43},{\"id\":975,\"name\":\"Nesciunt explicabo ut provident temporibus nam ut quia quas.\",\"description\":\"Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.\",\"location\":\"Port Cindy\",\"cost\":9,\"start_date\":\"2025-06-26 21:30:00\",\"end_date\":\"2025-07-23 18:00:00\",\"type\":\"Seminar\",\"public\":\"yes\",\"attendees_count\":31},{\"id\":623,\"name\":\"Expedita esse deserunt totam.\",\"description\":\"Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.\",\"location\":\"Online\",\"cost\":9,\"start_date\":\"2025-06-26 22:30:00\",\"end_date\":\"2025-07-06 15:00:00\",\"type\":\"Exhibition\",\"public\":\"yes\",\"attendees_count\":10},{\"id\":1143,\"name\":\"Ut expedita aut odio voluptatibus quis harum reiciendis.\",\"description\":\"Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.\",\"location\":\"East Raegan\",\"cost\":6,\"start_date\":\"2025-06-26 22:30:00\",\"end_date\":\"2025-07-09 06:00:00\",\"type\":\"Meetup\",\"public\":\"yes\",\"attendees_count\":41},{\"id\":336,\"name\":\"Sunt nisi sed non dolorum.\",\"description\":\"Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.\",\"location\":\"Online\",\"cost\":4,\"start_date\":\"2025-06-26 23:00:00\",\"end_date\":\"2025-07-15 22:30:00\",\"type\":\"Ceremony\",\"public\":\"yes\",\"attendees_count\":33},{\"id\":49,\"name\":\"Ut doloremque ipsam qui quis sunt error molestias non.\",\"description\":\"Placeat voluptatem quia sint perspiciatis et. Distinctio praesentium modi aliquid praesentium voluptas id quae. Omnis ducimus quas beatae iusto molestias. Provident earum architecto commodi provident est.\",\"location\":\"Myrtiston\",\"cost\":2,\"start_date\":\"2025-06-26 23:30:00\",\"end_date\":\"2025-07-23 15:30:00\",\"type\":\"Open House\",\"public\":\"yes\",\"attendees_count\":26},{\"id\":128,\"name\":\"Nam sunt eum dignissimos itaque ducimus aperiam sapiente.\",\"description\":\"Sit et maiores rerum et corporis ut dolor. Deleniti facere aspernatur ut praesentium mollitia praesentium laboriosam. Cupiditate exercitationem quia eveniet voluptas autem. Pariatur reprehenderit dolorem iure.\",\"location\":\"Online\",\"cost\":7,\"start_date\":\"2025-06-26 23:30:00\",\"end_date\":\"2025-07-12 00:30:00\",\"type\":\"Festival\",\"public\":\"yes\",\"attendees_count\":42}],\"links\":{\"first\":\"https:\\\/\\\/events-management.test\\\/api\\\/events?page=1\",\"last\":\"https:\\\/\\\/events-management.test\\\/api\\\/events?page=108\",\"prev\":null,\"next\":\"https:\\\/\\\/events-management.test\\\/api\\\/events?page=2\"},\"meta\":{\"current_page\":1,\"last_page\":108,\"path\":\"https:\\\/\\\/events-management.test\\\/api\\\/events\",\"per_page\":10,\"total\":1077}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/events\/search",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/search",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/search"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"location\":\"d\",\"cost_min\":37,\"cost_max\":9,\"starts_before\":\"2025-07-02 15:51:42\",\"starts_after\":\"2025-07-02 15:51:42\",\"ends_before\":\"2025-07-02 15:51:42\",\"ends_after\":\"2025-07-02 15:51:42\",\"type\":\"architecto\",\"attendees_min\":39,\"attendees_max\":84,\"public\":true,\"organizer\":16}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 422,
+                            "body": "{\"message\":\"The selected type is invalid.\",\"errors\":{\"type\":[\"The selected type is invalid.\"]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/events\/type\/{name}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/type\/:name",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/type\/:name",
+                            "variable": [
+                                {
+                                    "id": "name",
+                                    "key": "name",
+                                    "value": "cIm",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"message\":\"There are no events of this type.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/organizer\/:organizer_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/organizer\/:organizer_id",
+                            "variable": [
+                                {
+                                    "id": "organizer_id",
+                                    "key": "organizer_id",
+                                    "value": "1",
+                                    "description": "The ID of the organizer."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[],\"links\":{\"first\":\"https:\\\/\\\/events-management.test\\\/api\\\/events\\\/organizer\\\/1?page=1\",\"last\":\"https:\\\/\\\/events-management.test\\\/api\\\/events\\\/organizer\\\/1?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"last_page\":1,\"path\":\"https:\\\/\\\/events-management.test\\\/api\\\/events\\\/organizer\\\/1\",\"per_page\":10,\"total\":0}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"name\":\"Id et iste et aspernatur recusandae.\",\"description\":\"Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.\",\"location\":\"Online\",\"cost\":4,\"start_date\":\"2025-07-11 22:00:00\",\"end_date\":\"2025-07-23 02:00:00\",\"type\":\"Hackathon\",\"public\":\"yes\",\"attendees_count\":4}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Invoke the controller method.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/docs",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/docs"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Event Invites",
+            "description": "\nHandles event invitations, allowing organizers to invite users to private events.",
+            "item": [
+                {
+                    "name": "Get Invites for an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/invites",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event for which to retrieve invites."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5031,\"name\":\"Morgan Hirthe\",\"email\":\"imclaughlin@example.org\",\"country\":\"Saint Vincent and the Grenadines\",\"profession\":\"Gas Distribution Plant Operator\",\"phone\":\"870-215-1024\",\"organization\":\"Leffler-Glover\"},{\"id\":5032,\"name\":\"Annette Labadie\",\"email\":\"kconsidine@example.net\",\"country\":\"Holy See (Vatican City State)\",\"profession\":\"Construction Equipment Operator\",\"phone\":\"+1-678-651-3805\",\"organization\":\"Cartwright-Balistreri\"}]}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This event is a public event, there are no invites.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create Invites for an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/invites",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event to which users will be invited."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"users\":[1,2,3]}"
+                        },
+                        "description": "Allows the organizer of a private event to invite users to the event."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":[{\"id\":5033,\"name\":\"Ms. Audra Crooks II\",\"email\":\"aschuster@example.com\",\"country\":\"Zambia\",\"profession\":\"Compacting Machine Operator\",\"phone\":\"253.392.8862\",\"organization\":\"McLaughlin, Leuschke and Bauch\"},{\"id\":5034,\"name\":\"Mr. Oswald Koch\",\"email\":\"bailee15@example.org\",\"country\":\"Heard Island and McDonald Islands\",\"profession\":\"Chemical Plant Operator\",\"phone\":\"531-539-0170\",\"organization\":\"Gaylord, Hettinger and Nitzsche\"}],\"message\":\"Invites created successfully.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You are not authorized to invite users to this event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You cannot invite users to an event that has already started.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You can only invite users to private events.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove Invites for an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/invites",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event from which users will be removed."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"users\":[1,2,3]}"
+                        },
+                        "description": "Allows the organizer of a private event to remove invites for users."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5035,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gilbert32@example.com\",\"country\":\"Liechtenstein\",\"profession\":\"Registered Nurse\",\"phone\":\"364-447-5052\",\"organization\":\"Predovic Inc\"},{\"id\":5036,\"name\":\"Myrtis Tromp\",\"email\":\"nstokes@example.org\",\"country\":\"Solomon Islands\",\"profession\":\"Extruding Machine Operator\",\"phone\":\"1-539-501-0782\",\"organization\":\"Nitzsche-Ankunding\"}],\"message\":\"Invites removed successfully.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Event Types",
+            "description": "\nHandles event types, allowing administrators to create, update, and delete event types.",
+            "item": [
+                {
+                    "name": "Create Event Type",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Concert\",\"description\":\"Concert\"}"
+                        },
+                        "description": "Creates a new event type. Only administrators can create event types.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":90,\"name\":\"sunt\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab.\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"Event type already exists!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Event Type",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types\/:type_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types\/:type_id",
+                            "variable": [
+                                {
+                                    "id": "type_id",
+                                    "key": "type_id",
+                                    "value": "1",
+                                    "description": "The ID of the type"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Concert\",\"description\":\"Concert\"}"
+                        },
+                        "description": "Updates an existing event type. Only administrators can update event types.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":91,\"name\":\"nihil\",\"description\":\"Harum mollitia modi deserunt aut ab provident perspiciatis quo.\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"Event type already exists!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Event Type",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types\/:type_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types\/:type_id",
+                            "variable": [
+                                {
+                                    "id": "type_id",
+                                    "key": "type_id",
+                                    "value": "1",
+                                    "description": "The ID of the type"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Deletes an event type. A type cannot be deleted if it is used by any event.<br\/>Only administrators can delete event types.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": null,
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"Cannot delete event type that is in use!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List Event Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Lists all available event types.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":92,\"name\":\"deleniti\",\"description\":\"Eum doloremque id aut libero aliquam veniam corporis.\"},{\"id\":93,\"name\":\"dolorem\",\"description\":\"Deleniti nemo odit quia officia.\"}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "User Management",
+            "description": "\nHandles user-related operations, including viewing user profiles.",
+            "item": [
+                {
+                    "name": "Show User Information",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "16",
+                                    "description": "The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Displays the profile of a user. If no user is specified, it shows the authenticated user's profile.<br\/>\n(Only admins can see other users' profiles.)"
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john@doe.com\",\n        \"country\": \"USA\",\n        \"profession\": \"Programmer\",\n        \"phone\": \"123-456-789\",\n        \"organization\": \"World Incorporated\",\n        \"tokens\": 100,\n        \"tokens_spend\": 100\n    }}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "key",
+                "type": "string"
+            }
+        ]
+    }
+}

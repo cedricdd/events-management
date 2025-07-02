@@ -35,6 +35,8 @@ class EventTypeController extends Controller
      * Create Event Type
      * 
      * Creates a new event type. Only administrators can create event types.
+     * 
+     * @authenticated
      */
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "This action is unauthorized."}', 403)]
@@ -61,6 +63,8 @@ class EventTypeController extends Controller
      * Update Event Type
      * 
      * Updates an existing event type. Only administrators can update event types.
+     * 
+     * @authenticated
      */
     #[UrlParam("type_id", "int", "The ID of the type", true, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]
@@ -86,6 +90,8 @@ class EventTypeController extends Controller
      * Delete Event Type
      * 
      * Deletes an event type. A type cannot be deleted if it is used by any event.<br/>Only administrators can delete event types.
+     * 
+     * @authenticated
      */
     #[UrlParam("type_id", "int", "The ID of the type", true, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]

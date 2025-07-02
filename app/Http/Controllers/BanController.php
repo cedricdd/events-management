@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\BanRequest;
 use Illuminate\Http\JsonResponse;
-use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 use Knuckles\Scribe\Attributes\Response;
+use Knuckles\Scribe\Attributes\UrlParam;
 use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
@@ -23,9 +23,8 @@ class BanController extends Controller
      * 
      * List all the users banned by the authenticated user or a specified user. 
      * * Only administrators can view other users' banned lists.
-     * 
-     * @urlParam user int The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list.
      */
+    #[UrlParam("user", "int", "The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list.", false, "1")]
     #[Response('{"message": "Unauthenticated."}', 401, )]
     #[Response('{"message": "You are not authorized to view this user\'s banned list."}', 403, )]
     #[ResponseFromApiResource(UserCollection::class, User::class, 200)]

@@ -88,7 +88,7 @@ endpoints:
         name: public
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -111,7 +111,7 @@ endpoints:
       end_date: '2051-07-26'
       location: 'n'
       cost: 7
-      public: false
+      public: true
       type: architecto
     fileParameters: []
     responses: []
@@ -407,7 +407,7 @@ endpoints:
         name: starts_before
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2025-07-02 15:51:42'
+        example: '2025-07-02 16:23:52'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -417,7 +417,7 @@ endpoints:
         name: starts_after
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2025-07-02 15:51:42'
+        example: '2025-07-02 16:23:52'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -427,7 +427,7 @@ endpoints:
         name: ends_before
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2025-07-02 15:51:42'
+        example: '2025-07-02 16:23:52'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -437,7 +437,7 @@ endpoints:
         name: ends_after
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2025-07-02 15:51:42'
+        example: '2025-07-02 16:23:52'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -477,7 +477,7 @@ endpoints:
         name: public
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -499,14 +499,14 @@ endpoints:
       location: d
       cost_min: 37
       cost_max: 9
-      starts_before: '2025-07-02 15:51:42'
-      starts_after: '2025-07-02 15:51:42'
-      ends_before: '2025-07-02 15:51:42'
-      ends_after: '2025-07-02 15:51:42'
+      starts_before: '2025-07-02 16:23:52'
+      starts_after: '2025-07-02 16:23:52'
+      ends_before: '2025-07-02 16:23:52'
+      ends_after: '2025-07-02 16:23:52'
       type: architecto
       attendees_min: 39
       attendees_max: 84
-      public: true
+      public: false
       organizer: 16
     fileParameters: []
     responses:

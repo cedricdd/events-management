@@ -11,6 +11,8 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\UserCollection;
 use Knuckles\Scribe\Attributes\Response;
+use Knuckles\Scribe\Attributes\UrlParam;
+use Knuckles\Scribe\Attributes\QueryParam;
 use App\Notifications\EventRegistrationNotification;
 use App\Notifications\EventUnRegistrationNotification;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
@@ -24,14 +26,13 @@ use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 class AttendeeController extends Controller
 {
     /**
-     * Attendee's List
+     * List of Attendees from an Event
      * 
      * Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.
-     * 
-     * @urlParam event_id integer required The ID of the event to retrieve attendees for. Example: 1
-     * @queryParam  sort string The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order. Enum: name&#44;asc, name&#44;desc, country&#44;asc, country&#44;desc, registration&#44;asc, registration&#44;desc No-example
-     * @queryParam  with string The additional data to include in the response. Enum: event Example: event
      */
+    #[UrlParam("event_id", "int", "The ID of the event to retrieve attendees for.", true, "1")]
+    #[QueryParam("sort", "string", "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order.", false, enum: ["name,asc", "name,desc", "country,asc", "country,desc", "registration,asc", "registration,desc"])]
+    #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["event"])]
     #[Response('{"message": "Event not found."}', 404)]
     #[Response('{"message": "The page 10 does not exist."}', 404)]
     #[ResponseFromApiResource(UserCollection::class, User::class, 200, paginate: Constants::ATTENDEES_PER_PAGE)]
@@ -71,9 +72,8 @@ class AttendeeController extends Controller
      * Register to an Event
      * 
      * Allows a user to register for an event, provided they meet the necessary conditions such as not being already registered, not being the organizer, having enough tokens, and being invited if the event is private.
-     * 
-     * @urlParam event_id integer required The ID of the event to retrieve attendees for. Example: 1
      */
+    #[UrlParam("event_id", "int", "The ID of the event to register for.", true, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "You can only register to an event before it start."}', 403)]
     #[Response('{"message": "You are not invited to this event."}', 403)]
@@ -147,10 +147,9 @@ class AttendeeController extends Controller
      * Unregister from an Event
      * 
      * Allows a user to unregister from an event, provided they are registered and the request is made by the user themselves, the event organizer, or an admin.
-     * 
-     * @urlParam event_id integer required The ID of the event to unregister from. Example: 1
-     * @urlParam user integer The ID of the user to unregister. If not provided, the authenticated user will be unregistered. Example: 2
      */
+    #[UrlParam("event_id", "int", "The ID of the event to unregister from.", true, "1")]
+    #[UrlParam("user", "int", "The ID of the user to unregister. If not provided, the authenticated user will be unregistered.", false, "2")]
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "You are not registered to this event!"}', 403)]
     #[Response('{"message": "You are not allowed to unregister this user from the event!"}', 403)]

@@ -72,7 +72,7 @@
                                 <a href="#attendee-DELETEapi-events--event_id--attendees--user--">Unregister from an Event</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="attendee-GETapi-events--event_id--attendees">
-                                <a href="#attendee-GETapi-events--event_id--attendees">Attendee's List</a>
+                                <a href="#attendee-GETapi-events--event_id--attendees">List of Attendees from an Event</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -270,23 +270,23 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1373,
+        &quot;id&quot;: 1395,
         &quot;name&quot;: &quot;Et animi quos velit et fugiat.&quot;,
         &quot;description&quot;: &quot;Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.&quot;,
-        &quot;location&quot;: &quot;Online&quot;,
-        &quot;cost&quot;: 2,
-        &quot;start_date&quot;: &quot;2025-07-30 10:30:00&quot;,
-        &quot;end_date&quot;: &quot;2025-08-16 17:00:00&quot;,
-        &quot;type&quot;: &quot;aut&quot;,
+        &quot;location&quot;: &quot;New Carey&quot;,
+        &quot;cost&quot;: 4,
+        &quot;start_date&quot;: &quot;2025-07-18 00:30:00&quot;,
+        &quot;end_date&quot;: &quot;2025-07-26 06:30:00&quot;,
+        &quot;type&quot;: &quot;corporis&quot;,
         &quot;public&quot;: &quot;yes&quot;,
         &quot;organizer&quot;: {
-            &quot;id&quot;: 5030,
-            &quot;name&quot;: &quot;Carey Smitham&quot;,
-            &quot;email&quot;: &quot;sleffler@example.org&quot;,
-            &quot;country&quot;: &quot;Antarctica (the territory South of 60 deg S)&quot;,
-            &quot;profession&quot;: &quot;Bindery Machine Operator&quot;,
-            &quot;phone&quot;: &quot;(458) 539-0170&quot;,
-            &quot;organization&quot;: &quot;Gaylord, Hettinger and Nitzsche&quot;
+            &quot;id&quot;: 5356,
+            &quot;name&quot;: &quot;Henri Mitchell&quot;,
+            &quot;email&quot;: &quot;tleuschke@example.net&quot;,
+            &quot;country&quot;: &quot;Guatemala&quot;,
+            &quot;profession&quot;: &quot;Insurance Claims Clerk&quot;,
+            &quot;phone&quot;: &quot;559.897.7788&quot;,
+            &quot;organization&quot;: &quot;Klocko-Batz&quot;
         }
     },
     &quot;message&quot;: &quot;You have successfully registered for the event.&quot;
@@ -427,7 +427,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="url">
     <br>
-<p>The ID of the event to retrieve attendees for. Example: <code>1</code></p>
+<p>The ID of the event to register for. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -587,7 +587,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="attendee-GETapi-events--event_id--attendees">Attendee&#039;s List</h2>
+                    <h2 id="attendee-GETapi-events--event_id--attendees">List of Attendees from an Event</h2>
 
 <p>
 </p>
@@ -609,6 +609,7 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
+            'sort' =&gt; 'country,asc',
             'with' =&gt; 'event',
         ],
     ]
@@ -623,6 +624,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 );
 
 const params = {
+    "sort": "country,asc",
     "with": "event",
 };
 Object.keys(params)
@@ -649,7 +651,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5037,
+            &quot;id&quot;: 5363,
             &quot;name&quot;: &quot;Mr. Gerhard Dach Jr.&quot;,
             &quot;email&quot;: &quot;lafayette.considine@example.com&quot;,
             &quot;country&quot;: &quot;Gabon&quot;,
@@ -658,7 +660,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Baumbach Ltd&quot;
         },
         {
-            &quot;id&quot;: 5038,
+            &quot;id&quot;: 5364,
             &quot;name&quot;: &quot;Mina Bauch&quot;,
             &quot;email&quot;: &quot;okeefe.isidro@example.org&quot;,
             &quot;country&quot;: &quot;Antarctica (the territory South of 60 deg S)&quot;,
@@ -772,12 +774,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="sort"                data-endpoint="GETapi-events--event_id--attendees"
-               value=""
+               value="country,asc"
                data-component="query">
     <br>
-<p>The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order.</p>
+<p>The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order. Example: <code>country,asc</code></p>
 Must be one of:
-<ul style="list-style-type: square;"><li><code>name&#44;asc</code></li> <li><code>name&#44;desc</code></li> <li><code>country&#44;asc</code></li> <li><code>country&#44;desc</code></li> <li><code>registration&#44;asc</code></li> <li><code>registration&#44;desc</code></li></ul>
+<ul style="list-style-type: square;"><li><code>name,asc</code></li> <li><code>name,desc</code></li> <li><code>country,asc</code></li> <li><code>country,desc</code></li> <li><code>registration,asc</code></li> <li><code>registration,desc</code></li></ul>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>with</code></b>&nbsp;&nbsp;
@@ -1110,7 +1112,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'https://events-management.test/api/bans/16';
+$url = 'https://events-management.test/api/bans/1';
 $response = $client-&gt;get(
     $url,
     [
@@ -1127,7 +1129,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://events-management.test/api/bans/16"
+    "https://events-management.test/api/bans/1"
 );
 
 const headers = {
@@ -1152,7 +1154,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5024,
+            &quot;id&quot;: 5350,
             &quot;name&quot;: &quot;Morgan Hirthe&quot;,
             &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
             &quot;country&quot;: &quot;Peru&quot;,
@@ -1161,7 +1163,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Mitchell-VonRueden&quot;
         },
         {
-            &quot;id&quot;: 5025,
+            &quot;id&quot;: 5351,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
             &quot;email&quot;: &quot;schultz.audrey@example.org&quot;,
             &quot;country&quot;: &quot;French Polynesia&quot;,
@@ -1261,10 +1263,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user"                data-endpoint="GETapi-bans--user--"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list. Example: <code>16</code></p>
+<p>The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -1340,7 +1342,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5026,
+            &quot;id&quot;: 5352,
             &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
             &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
             &quot;country&quot;: &quot;Peru&quot;,
@@ -1349,7 +1351,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Price Ltd&quot;
         },
         {
-            &quot;id&quot;: 5027,
+            &quot;id&quot;: 5353,
             &quot;name&quot;: &quot;Pearl Hauck Sr.&quot;,
             &quot;email&quot;: &quot;alayna44@example.org&quot;,
             &quot;country&quot;: &quot;Saint Vincent and the Grenadines&quot;,
@@ -1522,7 +1524,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5028,
+            &quot;id&quot;: 5354,
             &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
             &quot;email&quot;: &quot;idickens@example.org&quot;,
             &quot;country&quot;: &quot;Morocco&quot;,
@@ -1531,7 +1533,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Hauck-Leuschke&quot;
         },
         {
-            &quot;id&quot;: 5029,
+            &quot;id&quot;: 5355,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
             &quot;email&quot;: &quot;bauch.marcelo@example.com&quot;,
             &quot;country&quot;: &quot;Holy See (Vatican City State)&quot;,
@@ -1664,7 +1666,7 @@ $response = $client-&gt;post(
             'end_date' =&gt; '2051-07-26',
             'location' =&gt; 'n',
             'cost' =&gt; 7,
-            'public' =&gt; false,
+            'public' =&gt; true,
             'type' =&gt; 'architecto',
         ],
     ]
@@ -1690,7 +1692,7 @@ let body = {
     "end_date": "2051-07-26",
     "location": "n",
     "cost": 7,
-    "public": false,
+    "public": true,
     "type": "architecto"
 };
 
@@ -1842,7 +1844,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -2481,14 +2483,14 @@ $response = $client-&gt;get(
             'location' =&gt; 'd',
             'cost_min' =&gt; 37,
             'cost_max' =&gt; 9,
-            'starts_before' =&gt; '2025-07-02 15:51:42',
-            'starts_after' =&gt; '2025-07-02 15:51:42',
-            'ends_before' =&gt; '2025-07-02 15:51:42',
-            'ends_after' =&gt; '2025-07-02 15:51:42',
+            'starts_before' =&gt; '2025-07-02 16:23:52',
+            'starts_after' =&gt; '2025-07-02 16:23:52',
+            'ends_before' =&gt; '2025-07-02 16:23:52',
+            'ends_after' =&gt; '2025-07-02 16:23:52',
             'type' =&gt; 'architecto',
             'attendees_min' =&gt; 39,
             'attendees_max' =&gt; 84,
-            'public' =&gt; true,
+            'public' =&gt; false,
             'organizer' =&gt; 16,
         ],
     ]
@@ -2513,14 +2515,14 @@ let body = {
     "location": "d",
     "cost_min": 37,
     "cost_max": 9,
-    "starts_before": "2025-07-02 15:51:42",
-    "starts_after": "2025-07-02 15:51:42",
-    "ends_before": "2025-07-02 15:51:42",
-    "ends_after": "2025-07-02 15:51:42",
+    "starts_before": "2025-07-02 16:23:52",
+    "starts_after": "2025-07-02 16:23:52",
+    "ends_before": "2025-07-02 16:23:52",
+    "ends_after": "2025-07-02 16:23:52",
     "type": "architecto",
     "attendees_min": 39,
     "attendees_max": 84,
-    "public": true,
+    "public": false,
     "organizer": 16
 };
 
@@ -2671,10 +2673,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="starts_before"                data-endpoint="GETapi-events-search"
-               value="2025-07-02 15:51:42"
+               value="2025-07-02 16:23:52"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 15:51:42</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 16:23:52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>starts_after</code></b>&nbsp;&nbsp;
@@ -2682,10 +2684,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="starts_after"                data-endpoint="GETapi-events-search"
-               value="2025-07-02 15:51:42"
+               value="2025-07-02 16:23:52"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 15:51:42</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 16:23:52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_before</code></b>&nbsp;&nbsp;
@@ -2693,10 +2695,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="ends_before"                data-endpoint="GETapi-events-search"
-               value="2025-07-02 15:51:42"
+               value="2025-07-02 16:23:52"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 15:51:42</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 16:23:52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_after</code></b>&nbsp;&nbsp;
@@ -2704,10 +2706,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="ends_after"                data-endpoint="GETapi-events-search"
-               value="2025-07-02 15:51:42"
+               value="2025-07-02 16:23:52"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 15:51:42</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Example: <code>2025-07-02 16:23:52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -2761,7 +2763,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>organizer</code></b>&nbsp;&nbsp;
@@ -3368,7 +3370,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5031,
+            &quot;id&quot;: 5357,
             &quot;name&quot;: &quot;Morgan Hirthe&quot;,
             &quot;email&quot;: &quot;imclaughlin@example.org&quot;,
             &quot;country&quot;: &quot;Saint Vincent and the Grenadines&quot;,
@@ -3377,7 +3379,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Leffler-Glover&quot;
         },
         {
-            &quot;id&quot;: 5032,
+            &quot;id&quot;: 5358,
             &quot;name&quot;: &quot;Annette Labadie&quot;,
             &quot;email&quot;: &quot;kconsidine@example.net&quot;,
             &quot;country&quot;: &quot;Holy See (Vatican City State)&quot;,
@@ -3574,7 +3576,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5033,
+            &quot;id&quot;: 5359,
             &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
             &quot;email&quot;: &quot;aschuster@example.com&quot;,
             &quot;country&quot;: &quot;Zambia&quot;,
@@ -3583,7 +3585,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;McLaughlin, Leuschke and Bauch&quot;
         },
         {
-            &quot;id&quot;: 5034,
+            &quot;id&quot;: 5360,
             &quot;name&quot;: &quot;Mr. Oswald Koch&quot;,
             &quot;email&quot;: &quot;bailee15@example.org&quot;,
             &quot;country&quot;: &quot;Heard Island and McDonald Islands&quot;,
@@ -3737,7 +3739,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="users[1]"                data-endpoint="POSTapi-events--event_id--invites"
                data-component="body">
     <br>
-<p>The IDs of the users to ban.</p>
+<p>The IDs of the users to invite.</p>
         </div>
         </form>
 
@@ -3813,7 +3815,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5035,
+            &quot;id&quot;: 5361,
             &quot;name&quot;: &quot;Ms. Audra Crooks II&quot;,
             &quot;email&quot;: &quot;gilbert32@example.com&quot;,
             &quot;country&quot;: &quot;Liechtenstein&quot;,
@@ -3822,7 +3824,7 @@ fetch(url, {
             &quot;organization&quot;: &quot;Predovic Inc&quot;
         },
         {
-            &quot;id&quot;: 5036,
+            &quot;id&quot;: 5362,
             &quot;name&quot;: &quot;Myrtis Tromp&quot;,
             &quot;email&quot;: &quot;nstokes@example.org&quot;,
             &quot;country&quot;: &quot;Solomon Islands&quot;,
@@ -3949,7 +3951,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="users[1]"                data-endpoint="DELETEapi-events--event_id--invites"
                data-component="body">
     <br>
-<p>The IDs of the users to ban.</p>
+<p>The IDs of the users to invite.</p>
         </div>
         </form>
 
@@ -3960,6 +3962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="event-types-POSTapi-event-types">Create Event Type</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Creates a new event type. Only administrators can create event types.</p>
@@ -3975,6 +3978,7 @@ $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -3994,6 +3998,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4019,7 +4024,7 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 90,
+        &quot;id&quot;: 200,
         &quot;name&quot;: &quot;sunt&quot;,
         &quot;description&quot;: &quot;Accusantium harum mollitia modi deserunt aut ab.&quot;
     }
@@ -4070,7 +4075,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-event-types" data-method="POST"
       data-path="api/event-types"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4083,6 +4088,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/event-types</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-event-types"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4133,6 +4149,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="event-types-PUTapi-event-types--type_id-">Update Event Type</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Updates an existing event type. Only administrators can update event types.</p>
@@ -4148,6 +4165,7 @@ $response = $client-&gt;put(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -4167,6 +4185,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4192,7 +4211,7 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 91,
+        &quot;id&quot;: 201,
         &quot;name&quot;: &quot;nihil&quot;,
         &quot;description&quot;: &quot;Harum mollitia modi deserunt aut ab provident perspiciatis quo.&quot;
     }
@@ -4243,7 +4262,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-event-types--type_id-" data-method="PUT"
       data-path="api/event-types/{type_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4256,6 +4275,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/event-types/{type_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-event-types--type_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4318,6 +4348,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="event-types-DELETEapi-event-types--type_id-">Delete Event Type</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Deletes an event type. A type cannot be deleted if it is used by any event.<br/>Only administrators can delete event types.</p>
@@ -4333,6 +4364,7 @@ $response = $client-&gt;delete(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -4348,6 +4380,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4411,7 +4444,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-event-types--type_id-" data-method="DELETE"
       data-path="api/event-types/{type_id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -4424,6 +4457,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/event-types/{type_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-event-types--type_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4513,12 +4557,12 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 92,
+            &quot;id&quot;: 202,
             &quot;name&quot;: &quot;deleniti&quot;,
             &quot;description&quot;: &quot;Eum doloremque id aut libero aliquam veniam corporis.&quot;
         },
         {
-            &quot;id&quot;: 93,
+            &quot;id&quot;: 203,
             &quot;name&quot;: &quot;dolorem&quot;,
             &quot;description&quot;: &quot;Deleniti nemo odit quia officia.&quot;
         }
@@ -4599,7 +4643,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'https://events-management.test/api/users/16';
+$url = 'https://events-management.test/api/users/1';
 $response = $client-&gt;get(
     $url,
     [
@@ -4616,7 +4660,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://events-management.test/api/users/16"
+    "https://events-management.test/api/users/1"
 );
 
 const headers = {
@@ -4732,10 +4776,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user"                data-endpoint="GETapi-users--user--"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile. Example: <code>16</code></p>
+<p>The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile. Example: <code>1</code></p>
             </div>
                     </form>
 

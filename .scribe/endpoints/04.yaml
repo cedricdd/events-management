@@ -16,9 +16,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Create Event Type'
       description: 'Creates a new event type. Only administrators can create event types.'
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -53,7 +54,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":{"id":90,"name":"sunt","description":"Accusantium harum mollitia modi deserunt aut ab."}}'
+        content: '{"data":{"id":200,"name":"sunt","description":"Accusantium harum mollitia modi deserunt aut ab."}}'
         headers: []
         description: ''
         custom: []
@@ -76,7 +77,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -94,9 +98,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update Event Type'
       description: 'Updates an existing event type. Only administrators can update event types.'
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -142,7 +147,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":91,"name":"nihil","description":"Harum mollitia modi deserunt aut ab provident perspiciatis quo."}}'
+        content: '{"data":{"id":201,"name":"nihil","description":"Harum mollitia modi deserunt aut ab provident perspiciatis quo."}}'
         headers: []
         description: ''
         custom: []
@@ -165,7 +170,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -183,9 +191,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete Event Type'
       description: 'Deletes an event type. A type cannot be deleted if it is used by any event.<br/>Only administrators can delete event types.'
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -232,7 +241,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -265,7 +277,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":92,"name":"deleniti","description":"Eum doloremque id aut libero aliquam veniam corporis."},{"id":93,"name":"dolorem","description":"Deleniti nemo odit quia officia."}]}'
+        content: '{"data":[{"id":202,"name":"deleniti","description":"Eum doloremque id aut libero aliquam veniam corporis."},{"id":203,"name":"dolorem","description":"Deleniti nemo odit quia officia."}]}'
         headers: []
         description: ''
         custom: []

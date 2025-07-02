@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Knuckles\Scribe\Attributes\BodyParam;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @bodyParam users integer[] required The IDs of the users to ban. Example: [1, 2, 3]
- */
+#[BodyParam("users", "integer[]", "The IDs of the users to invite.", true, [1, 2, 3])]
 class InviteRequest extends FormRequest
 {
     /**

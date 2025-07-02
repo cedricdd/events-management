@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Knuckles\Scribe\Attributes\Response;
+use Knuckles\Scribe\Attributes\UrlParam;
 
 /**
  * @group User Management
@@ -21,11 +22,10 @@ class UserController extends Controller
      * 
      * Displays the profile of a user. If no user is specified, it shows the authenticated user's profile.<br/>
      * (Only admins can see other users' profiles.)
-     * 
-     * @urlParam user int The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile.
      */
+    #[UrlParam("user", "int", "The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile.", false, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]
-        #[Response('{"data": {
+    #[Response('{"data": {
         "id": 1,
         "name": "John Doe",
         "email": "john@doe.com",
@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         // If no user is provided, use the authenticated user
         return new UserResource(
-            $user ?? $request->user(), 
+            $user ?? $request->user(),
             $request->user()->isAdmin() || $request->user()->is($user) || $user === null // Show extra information only to admins or the user themselves
         );
     }

@@ -24,16 +24,16 @@ endpoints:
     urlParameters:
       event_id:
         name: event_id
-        description: 'The ID of the event to retrieve attendees for.'
+        description: 'The ID of the event to register for.'
         required: true
-        example: 1
+        example: '1'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      event_id: 1
+      event_id: '1'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -42,7 +42,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":{"id":1373,"name":"Et animi quos velit et fugiat.","description":"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.","location":"Online","cost":2,"start_date":"2025-07-30 10:30:00","end_date":"2025-08-16 17:00:00","type":"aut","public":"yes","organizer":{"id":5030,"name":"Carey Smitham","email":"sleffler@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Bindery Machine Operator","phone":"(458) 539-0170","organization":"Gaylord, Hettinger and Nitzsche"}},"message":"You have successfully registered for the event."}'
+        content: '{"data":{"id":1395,"name":"Et animi quos velit et fugiat.","description":"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.","location":"New Carey","cost":4,"start_date":"2025-07-18 00:30:00","end_date":"2025-07-26 06:30:00","type":"corporis","public":"yes","organizer":{"id":5356,"name":"Henri Mitchell","email":"tleuschke@example.net","country":"Guatemala","profession":"Insurance Claims Clerk","phone":"559.897.7788","organization":"Klocko-Batz"}},"message":"You have successfully registered for the event."}'
         headers: []
         description: ''
         custom: []
@@ -123,25 +123,25 @@ endpoints:
         name: event_id
         description: 'The ID of the event to unregister from.'
         required: true
-        example: 1
+        example: '1'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
       user:
         name: user
         description: 'The ID of the user to unregister. If not provided, the authenticated user will be unregistered.'
         required: false
-        example: 2
+        example: '2'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      event_id: 1
-      user: 2
+      event_id: '1'
+      user: '2'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -189,7 +189,7 @@ endpoints:
         Handles event attendees, allowing users to register, view, and unregister from events.
       subgroup: ''
       subgroupDescription: ''
-      title: "Attendee's List"
+      title: 'List of Attendees from an Event'
       description: 'Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.'
       authenticated: false
       custom: []
@@ -201,28 +201,28 @@ endpoints:
         name: event_id
         description: 'The ID of the event to retrieve attendees for.'
         required: true
-        example: 1
+        example: '1'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      event_id: 1
+      event_id: '1'
     queryParameters:
       sort:
         name: sort
         description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
         required: false
-        example: null
+        example: 'country,asc'
         type: string
         enumValues:
-          - 'name&#44;asc'
-          - 'name&#44;desc'
-          - 'country&#44;asc'
-          - 'country&#44;desc'
-          - 'registration&#44;asc'
-          - 'registration&#44;desc'
+          - 'name,asc'
+          - 'name,desc'
+          - 'country,asc'
+          - 'country,desc'
+          - 'registration,asc'
+          - 'registration,desc'
         exampleWasSpecified: false
         nullable: false
         custom: []
@@ -234,10 +234,11 @@ endpoints:
         type: string
         enumValues:
           - event
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanQueryParameters:
+      sort: 'country,asc'
       with: event
     bodyParameters: []
     cleanBodyParameters: []
@@ -245,7 +246,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":5037,"name":"Mr. Gerhard Dach Jr.","email":"lafayette.considine@example.com","country":"Gabon","profession":"Logging Tractor Operator","phone":"(806) 721-0719","organization":"Baumbach Ltd"},{"id":5038,"name":"Mina Bauch","email":"okeefe.isidro@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Claims Examiner","phone":"283.476.7809","organization":"Haag and Sons"}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"\/","per_page":20,"total":2}}'
+        content: '{"data":[{"id":5363,"name":"Mr. Gerhard Dach Jr.","email":"lafayette.considine@example.com","country":"Gabon","profession":"Logging Tractor Operator","phone":"(806) 721-0719","organization":"Baumbach Ltd"},{"id":5364,"name":"Mina Bauch","email":"okeefe.isidro@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Claims Examiner","phone":"283.476.7809","organization":"Haag and Sons"}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"\/","per_page":20,"total":2}}'
         headers: []
         description: ''
         custom: []

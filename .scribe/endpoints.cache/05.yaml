@@ -29,14 +29,14 @@ endpoints:
         name: event_id
         description: 'The ID of the event for which to retrieve invites.'
         required: true
-        example: 1
+        example: '1'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      event_id: 1
+      event_id: '1'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -45,7 +45,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":5031,"name":"Morgan Hirthe","email":"imclaughlin@example.org","country":"Saint Vincent and the Grenadines","profession":"Gas Distribution Plant Operator","phone":"870-215-1024","organization":"Leffler-Glover"},{"id":5032,"name":"Annette Labadie","email":"kconsidine@example.net","country":"Holy See (Vatican City State)","profession":"Construction Equipment Operator","phone":"+1-678-651-3805","organization":"Cartwright-Balistreri"}]}'
+        content: '{"data":[{"id":5357,"name":"Morgan Hirthe","email":"imclaughlin@example.org","country":"Saint Vincent and the Grenadines","profession":"Gas Distribution Plant Operator","phone":"870-215-1024","organization":"Leffler-Glover"},{"id":5358,"name":"Annette Labadie","email":"kconsidine@example.net","country":"Holy See (Vatican City State)","profession":"Construction Equipment Operator","phone":"+1-678-651-3805","organization":"Cartwright-Balistreri"}]}'
         headers: []
         description: ''
         custom: []
@@ -106,20 +106,20 @@ endpoints:
         name: event_id
         description: 'The ID of the event to which users will be invited.'
         required: true
-        example: 1
+        example: '1'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      event_id: 1
+      event_id: '1'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       users:
         name: users
-        description: 'The IDs of the users to ban.'
+        description: 'The IDs of the users to invite.'
         required: true
         example:
           - 1
@@ -127,7 +127,7 @@ endpoints:
           - 3
         type: 'integer[]'
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
@@ -139,7 +139,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":[{"id":5033,"name":"Ms. Audra Crooks II","email":"aschuster@example.com","country":"Zambia","profession":"Compacting Machine Operator","phone":"253.392.8862","organization":"McLaughlin, Leuschke and Bauch"},{"id":5034,"name":"Mr. Oswald Koch","email":"bailee15@example.org","country":"Heard Island and McDonald Islands","profession":"Chemical Plant Operator","phone":"531-539-0170","organization":"Gaylord, Hettinger and Nitzsche"}],"message":"Invites created successfully."}'
+        content: '{"data":[{"id":5359,"name":"Ms. Audra Crooks II","email":"aschuster@example.com","country":"Zambia","profession":"Compacting Machine Operator","phone":"253.392.8862","organization":"McLaughlin, Leuschke and Bauch"},{"id":5360,"name":"Mr. Oswald Koch","email":"bailee15@example.org","country":"Heard Island and McDonald Islands","profession":"Chemical Plant Operator","phone":"531-539-0170","organization":"Gaylord, Hettinger and Nitzsche"}],"message":"Invites created successfully."}'
         headers: []
         description: ''
         custom: []
@@ -212,20 +212,20 @@ endpoints:
         name: event_id
         description: 'The ID of the event from which users will be removed.'
         required: true
-        example: 1
+        example: '1'
         type: integer
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      event_id: 1
+      event_id: '1'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       users:
         name: users
-        description: 'The IDs of the users to ban.'
+        description: 'The IDs of the users to invite.'
         required: true
         example:
           - 1
@@ -233,7 +233,7 @@ endpoints:
           - 3
         type: 'integer[]'
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
@@ -245,7 +245,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":5035,"name":"Ms. Audra Crooks II","email":"gilbert32@example.com","country":"Liechtenstein","profession":"Registered Nurse","phone":"364-447-5052","organization":"Predovic Inc"},{"id":5036,"name":"Myrtis Tromp","email":"nstokes@example.org","country":"Solomon Islands","profession":"Extruding Machine Operator","phone":"1-539-501-0782","organization":"Nitzsche-Ankunding"}],"message":"Invites removed successfully."}'
+        content: '{"data":[{"id":5361,"name":"Ms. Audra Crooks II","email":"gilbert32@example.com","country":"Liechtenstein","profession":"Registered Nurse","phone":"364-447-5052","organization":"Predovic Inc"},{"id":5362,"name":"Myrtis Tromp","email":"nstokes@example.org","country":"Solomon Islands","profession":"Extruding Machine Operator","phone":"1-539-501-0782","organization":"Nitzsche-Ankunding"}],"message":"Invites removed successfully."}'
         headers: []
         description: ''
         custom: []

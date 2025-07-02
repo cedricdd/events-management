@@ -53,23 +53,23 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1373
+                    id: 1395
                     name: 'Et animi quos velit et fugiat.'
                     description: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
-                    location: Online
-                    cost: 2
-                    start_date: '2025-07-30 10:30:00'
-                    end_date: '2025-08-16 17:00:00'
-                    type: aut
+                    location: 'New Carey'
+                    cost: 4
+                    start_date: '2025-07-18 00:30:00'
+                    end_date: '2025-07-26 06:30:00'
+                    type: corporis
                     public: 'yes'
                     organizer:
-                      id: 5030
-                      name: 'Carey Smitham'
-                      email: sleffler@example.org
-                      country: 'Antarctica (the territory South of 60 deg S)'
-                      profession: 'Bindery Machine Operator'
-                      phone: '(458) 539-0170'
-                      organization: 'Gaylord, Hettinger and Nitzsche'
+                      id: 5356
+                      name: 'Henri Mitchell'
+                      email: tleuschke@example.net
+                      country: Guatemala
+                      profession: 'Insurance Claims Clerk'
+                      phone: 559.897.7788
+                      organization: Klocko-Batz
                   message: 'You have successfully registered for the event.'
                 properties:
                   data:
@@ -77,7 +77,7 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1373
+                        example: 1395
                       name:
                         type: string
                         example: 'Et animi quos velit et fugiat.'
@@ -86,19 +86,19 @@ paths:
                         example: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
                       location:
                         type: string
-                        example: Online
+                        example: 'New Carey'
                       cost:
                         type: integer
-                        example: 2
+                        example: 4
                       start_date:
                         type: string
-                        example: '2025-07-30 10:30:00'
+                        example: '2025-07-18 00:30:00'
                       end_date:
                         type: string
-                        example: '2025-08-16 17:00:00'
+                        example: '2025-07-26 06:30:00'
                       type:
                         type: string
-                        example: aut
+                        example: corporis
                       public:
                         type: string
                         example: 'yes'
@@ -107,25 +107,25 @@ paths:
                         properties:
                           id:
                             type: integer
-                            example: 5030
+                            example: 5356
                           name:
                             type: string
-                            example: 'Carey Smitham'
+                            example: 'Henri Mitchell'
                           email:
                             type: string
-                            example: sleffler@example.org
+                            example: tleuschke@example.net
                           country:
                             type: string
-                            example: 'Antarctica (the territory South of 60 deg S)'
+                            example: Guatemala
                           profession:
                             type: string
-                            example: 'Bindery Machine Operator'
+                            example: 'Insurance Claims Clerk'
                           phone:
                             type: string
-                            example: '(458) 539-0170'
+                            example: 559.897.7788
                           organization:
                             type: string
-                            example: 'Gaylord, Hettinger and Nitzsche'
+                            example: Klocko-Batz
                   message:
                     type: string
                     example: 'You have successfully registered for the event.'
@@ -223,28 +223,28 @@ paths:
         - Attendee
       security: []
     get:
-      summary: "Attendee's List"
-      operationId: attendeesList
+      summary: 'List of Attendees from an Event'
+      operationId: listOfAttendeesFromAnEvent
       description: 'Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.'
       parameters:
         -
           in: query
           name: sort
           description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
-          example: null
+          example: 'country,asc'
           required: false
           schema:
             type: string
             description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
-            example: null
+            example: 'country,asc'
             nullable: false
             enum:
-              - 'name&#44;asc'
-              - 'name&#44;desc'
-              - 'country&#44;asc'
-              - 'country&#44;desc'
-              - 'registration&#44;asc'
-              - 'registration&#44;desc'
+              - 'name,asc'
+              - 'name,desc'
+              - 'country,asc'
+              - 'country,desc'
+              - 'registration,asc'
+              - 'registration,desc'
         -
           in: query
           name: with
@@ -268,7 +268,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5037
+                      id: 5363
                       name: 'Mr. Gerhard Dach Jr.'
                       email: lafayette.considine@example.com
                       country: Gabon
@@ -276,7 +276,7 @@ paths:
                       phone: '(806) 721-0719'
                       organization: 'Baumbach Ltd'
                     -
-                      id: 5038
+                      id: 5364
                       name: 'Mina Bauch'
                       email: okeefe.isidro@example.org
                       country: 'Antarctica (the territory South of 60 deg S)'
@@ -299,7 +299,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5037
+                        id: 5363
                         name: 'Mr. Gerhard Dach Jr.'
                         email: lafayette.considine@example.com
                         country: Gabon
@@ -307,7 +307,7 @@ paths:
                         phone: '(806) 721-0719'
                         organization: 'Baumbach Ltd'
                       -
-                        id: 5038
+                        id: 5364
                         name: 'Mina Bauch'
                         email: okeefe.isidro@example.org
                         country: 'Antarctica (the territory South of 60 deg S)'
@@ -319,7 +319,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5037
+                          example: 5363
                         name:
                           type: string
                           example: 'Mr. Gerhard Dach Jr.'
@@ -402,8 +402,8 @@ paths:
       -
         in: path
         name: event_id
-        description: 'The ID of the event to retrieve attendees for.'
-        example: 1
+        description: 'The ID of the event to register for.'
+        example: '1'
         required: true
         schema:
           type: integer
@@ -460,7 +460,7 @@ paths:
         in: path
         name: event_id
         description: 'The ID of the event to unregister from.'
-        example: 1
+        example: '1'
         required: true
         schema:
           type: integer
@@ -477,7 +477,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 2
+            value: '2'
   /api/logout:
     delete:
       summary: Logout
@@ -611,7 +611,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5024
+                      id: 5350
                       name: 'Morgan Hirthe'
                       email: dare.emelie@example.com
                       country: Peru
@@ -619,7 +619,7 @@ paths:
                       phone: 562.471.7515
                       organization: Mitchell-VonRueden
                     -
-                      id: 5025
+                      id: 5351
                       name: 'Dr. Grayson Glover'
                       email: schultz.audrey@example.org
                       country: 'French Polynesia'
@@ -631,7 +631,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5024
+                        id: 5350
                         name: 'Morgan Hirthe'
                         email: dare.emelie@example.com
                         country: Peru
@@ -639,7 +639,7 @@ paths:
                         phone: 562.471.7515
                         organization: Mitchell-VonRueden
                       -
-                        id: 5025
+                        id: 5351
                         name: 'Dr. Grayson Glover'
                         email: schultz.audrey@example.org
                         country: 'French Polynesia'
@@ -651,7 +651,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5024
+                          example: 5350
                         name:
                           type: string
                           example: 'Morgan Hirthe'
@@ -710,7 +710,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 16
+            value: '1'
   /api/bans:
     post:
       summary: 'Add Bans'
@@ -727,7 +727,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5026
+                      id: 5352
                       name: 'Ms. Audra Crooks II'
                       email: gulgowski.asia@example.com
                       country: Peru
@@ -735,7 +735,7 @@ paths:
                       phone: 843.428.7432
                       organization: 'Price Ltd'
                     -
-                      id: 5027
+                      id: 5353
                       name: 'Pearl Hauck Sr.'
                       email: alayna44@example.org
                       country: 'Saint Vincent and the Grenadines'
@@ -748,7 +748,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5026
+                        id: 5352
                         name: 'Ms. Audra Crooks II'
                         email: gulgowski.asia@example.com
                         country: Peru
@@ -756,7 +756,7 @@ paths:
                         phone: 843.428.7432
                         organization: 'Price Ltd'
                       -
-                        id: 5027
+                        id: 5353
                         name: 'Pearl Hauck Sr.'
                         email: alayna44@example.org
                         country: 'Saint Vincent and the Grenadines'
@@ -768,7 +768,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5026
+                          example: 5352
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -837,7 +837,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5028
+                      id: 5354
                       name: 'Ms. Audra Crooks II'
                       email: idickens@example.org
                       country: Morocco
@@ -845,7 +845,7 @@ paths:
                       phone: +1-626-249-0432
                       organization: Hauck-Leuschke
                     -
-                      id: 5029
+                      id: 5355
                       name: 'Alanis McLaughlin'
                       email: bauch.marcelo@example.com
                       country: 'Holy See (Vatican City State)'
@@ -858,7 +858,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5028
+                        id: 5354
                         name: 'Ms. Audra Crooks II'
                         email: idickens@example.org
                         country: Morocco
@@ -866,7 +866,7 @@ paths:
                         phone: +1-626-249-0432
                         organization: Hauck-Leuschke
                       -
-                        id: 5029
+                        id: 5355
                         name: 'Alanis McLaughlin'
                         email: bauch.marcelo@example.com
                         country: 'Holy See (Vatican City State)'
@@ -878,7 +878,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5028
+                          example: 5354
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -981,7 +981,7 @@ paths:
                 public:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                   nullable: false
                 type:
                   type: string
@@ -1529,22 +1529,22 @@ paths:
                 starts_before:
                   type: string
                   description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 15:51:42'
+                  example: '2025-07-02 16:23:52'
                   nullable: false
                 starts_after:
                   type: string
                   description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 15:51:42'
+                  example: '2025-07-02 16:23:52'
                   nullable: false
                 ends_before:
                   type: string
                   description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 15:51:42'
+                  example: '2025-07-02 16:23:52'
                   nullable: false
                 ends_after:
                   type: string
                   description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 15:51:42'
+                  example: '2025-07-02 16:23:52'
                   nullable: false
                 type:
                   type: string
@@ -1564,7 +1564,7 @@ paths:
                 public:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                   nullable: false
                 organizer:
                   type: integer
@@ -1716,7 +1716,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5031
+                      id: 5357
                       name: 'Morgan Hirthe'
                       email: imclaughlin@example.org
                       country: 'Saint Vincent and the Grenadines'
@@ -1724,7 +1724,7 @@ paths:
                       phone: 870-215-1024
                       organization: Leffler-Glover
                     -
-                      id: 5032
+                      id: 5358
                       name: 'Annette Labadie'
                       email: kconsidine@example.net
                       country: 'Holy See (Vatican City State)'
@@ -1736,7 +1736,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5031
+                        id: 5357
                         name: 'Morgan Hirthe'
                         email: imclaughlin@example.org
                         country: 'Saint Vincent and the Grenadines'
@@ -1744,7 +1744,7 @@ paths:
                         phone: 870-215-1024
                         organization: Leffler-Glover
                       -
-                        id: 5032
+                        id: 5358
                         name: 'Annette Labadie'
                         email: kconsidine@example.net
                         country: 'Holy See (Vatican City State)'
@@ -1756,7 +1756,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5031
+                          example: 5357
                         name:
                           type: string
                           example: 'Morgan Hirthe'
@@ -1840,7 +1840,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5033
+                      id: 5359
                       name: 'Ms. Audra Crooks II'
                       email: aschuster@example.com
                       country: Zambia
@@ -1848,7 +1848,7 @@ paths:
                       phone: 253.392.8862
                       organization: 'McLaughlin, Leuschke and Bauch'
                     -
-                      id: 5034
+                      id: 5360
                       name: 'Mr. Oswald Koch'
                       email: bailee15@example.org
                       country: 'Heard Island and McDonald Islands'
@@ -1861,7 +1861,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5033
+                        id: 5359
                         name: 'Ms. Audra Crooks II'
                         email: aschuster@example.com
                         country: Zambia
@@ -1869,7 +1869,7 @@ paths:
                         phone: 253.392.8862
                         organization: 'McLaughlin, Leuschke and Bauch'
                       -
-                        id: 5034
+                        id: 5360
                         name: 'Mr. Oswald Koch'
                         email: bailee15@example.org
                         country: 'Heard Island and McDonald Islands'
@@ -1881,7 +1881,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5033
+                          example: 5359
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -1980,7 +1980,7 @@ paths:
               properties:
                 users:
                   type: array
-                  description: 'The IDs of the users to ban.'
+                  description: 'The IDs of the users to invite.'
                   example:
                     - 1
                     - 2
@@ -2004,7 +2004,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5035
+                      id: 5361
                       name: 'Ms. Audra Crooks II'
                       email: gilbert32@example.com
                       country: Liechtenstein
@@ -2012,7 +2012,7 @@ paths:
                       phone: 364-447-5052
                       organization: 'Predovic Inc'
                     -
-                      id: 5036
+                      id: 5362
                       name: 'Myrtis Tromp'
                       email: nstokes@example.org
                       country: 'Solomon Islands'
@@ -2025,7 +2025,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5035
+                        id: 5361
                         name: 'Ms. Audra Crooks II'
                         email: gilbert32@example.com
                         country: Liechtenstein
@@ -2033,7 +2033,7 @@ paths:
                         phone: 364-447-5052
                         organization: 'Predovic Inc'
                       -
-                        id: 5036
+                        id: 5362
                         name: 'Myrtis Tromp'
                         email: nstokes@example.org
                         country: 'Solomon Islands'
@@ -2045,7 +2045,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5035
+                          example: 5361
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -2114,7 +2114,7 @@ paths:
               properties:
                 users:
                   type: array
-                  description: 'The IDs of the users to ban.'
+                  description: 'The IDs of the users to invite.'
                   example:
                     - 1
                     - 2
@@ -2128,7 +2128,7 @@ paths:
         in: path
         name: event_id
         description: 'The ID of the event for which to retrieve invites.'
-        example: 1
+        example: '1'
         required: true
         schema:
           type: integer
@@ -2147,7 +2147,7 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 90
+                    id: 200
                     name: sunt
                     description: 'Accusantium harum mollitia modi deserunt aut ab.'
                 properties:
@@ -2156,7 +2156,7 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 90
+                        example: 200
                       name:
                         type: string
                         example: sunt
@@ -2221,7 +2221,6 @@ paths:
               required:
                 - name
                 - description
-      security: []
     get:
       summary: 'List Event Types'
       operationId: listEventTypes
@@ -2237,11 +2236,11 @@ paths:
                 example:
                   data:
                     -
-                      id: 92
+                      id: 202
                       name: deleniti
                       description: 'Eum doloremque id aut libero aliquam veniam corporis.'
                     -
-                      id: 93
+                      id: 203
                       name: dolorem
                       description: 'Deleniti nemo odit quia officia.'
                 properties:
@@ -2249,11 +2248,11 @@ paths:
                     type: array
                     example:
                       -
-                        id: 92
+                        id: 202
                         name: deleniti
                         description: 'Eum doloremque id aut libero aliquam veniam corporis.'
                       -
-                        id: 93
+                        id: 203
                         name: dolorem
                         description: 'Deleniti nemo odit quia officia.'
                     items:
@@ -2261,7 +2260,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 92
+                          example: 202
                         name:
                           type: string
                           example: deleniti
@@ -2286,7 +2285,7 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 91
+                    id: 201
                     name: nihil
                     description: 'Harum mollitia modi deserunt aut ab provident perspiciatis quo.'
                 properties:
@@ -2295,7 +2294,7 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 91
+                        example: 201
                       name:
                         type: string
                         example: nihil
@@ -2360,7 +2359,6 @@ paths:
               required:
                 - name
                 - description
-      security: []
     delete:
       summary: 'Delete Event Type'
       operationId: deleteEventType
@@ -2407,7 +2405,6 @@ paths:
                     example: 'Cannot delete event type that is in use!'
       tags:
         - 'Event Types'
-      security: []
     parameters:
       -
         in: path
@@ -2500,4 +2497,4 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 16
+            value: '1'

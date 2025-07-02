@@ -29,14 +29,14 @@ endpoints:
         name: user
         description: "The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile."
         required: false
-        example: 16
+        example: '1'
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      user: 16
+      user: '1'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

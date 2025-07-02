@@ -25,14 +25,14 @@ endpoints:
         name: user
         description: "The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list."
         required: false
-        example: 16
+        example: '1'
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      user: 16
+      user: '1'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -41,7 +41,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":5024,"name":"Morgan Hirthe","email":"dare.emelie@example.com","country":"Peru","profession":"Compliance Officers","phone":"562.471.7515","organization":"Mitchell-VonRueden"},{"id":5025,"name":"Dr. Grayson Glover","email":"schultz.audrey@example.org","country":"French Polynesia","profession":"Extraction Worker","phone":"+1.518.885.7351","organization":"Fahey, Cartwright and Balistreri"}]}'
+        content: '{"data":[{"id":5350,"name":"Morgan Hirthe","email":"dare.emelie@example.com","country":"Peru","profession":"Compliance Officers","phone":"562.471.7515","organization":"Mitchell-VonRueden"},{"id":5351,"name":"Dr. Grayson Glover","email":"schultz.audrey@example.org","country":"French Polynesia","profession":"Extraction Worker","phone":"+1.518.885.7351","organization":"Fahey, Cartwright and Balistreri"}]}'
         headers: []
         description: ''
         custom: []
@@ -98,7 +98,7 @@ endpoints:
           - 3
         type: 'integer[]'
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
@@ -110,7 +110,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":[{"id":5026,"name":"Ms. Audra Crooks II","email":"gulgowski.asia@example.com","country":"Peru","profession":"Glass Blower","phone":"843.428.7432","organization":"Price Ltd"},{"id":5027,"name":"Pearl Hauck Sr.","email":"alayna44@example.org","country":"Saint Vincent and the Grenadines","profession":"Gas Distribution Plant Operator","phone":"870-215-1024","organization":"Leffler-Glover"}],"message":"Bans added successfully."}'
+        content: '{"data":[{"id":5352,"name":"Ms. Audra Crooks II","email":"gulgowski.asia@example.com","country":"Peru","profession":"Glass Blower","phone":"843.428.7432","organization":"Price Ltd"},{"id":5353,"name":"Pearl Hauck Sr.","email":"alayna44@example.org","country":"Saint Vincent and the Grenadines","profession":"Gas Distribution Plant Operator","phone":"870-215-1024","organization":"Leffler-Glover"}],"message":"Bans added successfully."}'
         headers: []
         description: ''
         custom: []
@@ -161,7 +161,7 @@ endpoints:
           - 3
         type: 'integer[]'
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
@@ -173,7 +173,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":5028,"name":"Ms. Audra Crooks II","email":"idickens@example.org","country":"Morocco","profession":"Copy Machine Operator","phone":"+1-626-249-0432","organization":"Hauck-Leuschke"},{"id":5029,"name":"Alanis McLaughlin","email":"bauch.marcelo@example.com","country":"Holy See (Vatican City State)","profession":"Illustrator","phone":"1-915-230-6227","organization":"Schultz Group"}],"message":"Bans removed successfully."}'
+        content: '{"data":[{"id":5354,"name":"Ms. Audra Crooks II","email":"idickens@example.org","country":"Morocco","profession":"Copy Machine Operator","phone":"+1-626-249-0432","organization":"Hauck-Leuschke"},{"id":5355,"name":"Alanis McLaughlin","email":"bauch.marcelo@example.com","country":"Holy See (Vatican City State)","profession":"Illustrator","phone":"1-915-230-6227","organization":"Schultz Group"}],"message":"Bans removed successfully."}'
         headers: []
         description: ''
         custom: []

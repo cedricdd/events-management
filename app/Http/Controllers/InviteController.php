@@ -12,6 +12,7 @@ use App\Http\Requests\InviteRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 use Knuckles\Scribe\Attributes\Response;
+use Knuckles\Scribe\Attributes\UrlParam;
 use App\Jobs\SendEventInviteDeletionEmail;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
@@ -29,9 +30,8 @@ class InviteController extends Controller
      * Get Invites for an Event
      * 
      * Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites. 
-     * 
-     * @urlParam event_id int required The ID of the event for which to retrieve invites. Example: 1
      */
+    #[UrlParam("event_id", "int", "The ID of the event for which to retrieve invites.", true, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "This event is a public event, there are no invites."}', 403)]
     #[Response('{"message": "This action is unauthorized."}', 403)]
@@ -54,9 +54,8 @@ class InviteController extends Controller
      * Create Invites for an Event
      * 
      * Allows the organizer of a private event to invite users to the event.
-     * 
-     * @urlParam event_id int required The ID of the event to which users will be invited. Example: 1
      */
+    #[UrlParam("event_id", "int", "The ID of the event to which users will be invited.", true, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "This action is unauthorized."}', 403)]
     #[Response('{"message": "You are not authorized to invite users to this event."}', 403)]
@@ -112,9 +111,8 @@ class InviteController extends Controller
      * Remove Invites for an Event
      * 
      * Allows the organizer of a private event to remove invites for users.
-     * 
-     * @urlParam event_id int required The ID of the event from which users will be removed. Example: 1
      */
+    #[UrlParam("event_id", "int", "The ID of the event from which users will be removed.", true, "1")]
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "This action is unauthorized."}', 403)]
     #[Response('{"message": "Event not found."}', 404)]

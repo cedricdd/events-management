@@ -9,38 +9,52 @@ use App\Models\EventType;
 use App\LoadRelationships;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Http\Requests\EventRequest;
-use App\Http\Requests\SearchEventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
+use Knuckles\Scribe\Attributes\Response;
+use App\Http\Requests\SearchEventRequest;
+use Knuckles\Scribe\Attributes\QueryParam;
 use Illuminate\Support\Facades\Notification;
 use App\Jobs\SendEventModificationNotification;
 use App\Notifications\EventCreationNotification;
 use App\Notifications\EventDeletionNotification;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
+/**
+ * @group Events
+ *
+ * APIs for managing events.
+ */
 class EventController extends Controller
 {
     use LoadRelationships;
 
     /**
-     * Display a listing of the resource.
+     * List all events
+     * 
+     * Display a listing of events. By default, it shows only upcoming events.
      */
-    public function index(Request $request, ?User $organizer = null): EventCollection|JsonResponse
+    #
+    #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::EVENTS_PER_PAGE . " results per page.", false, 2)]
+    #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["organizer"])]
+    #[QueryParam("sort", "string", "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "cost,desc", enum: ["start,*order*", "name,*order*", "end,*order*", "cost,*order*", "attendees,*order*", "newest,*order*"])]
+    #[Response('{"message": "The page 10 does not exist."}', 404)]
+    #[ResponseFromApiResource(EventCollection::class, Event::class, 200, paginate: Constants::EVENTS_PER_PAGE, with: ['type'], withCount: ['attendees'])]
+    public function index(Request $request): EventCollection|JsonResponse
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
         $events = Event::status($request->input('past', false))
-            ->with('type')
+            ->with(['type', 'attendees'])
             ->withCount('attendees')
-            ->when($organizer, fn($query) => $query->where('user_id', $organizer->id))
             ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
             ->paginate(Constants::EVENTS_PER_PAGE);
 
         if ($request->has('page') && $request->input('page') > $events->lastPage()) {
             return response()->json([
-                'message' => "The page " . $request->input('page') . " does not exist",
+                'message' => "The page " . $request->input('page') . " does not exist.",
             ], 404);
         }
 
@@ -96,7 +110,7 @@ class EventController extends Controller
      */
     public function show(Event $event): EventResource
     {
-        $event = $this->loadRelationships($event, ['organizer']);
+        $event = $this->loadRelationships($event, ['organizer', 'attendees']);
         $event->loadCount('attendees');
         $event->load('type');
 
@@ -165,7 +179,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Event $event): JsonResponse|Response
+    public function destroy(Request $request, Event $event): JsonResponse|\Illuminate\Http\Response
     {
         // If the event was supposed to start soon we don't allow deletion unless the user doing it is an admin
         if (!$request->user()->isAdmin() && now()->addHours(Constants::MIN_HOURS_BEFORE_START_EVENT) > $event->start_date) {
@@ -299,5 +313,30 @@ class EventController extends Controller
         return new EventCollection($this->loadRelationships($events, ['organizer']))->additional(
             ['message' => $request->input('attendees_max')]
         );
+    }
+
+    public function byOrganizer(Request $request, User $organizer): EventCollection|JsonResponse
+    {
+        [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
+
+        $events = Event::status($request->input('past', false))
+            ->with('type')
+            ->withCount('attendees')
+            ->where('user_id', $organizer->id)
+            ->orderBy(Constants::EVENT_SORTING_OPTIONS[$order], $direction)
+            ->paginate(Constants::EVENTS_PER_PAGE);
+
+        if ($request->has('page') && $request->input('page') > $events->lastPage()) {
+            return response()->json([
+                'message' => "The page " . $request->input('page') . " does not exist",
+            ], 404);
+        }
+
+        // Only add the sort parameter to the URL if it is not the default sorting
+        if ($order !== Constants::EVENT_DEFAULT_SORTING || $direction !== 'asc') {
+            $events->appends(['sort' => $order . ',' . $direction]);
+        }
+
+        return new EventCollection($events);
     }
 }

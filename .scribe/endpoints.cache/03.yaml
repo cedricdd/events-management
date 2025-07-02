@@ -44,7 +44,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":{"id":1395,"name":"Et animi quos velit et fugiat.","description":"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.","location":"New Carey","cost":4,"start_date":"2025-07-18 00:30:00","end_date":"2025-07-26 06:30:00","type":"corporis","public":"yes","organizer":{"id":5356,"name":"Henri Mitchell","email":"tleuschke@example.net","country":"Guatemala","profession":"Insurance Claims Clerk","phone":"559.897.7788","organization":"Klocko-Batz"}},"message":"You have successfully registered for the event."}'
+        content: '{"data":{"id":1470,"name":"Et animi quos velit et fugiat.","description":"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.","location":"New Carey","cost":6,"start_date":"2025-07-18 03:30:00","end_date":"2025-07-22 17:00:00","type":"corporis","public":"yes","attendees_count":1,"organizer":{"id":5883,"name":"Henri Mitchell","email":"tleuschke@example.net","country":"Guatemala","profession":"Insurance Claims Clerk","phone":"559.897.7788","organization":"Klocko-Batz"}},"message":"You have successfully registered for the event."}'
         headers: []
         description: ''
         custom: []
@@ -212,19 +212,26 @@ endpoints:
     cleanUrlParameters:
       event_id: '1'
     queryParameters:
+      page:
+        name: page
+        description: 'The results are paginated, you will get 20 results per page.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
       sort:
         name: sort
-        description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
+        description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc)."
         required: false
-        example: 'country,asc'
+        example: 'registration,desc'
         type: string
         enumValues:
-          - 'name,asc'
-          - 'name,desc'
-          - 'country,asc'
-          - 'country,desc'
-          - 'registration,asc'
-          - 'registration,desc'
+          - 'name,*order*'
+          - 'country,*order*'
+          - 'registration,*order*'
         exampleWasSpecified: false
         nullable: false
         custom: []
@@ -240,7 +247,8 @@ endpoints:
         nullable: false
         custom: []
     cleanQueryParameters:
-      sort: 'country,asc'
+      page: 2
+      sort: 'registration,desc'
       with: event
     bodyParameters: []
     cleanBodyParameters: []
@@ -248,7 +256,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":5363,"name":"Mr. Gerhard Dach Jr.","email":"lafayette.considine@example.com","country":"Gabon","profession":"Logging Tractor Operator","phone":"(806) 721-0719","organization":"Baumbach Ltd"},{"id":5364,"name":"Mina Bauch","email":"okeefe.isidro@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Claims Examiner","phone":"283.476.7809","organization":"Haag and Sons"}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"\/","per_page":20,"total":2}}'
+        content: '{"data":[{"id":5895,"name":"Mr. Gerhard Dach Jr.","email":"lafayette.considine@example.com","country":"Gabon","profession":"Logging Tractor Operator","phone":"(806) 721-0719","organization":"Baumbach Ltd"},{"id":5896,"name":"Mina Bauch","email":"okeefe.isidro@example.org","country":"Antarctica (the territory South of 60 deg S)","profession":"Claims Examiner","phone":"283.476.7809","organization":"Haag and Sons"}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"last_page":1,"path":"\/","per_page":20,"total":2}}'
         headers: []
         description: ''
         custom: []

@@ -17,14 +17,14 @@ tags:
     name: Bans
     description: ''
   -
-    name: Endpoints
-    description: ''
-  -
     name: 'Event Invites'
     description: "\nHandles event invitations, allowing organizers to invite users to private events."
   -
     name: 'Event Types'
     description: "\nHandles event types, allowing administrators to create, update, and delete event types."
+  -
+    name: Events
+    description: "\nAPIs for managing events."
   -
     name: 'User Management'
     description: "\nHandles user-related operations, including viewing user profiles."
@@ -53,17 +53,18 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1395
+                    id: 1470
                     name: 'Et animi quos velit et fugiat.'
                     description: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
                     location: 'New Carey'
-                    cost: 4
-                    start_date: '2025-07-18 00:30:00'
-                    end_date: '2025-07-26 06:30:00'
+                    cost: 6
+                    start_date: '2025-07-18 03:30:00'
+                    end_date: '2025-07-22 17:00:00'
                     type: corporis
                     public: 'yes'
+                    attendees_count: 1
                     organizer:
-                      id: 5356
+                      id: 5883
                       name: 'Henri Mitchell'
                       email: tleuschke@example.net
                       country: Guatemala
@@ -77,7 +78,7 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1395
+                        example: 1470
                       name:
                         type: string
                         example: 'Et animi quos velit et fugiat.'
@@ -89,25 +90,28 @@ paths:
                         example: 'New Carey'
                       cost:
                         type: integer
-                        example: 4
+                        example: 6
                       start_date:
                         type: string
-                        example: '2025-07-18 00:30:00'
+                        example: '2025-07-18 03:30:00'
                       end_date:
                         type: string
-                        example: '2025-07-26 06:30:00'
+                        example: '2025-07-22 17:00:00'
                       type:
                         type: string
                         example: corporis
                       public:
                         type: string
                         example: 'yes'
+                      attendees_count:
+                        type: integer
+                        example: 1
                       organizer:
                         type: object
                         properties:
                           id:
                             type: integer
-                            example: 5356
+                            example: 5883
                           name:
                             type: string
                             example: 'Henri Mitchell'
@@ -229,22 +233,30 @@ paths:
       parameters:
         -
           in: query
+          name: page
+          description: 'The results are paginated, you will get 20 results per page.'
+          example: 2
+          required: false
+          schema:
+            type: integer
+            description: 'The results are paginated, you will get 20 results per page.'
+            example: 2
+            nullable: false
+        -
+          in: query
           name: sort
-          description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
-          example: 'country,asc'
+          description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc)."
+          example: 'registration,desc'
           required: false
           schema:
             type: string
-            description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order."
-            example: 'country,asc'
+            description: "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc)."
+            example: 'registration,desc'
             nullable: false
             enum:
-              - 'name,asc'
-              - 'name,desc'
-              - 'country,asc'
-              - 'country,desc'
-              - 'registration,asc'
-              - 'registration,desc'
+              - 'name,*order*'
+              - 'country,*order*'
+              - 'registration,*order*'
         -
           in: query
           name: with
@@ -268,7 +280,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5363
+                      id: 5895
                       name: 'Mr. Gerhard Dach Jr.'
                       email: lafayette.considine@example.com
                       country: Gabon
@@ -276,7 +288,7 @@ paths:
                       phone: '(806) 721-0719'
                       organization: 'Baumbach Ltd'
                     -
-                      id: 5364
+                      id: 5896
                       name: 'Mina Bauch'
                       email: okeefe.isidro@example.org
                       country: 'Antarctica (the territory South of 60 deg S)'
@@ -299,7 +311,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5363
+                        id: 5895
                         name: 'Mr. Gerhard Dach Jr.'
                         email: lafayette.considine@example.com
                         country: Gabon
@@ -307,7 +319,7 @@ paths:
                         phone: '(806) 721-0719'
                         organization: 'Baumbach Ltd'
                       -
-                        id: 5364
+                        id: 5896
                         name: 'Mina Bauch'
                         email: okeefe.isidro@example.org
                         country: 'Antarctica (the territory South of 60 deg S)'
@@ -319,7 +331,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5363
+                          example: 5895
                         name:
                           type: string
                           example: 'Mr. Gerhard Dach Jr.'
@@ -611,7 +623,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5350
+                      id: 5877
                       name: 'Morgan Hirthe'
                       email: dare.emelie@example.com
                       country: Peru
@@ -619,7 +631,7 @@ paths:
                       phone: 562.471.7515
                       organization: Mitchell-VonRueden
                     -
-                      id: 5351
+                      id: 5878
                       name: 'Dr. Grayson Glover'
                       email: schultz.audrey@example.org
                       country: 'French Polynesia'
@@ -631,7 +643,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5350
+                        id: 5877
                         name: 'Morgan Hirthe'
                         email: dare.emelie@example.com
                         country: Peru
@@ -639,7 +651,7 @@ paths:
                         phone: 562.471.7515
                         organization: Mitchell-VonRueden
                       -
-                        id: 5351
+                        id: 5878
                         name: 'Dr. Grayson Glover'
                         email: schultz.audrey@example.org
                         country: 'French Polynesia'
@@ -651,7 +663,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5350
+                          example: 5877
                         name:
                           type: string
                           example: 'Morgan Hirthe'
@@ -727,7 +739,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5352
+                      id: 5879
                       name: 'Ms. Audra Crooks II'
                       email: gulgowski.asia@example.com
                       country: Peru
@@ -735,7 +747,7 @@ paths:
                       phone: 843.428.7432
                       organization: 'Price Ltd'
                     -
-                      id: 5353
+                      id: 5880
                       name: 'Pearl Hauck Sr.'
                       email: alayna44@example.org
                       country: 'Saint Vincent and the Grenadines'
@@ -748,7 +760,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5352
+                        id: 5879
                         name: 'Ms. Audra Crooks II'
                         email: gulgowski.asia@example.com
                         country: Peru
@@ -756,7 +768,7 @@ paths:
                         phone: 843.428.7432
                         organization: 'Price Ltd'
                       -
-                        id: 5353
+                        id: 5880
                         name: 'Pearl Hauck Sr.'
                         email: alayna44@example.org
                         country: 'Saint Vincent and the Grenadines'
@@ -768,7 +780,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5352
+                          example: 5879
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -837,7 +849,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5354
+                      id: 5881
                       name: 'Ms. Audra Crooks II'
                       email: idickens@example.org
                       country: Morocco
@@ -845,7 +857,7 @@ paths:
                       phone: +1-626-249-0432
                       organization: Hauck-Leuschke
                     -
-                      id: 5355
+                      id: 5882
                       name: 'Alanis McLaughlin'
                       email: bauch.marcelo@example.com
                       country: 'Holy See (Vatican City State)'
@@ -858,7 +870,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5354
+                        id: 5881
                         name: 'Ms. Audra Crooks II'
                         email: idickens@example.org
                         country: Morocco
@@ -866,7 +878,7 @@ paths:
                         phone: +1-626-249-0432
                         organization: Hauck-Leuschke
                       -
-                        id: 5355
+                        id: 5882
                         name: 'Alanis McLaughlin'
                         email: bauch.marcelo@example.com
                         country: 'Holy See (Vatican City State)'
@@ -878,7 +890,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5354
+                          example: 5881
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -932,774 +944,6 @@ paths:
                     type: integer
               required:
                 - users
-  /api/events:
-    post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: b
-                  nullable: false
-                description:
-                  type: string
-                  description: 'Must not be greater than 4096 characters.'
-                  example: 'Et animi quos velit et fugiat.'
-                  nullable: false
-                start_date:
-                  type: string
-                  description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
-                  example: '2051-07-31'
-                  nullable: false
-                end_date:
-                  type: string
-                  description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
-                  example: '2051-07-26'
-                  nullable: false
-                location:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: 'n'
-                  nullable: false
-                cost:
-                  type: integer
-                  description: 'Must be at least 0. Must not be greater than 100.'
-                  example: 7
-                  nullable: false
-                public:
-                  type: boolean
-                  description: ''
-                  example: true
-                  nullable: false
-                type:
-                  type: string
-                  description: 'The <code>name</code> of an existing record in the event_types table.'
-                  example: architecto
-                  nullable: false
-              required:
-                - name
-                - description
-                - start_date
-                - end_date
-                - location
-                - cost
-                - public
-                - type
-      security: []
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data:
-                    -
-                      id: 1016
-                      name: 'Architecto quo rerum repellat est maiores eveniet consequatur.'
-                      description: 'Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.'
-                      location: Online
-                      cost: 8
-                      start_date: '2025-06-26 17:00:00'
-                      end_date: '2025-07-06 17:30:00'
-                      type: Workshop
-                      public: 'yes'
-                      attendees_count: 8
-                    -
-                      id: 889
-                      name: 'Autem dolore omnis cupiditate quam necessitatibus minima quo.'
-                      description: 'Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.'
-                      location: 'Lake Coty'
-                      cost: 8
-                      start_date: '2025-06-26 18:30:00'
-                      end_date: '2025-07-24 22:30:00'
-                      type: Lecture
-                      public: 'yes'
-                      attendees_count: 31
-                    -
-                      id: 873
-                      name: 'Eum iure soluta eum in minima.'
-                      description: 'Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.'
-                      location: Online
-                      cost: 5
-                      start_date: '2025-06-26 19:00:00'
-                      end_date: '2025-07-10 21:00:00'
-                      type: Networking
-                      public: 'yes'
-                      attendees_count: 47
-                    -
-                      id: 380
-                      name: 'In natus voluptas dolore culpa odit et atque.'
-                      description: 'Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.'
-                      location: Online
-                      cost: 1
-                      start_date: '2025-06-26 20:00:00'
-                      end_date: '2025-07-22 11:30:00'
-                      type: 'Open House'
-                      public: 'yes'
-                      attendees_count: 43
-                    -
-                      id: 975
-                      name: 'Nesciunt explicabo ut provident temporibus nam ut quia quas.'
-                      description: 'Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.'
-                      location: 'Port Cindy'
-                      cost: 9
-                      start_date: '2025-06-26 21:30:00'
-                      end_date: '2025-07-23 18:00:00'
-                      type: Seminar
-                      public: 'yes'
-                      attendees_count: 31
-                    -
-                      id: 623
-                      name: 'Expedita esse deserunt totam.'
-                      description: 'Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.'
-                      location: Online
-                      cost: 9
-                      start_date: '2025-06-26 22:30:00'
-                      end_date: '2025-07-06 15:00:00'
-                      type: Exhibition
-                      public: 'yes'
-                      attendees_count: 10
-                    -
-                      id: 1143
-                      name: 'Ut expedita aut odio voluptatibus quis harum reiciendis.'
-                      description: 'Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.'
-                      location: 'East Raegan'
-                      cost: 6
-                      start_date: '2025-06-26 22:30:00'
-                      end_date: '2025-07-09 06:00:00'
-                      type: Meetup
-                      public: 'yes'
-                      attendees_count: 41
-                    -
-                      id: 336
-                      name: 'Sunt nisi sed non dolorum.'
-                      description: 'Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.'
-                      location: Online
-                      cost: 4
-                      start_date: '2025-06-26 23:00:00'
-                      end_date: '2025-07-15 22:30:00'
-                      type: Ceremony
-                      public: 'yes'
-                      attendees_count: 33
-                    -
-                      id: 49
-                      name: 'Ut doloremque ipsam qui quis sunt error molestias non.'
-                      description: 'Placeat voluptatem quia sint perspiciatis et. Distinctio praesentium modi aliquid praesentium voluptas id quae. Omnis ducimus quas beatae iusto molestias. Provident earum architecto commodi provident est.'
-                      location: Myrtiston
-                      cost: 2
-                      start_date: '2025-06-26 23:30:00'
-                      end_date: '2025-07-23 15:30:00'
-                      type: 'Open House'
-                      public: 'yes'
-                      attendees_count: 26
-                    -
-                      id: 128
-                      name: 'Nam sunt eum dignissimos itaque ducimus aperiam sapiente.'
-                      description: 'Sit et maiores rerum et corporis ut dolor. Deleniti facere aspernatur ut praesentium mollitia praesentium laboriosam. Cupiditate exercitationem quia eveniet voluptas autem. Pariatur reprehenderit dolorem iure.'
-                      location: Online
-                      cost: 7
-                      start_date: '2025-06-26 23:30:00'
-                      end_date: '2025-07-12 00:30:00'
-                      type: Festival
-                      public: 'yes'
-                      attendees_count: 42
-                  links:
-                    first: 'https://events-management.test/api/events?page=1'
-                    last: 'https://events-management.test/api/events?page=108'
-                    prev: null
-                    next: 'https://events-management.test/api/events?page=2'
-                  meta:
-                    current_page: 1
-                    last_page: 108
-                    path: 'https://events-management.test/api/events'
-                    per_page: 10
-                    total: 1077
-                properties:
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1016
-                        name: 'Architecto quo rerum repellat est maiores eveniet consequatur.'
-                        description: 'Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.'
-                        location: Online
-                        cost: 8
-                        start_date: '2025-06-26 17:00:00'
-                        end_date: '2025-07-06 17:30:00'
-                        type: Workshop
-                        public: 'yes'
-                        attendees_count: 8
-                      -
-                        id: 889
-                        name: 'Autem dolore omnis cupiditate quam necessitatibus minima quo.'
-                        description: 'Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.'
-                        location: 'Lake Coty'
-                        cost: 8
-                        start_date: '2025-06-26 18:30:00'
-                        end_date: '2025-07-24 22:30:00'
-                        type: Lecture
-                        public: 'yes'
-                        attendees_count: 31
-                      -
-                        id: 873
-                        name: 'Eum iure soluta eum in minima.'
-                        description: 'Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.'
-                        location: Online
-                        cost: 5
-                        start_date: '2025-06-26 19:00:00'
-                        end_date: '2025-07-10 21:00:00'
-                        type: Networking
-                        public: 'yes'
-                        attendees_count: 47
-                      -
-                        id: 380
-                        name: 'In natus voluptas dolore culpa odit et atque.'
-                        description: 'Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.'
-                        location: Online
-                        cost: 1
-                        start_date: '2025-06-26 20:00:00'
-                        end_date: '2025-07-22 11:30:00'
-                        type: 'Open House'
-                        public: 'yes'
-                        attendees_count: 43
-                      -
-                        id: 975
-                        name: 'Nesciunt explicabo ut provident temporibus nam ut quia quas.'
-                        description: 'Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.'
-                        location: 'Port Cindy'
-                        cost: 9
-                        start_date: '2025-06-26 21:30:00'
-                        end_date: '2025-07-23 18:00:00'
-                        type: Seminar
-                        public: 'yes'
-                        attendees_count: 31
-                      -
-                        id: 623
-                        name: 'Expedita esse deserunt totam.'
-                        description: 'Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.'
-                        location: Online
-                        cost: 9
-                        start_date: '2025-06-26 22:30:00'
-                        end_date: '2025-07-06 15:00:00'
-                        type: Exhibition
-                        public: 'yes'
-                        attendees_count: 10
-                      -
-                        id: 1143
-                        name: 'Ut expedita aut odio voluptatibus quis harum reiciendis.'
-                        description: 'Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.'
-                        location: 'East Raegan'
-                        cost: 6
-                        start_date: '2025-06-26 22:30:00'
-                        end_date: '2025-07-09 06:00:00'
-                        type: Meetup
-                        public: 'yes'
-                        attendees_count: 41
-                      -
-                        id: 336
-                        name: 'Sunt nisi sed non dolorum.'
-                        description: 'Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.'
-                        location: Online
-                        cost: 4
-                        start_date: '2025-06-26 23:00:00'
-                        end_date: '2025-07-15 22:30:00'
-                        type: Ceremony
-                        public: 'yes'
-                        attendees_count: 33
-                      -
-                        id: 49
-                        name: 'Ut doloremque ipsam qui quis sunt error molestias non.'
-                        description: 'Placeat voluptatem quia sint perspiciatis et. Distinctio praesentium modi aliquid praesentium voluptas id quae. Omnis ducimus quas beatae iusto molestias. Provident earum architecto commodi provident est.'
-                        location: Myrtiston
-                        cost: 2
-                        start_date: '2025-06-26 23:30:00'
-                        end_date: '2025-07-23 15:30:00'
-                        type: 'Open House'
-                        public: 'yes'
-                        attendees_count: 26
-                      -
-                        id: 128
-                        name: 'Nam sunt eum dignissimos itaque ducimus aperiam sapiente.'
-                        description: 'Sit et maiores rerum et corporis ut dolor. Deleniti facere aspernatur ut praesentium mollitia praesentium laboriosam. Cupiditate exercitationem quia eveniet voluptas autem. Pariatur reprehenderit dolorem iure.'
-                        location: Online
-                        cost: 7
-                        start_date: '2025-06-26 23:30:00'
-                        end_date: '2025-07-12 00:30:00'
-                        type: Festival
-                        public: 'yes'
-                        attendees_count: 42
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1016
-                        name:
-                          type: string
-                          example: 'Architecto quo rerum repellat est maiores eveniet consequatur.'
-                        description:
-                          type: string
-                          example: 'Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.'
-                        location:
-                          type: string
-                          example: Online
-                        cost:
-                          type: integer
-                          example: 8
-                        start_date:
-                          type: string
-                          example: '2025-06-26 17:00:00'
-                        end_date:
-                          type: string
-                          example: '2025-07-06 17:30:00'
-                        type:
-                          type: string
-                          example: Workshop
-                        public:
-                          type: string
-                          example: 'yes'
-                        attendees_count:
-                          type: integer
-                          example: 8
-                  links:
-                    type: object
-                    properties:
-                      first:
-                        type: string
-                        example: 'https://events-management.test/api/events?page=1'
-                      last:
-                        type: string
-                        example: 'https://events-management.test/api/events?page=108'
-                      prev:
-                        type: string
-                        example: null
-                      next:
-                        type: string
-                        example: 'https://events-management.test/api/events?page=2'
-                  meta:
-                    type: object
-                    properties:
-                      current_page:
-                        type: integer
-                        example: 1
-                      last_page:
-                        type: integer
-                        example: 108
-                      path:
-                        type: string
-                        example: 'https://events-management.test/api/events'
-                      per_page:
-                        type: integer
-                        example: 10
-                      total:
-                        type: integer
-                        example: 1077
-      tags:
-        - Endpoints
-      security: []
-  '/api/events/{id}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: b
-                  nullable: false
-                description:
-                  type: string
-                  description: 'Must not be greater than 4096 characters.'
-                  example: 'Et animi quos velit et fugiat.'
-                  nullable: false
-                start_date:
-                  type: string
-                  description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
-                  example: '2051-07-31'
-                  nullable: false
-                end_date:
-                  type: string
-                  description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
-                  example: '2051-07-26'
-                  nullable: false
-                location:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: 'n'
-                  nullable: false
-                cost:
-                  type: integer
-                  description: 'Must be at least 0. Must not be greater than 100.'
-                  example: 7
-                  nullable: false
-                public:
-                  type: boolean
-                  description: ''
-                  example: false
-                  nullable: false
-                type:
-                  type: string
-                  description: 'The <code>name</code> of an existing record in the event_types table.'
-                  example: architecto
-                  nullable: false
-              required:
-                - name
-                - description
-                - start_date
-                - end_date
-                - location
-                - cost
-                - public
-                - type
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data:
-                    id: 1
-                    name: 'Id et iste et aspernatur recusandae.'
-                    description: 'Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.'
-                    location: Online
-                    cost: 4
-                    start_date: '2025-07-11 22:00:00'
-                    end_date: '2025-07-23 02:00:00'
-                    type: Hackathon
-                    public: 'yes'
-                    attendees_count: 4
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        example: 1
-                      name:
-                        type: string
-                        example: 'Id et iste et aspernatur recusandae.'
-                      description:
-                        type: string
-                        example: 'Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.'
-                      location:
-                        type: string
-                        example: Online
-                      cost:
-                        type: integer
-                        example: 4
-                      start_date:
-                        type: string
-                        example: '2025-07-11 22:00:00'
-                      end_date:
-                        type: string
-                        example: '2025-07-23 02:00:00'
-                      type:
-                        type: string
-                        example: Hackathon
-                      public:
-                        type: string
-                        example: 'yes'
-                      attendees_count:
-                        type: integer
-                        example: 4
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the event.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  /api/events/search:
-    get:
-      summary: ''
-      operationId: getApiEventsSearch
-      description: ''
-      parameters: []
-      responses:
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The selected type is invalid.'
-                  errors:
-                    type:
-                      - 'The selected type is invalid.'
-                properties:
-                  message:
-                    type: string
-                    example: 'The selected type is invalid.'
-                  errors:
-                    type: object
-                    properties:
-                      type:
-                        type: array
-                        example:
-                          - 'The selected type is invalid.'
-                        items:
-                          type: string
-      tags:
-        - Endpoints
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: b
-                  nullable: false
-                description:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: 'Et animi quos velit et fugiat.'
-                  nullable: false
-                location:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: d
-                  nullable: false
-                cost_min:
-                  type: integer
-                  description: 'Must be at least 0.'
-                  example: 37
-                  nullable: false
-                cost_max:
-                  type: integer
-                  description: 'Must be at least 0.'
-                  example: 9
-                  nullable: false
-                starts_before:
-                  type: string
-                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 16:23:52'
-                  nullable: false
-                starts_after:
-                  type: string
-                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 16:23:52'
-                  nullable: false
-                ends_before:
-                  type: string
-                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 16:23:52'
-                  nullable: false
-                ends_after:
-                  type: string
-                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-                  example: '2025-07-02 16:23:52'
-                  nullable: false
-                type:
-                  type: string
-                  description: 'The <code>name</code> of an existing record in the event_types table.'
-                  example: architecto
-                  nullable: false
-                attendees_min:
-                  type: integer
-                  description: 'Must be at least 0.'
-                  example: 39
-                  nullable: false
-                attendees_max:
-                  type: integer
-                  description: 'Must be at least 0.'
-                  example: 84
-                  nullable: false
-                public:
-                  type: boolean
-                  description: ''
-                  example: false
-                  nullable: false
-                organizer:
-                  type: integer
-                  description: ''
-                  example: 16
-                  nullable: false
-      security: []
-  '/api/events/type/{name}':
-    get:
-      summary: ''
-      operationId: getApiEventsTypeName
-      description: ''
-      parameters: []
-      responses:
-        404:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'There are no events of this type.'
-                properties:
-                  message:
-                    type: string
-                    example: 'There are no events of this type.'
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: name
-        description: ''
-        example: cIm
-        required: true
-        schema:
-          type: string
-  '/api/events/organizer/{organizer_id}':
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data: []
-                  links:
-                    first: 'https://events-management.test/api/events/organizer/1?page=1'
-                    last: 'https://events-management.test/api/events/organizer/1?page=1'
-                    prev: null
-                    next: null
-                  meta:
-                    current_page: 1
-                    last_page: 1
-                    path: 'https://events-management.test/api/events/organizer/1'
-                    per_page: 10
-                    total: 0
-                properties:
-                  data:
-                    type: array
-                    example: []
-                  links:
-                    type: object
-                    properties:
-                      first:
-                        type: string
-                        example: 'https://events-management.test/api/events/organizer/1?page=1'
-                      last:
-                        type: string
-                        example: 'https://events-management.test/api/events/organizer/1?page=1'
-                      prev:
-                        type: string
-                        example: null
-                      next:
-                        type: string
-                        example: null
-                  meta:
-                    type: object
-                    properties:
-                      current_page:
-                        type: integer
-                        example: 1
-                      last_page:
-                        type: integer
-                        example: 1
-                      path:
-                        type: string
-                        example: 'https://events-management.test/api/events/organizer/1'
-                      per_page:
-                        type: integer
-                        example: 10
-                      total:
-                        type: integer
-                        example: 0
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: organizer_id
-        description: 'The ID of the organizer.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  /api/docs:
-    get:
-      summary: 'Invoke the controller method.'
-      operationId: invokeTheControllerMethod
-      description: ''
-      parameters: []
-      responses:
-        500:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Server Error'
-                properties:
-                  message:
-                    type: string
-                    example: 'Server Error'
-      tags:
-        - Endpoints
-      security: []
   '/api/events/{event_id}/invites':
     get:
       summary: 'Get Invites for an Event'
@@ -1716,7 +960,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5357
+                      id: 5885
                       name: 'Morgan Hirthe'
                       email: imclaughlin@example.org
                       country: 'Saint Vincent and the Grenadines'
@@ -1724,7 +968,7 @@ paths:
                       phone: 870-215-1024
                       organization: Leffler-Glover
                     -
-                      id: 5358
+                      id: 5886
                       name: 'Annette Labadie'
                       email: kconsidine@example.net
                       country: 'Holy See (Vatican City State)'
@@ -1736,7 +980,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5357
+                        id: 5885
                         name: 'Morgan Hirthe'
                         email: imclaughlin@example.org
                         country: 'Saint Vincent and the Grenadines'
@@ -1744,7 +988,7 @@ paths:
                         phone: 870-215-1024
                         organization: Leffler-Glover
                       -
-                        id: 5358
+                        id: 5886
                         name: 'Annette Labadie'
                         email: kconsidine@example.net
                         country: 'Holy See (Vatican City State)'
@@ -1756,7 +1000,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5357
+                          example: 5885
                         name:
                           type: string
                           example: 'Morgan Hirthe'
@@ -1840,7 +1084,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5359
+                      id: 5887
                       name: 'Ms. Audra Crooks II'
                       email: aschuster@example.com
                       country: Zambia
@@ -1848,7 +1092,7 @@ paths:
                       phone: 253.392.8862
                       organization: 'McLaughlin, Leuschke and Bauch'
                     -
-                      id: 5360
+                      id: 5888
                       name: 'Mr. Oswald Koch'
                       email: bailee15@example.org
                       country: 'Heard Island and McDonald Islands'
@@ -1861,7 +1105,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5359
+                        id: 5887
                         name: 'Ms. Audra Crooks II'
                         email: aschuster@example.com
                         country: Zambia
@@ -1869,7 +1113,7 @@ paths:
                         phone: 253.392.8862
                         organization: 'McLaughlin, Leuschke and Bauch'
                       -
-                        id: 5360
+                        id: 5888
                         name: 'Mr. Oswald Koch'
                         email: bailee15@example.org
                         country: 'Heard Island and McDonald Islands'
@@ -1881,7 +1125,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5359
+                          example: 5887
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -2004,7 +1248,7 @@ paths:
                 example:
                   data:
                     -
-                      id: 5361
+                      id: 5889
                       name: 'Ms. Audra Crooks II'
                       email: gilbert32@example.com
                       country: Liechtenstein
@@ -2012,7 +1256,7 @@ paths:
                       phone: 364-447-5052
                       organization: 'Predovic Inc'
                     -
-                      id: 5362
+                      id: 5890
                       name: 'Myrtis Tromp'
                       email: nstokes@example.org
                       country: 'Solomon Islands'
@@ -2025,7 +1269,7 @@ paths:
                     type: array
                     example:
                       -
-                        id: 5361
+                        id: 5889
                         name: 'Ms. Audra Crooks II'
                         email: gilbert32@example.com
                         country: Liechtenstein
@@ -2033,7 +1277,7 @@ paths:
                         phone: 364-447-5052
                         organization: 'Predovic Inc'
                       -
-                        id: 5362
+                        id: 5890
                         name: 'Myrtis Tromp'
                         email: nstokes@example.org
                         country: 'Solomon Islands'
@@ -2045,7 +1289,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 5361
+                          example: 5889
                         name:
                           type: string
                           example: 'Ms. Audra Crooks II'
@@ -2147,7 +1391,7 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 200
+                    id: 385
                     name: sunt
                     description: 'Accusantium harum mollitia modi deserunt aut ab.'
                 properties:
@@ -2156,7 +1400,7 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 200
+                        example: 385
                       name:
                         type: string
                         example: sunt
@@ -2236,11 +1480,11 @@ paths:
                 example:
                   data:
                     -
-                      id: 202
+                      id: 389
                       name: deleniti
                       description: 'Eum doloremque id aut libero aliquam veniam corporis.'
                     -
-                      id: 203
+                      id: 390
                       name: dolorem
                       description: 'Deleniti nemo odit quia officia.'
                 properties:
@@ -2248,11 +1492,11 @@ paths:
                     type: array
                     example:
                       -
-                        id: 202
+                        id: 389
                         name: deleniti
                         description: 'Eum doloremque id aut libero aliquam veniam corporis.'
                       -
-                        id: 203
+                        id: 390
                         name: dolorem
                         description: 'Deleniti nemo odit quia officia.'
                     items:
@@ -2260,7 +1504,7 @@ paths:
                       properties:
                         id:
                           type: integer
-                          example: 202
+                          example: 389
                         name:
                           type: string
                           example: deleniti
@@ -2285,7 +1529,7 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 201
+                    id: 386
                     name: nihil
                     description: 'Harum mollitia modi deserunt aut ab provident perspiciatis quo.'
                 properties:
@@ -2294,7 +1538,7 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 201
+                        example: 386
                       name:
                         type: string
                         example: nihil
@@ -2411,6 +1655,630 @@ paths:
         name: type_id
         description: 'The ID of the type'
         example: '1'
+        required: true
+        schema:
+          type: integer
+  /api/events:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 4096 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                  nullable: false
+                start_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
+                  example: '2051-07-31'
+                  nullable: false
+                end_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
+                  example: '2051-07-26'
+                  nullable: false
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                  nullable: false
+                cost:
+                  type: integer
+                  description: 'Must be at least 0. Must not be greater than 100.'
+                  example: 7
+                  nullable: false
+                public:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                type:
+                  type: string
+                  description: 'The <code>name</code> of an existing record in the event_types table.'
+                  example: architecto
+                  nullable: false
+              required:
+                - name
+                - description
+                - start_date
+                - end_date
+                - location
+                - cost
+                - public
+                - type
+      security: []
+    get:
+      summary: 'List all events'
+      operationId: listAllEvents
+      description: 'Display a listing of events. By default, it shows only upcoming events.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The results are paginated, you will get 10 results per page.'
+          example: 2
+          required: false
+          schema:
+            type: integer
+            description: 'The results are paginated, you will get 10 results per page.'
+            example: 2
+            nullable: false
+        -
+          in: query
+          name: with
+          description: 'The additional data to include in the response.'
+          example: organizer
+          required: false
+          schema:
+            type: string
+            description: 'The additional data to include in the response.'
+            example: organizer
+            nullable: false
+            enum:
+              - organizer
+        -
+          in: query
+          name: sort
+          description: "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc)."
+          example: 'cost,desc'
+          required: false
+          schema:
+            type: string
+            description: "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc)."
+            example: 'cost,desc'
+            nullable: false
+            enum:
+              - 'start,*order*'
+              - 'name,*order*'
+              - 'end,*order*'
+              - 'cost,*order*'
+              - 'attendees,*order*'
+              - 'newest,*order*'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1471
+                      name: 'Et animi quos velit et fugiat.'
+                      description: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
+                      location: 'New Carey'
+                      cost: 4
+                      start_date: '2025-07-18 03:30:00'
+                      end_date: '2025-07-21 14:30:00'
+                      type: odit
+                      public: 'yes'
+                      attendees_count: 1
+                    -
+                      id: 1472
+                      name: 'Quia perspiciatis deserunt ducimus corrupti et.'
+                      description: 'Maiores assumenda odit doloribus repellat. Corporis nesciunt ut ratione iure impedit molestiae.'
+                      location: Online
+                      cost: 6
+                      start_date: '2025-07-15 23:30:00'
+                      end_date: '2025-07-21 22:00:00'
+                      type: et
+                      public: 'yes'
+                      attendees_count: 1
+                  links:
+                    first: '/?page=1'
+                    last: '/?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    last_page: 1
+                    path: /
+                    per_page: 10
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1471
+                        name: 'Et animi quos velit et fugiat.'
+                        description: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
+                        location: 'New Carey'
+                        cost: 4
+                        start_date: '2025-07-18 03:30:00'
+                        end_date: '2025-07-21 14:30:00'
+                        type: odit
+                        public: 'yes'
+                        attendees_count: 1
+                      -
+                        id: 1472
+                        name: 'Quia perspiciatis deserunt ducimus corrupti et.'
+                        description: 'Maiores assumenda odit doloribus repellat. Corporis nesciunt ut ratione iure impedit molestiae.'
+                        location: Online
+                        cost: 6
+                        start_date: '2025-07-15 23:30:00'
+                        end_date: '2025-07-21 22:00:00'
+                        type: et
+                        public: 'yes'
+                        attendees_count: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1471
+                        name:
+                          type: string
+                          example: 'Et animi quos velit et fugiat.'
+                        description:
+                          type: string
+                          example: 'Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.'
+                        location:
+                          type: string
+                          example: 'New Carey'
+                        cost:
+                          type: integer
+                          example: 4
+                        start_date:
+                          type: string
+                          example: '2025-07-18 03:30:00'
+                        end_date:
+                          type: string
+                          example: '2025-07-21 14:30:00'
+                        type:
+                          type: string
+                          example: odit
+                        public:
+                          type: string
+                          example: 'yes'
+                        attendees_count:
+                          type: integer
+                          example: 1
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: '/?page=1'
+                      last:
+                        type: string
+                        example: '/?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      path:
+                        type: string
+                        example: /
+                      per_page:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 2
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The page 10 does not exist.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The page 10 does not exist.'
+      tags:
+        - Events
+      security: []
+  '/api/events/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 4096 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                  nullable: false
+                start_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>+96 hours</code>.'
+                  example: '2051-07-31'
+                  nullable: false
+                end_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after <code>start_date</code>.'
+                  example: '2051-07-26'
+                  nullable: false
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                  nullable: false
+                cost:
+                  type: integer
+                  description: 'Must be at least 0. Must not be greater than 100.'
+                  example: 7
+                  nullable: false
+                public:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+                type:
+                  type: string
+                  description: 'The <code>name</code> of an existing record in the event_types table.'
+                  example: architecto
+                  nullable: false
+              required:
+                - name
+                - description
+                - start_date
+                - end_date
+                - location
+                - cost
+                - public
+                - type
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Events
+      security: []
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: 'Id et iste et aspernatur recusandae.'
+                    description: 'Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.'
+                    location: Online
+                    cost: 4
+                    start_date: '2025-07-11 22:00:00'
+                    end_date: '2025-07-23 02:00:00'
+                    type: Hackathon
+                    public: 'yes'
+                    attendees_count: 5
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Id et iste et aspernatur recusandae.'
+                      description:
+                        type: string
+                        example: 'Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.'
+                      location:
+                        type: string
+                        example: Online
+                      cost:
+                        type: integer
+                        example: 4
+                      start_date:
+                        type: string
+                        example: '2025-07-11 22:00:00'
+                      end_date:
+                        type: string
+                        example: '2025-07-23 02:00:00'
+                      type:
+                        type: string
+                        example: Hackathon
+                      public:
+                        type: string
+                        example: 'yes'
+                      attendees_count:
+                        type: integer
+                        example: 5
+      tags:
+        - Events
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the event.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/events/search:
+    get:
+      summary: ''
+      operationId: getApiEventsSearch
+      description: ''
+      parameters: []
+      responses:
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The selected type is invalid.'
+                  errors:
+                    type:
+                      - 'The selected type is invalid.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The selected type is invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      type:
+                        type: array
+                        example:
+                          - 'The selected type is invalid.'
+                        items:
+                          type: string
+      tags:
+        - Events
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                  nullable: false
+                description:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                  nullable: false
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: d
+                  nullable: false
+                cost_min:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 37
+                  nullable: false
+                cost_max:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 9
+                  nullable: false
+                starts_before:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 19:48:48'
+                  nullable: false
+                starts_after:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 19:48:48'
+                  nullable: false
+                ends_before:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 19:48:48'
+                  nullable: false
+                ends_after:
+                  type: string
+                  description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+                  example: '2025-07-02 19:48:48'
+                  nullable: false
+                type:
+                  type: string
+                  description: 'The <code>name</code> of an existing record in the event_types table.'
+                  example: architecto
+                  nullable: false
+                attendees_min:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 39
+                  nullable: false
+                attendees_max:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 84
+                  nullable: false
+                public:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+                organizer:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: false
+      security: []
+  '/api/events/type/{name}':
+    get:
+      summary: ''
+      operationId: getApiEventsTypeName
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'There are no events of this type.'
+                properties:
+                  message:
+                    type: string
+                    example: 'There are no events of this type.'
+      tags:
+        - Events
+      security: []
+    parameters:
+      -
+        in: path
+        name: name
+        description: ''
+        example: cIm
+        required: true
+        schema:
+          type: string
+  '/api/events/organizer/{organizer_id}':
+    get:
+      summary: ''
+      operationId: getApiEventsOrganizerOrganizer_id
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'https://events-management.test/api/events/organizer/1?page=1'
+                    last: 'https://events-management.test/api/events/organizer/1?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    last_page: 1
+                    path: 'https://events-management.test/api/events/organizer/1'
+                    per_page: 10
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://events-management.test/api/events/organizer/1?page=1'
+                      last:
+                        type: string
+                        example: 'https://events-management.test/api/events/organizer/1?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      path:
+                        type: string
+                        example: 'https://events-management.test/api/events/organizer/1'
+                      per_page:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Events
+      security: []
+    parameters:
+      -
+        in: path
+        name: organizer_id
+        description: 'The ID of the organizer.'
+        example: 1
         required: true
         schema:
           type: integer

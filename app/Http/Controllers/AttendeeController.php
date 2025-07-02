@@ -31,7 +31,8 @@ class AttendeeController extends Controller
      * Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.
      */
     #[UrlParam("event_id", "int", "The ID of the event to retrieve attendees for.", true, "1")]
-    #[QueryParam("sort", "string", "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order.", false, enum: ["name,asc", "name,desc", "country,asc", "country,desc", "registration,asc", "registration,desc"])]
+    #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::ATTENDEES_PER_PAGE . " results per page.", false, 2)]
+    #[QueryParam("sort", "string", "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "registration,desc", enum: ["name,*order*", "country,*order*", "registration,*order*"])]
     #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["event"])]
     #[Response('{"message": "Event not found."}', 404)]
     #[Response('{"message": "The page 10 does not exist."}', 404)]
@@ -82,7 +83,7 @@ class AttendeeController extends Controller
     #[Response('{"message": "Event not found."}', 404)]
     #[Response('{"message": "You are already registered for this event."}', 409)]
     #[Response('{"message": "You can\'t register to your own event."}', 409)]
-    #[ResponseFromApiResource(EventResource::class, Event::class, 201, with: ['organizer', 'type'], additional: ['message' => 'You have successfully registered for the event.'])]
+    #[ResponseFromApiResource(EventResource::class, Event::class, 201, with: ['organizer', 'type'], withCount: ['attendees'], additional: ['message' => 'You have successfully registered for the event.'])]
     public function store(Event $event, Request $request): JsonResponse|UserResource
     {
         if ($event->attendees()->where('user_id', $request->user()->id)->exists()) {

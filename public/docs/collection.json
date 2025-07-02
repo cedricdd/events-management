@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Events Management LLC API Documentation",
-        "_postman_id": "871599a8-96c3-4536-b9f6-5bc04974e71c",
+        "_postman_id": "c6b7d0f1-6917-47b5-a00e-a1fa1976df69",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -57,7 +57,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":{\"id\":1395,\"name\":\"Et animi quos velit et fugiat.\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.\",\"location\":\"New Carey\",\"cost\":4,\"start_date\":\"2025-07-18 00:30:00\",\"end_date\":\"2025-07-26 06:30:00\",\"type\":\"corporis\",\"public\":\"yes\",\"organizer\":{\"id\":5356,\"name\":\"Henri Mitchell\",\"email\":\"tleuschke@example.net\",\"country\":\"Guatemala\",\"profession\":\"Insurance Claims Clerk\",\"phone\":\"559.897.7788\",\"organization\":\"Klocko-Batz\"}},\"message\":\"You have successfully registered for the event.\"}",
+                            "body": "{\"data\":{\"id\":1470,\"name\":\"Et animi quos velit et fugiat.\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.\",\"location\":\"New Carey\",\"cost\":6,\"start_date\":\"2025-07-18 03:30:00\",\"end_date\":\"2025-07-22 17:00:00\",\"type\":\"corporis\",\"public\":\"yes\",\"attendees_count\":1,\"organizer\":{\"id\":5883,\"name\":\"Henri Mitchell\",\"email\":\"tleuschke@example.net\",\"country\":\"Guatemala\",\"profession\":\"Insurance Claims Clerk\",\"phone\":\"559.897.7788\",\"organization\":\"Klocko-Batz\"}},\"message\":\"You have successfully registered for the event.\"}",
                             "name": ""
                         },
                         {
@@ -185,9 +185,15 @@
                             "path": "api\/events\/:event_id\/attendees",
                             "query": [
                                 {
+                                    "key": "page",
+                                    "value": "2",
+                                    "description": "The results are paginated, you will get 20 results per page.",
+                                    "disabled": false
+                                },
+                                {
                                     "key": "sort",
-                                    "value": "country%2Casc",
-                                    "description": "The sorting criteria for the attendees. Default is 'user,asc'.Consisting of two parts, the sorting criteria and the sorting order.",
+                                    "value": "registration%2Cdesc",
+                                    "description": "The sorting criteria for the attendees. Default is 'user,asc'.Consisting of two parts, the sorting criteria and the sorting order (asc or desc).",
                                     "disabled": false
                                 },
                                 {
@@ -197,7 +203,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/attendees?sort=country%2Casc&with=event",
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/attendees?page=2&sort=registration%2Cdesc&with=event",
                             "variable": [
                                 {
                                     "id": "event_id",
@@ -228,7 +234,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":5363,\"name\":\"Mr. Gerhard Dach Jr.\",\"email\":\"lafayette.considine@example.com\",\"country\":\"Gabon\",\"profession\":\"Logging Tractor Operator\",\"phone\":\"(806) 721-0719\",\"organization\":\"Baumbach Ltd\"},{\"id\":5364,\"name\":\"Mina Bauch\",\"email\":\"okeefe.isidro@example.org\",\"country\":\"Antarctica (the territory South of 60 deg S)\",\"profession\":\"Claims Examiner\",\"phone\":\"283.476.7809\",\"organization\":\"Haag and Sons\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"last_page\":1,\"path\":\"\\\/\",\"per_page\":20,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":5895,\"name\":\"Mr. Gerhard Dach Jr.\",\"email\":\"lafayette.considine@example.com\",\"country\":\"Gabon\",\"profession\":\"Logging Tractor Operator\",\"phone\":\"(806) 721-0719\",\"organization\":\"Baumbach Ltd\"},{\"id\":5896,\"name\":\"Mina Bauch\",\"email\":\"okeefe.isidro@example.org\",\"country\":\"Antarctica (the territory South of 60 deg S)\",\"profession\":\"Claims Examiner\",\"phone\":\"283.476.7809\",\"organization\":\"Haag and Sons\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"last_page\":1,\"path\":\"\\\/\",\"per_page\":20,\"total\":2}}",
                             "name": ""
                         },
                         {
@@ -374,7 +380,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":5350,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"country\":\"Peru\",\"profession\":\"Compliance Officers\",\"phone\":\"562.471.7515\",\"organization\":\"Mitchell-VonRueden\"},{\"id\":5351,\"name\":\"Dr. Grayson Glover\",\"email\":\"schultz.audrey@example.org\",\"country\":\"French Polynesia\",\"profession\":\"Extraction Worker\",\"phone\":\"+1.518.885.7351\",\"organization\":\"Fahey, Cartwright and Balistreri\"}]}",
+                            "body": "{\"data\":[{\"id\":5877,\"name\":\"Morgan Hirthe\",\"email\":\"dare.emelie@example.com\",\"country\":\"Peru\",\"profession\":\"Compliance Officers\",\"phone\":\"562.471.7515\",\"organization\":\"Mitchell-VonRueden\"},{\"id\":5878,\"name\":\"Dr. Grayson Glover\",\"email\":\"schultz.audrey@example.org\",\"country\":\"French Polynesia\",\"profession\":\"Extraction Worker\",\"phone\":\"+1.518.885.7351\",\"organization\":\"Fahey, Cartwright and Balistreri\"}]}",
                             "name": ""
                         },
                         {
@@ -421,7 +427,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\"data\":[{\"id\":5352,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"country\":\"Peru\",\"profession\":\"Glass Blower\",\"phone\":\"843.428.7432\",\"organization\":\"Price Ltd\"},{\"id\":5353,\"name\":\"Pearl Hauck Sr.\",\"email\":\"alayna44@example.org\",\"country\":\"Saint Vincent and the Grenadines\",\"profession\":\"Gas Distribution Plant Operator\",\"phone\":\"870-215-1024\",\"organization\":\"Leffler-Glover\"}],\"message\":\"Bans added successfully.\"}",
+                            "body": "{\"data\":[{\"id\":5879,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gulgowski.asia@example.com\",\"country\":\"Peru\",\"profession\":\"Glass Blower\",\"phone\":\"843.428.7432\",\"organization\":\"Price Ltd\"},{\"id\":5880,\"name\":\"Pearl Hauck Sr.\",\"email\":\"alayna44@example.org\",\"country\":\"Saint Vincent and the Grenadines\",\"profession\":\"Gas Distribution Plant Operator\",\"phone\":\"870-215-1024\",\"organization\":\"Leffler-Glover\"}],\"message\":\"Bans added successfully.\"}",
                             "name": ""
                         },
                         {
@@ -462,7 +468,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":5354,\"name\":\"Ms. Audra Crooks II\",\"email\":\"idickens@example.org\",\"country\":\"Morocco\",\"profession\":\"Copy Machine Operator\",\"phone\":\"+1-626-249-0432\",\"organization\":\"Hauck-Leuschke\"},{\"id\":5355,\"name\":\"Alanis McLaughlin\",\"email\":\"bauch.marcelo@example.com\",\"country\":\"Holy See (Vatican City State)\",\"profession\":\"Illustrator\",\"phone\":\"1-915-230-6227\",\"organization\":\"Schultz Group\"}],\"message\":\"Bans removed successfully.\"}",
+                            "body": "{\"data\":[{\"id\":5881,\"name\":\"Ms. Audra Crooks II\",\"email\":\"idickens@example.org\",\"country\":\"Morocco\",\"profession\":\"Copy Machine Operator\",\"phone\":\"+1-626-249-0432\",\"organization\":\"Hauck-Leuschke\"},{\"id\":5882,\"name\":\"Alanis McLaughlin\",\"email\":\"bauch.marcelo@example.com\",\"country\":\"Holy See (Vatican City State)\",\"profession\":\"Illustrator\",\"phone\":\"1-915-230-6227\",\"organization\":\"Schultz Group\"}],\"message\":\"Bans removed successfully.\"}",
                             "name": ""
                         },
                         {
@@ -476,8 +482,431 @@
             ]
         },
         {
-            "name": "Endpoints",
-            "description": "",
+            "name": "Event Invites",
+            "description": "\nHandles event invitations, allowing organizers to invite users to private events.",
+            "item": [
+                {
+                    "name": "Get Invites for an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/invites",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event for which to retrieve invites."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5885,\"name\":\"Morgan Hirthe\",\"email\":\"imclaughlin@example.org\",\"country\":\"Saint Vincent and the Grenadines\",\"profession\":\"Gas Distribution Plant Operator\",\"phone\":\"870-215-1024\",\"organization\":\"Leffler-Glover\"},{\"id\":5886,\"name\":\"Annette Labadie\",\"email\":\"kconsidine@example.net\",\"country\":\"Holy See (Vatican City State)\",\"profession\":\"Construction Equipment Operator\",\"phone\":\"+1-678-651-3805\",\"organization\":\"Cartwright-Balistreri\"}]}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This event is a public event, there are no invites.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create Invites for an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/invites",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event to which users will be invited."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"users\":[1,2,3]}"
+                        },
+                        "description": "Allows the organizer of a private event to invite users to the event."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":[{\"id\":5887,\"name\":\"Ms. Audra Crooks II\",\"email\":\"aschuster@example.com\",\"country\":\"Zambia\",\"profession\":\"Compacting Machine Operator\",\"phone\":\"253.392.8862\",\"organization\":\"McLaughlin, Leuschke and Bauch\"},{\"id\":5888,\"name\":\"Mr. Oswald Koch\",\"email\":\"bailee15@example.org\",\"country\":\"Heard Island and McDonald Islands\",\"profession\":\"Chemical Plant Operator\",\"phone\":\"531-539-0170\",\"organization\":\"Gaylord, Hettinger and Nitzsche\"}],\"message\":\"Invites created successfully.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You are not authorized to invite users to this event.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You cannot invite users to an event that has already started.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"You can only invite users to private events.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove Invites for an Event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:event_id\/invites",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event from which users will be removed."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"users\":[1,2,3]}"
+                        },
+                        "description": "Allows the organizer of a private event to remove invites for users."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":5889,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gilbert32@example.com\",\"country\":\"Liechtenstein\",\"profession\":\"Registered Nurse\",\"phone\":\"364-447-5052\",\"organization\":\"Predovic Inc\"},{\"id\":5890,\"name\":\"Myrtis Tromp\",\"email\":\"nstokes@example.org\",\"country\":\"Solomon Islands\",\"profession\":\"Extruding Machine Operator\",\"phone\":\"1-539-501-0782\",\"organization\":\"Nitzsche-Ankunding\"}],\"message\":\"Invites removed successfully.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"Event not found.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Event Types",
+            "description": "\nHandles event types, allowing administrators to create, update, and delete event types.",
+            "item": [
+                {
+                    "name": "Create Event Type",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Concert\",\"description\":\"Concert\"}"
+                        },
+                        "description": "Creates a new event type. Only administrators can create event types."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":385,\"name\":\"sunt\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab.\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"Event type already exists!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Event Type",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types\/:type_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types\/:type_id",
+                            "variable": [
+                                {
+                                    "id": "type_id",
+                                    "key": "type_id",
+                                    "value": "1",
+                                    "description": "The ID of the type"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Concert\",\"description\":\"Concert\"}"
+                        },
+                        "description": "Updates an existing event type. Only administrators can update event types."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":386,\"name\":\"nihil\",\"description\":\"Harum mollitia modi deserunt aut ab provident perspiciatis quo.\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"Event type already exists!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Event Type",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types\/:type_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types\/:type_id",
+                            "variable": [
+                                {
+                                    "id": "type_id",
+                                    "key": "type_id",
+                                    "value": "1",
+                                    "description": "The ID of the type"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Deletes an event type. A type cannot be deleted if it is used by any event.<br\/>Only administrators can delete event types."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": null,
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"Cannot delete event type that is in use!\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List Event Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/event-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/event-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Lists all available event types.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":389,\"name\":\"deleniti\",\"description\":\"Eum doloremque id aut libero aliquam veniam corporis.\"},{\"id\":390,\"name\":\"dolorem\",\"description\":\"Deleniti nemo odit quia officia.\"}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Events",
+            "description": "\nAPIs for managing events.",
             "item": [
                 {
                     "name": "Store a newly created resource in storage.",
@@ -540,7 +969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"start_date\":\"2051-07-31\",\"end_date\":\"2051-07-26\",\"location\":\"n\",\"cost\":7,\"public\":false,\"type\":\"architecto\"}"
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"start_date\":\"2051-07-31\",\"end_date\":\"2051-07-26\",\"location\":\"n\",\"cost\":7,\"public\":true,\"type\":\"architecto\"}"
                         },
                         "description": "",
                         "auth": {
@@ -586,13 +1015,32 @@
                     "response": []
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "List all events",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/events",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/events"
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2",
+                                    "description": "The results are paginated, you will get 10 results per page.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "with",
+                                    "value": "organizer",
+                                    "description": "The additional data to include in the response.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "cost%2Cdesc",
+                                    "description": "The sorting criteria for the events. Default is 'start,*order*'.Consisting of two parts, the sorting criteria and the sorting order (asc or desc).",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/events?page=2&with=organizer&sort=cost%2Cdesc"
                         },
                         "method": "GET",
                         "header": [
@@ -606,37 +1054,22 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
+                        "description": "Display a listing of events. By default, it shows only upcoming events.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "59"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
+                            "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":1016,\"name\":\"Architecto quo rerum repellat est maiores eveniet consequatur.\",\"description\":\"Rerum sint quam distinctio dicta. Ad corporis vero tempore laborum. Incidunt ipsum dolores quo neque repudiandae. Voluptatem adipisci sunt ut vero voluptatem eum illo.\",\"location\":\"Online\",\"cost\":8,\"start_date\":\"2025-06-26 17:00:00\",\"end_date\":\"2025-07-06 17:30:00\",\"type\":\"Workshop\",\"public\":\"yes\",\"attendees_count\":8},{\"id\":889,\"name\":\"Autem dolore omnis cupiditate quam necessitatibus minima quo.\",\"description\":\"Voluptatum nobis rerum repudiandae iusto qui molestiae. Et possimus officia consectetur dolorem. Error ea asperiores aut rerum.\",\"location\":\"Lake Coty\",\"cost\":8,\"start_date\":\"2025-06-26 18:30:00\",\"end_date\":\"2025-07-24 22:30:00\",\"type\":\"Lecture\",\"public\":\"yes\",\"attendees_count\":31},{\"id\":873,\"name\":\"Eum iure soluta eum in minima.\",\"description\":\"Ut aut expedita eius eligendi nobis eum itaque. Dolor voluptatum fugiat sit ducimus et tempore. Eos minima consequatur enim eaque error quia.\",\"location\":\"Online\",\"cost\":5,\"start_date\":\"2025-06-26 19:00:00\",\"end_date\":\"2025-07-10 21:00:00\",\"type\":\"Networking\",\"public\":\"yes\",\"attendees_count\":47},{\"id\":380,\"name\":\"In natus voluptas dolore culpa odit et atque.\",\"description\":\"Tempore distinctio tenetur ex cumque assumenda ducimus temporibus. Molestiae ratione voluptates numquam est saepe asperiores adipisci. Velit provident corporis quia voluptas. Repudiandae alias consequatur quisquam dolores.\",\"location\":\"Online\",\"cost\":1,\"start_date\":\"2025-06-26 20:00:00\",\"end_date\":\"2025-07-22 11:30:00\",\"type\":\"Open House\",\"public\":\"yes\",\"attendees_count\":43},{\"id\":975,\"name\":\"Nesciunt explicabo ut provident temporibus nam ut quia quas.\",\"description\":\"Perferendis consequuntur voluptatum sed ratione. Ad quae eos sequi aut impedit. Asperiores illum aut voluptas quia id aliquid distinctio. Pariatur animi aut quisquam ipsum sint iure.\",\"location\":\"Port Cindy\",\"cost\":9,\"start_date\":\"2025-06-26 21:30:00\",\"end_date\":\"2025-07-23 18:00:00\",\"type\":\"Seminar\",\"public\":\"yes\",\"attendees_count\":31},{\"id\":623,\"name\":\"Expedita esse deserunt totam.\",\"description\":\"Culpa totam qui explicabo et. Et dolorem ipsum enim cum. Sed cum aliquid veritatis ullam in. Et consequatur et asperiores.\",\"location\":\"Online\",\"cost\":9,\"start_date\":\"2025-06-26 22:30:00\",\"end_date\":\"2025-07-06 15:00:00\",\"type\":\"Exhibition\",\"public\":\"yes\",\"attendees_count\":10},{\"id\":1143,\"name\":\"Ut expedita aut odio voluptatibus quis harum reiciendis.\",\"description\":\"Consectetur blanditiis qui quasi esse id nihil voluptatem. Tempora et accusamus ab rerum a. Id suscipit corrupti eum sequi quisquam.\",\"location\":\"East Raegan\",\"cost\":6,\"start_date\":\"2025-06-26 22:30:00\",\"end_date\":\"2025-07-09 06:00:00\",\"type\":\"Meetup\",\"public\":\"yes\",\"attendees_count\":41},{\"id\":336,\"name\":\"Sunt nisi sed non dolorum.\",\"description\":\"Est numquam omnis est et corporis. Mollitia impedit qui corporis qui aliquid voluptates iste. Provident qui eligendi assumenda sint necessitatibus odio. Quod aspernatur quos eaque aliquid.\",\"location\":\"Online\",\"cost\":4,\"start_date\":\"2025-06-26 23:00:00\",\"end_date\":\"2025-07-15 22:30:00\",\"type\":\"Ceremony\",\"public\":\"yes\",\"attendees_count\":33},{\"id\":49,\"name\":\"Ut doloremque ipsam qui quis sunt error molestias non.\",\"description\":\"Placeat voluptatem quia sint perspiciatis et. Distinctio praesentium modi aliquid praesentium voluptas id quae. Omnis ducimus quas beatae iusto molestias. Provident earum architecto commodi provident est.\",\"location\":\"Myrtiston\",\"cost\":2,\"start_date\":\"2025-06-26 23:30:00\",\"end_date\":\"2025-07-23 15:30:00\",\"type\":\"Open House\",\"public\":\"yes\",\"attendees_count\":26},{\"id\":128,\"name\":\"Nam sunt eum dignissimos itaque ducimus aperiam sapiente.\",\"description\":\"Sit et maiores rerum et corporis ut dolor. Deleniti facere aspernatur ut praesentium mollitia praesentium laboriosam. Cupiditate exercitationem quia eveniet voluptas autem. Pariatur reprehenderit dolorem iure.\",\"location\":\"Online\",\"cost\":7,\"start_date\":\"2025-06-26 23:30:00\",\"end_date\":\"2025-07-12 00:30:00\",\"type\":\"Festival\",\"public\":\"yes\",\"attendees_count\":42}],\"links\":{\"first\":\"https:\\\/\\\/events-management.test\\\/api\\\/events?page=1\",\"last\":\"https:\\\/\\\/events-management.test\\\/api\\\/events?page=108\",\"prev\":null,\"next\":\"https:\\\/\\\/events-management.test\\\/api\\\/events?page=2\"},\"meta\":{\"current_page\":1,\"last_page\":108,\"path\":\"https:\\\/\\\/events-management.test\\\/api\\\/events\",\"per_page\":10,\"total\":1077}}",
+                            "body": "{\"data\":[{\"id\":1471,\"name\":\"Et animi quos velit et fugiat.\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab. Perspiciatis quo omnis nostrum aut adipisci quidem nostrum qui. Incidunt iure odit et et modi ipsum.\",\"location\":\"New Carey\",\"cost\":4,\"start_date\":\"2025-07-18 03:30:00\",\"end_date\":\"2025-07-21 14:30:00\",\"type\":\"odit\",\"public\":\"yes\",\"attendees_count\":1},{\"id\":1472,\"name\":\"Quia perspiciatis deserunt ducimus corrupti et.\",\"description\":\"Maiores assumenda odit doloribus repellat. Corporis nesciunt ut ratione iure impedit molestiae.\",\"location\":\"Online\",\"cost\":6,\"start_date\":\"2025-07-15 23:30:00\",\"end_date\":\"2025-07-21 22:00:00\",\"type\":\"et\",\"public\":\"yes\",\"attendees_count\":1}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"last_page\":1,\"path\":\"\\\/\",\"per_page\":10,\"total\":2}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"The page 10 does not exist.\"}",
                             "name": ""
                         }
                     ]
@@ -663,7 +1096,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"location\":\"d\",\"cost_min\":37,\"cost_max\":9,\"starts_before\":\"2025-07-02 16:23:52\",\"starts_after\":\"2025-07-02 16:23:52\",\"ends_before\":\"2025-07-02 16:23:52\",\"ends_after\":\"2025-07-02 16:23:52\",\"type\":\"architecto\",\"attendees_min\":39,\"attendees_max\":84,\"public\":false,\"organizer\":16}"
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"location\":\"d\",\"cost_min\":37,\"cost_max\":9,\"starts_before\":\"2025-07-02 19:48:48\",\"starts_after\":\"2025-07-02 19:48:48\",\"ends_before\":\"2025-07-02 19:48:48\",\"ends_after\":\"2025-07-02 19:48:48\",\"type\":\"architecto\",\"attendees_min\":39,\"attendees_max\":84,\"public\":false,\"organizer\":16}"
                         },
                         "description": "",
                         "auth": {
@@ -765,7 +1198,7 @@
                     ]
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "GET api\/events\/organizer\/{organizer_id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -887,486 +1320,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":1,\"name\":\"Id et iste et aspernatur recusandae.\",\"description\":\"Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.\",\"location\":\"Online\",\"cost\":4,\"start_date\":\"2025-07-11 22:00:00\",\"end_date\":\"2025-07-23 02:00:00\",\"type\":\"Hackathon\",\"public\":\"yes\",\"attendees_count\":4}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Invoke the controller method.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/docs",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/docs"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "59"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"Server Error\"\n}",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Event Invites",
-            "description": "\nHandles event invitations, allowing organizers to invite users to private events.",
-            "item": [
-                {
-                    "name": "Get Invites for an Event",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/events\/:event_id\/invites",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
-                            "variable": [
-                                {
-                                    "id": "event_id",
-                                    "key": "event_id",
-                                    "value": "1",
-                                    "description": "The ID of the event for which to retrieve invites."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Lists all users invited to a private event. You need to be the organizer of the event or an administrator to view the invites."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":5357,\"name\":\"Morgan Hirthe\",\"email\":\"imclaughlin@example.org\",\"country\":\"Saint Vincent and the Grenadines\",\"profession\":\"Gas Distribution Plant Operator\",\"phone\":\"870-215-1024\",\"organization\":\"Leffler-Glover\"},{\"id\":5358,\"name\":\"Annette Labadie\",\"email\":\"kconsidine@example.net\",\"country\":\"Holy See (Vatican City State)\",\"profession\":\"Construction Equipment Operator\",\"phone\":\"+1-678-651-3805\",\"organization\":\"Cartwright-Balistreri\"}]}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\"message\": \"Unauthenticated.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This event is a public event, there are no invites.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This action is unauthorized.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 404,
-                            "body": "{\"message\": \"Event not found.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Create Invites for an Event",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/events\/:event_id\/invites",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
-                            "variable": [
-                                {
-                                    "id": "event_id",
-                                    "key": "event_id",
-                                    "value": "1",
-                                    "description": "The ID of the event to which users will be invited."
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"users\":[1,2,3]}"
-                        },
-                        "description": "Allows the organizer of a private event to invite users to the event."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"data\":[{\"id\":5359,\"name\":\"Ms. Audra Crooks II\",\"email\":\"aschuster@example.com\",\"country\":\"Zambia\",\"profession\":\"Compacting Machine Operator\",\"phone\":\"253.392.8862\",\"organization\":\"McLaughlin, Leuschke and Bauch\"},{\"id\":5360,\"name\":\"Mr. Oswald Koch\",\"email\":\"bailee15@example.org\",\"country\":\"Heard Island and McDonald Islands\",\"profession\":\"Chemical Plant Operator\",\"phone\":\"531-539-0170\",\"organization\":\"Gaylord, Hettinger and Nitzsche\"}],\"message\":\"Invites created successfully.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\"message\": \"Unauthenticated.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This action is unauthorized.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"You are not authorized to invite users to this event.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"You cannot invite users to an event that has already started.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"You can only invite users to private events.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 404,
-                            "body": "{\"message\": \"Event not found.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Remove Invites for an Event",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/events\/:event_id\/invites",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/events\/:event_id\/invites",
-                            "variable": [
-                                {
-                                    "id": "event_id",
-                                    "key": "event_id",
-                                    "value": "1",
-                                    "description": "The ID of the event from which users will be removed."
-                                }
-                            ]
-                        },
-                        "method": "DELETE",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"users\":[1,2,3]}"
-                        },
-                        "description": "Allows the organizer of a private event to remove invites for users."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":5361,\"name\":\"Ms. Audra Crooks II\",\"email\":\"gilbert32@example.com\",\"country\":\"Liechtenstein\",\"profession\":\"Registered Nurse\",\"phone\":\"364-447-5052\",\"organization\":\"Predovic Inc\"},{\"id\":5362,\"name\":\"Myrtis Tromp\",\"email\":\"nstokes@example.org\",\"country\":\"Solomon Islands\",\"profession\":\"Extruding Machine Operator\",\"phone\":\"1-539-501-0782\",\"organization\":\"Nitzsche-Ankunding\"}],\"message\":\"Invites removed successfully.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\"message\": \"Unauthenticated.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This action is unauthorized.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 404,
-                            "body": "{\"message\": \"Event not found.\"}",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Event Types",
-            "description": "\nHandles event types, allowing administrators to create, update, and delete event types.",
-            "item": [
-                {
-                    "name": "Create Event Type",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/event-types",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/event-types"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"Concert\",\"description\":\"Concert\"}"
-                        },
-                        "description": "Creates a new event type. Only administrators can create event types."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 201,
-                            "body": "{\"data\":{\"id\":200,\"name\":\"sunt\",\"description\":\"Accusantium harum mollitia modi deserunt aut ab.\"}}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\"message\": \"Unauthenticated.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This action is unauthorized.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\"message\": \"Event type already exists!\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Update Event Type",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/event-types\/:type_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/event-types\/:type_id",
-                            "variable": [
-                                {
-                                    "id": "type_id",
-                                    "key": "type_id",
-                                    "value": "1",
-                                    "description": "The ID of the type"
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"Concert\",\"description\":\"Concert\"}"
-                        },
-                        "description": "Updates an existing event type. Only administrators can update event types."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\"data\":{\"id\":201,\"name\":\"nihil\",\"description\":\"Harum mollitia modi deserunt aut ab provident perspiciatis quo.\"}}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\"message\": \"Unauthenticated.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This action is unauthorized.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\"message\": \"Event type already exists!\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Delete Event Type",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/event-types\/:type_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/event-types\/:type_id",
-                            "variable": [
-                                {
-                                    "id": "type_id",
-                                    "key": "type_id",
-                                    "value": "1",
-                                    "description": "The ID of the type"
-                                }
-                            ]
-                        },
-                        "method": "DELETE",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Deletes an event type. A type cannot be deleted if it is used by any event.<br\/>Only administrators can delete event types."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 204,
-                            "body": null,
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\"message\": \"Unauthenticated.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 403,
-                            "body": "{\"message\": \"This action is unauthorized.\"}",
-                            "name": ""
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\"message\": \"Cannot delete event type that is in use!\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "List Event Types",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/event-types",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/event-types"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Lists all available event types.",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":202,\"name\":\"deleniti\",\"description\":\"Eum doloremque id aut libero aliquam veniam corporis.\"},{\"id\":203,\"name\":\"dolorem\",\"description\":\"Deleniti nemo odit quia officia.\"}]}",
+                            "body": "{\"data\":{\"id\":1,\"name\":\"Id et iste et aspernatur recusandae.\",\"description\":\"Alias quas voluptatibus occaecati sint. Numquam qui eligendi autem ea iusto non velit. Veritatis error qui accusantium temporibus aut nulla laborum.\",\"location\":\"Online\",\"cost\":4,\"start_date\":\"2025-07-11 22:00:00\",\"end_date\":\"2025-07-23 02:00:00\",\"type\":\"Hackathon\",\"public\":\"yes\",\"attendees_count\":5}}",
                             "name": ""
                         }
                     ]

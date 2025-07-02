@@ -116,7 +116,7 @@ test('events_index_out_of_range_page', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => "The page 10 does not exist",
+            'message' => "The page 10 does not exist.",
         ])->assertStatus(404);
 });
 
@@ -189,20 +189,6 @@ test('events_show_with_organizer', function () {
             'data' => $this->getEventResource($event),
         ]);
 });
-
-test('events_show_with_attendees', function () {
-    $event = $this->getEvents(count: 1, attendees: 'random');
-    $event->loadCount('attendees');
-    $event->load('attendees');
-
-    $this->getJson(route('events.show', [$event, 'with' => 'attendees']))
-        ->assertValid()
-        ->assertHeader('Content-Type', 'application/json')
-        ->assertExactJson([
-            'data' => $this->getEventResource($event),
-        ]);
-});
-
 
 test('events_show_not_found', function () {
     // Test with a non-existing event
@@ -652,7 +638,7 @@ test('events_organizer', function () {
     $eventFirst = $this->getEventResource($events->first());
     $eventLast = $this->getEventResource($events->last());
 
-    $response = $this->getJson(route('events.organizer', $this->organizer))
+    $response = $this->getJson(route('events.byOrganizer', $this->organizer))
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonStructure([

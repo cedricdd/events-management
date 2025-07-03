@@ -67,8 +67,10 @@ class EventTypeController extends Controller
      * @authenticated
      */
     #[UrlParam("type_id", "int", "The ID of the type", true, "1")]
+
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "EventType not found."}', 404)]
     #[Response('{"message": "Event type already exists!"}', 422)]
     #[ResponseFromApiResource(EventTypeResource::class, EventType::class, 200)]
     public function update(EventTypeRequest $request, EventType $type)
@@ -94,10 +96,12 @@ class EventTypeController extends Controller
      * @authenticated
      */
     #[UrlParam("type_id", "int", "The ID of the type", true, "1")]
+
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "EventType not found."}', 404)]
     #[Response('{"message": "Cannot delete event type that is in use!"}', 422)]
-    #[Response( status: 204)]
+    #[Response(status: 204)]
     public function destroy(EventType $type): JsonResponse|\Illuminate\Http\Response
     {
         // A type cannot be deleted if it is used by any event

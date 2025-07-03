@@ -18,13 +18,15 @@ use Knuckles\Scribe\Attributes\UrlParam;
 class UserController extends Controller
 {
     /**
-     * Show User Information
+     * User Information
      * 
      * Displays the profile of a user. If no user is specified, it shows the authenticated user's profile.<br/>
      * (Only admins can see other users' profiles.)
      */
     #[UrlParam("user", "int", "The ID of the user whose profile to retrieve. If not specified, retrieves the authenticated user's profile.", false, "1")]
+    
     #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "User not found."}', 404)]
     #[Response('{"data": {
         "id": 1,
         "name": "John Doe",

@@ -13,7 +13,9 @@ use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use Knuckles\Scribe\Attributes\Response;
+use Knuckles\Scribe\Attributes\UrlParam;
 use App\Http\Requests\SearchEventRequest;
+use Knuckles\Scribe\Attributes\BodyParam;
 use Knuckles\Scribe\Attributes\QueryParam;
 use Illuminate\Support\Facades\Notification;
 use App\Jobs\SendEventModificationNotification;
@@ -32,7 +34,7 @@ class EventController extends Controller
     use LoadRelationships;
 
     /**
-     * List all events
+     * List Events
      * 
      * Display a listing of events. By default, it shows only upcoming events.
      */
@@ -40,6 +42,7 @@ class EventController extends Controller
     #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::EVENTS_PER_PAGE . " results per page.", false, 2)]
     #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["organizer"])]
     #[QueryParam("sort", "string", "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "cost,desc", enum: ["start,*order*", "name,*order*", "end,*order*", "cost,*order*", "attendees,*order*", "newest,*order*"])]
+    
     #[Response('{"message": "The page 10 does not exist."}', 404)]
     #[ResponseFromApiResource(EventCollection::class, Event::class, 200, paginate: Constants::EVENTS_PER_PAGE, with: ['type'], withCount: ['attendees'])]
     public function index(Request $request): EventCollection|JsonResponse
@@ -67,8 +70,16 @@ class EventController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Event
+     * 
+     * Creates a new event. Only organizers and admins can create events.
+     * 
+     * @authenticated
      */
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "A similar event already exists!"}', 409)]
+    #[ResponseFromApiResource(EventResource::class, Event::class, 201, with: ['type', 'organizer'], additional: ['message' => 'Event created successfully'])]
     public function store(EventRequest $request): JsonResponse
     {
         $type = EventType::where('name', $request->type)->first();
@@ -106,11 +117,19 @@ class EventController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Event
+     * 
+     * Display a specified event.
      */
+    #[UrlParam("id", "int", "The ID of the event to display.", true, 1)]
+    
+    #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["organizer"])]
+
+    #[Response('{"message": "Event not found."}', 404)]
+    #[ResponseFromApiResource(EventResource::class, Event::class, 200, with: ['type', 'organizer'], withCount: ['attendees'])]
     public function show(Event $event): EventResource
     {
-        $event = $this->loadRelationships($event, ['organizer', 'attendees']);
+        $event = $this->loadRelationships($event, ['organizer']);
         $event->loadCount('attendees');
         $event->load('type');
 
@@ -118,8 +137,32 @@ class EventController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Event
+     * 
+     * Updates the specified event. Only the organizer or an admin can update an event.<br/>
+     * You can modify a single field or multiple fields at once.<br/>
+     * If some users have already paid for the event, only the name, description and the type can be modified.
+     * 
+     * @authenticated
      */
+    #[UrlParam("id", "int", "The ID of the event to update.", true, 1)]
+
+    #[BodyParam("name", "string", "The name of the event. (Max " . Constants::STRING_MAX_LENGTH . " characters)",  false)]
+    #[BodyParam("description", "string", "The description of the event. (Max " . Constants::DESCRIPTION_MAX_LENGTH . " characters)", false)]
+    #[BodyParam("start_date", "date", "The start date & time of the event, it needs to be at least " . Constants::MIN_HOURS_BEFORE_START_EVENT . " hours in the future.<br/>", false, example: "2025-01-31 08:00:00")]
+    #[BodyParam("end_date", "date", "The end date & time of the event, it needs to be set after the start date.<br/>", false, example: "2025-02-10 20:30:00")]
+    #[BodyParam("location", "string", "The location at which the event will take place.", false, "Online")]
+    #[BodyParam("cost", "integer", "The amount of tokens each attendees will have to pay to join the event. [0;100]", false)]
+    #[BodyParam("public", "boolean", "Is this event a public event, in which case any users will have the ability to join.", false)]
+    #[BodyParam("type", "string", "The type of the event, it needs to be one of our existing event types.<br/>", false, example: "Conference")]
+    
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "The start of this event is too close, modification are not allowed anymore!"}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[Response('{"message": "A similar event already exists!"}', 409)]
+    #[Response('{"message": "No changes were made to the event."}', 409)]
+    #[ResponseFromApiResource(EventResource::class, Event::class, 200, with: ['type', 'organizer'], withCount: ['attendees'], additional: ['message' => 'Event updated successfully'])]
     public function update(EventRequest $request, Event $event): JsonResponse
     {
         // If the event was supposed to start soon we don't allow any changes
@@ -177,8 +220,20 @@ class EventController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Event
+     * 
+     * Deletes the specified event. If the event has attendees, they will be refunded.<br/>
+     * If the event was supposed to start soon, only an admin can delete it.
+     * 
+     * @authenticated
      */
+    #[UrlParam("id", "int", "The ID of the event to delete.", true, 1)]
+
+    #[Response('{"message": "Unauthenticated."}', 401)]
+    #[Response('{"message": "This action is unauthorized."}', 403)]
+    #[Response('{"message": "The deletion of this event is not allowed anymore!"}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[Response( status: 204)]
     public function destroy(Request $request, Event $event): JsonResponse|\Illuminate\Http\Response
     {
         // If the event was supposed to start soon we don't allow deletion unless the user doing it is an admin
@@ -204,16 +259,22 @@ class EventController extends Controller
         return response()->noContent();
     }
 
-    public function type(Request $request, string $name): EventCollection|JsonResponse
+    /**
+     * Events by Type
+     * 
+     * Displays a list of events of a specific type.
+     */
+    #[UrlParam("eventType_name", "string", "The name of the type.", true, "Conference")]
+
+    #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::EVENTS_PER_PAGE . " results per page.", false, 2)]
+    #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["organizer"])]
+    #[QueryParam("sort", "string", "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "cost,desc", enum: ["start,*order*", "name,*order*", "end,*order*", "cost,*order*", "attendees,*order*", "newest,*order*"])]
+    
+    #[Response('{"message": "EventType not found."}', 404)]
+    #[Response('{"message": "The page 10 does not exist."}', 404)]
+    #[ResponseFromApiResource(EventCollection::class, Event::class, 200, paginate: Constants::EVENTS_PER_PAGE, with: ['type'], withCount: ['attendees'])]
+    public function type(Request $request, EventType $eventType): EventCollection|JsonResponse
     {
-        $eventType = EventType::where('name', $name)->first();
-
-        if (!$eventType) {
-            return response()->json([
-                'message' => "There are no events of this type.",
-            ], 404);
-        }
-
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
         $events = $eventType->events()
@@ -237,12 +298,23 @@ class EventController extends Controller
         return new EventCollection($this->loadRelationships($events, ['organizer']));
     }
 
+    /**
+     * Search Events
+     * 
+     * Searches for events based on various criteria such as name, description, location, cost, date, type, and organizer.
+     * You can filter events by a single field or multiple fields at once.
+     */
+    #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::EVENTS_PER_PAGE . " results per page.", false, 2)]
+    #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["organizer"])]
+    #[QueryParam("sort", "string", "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "cost,desc", enum: ["start,*order*", "name,*order*", "end,*order*", "cost,*order*", "attendees,*order*", "newest,*order*"])]
+    
+    #[Response('{"message": "The page 10 does not exist."}', 404)]
+    #[ResponseFromApiResource(EventCollection::class, Event::class, 200, paginate: Constants::EVENTS_PER_PAGE, with: ['type'], withCount: ['attendees'])]
     public function search(SearchEventRequest $request): EventCollection|JsonResponse
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');
 
         $events = Event::with('type')
-            // ->selectRaw("events.*, (SELECT COUNT(*) FROM attending WHERE attending.event_id = events.id) as attendees_count")
             ->withCount('attendees')
             ->when($request->only(['name', 'description', 'location']), function ($query) use ($request) {
                 foreach (['name', 'description', 'location'] as $field) {
@@ -260,8 +332,10 @@ class EventController extends Controller
                 }
             })
             ->when($request->only(['cost_min', 'cost_max']), function ($query) use ($request) {
-                if($request->has('cost_max')) $query->where('cost', '<=', $request->input('cost_max'));
-                if($request->has('cost_min')) $query->where('cost', '>=', $request->input('cost_min'));
+                if ($request->has('cost_max'))
+                    $query->where('cost', '<=', $request->input('cost_max'));
+                if ($request->has('cost_min'))
+                    $query->where('cost', '>=', $request->input('cost_min'));
             })
             /**
              * We use a subquery to count the number of attendees for each event.
@@ -276,17 +350,22 @@ class EventController extends Controller
                 $query->whereRaw('CAST((select count(*) from users inner join attending on users.id = attending.user_id where events.id = attending.event_id) as UNSIGNED) >= ?', [$request->input('attendees_min')]);
             })
             ->when($request->only(['starts_before', 'starts_after']), function ($query) use ($request) {
-                if($request->has('starts_before')) $query->where('start_date', '<=', $request->input('starts_before'));
-                if($request->has('starts_after')) $query->where('start_date', '>=', $request->input('starts_after'));
+                if ($request->has('starts_before'))
+                    $query->where('start_date', '<=', $request->input('starts_before'));
+                if ($request->has('starts_after'))
+                    $query->where('start_date', '>=', $request->input('starts_after'));
             })
             ->when($request->only(['ends_before', 'ends_after']), function ($query) use ($request) {
-                if($request->has('ends_before')) $query->where('end_date', '<=', $request->input('ends_before'));
-                if($request->has('ends_after')) $query->where('end_date', '>=', $request->input('ends_after'));
+                if ($request->has('ends_before'))
+                    $query->where('end_date', '<=', $request->input('ends_before'));
+                if ($request->has('ends_after'))
+                    $query->where('end_date', '>=', $request->input('ends_after'));
             })
             ->when($request->has('type'), function ($query) use ($request) {
                 $type = EventType::where('name', $request->input('type'))->first();
 
-                if ($type) $query->where('event_type_id', $type->id);
+                if ($type)
+                    $query->where('event_type_id', $type->id);
             })
             ->when($request->has('public'), function ($query) use ($request) {
                 $query->where('public', $request->input('public'));
@@ -310,11 +389,22 @@ class EventController extends Controller
             $events->appends(['sort' => $order . ',' . $direction]);
         }
 
-        return new EventCollection($this->loadRelationships($events, ['organizer']))->additional(
-            ['message' => $request->input('attendees_max')]
-        );
+        return new EventCollection($this->loadRelationships($events, ['organizer']));
     }
 
+    /**
+     * Events By Organizer
+     * 
+     * Lists all events created by a specific organizer.
+     */
+    #[UrlParam("organizer_id", "int", "The ID of the organizer.", true, 1)]
+    
+    #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::EVENTS_PER_PAGE . " results per page.", false, 2)]
+    #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["organizer"])]
+    #[QueryParam("sort", "string", "The sorting criteria for the events. Default is 'start,*order*'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "cost,desc", enum: ["start,*order*", "name,*order*", "end,*order*", "cost,*order*", "attendees,*order*", "newest,*order*"])]
+    
+    #[Response('{"message": "The page 10 does not exist."}', 404)]
+    #[ResponseFromApiResource(EventCollection::class, Event::class, 200, paginate: Constants::EVENTS_PER_PAGE, with: ['type'], withCount: ['attendees'])]
     public function byOrganizer(Request $request, User $organizer): EventCollection|JsonResponse
     {
         [$order, $direction] = cleanSorting($request->input('sort', ''), 'event');

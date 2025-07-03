@@ -26,14 +26,16 @@ use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 class AttendeeController extends Controller
 {
     /**
-     * List of Attendees from an Event
+     * Attendees From Event
      * 
      * Shows a paginated list of attendees for a specific event, with optional sorting and additional event data.
      */
     #[UrlParam("event_id", "int", "The ID of the event to retrieve attendees for.", true, "1")]
+    
     #[QueryParam("page", "int", "The results are paginated, you will get " . Constants::ATTENDEES_PER_PAGE . " results per page.", false, 2)]
     #[QueryParam("sort", "string", "The sorting criteria for the attendees. Default is 'user,asc'.<br/>Consisting of two parts, the sorting criteria and the sorting order (asc or desc).", false, "registration,desc", enum: ["name,*order*", "country,*order*", "registration,*order*"])]
     #[QueryParam("with", "string", "The additional data to include in the response.", false, enum: ["event"])]
+    
     #[Response('{"message": "Event not found."}', 404)]
     #[Response('{"message": "The page 10 does not exist."}', 404)]
     #[ResponseFromApiResource(UserCollection::class, User::class, 200, paginate: Constants::ATTENDEES_PER_PAGE)]
@@ -70,11 +72,12 @@ class AttendeeController extends Controller
     }
 
     /**
-     * Register to an Event
+     * Register To Event
      * 
      * Allows a user to register for an event, provided they meet the necessary conditions such as not being already registered, not being the organizer, having enough tokens, and being invited if the event is private.
      */
     #[UrlParam("event_id", "int", "The ID of the event to register for.", true, "1")]
+    
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "You can only register to an event before it start."}', 403)]
     #[Response('{"message": "You are not invited to this event."}', 403)]
@@ -145,15 +148,18 @@ class AttendeeController extends Controller
     }
 
     /**
-     * Unregister from an Event
+     * Unregister From Event
      * 
      * Allows a user to unregister from an event, provided they are registered and the request is made by the user themselves, the event organizer, or an admin.
      */
     #[UrlParam("event_id", "int", "The ID of the event to unregister from.", true, "1")]
     #[UrlParam("user", "int", "The ID of the user to unregister. If not provided, the authenticated user will be unregistered.", false, "2")]
+    
     #[Response('{"message": "Unauthenticated."}', 401)]
     #[Response('{"message": "You are not registered to this event!"}', 403)]
     #[Response('{"message": "You are not allowed to unregister this user from the event!"}', 403)]
+    #[Response('{"message": "Event not found."}', 404)]
+    #[Response('{"message": "User not found."}', 404)]
     #[Response(status: 204)]
     public function destroy(Request $request, Event $event, User|null $user = null): JsonResponse|\Illuminate\Http\Response
     {

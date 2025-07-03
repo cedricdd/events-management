@@ -56,7 +56,7 @@ endpoints:
     responses:
       -
         status: 201
-        content: '{"data":{"id":385,"name":"sunt","description":"Accusantium harum mollitia modi deserunt aut ab."}}'
+        content: '{"data":{"id":1078,"name":"sunt","description":"Accusantium harum mollitia modi deserunt aut ab."}}'
         headers: []
         description: ''
         custom: []
@@ -149,7 +149,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":386,"name":"nihil","description":"Harum mollitia modi deserunt aut ab provident perspiciatis quo."}}'
+        content: '{"data":{"id":1079,"name":"nihil","description":"Harum mollitia modi deserunt aut ab provident perspiciatis quo."}}'
         headers: []
         description: ''
         custom: []
@@ -162,6 +162,12 @@ endpoints:
       -
         status: 403
         content: '{"message": "This action is unauthorized."}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "EventType not found."}'
         headers: []
         description: ''
         custom: []
@@ -237,6 +243,12 @@ endpoints:
         description: ''
         custom: []
       -
+        status: 404
+        content: '{"message": "EventType not found."}'
+        headers: []
+        description: ''
+        custom: []
+      -
         status: 422
         content: '{"message": "Cannot delete event type that is in use!"}'
         headers: []
@@ -279,7 +291,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":389,"name":"deleniti","description":"Eum doloremque id aut libero aliquam veniam corporis."},{"id":390,"name":"dolorem","description":"Deleniti nemo odit quia officia."}]}'
+        content: '{"data":[{"id":1089,"name":"saepe","description":"Rem voluptatem tenetur totam laborum."},{"id":1090,"name":"officiis","description":"Quia eligendi illo velit eos unde."}]}'
         headers: []
         description: ''
         custom: []

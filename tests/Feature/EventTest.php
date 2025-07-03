@@ -286,7 +286,7 @@ test('events_form_validation', function () {
             [['name', 'description', 'location', 'type'], 'string', 0],
             [['name', 'location'], 'max.string', str_repeat('a', Constants::STRING_MAX_LENGTH + 1), ['max' => Constants::STRING_MAX_LENGTH]],
             ['description', 'max.string', str_repeat('a', Constants::DESCRIPTION_MAX_LENGTH + 1), ['max' => Constants::DESCRIPTION_MAX_LENGTH]],
-            [['start_date', 'end_date'], 'date', 'invalid-date'],
+            [['start_date', 'end_date'], 'date_format', 'invalid-date', ['format' => 'Y-m-d H:i:s']],
             ['start_date', 'after', now()->format('Y-m-d H:i:s'), ['date' => '+' . Constants::MIN_HOURS_BEFORE_START_EVENT . ' hours']],
             ['end_date', 'after', now()->format('Y-m-d H:i:s'), ['date' => 'start date']],
             ['cost', 'integer', 'invalide-cost'],
@@ -759,7 +759,7 @@ test('events_type_not_found', function () {
         ->assertValid()
         ->assertHeader('Content-Type', 'application/json')
         ->assertJsonFragment([
-            'message' => 'There are no events of this type.',
+            'message' => 'EventType not found',
         ])->assertStatus(404);
 });
 

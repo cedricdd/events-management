@@ -19,14 +19,16 @@ use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 class BanController extends Controller
 {
     /**
-     * List User Banned
+     * Users Banned
      * 
      * List all the users banned by the authenticated user or a specified user. 
      * * Only administrators can view other users' banned lists.
      */
     #[UrlParam("user", "int", "The ID of the user whose banned list to retrieve. If not specified, retrieves the authenticated user's banned list.", false, "1")]
+    
     #[Response('{"message": "Unauthenticated."}', 401, )]
     #[Response('{"message": "You are not authorized to view this user\'s banned list."}', 403, )]
+    #[Response('{"message": "Event not found."}', 404)]
     #[ResponseFromApiResource(UserCollection::class, User::class, 200)]
     public function index(Request $request, User|null $user = null): JsonResponse
     {
@@ -46,7 +48,7 @@ class BanController extends Controller
     }
 
     /**
-     * Add Bans
+     * Ban Users
      * 
      * Add users to the authenticated user's banned list.
      */
@@ -80,7 +82,7 @@ class BanController extends Controller
     }
 
     /**
-     * Remove Bans
+     * Unban Users
      * 
      * Remove users from the authenticated user's banned list.
      */

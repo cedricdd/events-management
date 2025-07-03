@@ -14,7 +14,7 @@ endpoints:
         Handles user-related operations, including viewing user profiles.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Show User Information'
+      title: 'User Information'
       description: |-
         Displays the profile of a user. If no user is specified, it shows the authenticated user's profile.<br/>
         (Only admins can see other users' profiles.)
@@ -63,6 +63,12 @@ endpoints:
       -
         status: 401
         content: '{"message": "Unauthenticated."}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"message": "User not found."}'
         headers: []
         description: ''
         custom: []
